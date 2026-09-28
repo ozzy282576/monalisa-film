@@ -2,14 +2,6 @@ name: Generate Mona Lisa film (Agnes)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - arena/01a0e83e-monalisa-film
-    paths:
-      - ".github/workflows/agnes-film.yml"
-      - "storyboard.json"
-      - "scripts/**"
-      - "generate_clips.py"
 
 permissions:
   contents: write
@@ -34,13 +26,13 @@ jobs:
           fi
           echo "AGNES_API_KEY is set (${#AGNES_API_KEY} chars)"
 
-      - name: Generate Agnes clips
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+
+      - name: Generate Agnes clips (QC + retry)
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 generate_clips.py
-
-      - name: Install ffmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
 
       - name: Concatenate to 3-minute film
         run: python3 scripts/assemble.py

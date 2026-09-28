@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-import json, os, sys, time, urllib.request, urllib.error, ssl
+"""Create Agnes clips, poll, download, QC, retry rejects."""
+import json, os, shutil, subprocess, sys, time, urllib.request, urllib.error
 from pathlib import Path
 
 KEY = os.environ.get("AGNES_API_KEY", "").strip()
@@ -8,11 +9,24 @@ MODEL = "agnes-video-2.5-flash"
 ROOT = Path(__file__).resolve().parent
 CLIPS = ROOT / "clips"
 STATE = ROOT / "work" / "tasks.json"
+PROGRESS = ROOT / "work" / "progress.json"
 CLIPS.mkdir(exist_ok=True)
 (ROOT / "work").mkdir(exist_ok=True)
+MAX_TRIES = 3
+MIN_BYTES = 80_000
+DUR_MIN = 9.0
+DUR_MAX = 14.5
 
 if not KEY:
     sys.exit("AGNES_API_KEY missing")
+
+
+def which_ffmpeg():
+    for name in ("ffprobe", "ffmpeg"):
+        if shutil.which(name):
+            continue
+    return shutil.which("ffprobe")
+
 
 def req(method, url, body=None, timeout=120, attempts=6):
     data = None if body is None else json.dumps(body).encode()
@@ -36,13 +50,58 @@ def req(method, url, body=None, timeout=120, attempts=6):
             time.sleep(1.5 * (i + 1))
     raise last
 
+
 def load_state():
     if STATE.exists():
         return json.loads(STATE.read_text())
     return {}
 
+
 def save_state(s):
     STATE.write_text(json.dumps(s, ensure_ascii=False, indent=2))
+
+
+def write_progress(story, state):
+    rows = []
+    ok = fail = pend = 0
+    for item in story:
+        sid = item["id"]
+        st = state.get(sid, {})
+        dest = CLIPS / f"{sid}.mp4"
+        status = st.get("qc") or st.get("status") or "pending"
+        if dest.exists() and st.get("qc") == "pass":
+            ok += 1
+            status = "pass"
+        elif st.get("qc") == "fail" and st.get("tries", 0) >= MAX_TRIES:
+            fail += 1
+            status = "fail"
+        else:
+            pend += 1
+        rows.append(
+            {
+                "id": sid,
+                "title": item.get("title"),
+                "status": status,
+                "tries": st.get("tries", 0),
+                "bytes": st.get("bytes"),
+                "duration": st.get("duration"),
+                "reason": st.get("reason"),
+            }
+        )
+    payload = {
+        "ok": ok,
+        "pending": pend,
+        "fail": fail,
+        "total": len(story),
+        "updated": int(time.time()),
+        "clips": rows,
+    }
+    PROGRESS.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
+    print(
+        f"PROGRESS {ok}/{len(story)} pass, {pend} pending, {fail} fail",
+        flush=True,
+    )
+
 
 def create_task(item):
     payload = {
@@ -54,16 +113,17 @@ def create_task(item):
         "aspect_ratio": "16:9",
     }
     code, body = req("POST", f"{BASE}/v1/videos", payload)
-    print(f"CREATE {item['id']} -> {code} {body}", flush=True)
+    print(f"CREATE {item['id']} -> {code} {json.dumps(body)[:400]}", flush=True)
     if code >= 400:
         return None
     vid = body.get("video_id") or body.get("id")
     return {"video_id": vid, "raw": body, "status": body.get("status", "queued")}
 
+
 def poll(video_id):
     url = f"{BASE}/agnesapi?video_id={video_id}&model_name={MODEL}"
-    code, body = req("GET", url)
-    return code, body
+    return req("GET", url)
+
 
 def download(url, dest: Path):
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -72,30 +132,135 @@ def download(url, dest: Path):
     tmp.rename(dest)
     return dest.stat().st_size
 
+
+def probe(path: Path):
+    ffprobe = shutil.which("ffprobe")
+    if not ffprobe:
+        return {"duration": None, "width": None, "height": None, "nb_frames": None}
+    cmd = [
+        ffprobe,
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "stream=width,height,nb_frames,duration",
+        "-show_entries",
+        "format=duration,size",
+        "-of",
+        "json",
+        str(path),
+    ]
+    raw = subprocess.check_output(cmd, text=True)
+    data = json.loads(raw)
+    fmt = data.get("format") or {}
+    st = (data.get("streams") or [{}])[0]
+    dur = st.get("duration") or fmt.get("duration")
+    try:
+        dur = float(dur) if dur is not None else None
+    except ValueError:
+        dur = None
+    return {
+        "duration": dur,
+        "width": st.get("width"),
+        "height": st.get("height"),
+        "nb_frames": st.get("nb_frames"),
+        "size": fmt.get("size"),
+    }
+
+
+def black_ratio(path: Path):
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        return 0.0
+    cmd = [
+        ffmpeg,
+        "-i",
+        str(path),
+        "-vf",
+        "blackdetect=d=0.5:pic_th=0.98",
+        "-an",
+        "-f",
+        "null",
+        "-",
+    ]
+    p = subprocess.run(cmd, capture_output=True, text=True)
+    text = p.stderr or ""
+    total = 0.0
+    for line in text.splitlines():
+        if "black_duration:" in line:
+            try:
+                total += float(line.split("black_duration:")[-1].split()[0])
+            except ValueError:
+                pass
+    info = probe(path)
+    dur = info.get("duration") or 12.0
+    return total / dur if dur else 0.0
+
+
+def qc_clip(path: Path, expected=12.0):
+    if not path.exists():
+        return False, "missing", {}
+    size = path.stat().st_size
+    if size < MIN_BYTES:
+        return False, f"too_small:{size}", {"bytes": size}
+    info = probe(path)
+    dur = info.get("duration")
+    reasons = []
+    if dur is None:
+        reasons.append("no_duration")
+    elif dur < DUR_MIN or dur > DUR_MAX:
+        reasons.append(f"duration:{dur:.2f}")
+    w, h = info.get("width"), info.get("height")
+    if w and w < 640:
+        reasons.append(f"width:{w}")
+    try:
+        br = black_ratio(path)
+        info["black_ratio"] = br
+        if br > 0.45:
+            reasons.append(f"black:{br:.2f}")
+    except Exception as e:
+        info["black_err"] = str(e)
+    info["bytes"] = size
+    if reasons:
+        return False, ",".join(reasons), info
+    return True, "ok", info
+
+
 def main():
     story = json.loads((ROOT / "storyboard.json").read_text())
     state = load_state()
-    # create missing
+
     for item in story:
         sid = item["id"]
         st = state.get(sid, {})
-        if st.get("path") and Path(st["path"]).exists() and Path(st["path"]).stat().st_size > 10000:
-            print(f"SKIP {sid} already downloaded", flush=True)
-            continue
+        dest = CLIPS / f"{sid}.mp4"
+        if dest.exists() and st.get("qc") != "fail":
+            ok, reason, info = qc_clip(dest)
+            st.update({"path": str(dest), "bytes": dest.stat().st_size, "duration": info.get("duration")})
+            if ok:
+                st["qc"] = "pass"
+                st["reason"] = reason
+                state[sid] = st
+                print(f"QC PASS {sid} dur={info.get('duration')}", flush=True)
+                continue
+            print(f"QC FAIL existing {sid} {reason} -> retry", flush=True)
+            dest.unlink(missing_ok=True)
+            st = {"tries": st.get("tries", 0), "qc": "fail", "reason": reason}
         if not st.get("video_id"):
             created = create_task(item)
             if not created:
                 time.sleep(2)
                 created = create_task(item)
             if not created:
-                state[sid] = {"error": "create_failed"}
-                save_state(state)
+                st = {**st, "error": "create_failed", "status": "create_failed"}
+                state[sid] = st
                 continue
+            created["tries"] = st.get("tries", 0) + 1
             state[sid] = created
-            save_state(state)
-            time.sleep(0.5)
+        save_state(state)
+    write_progress(story, state)
 
-    # poll loop
     pending = True
     while pending:
         pending = False
@@ -103,46 +268,83 @@ def main():
             sid = item["id"]
             st = state.get(sid, {})
             dest = CLIPS / f"{sid}.mp4"
-            if dest.exists() and dest.stat().st_size > 10000:
-                st["path"] = str(dest)
-                st["status"] = "completed"
-                state[sid] = st
+            if st.get("qc") == "pass" and dest.exists():
+                continue
+            if st.get("tries", 0) >= MAX_TRIES and st.get("qc") == "fail":
+                print(f"GIVE UP {sid} after {MAX_TRIES} tries: {st.get('reason')}", flush=True)
                 continue
             vid = st.get("video_id")
             if not vid:
-                pending = True
+                created = create_task(item)
+                if created:
+                    created["tries"] = st.get("tries", 0) + 1
+                    state[sid] = created
+                    pending = True
+                else:
+                    pending = True
                 continue
             code, body = poll(vid)
             status = (body or {}).get("status") or ""
             url = (body or {}).get("url")
-            print(f"POLL {sid} {code} {status} progress={(body or {}).get('progress')}", flush=True)
+            print(
+                f"POLL {sid} try={st.get('tries')} {code} {status} progress={(body or {}).get('progress')}",
+                flush=True,
+            )
             st["status"] = status
-            st["poll"] = body
+            st["poll"] = {k: body.get(k) for k in ("status", "progress", "error", "seconds") if body}
             if status == "completed" and url:
                 try:
                     size = download(url, dest)
+                    ok, reason, info = qc_clip(dest)
                     st["path"] = str(dest)
                     st["bytes"] = size
-                    print(f"DL {sid} {size} bytes", flush=True)
+                    st["duration"] = info.get("duration")
+                    st["reason"] = reason
+                    if ok:
+                        st["qc"] = "pass"
+                        print(f"QC PASS {sid} {size}B dur={info.get('duration')}", flush=True)
+                    else:
+                        print(f"QC FAIL {sid} {reason} -> regenerate", flush=True)
+                        dest.unlink(missing_ok=True)
+                        st["qc"] = "fail"
+                        if st.get("tries", 0) < MAX_TRIES:
+                            created = create_task(item)
+                            if created:
+                                created["tries"] = st.get("tries", 0) + 1
+                                created["reason"] = reason
+                                state[sid] = created
+                                pending = True
+                                save_state(state)
+                                continue
+                        pending = True
                 except Exception as e:
                     print(f"DL FAIL {sid} {e}", flush=True)
                     pending = True
             elif status == "failed":
-                print(f"FAIL {sid} {body}", flush=True)
-                # retry create once
-                if not st.get("retried"):
+                print(f"GEN FAIL {sid} {body}", flush=True)
+                st["qc"] = "fail"
+                st["reason"] = f"agnes:{body}"
+                if st.get("tries", 0) < MAX_TRIES:
                     created = create_task(item)
                     if created:
-                        created["retried"] = True
+                        created["tries"] = st.get("tries", 0) + 1
                         state[sid] = created
                         pending = True
+                        save_state(state)
+                        continue
             else:
                 pending = True
             state[sid] = st
         save_state(state)
+        write_progress(story, state)
         if pending:
             time.sleep(8)
-    print("ALL DONE", flush=True)
+
+    failed = [i["id"] for i in story if state.get(i["id"], {}).get("qc") != "pass"]
+    if failed:
+        raise SystemExit(f"unqualified clips: {failed}")
+    print("ALL DONE all clips QC pass", flush=True)
+
 
 if __name__ == "__main__":
     main()
