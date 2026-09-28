@@ -1,9 +1,9 @@
 {
-  "ok": 5,
-  "pending": 10,
+  "ok": 6,
+  "pending": 9,
   "fail": 0,
   "total": 15,
-  "updated": 1790615326,
+  "updated": 1790616832,
   "clips": [
     {
       "id": "01",
@@ -26,11 +26,11 @@
     {
       "id": "03",
       "title": "佩鲁贾登场",
-      "status": "create_failed",
-      "tries": 0,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "status": "pass",
+      "tries": 1,
+      "bytes": 4564386,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "04",
