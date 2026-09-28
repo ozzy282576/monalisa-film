@@ -61,6 +61,34 @@ def save_state(s):
     STATE.write_text(json.dumps(s, ensure_ascii=False, indent=2))
 
 
+def git_push_clip(sid, extra_paths=None):
+    """Push each finished clip so the repo shows live progress."""
+    if os.environ.get("CI") != "true":
+        return
+    paths = ["clips", "work/progress.json", "work/progress.md", "work/tasks.json"]
+    if extra_paths:
+        paths.extend(extra_paths)
+    try:
+        subprocess.run(["git", "config", "user.name", "arena-ai-coding-agent[bot]"], check=False)
+        subprocess.run(
+            ["git", "config", "user.email", "298482267+arena-ai-coding-agent[bot]@users.noreply.github.com"],
+            check=False,
+        )
+        subprocess.run(["git", "add", "--"] + paths, check=False)
+        diff = subprocess.run(["git", "diff", "--cached", "--quiet"])
+        if diff.returncode == 0:
+            return
+        subprocess.run(
+            ["git", "commit", "-m", f"clip {sid}: incremental QC snapshot"],
+            check=False,
+        )
+        subprocess.run(["git", "pull", "--rebase", "origin", "arena/01a0e83e-monalisa-film"], check=False)
+        subprocess.run(["git", "push", "origin", "HEAD:arena/01a0e83e-monalisa-film"], check=False)
+        print(f"PUSHED snapshot after {sid}", flush=True)
+    except Exception as e:
+        print(f"PUSH skip {sid}: {e}", flush=True)
+
+
 def write_progress(story, state):
     rows = []
     ok = fail = pend = 0
@@ -97,6 +125,12 @@ def write_progress(story, state):
         "clips": rows,
     }
     PROGRESS.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
+    md = [f"# progress {ok}/{len(story)} pass, {pend} pending, {fail} fail", ""]
+    for r in rows:
+        md.append(
+            f"- `{r['id']}` {r['title']}: **{r['status']}** tries={r['tries']} dur={r['duration']} bytes={r['bytes']} {r.get('reason') or ''}"
+        )
+    (ROOT / "work" / "progress.md").write_text("\n".join(md) + "\n")
     print(
         f"PROGRESS {ok}/{len(story)} pass, {pend} pending, {fail} fail",
         flush=True,
@@ -303,10 +337,18 @@ def main():
                     if ok:
                         st["qc"] = "pass"
                         print(f"QC PASS {sid} {size}B dur={info.get('duration')}", flush=True)
+                        state[sid] = st
+                        save_state(state)
+                        write_progress(story, state)
+                        git_push_clip(sid)
                     else:
                         print(f"QC FAIL {sid} {reason} -> regenerate", flush=True)
                         dest.unlink(missing_ok=True)
                         st["qc"] = "fail"
+                        state[sid] = st
+                        save_state(state)
+                        write_progress(story, state)
+                        git_push_clip(sid)
                         if st.get("tries", 0) < MAX_TRIES:
                             created = create_task(item)
                             if created:
