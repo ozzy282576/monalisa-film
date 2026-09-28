@@ -1,9 +1,9 @@
 {
-  "ok": 1,
-  "pending": 14,
+  "ok": 2,
+  "pending": 13,
   "fail": 0,
   "total": 15,
-  "updated": 1790609132,
+  "updated": 1790611455,
   "clips": [
     {
       "id": "01",
@@ -17,11 +17,11 @@
     {
       "id": "02",
       "title": "沙龙卡雷",
-      "status": "create_failed",
-      "tries": 0,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "status": "pass",
+      "tries": 1,
+      "bytes": 9180833,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "03",
