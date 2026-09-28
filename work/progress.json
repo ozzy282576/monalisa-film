@@ -1,9 +1,9 @@
 {
-  "ok": 3,
-  "pending": 12,
+  "ok": 4,
+  "pending": 11,
   "fail": 0,
   "total": 15,
-  "updated": 1790611964,
+  "updated": 1790612942,
   "clips": [
     {
       "id": "01",
@@ -89,11 +89,11 @@
     {
       "id": "10",
       "title": "木箱里的两年",
-      "status": "create_failed",
-      "tries": 0,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "status": "pass",
+      "tries": 1,
+      "bytes": 4438235,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "11",
