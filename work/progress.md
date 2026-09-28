@@ -1,9 +1,9 @@
-# progress 4/15 pass, 11 pending, 0 fail
+# progress 5/15 pass, 10 pending, 0 fail
 
 - `01` 卢浮宫黎明: **pass** tries=1 dur=12.25 bytes=9232624 ok
 - `02` 沙龙卡雷: **pass** tries=1 dur=12.25 bytes=9180833 ok
 - `03` 佩鲁贾登场: **create_failed** tries=0 dur=None bytes=None 
-- `04` 藏身储藏室: **create_failed** tries=0 dur=None bytes=None 
+- `04` 藏身储藏室: **pass** tries=1 dur=12.25 bytes=3648546 ok
 - `05` 取下名画: **create_failed** tries=0 dur=None bytes=None 
 - `06` 卸框卷画: **create_failed** tries=0 dur=None bytes=None 
 - `07` 大摇大摆走出: **create_failed** tries=0 dur=None bytes=None 
