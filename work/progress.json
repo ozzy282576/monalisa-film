@@ -1,0 +1,144 @@
+{
+  "ok": 1,
+  "pending": 14,
+  "fail": 0,
+  "total": 15,
+  "updated": 1790609132,
+  "clips": [
+    {
+      "id": "01",
+      "title": "卢浮宫黎明",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "02",
+      "title": "沙龙卡雷",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "03",
+      "title": "佩鲁贾登场",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "04",
+      "title": "藏身储藏室",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "05",
+      "title": "取下名画",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "06",
+      "title": "卸框卷画",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "07",
+      "title": "大摇大摆走出",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "08",
+      "title": "空墙被发现",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "09",
+      "title": "全城搜查",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "10",
+      "title": "木箱里的两年",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "11",
+      "title": "佛罗伦萨接头",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "12",
+      "title": "乌菲兹鉴定",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 5412538,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "13",
+      "title": "被捕",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "14",
+      "title": "荣归卢浮宫",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    },
+    {
+      "id": "15",
+      "title": "尾声特写",
+      "status": "create_failed",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
+    }
+  ]
+}
