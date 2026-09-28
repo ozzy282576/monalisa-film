@@ -2,6 +2,15 @@ name: Generate Mona Lisa film (Agnes)
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - arena/01a0e83e-monalisa-film
+    paths:
+      - ".github/workflows/agnes-film.yml"
+      - "storyboard.json"
+      - "generate_clips.py"
+      - "scripts/**"
+      - "RUN_AGNES"
 
 permissions:
   contents: write
