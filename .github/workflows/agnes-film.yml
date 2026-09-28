@@ -1,0 +1,66 @@
+name: Generate Mona Lisa film (Agnes)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/01a0e83e-monalisa-film
+    paths:
+      - ".github/workflows/agnes-film.yml"
+      - "storyboard.json"
+      - "scripts/**"
+      - "generate_clips.py"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/01a0e83e-monalisa-film
+
+      - name: Check Agnes key
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: |
+          if [ -z "$AGNES_API_KEY" ]; then
+            echo "::error::Missing secret AGNES_API_KEY. Add it in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          echo "AGNES_API_KEY is set (${#AGNES_API_KEY} chars)"
+
+      - name: Generate Agnes clips
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 generate_clips.py
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+
+      - name: Concatenate to 3-minute film
+        run: python3 scripts/assemble.py
+
+      - name: Verify duration
+        run: |
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/monalisa_theft.mp4 | tee work/duration.txt
+          python3 - <<'PY'
+          d=float(open("work/duration.txt").read().strip())
+          print(f"duration={d:.2f}s")
+          if d < 150 or d > 210:
+              raise SystemExit(f"duration {d} not ~180s")
+          print("duration check OK")
+          PY
+
+      - name: Commit outputs
+        run: |
+          git config user.name "arena-ai-coding-agent[bot]"
+          git config user.email "298482267+arena-ai-coding-agent[bot]@users.noreply.github.com"
+          git add -A clips out work/tasks.json work/duration.txt work/assemble.json || true
+          git diff --cached --quiet && echo "no output changes" && exit 0
+          git commit -m "Add Agnes generated Mona Lisa film clips and assembly"
+          git push origin HEAD:arena/01a0e83e-monalisa-film

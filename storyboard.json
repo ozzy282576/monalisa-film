@@ -1,0 +1,107 @@
+[
+  {
+    "id": "01",
+    "seconds": "12",
+    "title": "卢浮宫黎明",
+    "prompt": "Cinematic historical drama, 1911 Paris. Wide establishing shot of the Louvre Palace at pale dawn, Seine river mist, horse carriages and early workmen, warm gold and dusty teal color grade, slow drone push toward the museum facade, photorealistic period film, no text, no logos.",
+    "narration": "一九一一年八月二十一日，巴黎。塞纳河上薄雾未散，卢浮宫在黎明里静得像一座沉睡的宫殿。"
+  },
+  {
+    "id": "02",
+    "seconds": "12",
+    "title": "沙龙卡雷",
+    "prompt": "Interior of the Louvre Salon Carre 1911, grand gilt frames, skylight, visitors in Edwardian clothing, camera slowly dollies toward the Mona Lisa in a simple wooden frame on the wall, hushed museum atmosphere, cinematic lighting, photorealistic, no text.",
+    "narration": "沙龙卡雷厅里，达芬奇的《蒙娜丽莎》还挂在墙上。那时她还没有防弹玻璃，也没有日夜不歇的人群。"
+  },
+  {
+    "id": "03",
+    "seconds": "12",
+    "title": "佩鲁贾登场",
+    "prompt": "1911 Louvre workman Vincenzo Peruggia, Italian man about thirty, short dark hair, mustache, white painter smock, carrying a small ladder through empty museum corridors at night, oil-lamp and moonlight, tense stealth, cinematic close and medium shots, photorealistic, no text.",
+    "narration": "温琴佐·佩鲁贾，意大利籍工人，曾在卢浮宫做过镜框与玻璃安装。他熟悉每一条走廊，也熟悉那幅画。"
+  },
+  {
+    "id": "04",
+    "seconds": "12",
+    "title": "藏身储藏室",
+    "prompt": "Night inside a Louvre storage closet 1911, a workman in white smock hiding behind canvases and crates, breathing slowly, museum night watchman walking past with a lantern in the corridor, suspenseful cinematic lighting, photorealistic, no text.",
+    "narration": "周日闭馆。他躲进储藏室，听着守夜人的脚步远去，把整座博物馆留给了自己。"
+  },
+  {
+    "id": "05",
+    "seconds": "12",
+    "title": "取下名画",
+    "prompt": "Monday morning empty Louvre gallery 1911, workman lifts the Mona Lisa painting off the wall, wooden frame coming free, dust motes in skylight, careful hands, historic crime reconstruction, cinematic, photorealistic, no modern objects, no text.",
+    "narration": "星期一清晨，厅里还没有参观者。他把《蒙娜丽莎》连同镜框从墙上取下，动作熟练得像在完成一件日常工作。"
+  },
+  {
+    "id": "06",
+    "seconds": "12",
+    "title": "卸框卷画",
+    "prompt": "Close-up cinematic reconstruction: 1911 workman removes the Mona Lisa canvas from its wooden frame on a service stair landing, rolls the canvas carefully, hides it under his white smock, tense quiet, photorealistic, no text.",
+    "narration": "在服务楼梯间，他拆掉镜框，把画布卷起，塞进工作服里。世界最著名的微笑，就此消失在一件白色罩衫下面。"
+  },
+  {
+    "id": "07",
+    "seconds": "12",
+    "title": "大摇大摆走出",
+    "prompt": "1911 Louvre courtyard, a workman in white smock walks calmly toward the exit past a locked side door, he pauses to unscrew a doorknob with a small tool, then steps into Paris morning street with pedestrians, cinematic tracking shot, photorealistic, no text.",
+    "narration": "出门时一扇侧门卡住了。他从容拧下门把手，走进巴黎的晨光。没有警报，没有追捕。"
+  },
+  {
+    "id": "08",
+    "seconds": "12",
+    "title": "空墙被发现",
+    "prompt": "Louvre gallery 1911, empty nail and pale rectangle on the wall where the Mona Lisa was, museum guards and officials rushing in, shocked faces, journalists with notebooks, cinematic wide shot then push-in on empty wall, photorealistic, no text.",
+    "narration": "直到星期二，人们才发现墙上只剩一个苍白的空框痕迹。法兰西共和国最珍贵的画像，不翼而飞。"
+  },
+  {
+    "id": "09",
+    "seconds": "12",
+    "title": "全城搜查",
+    "prompt": "1911 Paris police investigation montage: detectives in bowler hats, crowds outside the Louvre, wanted posters, train stations being searched, newspapers flying off presses, sepia-gold cinematic, photorealistic, no readable text on papers.",
+    "narration": "警察封锁港口与车站，画家阿波利奈尔一度被怀疑，毕加索也被传讯。整个巴黎陷入一场荒唐而狂热的猎巫。"
+  },
+  {
+    "id": "10",
+    "seconds": "12",
+    "title": "木箱里的两年",
+    "prompt": "Humble Paris boarding-room 1911-1913, Italian immigrant sitting on a bed, a wooden trunk under the table, he opens it slightly revealing the rolled Mona Lisa canvas, lonely window light, dust, cinematic intimate shot, photorealistic, no text.",
+    "narration": "佩鲁贾把画藏在公寓的木箱里，一藏就是两年。他自称要把达芬奇的杰作带回意大利，还给祖国。"
+  },
+  {
+    "id": "11",
+    "seconds": "12",
+    "title": "佛罗伦萨接头",
+    "prompt": "Florence Italy 1913, antique dealer shop of Alfredo Geri, an Italian man in a worn suit presents a rolled canvas on a wooden table, dealers lean in with lamps, Renaissance city visible through window, cinematic, photorealistic, no text.",
+    "narration": "一九一三年十二月，他写信给佛罗伦萨古董商杰里，声称拥有《蒙娜丽莎》，愿以十万里拉成交。"
+  },
+  {
+    "id": "12",
+    "seconds": "12",
+    "title": "乌菲兹鉴定",
+    "prompt": "Uffizi Gallery back room Florence 1913, art experts and director Giovanni Poggi examine the Mona Lisa on an easel under strong lamps, magnifying glass, emotional close-ups of the smile, cinematic historical drama, photorealistic, no text.",
+    "narration": "乌菲兹美术馆馆长波吉前来鉴定。裂纹、颜料、达芬奇的笔触——这的确是失踪两年的那一张脸。"
+  },
+  {
+    "id": "13",
+    "seconds": "12",
+    "title": "被捕",
+    "prompt": "Hotel room Florence 1913, Italian police in period uniforms arrest Vincenzo Peruggia, he looks calm almost proud, handcuffs, corridor of Hotel Tripoli-Italia, cinematic, photorealistic, no text.",
+    "narration": "旅馆里，警察带走了佩鲁贾。他并不慌张，甚至带着一种把名画“送回家”的骄傲。"
+  },
+  {
+    "id": "14",
+    "seconds": "12",
+    "title": "荣归卢浮宫",
+    "prompt": "1914 Paris, the Mona Lisa returns to the Louvre, huge crowds waving hats, painting carried in a crate under military escort, then hung again on the gallery wall, triumphant cinematic lighting, photorealistic, no text.",
+    "narration": "一九一四年一月，《蒙娜丽莎》在军警护送下返回巴黎。卢浮宫门口人山人海，那抹微笑重新面对世界。"
+  },
+  {
+    "id": "15",
+    "seconds": "12",
+    "title": "尾声特写",
+    "prompt": "Slow cinematic close-up of the Mona Lisa painting on a museum wall, subtle camera drift, reflections of modern and historical visitors overlapping like ghosts, emotional orchestral mood, photorealistic, no text, fade toward darkness.",
+    "narration": "一场笨拙的盗窃，让她成为地球上最有名的面孔。微笑还在，只是从此再也无法被轻易取下。"
+  }
+]
