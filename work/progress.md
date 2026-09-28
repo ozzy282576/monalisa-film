@@ -1,6 +1,6 @@
-# progress 2/15 pass, 13 pending, 0 fail
+# progress 3/15 pass, 12 pending, 0 fail
 
-- `01` 卢浮宫黎明: **create_failed** tries=0 dur=None bytes=None 
+- `01` 卢浮宫黎明: **pass** tries=1 dur=12.25 bytes=9232624 ok
 - `02` 沙龙卡雷: **pass** tries=1 dur=12.25 bytes=9180833 ok
 - `03` 佩鲁贾登场: **create_failed** tries=0 dur=None bytes=None 
 - `04` 藏身储藏室: **create_failed** tries=0 dur=None bytes=None 

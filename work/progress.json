@@ -1,18 +1,18 @@
 {
-  "ok": 2,
-  "pending": 13,
+  "ok": 3,
+  "pending": 12,
   "fail": 0,
   "total": 15,
-  "updated": 1790611455,
+  "updated": 1790611964,
   "clips": [
     {
       "id": "01",
       "title": "卢浮宫黎明",
-      "status": "create_failed",
-      "tries": 0,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "status": "pass",
+      "tries": 1,
+      "bytes": 9232624,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "02",

@@ -1,7 +1,32 @@
 {
   "01": {
-    "error": "create_failed",
-    "status": "create_failed"
+    "video_id": "task_v9ygYVIvj90pccMHdcJzzFPNjR5OE0mr",
+    "raw": {
+      "id": "task_v9ygYVIvj90pccMHdcJzzFPNjR5OE0mr",
+      "video_id": "task_v9ygYVIvj90pccMHdcJzzFPNjR5OE0mr",
+      "task_id": "task_v9ygYVIvj90pccMHdcJzzFPNjR5OE0mr",
+      "object": "video",
+      "model": "agnes-video-2.5-flash",
+      "status": "queued",
+      "progress": 0,
+      "created_at": 1790611619,
+      "seconds": "12",
+      "size": "720P",
+      "quality": "standard"
+    },
+    "status": "completed",
+    "tries": 1,
+    "poll": {
+      "status": "completed",
+      "progress": 100,
+      "error": null,
+      "seconds": "12"
+    },
+    "path": "/home/runner/work/monalisa-film/monalisa-film/clips/01.mp4",
+    "bytes": 9232624,
+    "duration": 12.25,
+    "reason": "ok",
+    "qc": "pass"
   },
   "02": {
     "video_id": "task_6bbHnR0aL35g2jTm1pqPkvMCE4IitGP2",
