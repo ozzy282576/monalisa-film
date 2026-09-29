@@ -3,7 +3,7 @@
   "pending": 8,
   "fail": 0,
   "total": 15,
-  "updated": 1790657749,
+  "updated": 1790658420,
   "clips": [
     {
       "id": "01",
@@ -18,10 +18,10 @@
       "id": "02",
       "title": "沙龙卡雷",
       "status": "pass",
-      "tries": 10,
+      "tries": 1,
       "bytes": 9180833,
       "duration": 12.25,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092903013996978002190wMrDrs)\", \"data\": null}"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929050700288908277cVXe5XE4)\", \"data\": null}"
     },
     {
       "id": "03",
@@ -45,7 +45,7 @@
       "id": "05",
       "title": "取下名画",
       "status": "pass",
-      "tries": 10,
+      "tries": 0,
       "bytes": 3905105,
       "duration": 12.25,
       "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609290330034930938724LX9Muqw)\", \"data\": null}"
@@ -53,8 +53,8 @@
     {
       "id": "06",
       "title": "卸框卷画",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929034410671874911MVj4m0cS)\", \"data\": null}"
@@ -71,8 +71,8 @@
     {
       "id": "08",
       "title": "空墙被发现",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609290358154035958179suZM5nJ)\", \"data\": null}"
@@ -98,8 +98,8 @@
     {
       "id": "11",
       "title": "佛罗伦萨接头",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092904122013522015WiJ4pInY)\", \"data\": null}"
@@ -116,8 +116,8 @@
     {
       "id": "13",
       "title": "被捕",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929042624148830388USnFdHwA)\", \"data\": null}"
@@ -125,8 +125,8 @@
     {
       "id": "14",
       "title": "荣归卢浮宫",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609290440281946547629E2bVqMs)\", \"data\": null}"
@@ -134,8 +134,8 @@
     {
       "id": "15",
       "title": "尾声特写",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929045432551778384RrCICaBM)\", \"data\": null}"
