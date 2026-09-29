@@ -3,7 +3,7 @@
   "pending": 3,
   "fail": 0,
   "total": 15,
-  "updated": 1790684037,
+  "updated": 1790684114,
   "clips": [
     {
       "id": "01",
@@ -126,10 +126,10 @@
       "id": "14",
       "title": "荣归卢浮宫",
       "status": "create_failed",
-      "tries": 5,
+      "tries": 6,
       "bytes": null,
       "duration": null,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609291213575475068405vYz6b8x)\", \"data\": null}"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929121514506114469P6uCxFdT)\", \"data\": null}"
     },
     {
       "id": "15",
