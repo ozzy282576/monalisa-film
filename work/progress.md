@@ -10,7 +10,7 @@
 - `08` 空墙被发现: **create_failed** tries=10 dur=None bytes=None 
 - `09` 全城搜查: **create_failed** tries=10 dur=None bytes=None 
 - `10` 木箱里的两年: **pass** tries=1 dur=12.25 bytes=4438235 ok
-- `11` 佛罗伦萨接头: **create_failed** tries=8 dur=None bytes=None 
+- `11` 佛罗伦萨接头: **create_failed** tries=9 dur=None bytes=None 
 - `12` 乌菲兹鉴定: **pass** tries=1 dur=12.25 bytes=5412538 ok
 - `13` 被捕: **create_failed** tries=8 dur=None bytes=None 
 - `14` 荣归卢浮宫: **create_failed** tries=8 dur=None bytes=None 
