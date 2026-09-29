@@ -6,7 +6,7 @@
 - `04` 藏身储藏室: **pass** tries=1 dur=12.25 bytes=3648546 ok
 - `05` 取下名画: **pass** tries=1 dur=12.25 bytes=3905105 ok
 - `06` 卸框卷画: **create_failed** tries=10 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929011623397257335u8QZv22I)", "data": null}
-- `07` 大摇大摆走出: **create_failed** tries=1 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 202609290118565560969863baQGsUC)", "data": null}
+- `07` 大摇大摆走出: **create_failed** tries=2 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929012013345454510HZKtgMya)", "data": null}
 - `08` 空墙被发现: **queued** tries=0 dur=None bytes=None 
 - `09` 全城搜查: **queued** tries=0 dur=None bytes=None 
 - `10` 木箱里的两年: **pass** tries=1 dur=12.25 bytes=4438235 ok
