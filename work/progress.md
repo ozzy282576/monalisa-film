@@ -1,4 +1,4 @@
-# progress 7/15 pass, 8 pending, 0 fail
+# progress 8/15 pass, 7 pending, 0 fail
 
 - `01` 卢浮宫黎明: **pass** tries=1 dur=12.25 bytes=9232624 ok
 - `02` 沙龙卡雷: **pass** tries=1 dur=12.25 bytes=9180833 ok
@@ -6,7 +6,7 @@
 - `04` 藏身储藏室: **pass** tries=1 dur=12.25 bytes=3648546 ok
 - `05` 取下名画: **pass** tries=1 dur=12.25 bytes=3905105 ok
 - `06` 卸框卷画: **create_failed** tries=10 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929011623397257335u8QZv22I)", "data": null}
-- `07` 大摇大摆走出: **queued** tries=5 dur=None bytes=None 
+- `07` 大摇大摆走出: **pass** tries=5 dur=12.25 bytes=7008391 ok
 - `08` 空墙被发现: **queued** tries=0 dur=None bytes=None 
 - `09` 全城搜查: **queued** tries=0 dur=None bytes=None 
 - `10` 木箱里的两年: **pass** tries=1 dur=12.25 bytes=4438235 ok
