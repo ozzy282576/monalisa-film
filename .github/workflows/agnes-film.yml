@@ -16,6 +16,10 @@ permissions:
   contents: write
   actions: read
 
+concurrency:
+  group: agnes-film
+  cancel-in-progress: true
+
 jobs:
   generate:
     runs-on: ubuntu-latest

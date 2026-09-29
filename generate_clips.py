@@ -272,72 +272,61 @@ def qc_clip(path: Path, expected=12.0):
     return True, "ok", info
 
 
-def main():
-    story = json.loads((ROOT / "storyboard.json").read_text())
-    state = load_state()
+GAP_SEC = 75
 
-    for item in story:
-        sid = item["id"]
-        st = state.get(sid, {})
-        dest = CLIPS / f"{sid}.mp4"
-        if dest.exists() and st.get("qc") != "fail":
-            ok, reason, info = qc_clip(dest)
-            st.update({"path": str(dest), "bytes": dest.stat().st_size, "duration": info.get("duration")})
-            if ok:
-                st["qc"] = "pass"
-                st["reason"] = reason
-                state[sid] = st
-                print(f"QC PASS {sid} dur={info.get('duration')}", flush=True)
-                continue
-            print(f"QC FAIL existing {sid} {reason} -> retry", flush=True)
-            dest.unlink(missing_ok=True)
-            st = {"tries": st.get("tries", 0), "qc": "fail", "reason": reason}
+
+def wait_gap(reason):
+    print(f"WAIT {GAP_SEC}s before next create ({reason})", flush=True)
+    time.sleep(GAP_SEC)
+
+
+def process_one(item, story, state):
+    """Create + poll + QC a single clip. Never starts another clip in parallel."""
+    sid = item["id"]
+    dest = CLIPS / f"{sid}.mp4"
+    st = state.get(sid, {}) or {}
+    if dest.exists() and st.get("qc") != "fail":
+        ok, reason, info = qc_clip(dest)
+        st.update({"path": str(dest), "bytes": dest.stat().st_size, "duration": info.get("duration")})
+        if ok:
+            st["qc"] = "pass"
+            st["reason"] = reason
+            state[sid] = st
+            save_state(state)
+            write_progress(story, state)
+            print(f"SKIP {sid} already QC pass dur={info.get('duration')}", flush=True)
+            return True
+        print(f"QC FAIL existing {sid} {reason} -> retry", flush=True)
+        dest.unlink(missing_ok=True)
+        st = {"tries": 0, "qc": "fail", "reason": reason}
+
+    # drop stale failed ids so we create fresh one-at-a-time
+    if st.get("status") in ("create_failed", "failed") or st.get("qc") == "fail":
+        st.pop("video_id", None)
+
+    while st.get("tries", 0) < MAX_TRIES:
         if not st.get("video_id"):
             created = create_task(item)
+            st["tries"] = st.get("tries", 0) + 1
             if not created:
-                time.sleep(2)
-                created = create_task(item)
-            if not created:
-                st = {**st, "error": "create_failed", "status": "create_failed"}
+                st["status"] = "create_failed"
+                st["error"] = "create_failed"
                 state[sid] = st
-                continue
-            created["tries"] = st.get("tries", 0) + 1
-            state[sid] = created
-        save_state(state)
-    write_progress(story, state)
-
-    pending = True
-    while pending:
-        pending = False
-        for item in story:
-            sid = item["id"]
-            st = state.get(sid, {})
-            dest = CLIPS / f"{sid}.mp4"
-            if st.get("qc") == "pass" and dest.exists():
-                continue
-            if st.get("tries", 0) >= MAX_TRIES and st.get("qc") == "fail":
-                print(f"GIVE UP {sid} after {MAX_TRIES} tries: {st.get('reason')}", flush=True)
-                continue
-            vid = st.get("video_id")
-            if not vid:
-                created = create_task(item)
-                st["tries"] = st.get("tries", 0) + 1
-                if created:
-                    created["tries"] = st["tries"]
-                    state[sid] = created
-                    pending = True
-                else:
-                    st["status"] = "create_failed"
-                    st["error"] = "create_failed"
-                    state[sid] = st
-                    print(f"CREATE FAIL {sid} tries={st['tries']}", flush=True)
-                    if st["tries"] < MAX_TRIES:
-                        pending = True
-                        time.sleep(min(20, 3 * st["tries"]))
                 save_state(state)
                 write_progress(story, state)
                 git_push_clip(sid)
+                print(f"CREATE FAIL {sid} tries={st['tries']}", flush=True)
+                wait_gap(f"create_failed {sid}")
                 continue
+            created["tries"] = st["tries"]
+            st = created
+            state[sid] = st
+            save_state(state)
+            write_progress(story, state)
+            git_push_clip(sid)
+
+        while True:
+            vid = st.get("video_id")
             code, body = poll(vid)
             status = (body or {}).get("status") or ""
             url = (body or {}).get("url")
@@ -346,63 +335,73 @@ def main():
                 flush=True,
             )
             st["status"] = status
-            st["poll"] = {k: body.get(k) for k in ("status", "progress", "error", "seconds") if body}
+            st["poll"] = {k: (body or {}).get(k) for k in ("status", "progress", "error", "seconds")}
+            state[sid] = st
+            save_state(state)
             if status == "completed" and url:
-                try:
-                    size = download(url, dest)
-                    ok, reason, info = qc_clip(dest)
-                    st["path"] = str(dest)
-                    st["bytes"] = size
-                    st["duration"] = info.get("duration")
-                    st["reason"] = reason
-                    if ok:
-                        st["qc"] = "pass"
-                        print(f"QC PASS {sid} {size}B dur={info.get('duration')}", flush=True)
-                        state[sid] = st
-                        save_state(state)
-                        write_progress(story, state)
-                        git_push_clip(sid)
-                    else:
-                        print(f"QC FAIL {sid} {reason} -> regenerate", flush=True)
-                        dest.unlink(missing_ok=True)
-                        st["qc"] = "fail"
-                        state[sid] = st
-                        save_state(state)
-                        write_progress(story, state)
-                        git_push_clip(sid)
-                        if st.get("tries", 0) < MAX_TRIES:
-                            created = create_task(item)
-                            if created:
-                                created["tries"] = st.get("tries", 0) + 1
-                                created["reason"] = reason
-                                state[sid] = created
-                                pending = True
-                                save_state(state)
-                                continue
-                        pending = True
-                except Exception as e:
-                    print(f"DL FAIL {sid} {e}", flush=True)
-                    pending = True
-            elif status == "failed":
+                size = download(url, dest)
+                ok, reason, info = qc_clip(dest)
+                st["path"] = str(dest)
+                st["bytes"] = size
+                st["duration"] = info.get("duration")
+                st["reason"] = reason
+                if ok:
+                    st["qc"] = "pass"
+                    print(f"QC PASS {sid} {size}B dur={info.get('duration')}", flush=True)
+                    state[sid] = st
+                    save_state(state)
+                    write_progress(story, state)
+                    git_push_clip(sid)
+                    return True
+                print(f"QC FAIL {sid} {reason} -> regenerate after gap", flush=True)
+                dest.unlink(missing_ok=True)
+                st["qc"] = "fail"
+                st.pop("video_id", None)
+                state[sid] = st
+                save_state(state)
+                write_progress(story, state)
+                git_push_clip(sid)
+                wait_gap(f"qc_fail {sid}")
+                break
+            if status == "failed":
                 print(f"GEN FAIL {sid} {body}", flush=True)
                 st["qc"] = "fail"
                 st["reason"] = f"agnes:{body}"
-                if st.get("tries", 0) < MAX_TRIES:
-                    created = create_task(item)
-                    if created:
-                        created["tries"] = st.get("tries", 0) + 1
-                        state[sid] = created
-                        pending = True
-                        save_state(state)
-                        continue
-            else:
-                pending = True
-            state[sid] = st
-        save_state(state)
-        write_progress(story, state)
-        if pending:
+                st.pop("video_id", None)
+                state[sid] = st
+                save_state(state)
+                write_progress(story, state)
+                git_push_clip(sid)
+                wait_gap(f"gen_fail {sid}")
+                break
             time.sleep(8)
+    print(f"GIVE UP {sid} after {st.get('tries')} tries", flush=True)
+    state[sid] = st
+    save_state(state)
+    write_progress(story, state)
+    git_push_clip(sid)
+    return False
 
+
+def main():
+    story = json.loads((ROOT / "storyboard.json").read_text())
+    state = load_state()
+    write_progress(story, state)
+    last_created = False
+    for item in story:
+        sid = item["id"]
+        dest = CLIPS / f"{sid}.mp4"
+        st = state.get(sid, {})
+        if dest.exists() and st.get("qc") == "pass":
+            print(f"KEEP {sid}", flush=True)
+            continue
+        if last_created:
+            wait_gap(f"before starting {sid}")
+        print(f"START sequential clip {sid} {item.get('title')}", flush=True)
+        ok = process_one(item, story, state)
+        last_created = True
+        if not ok:
+            print(f"clip {sid} not passed, continue to next after gap", flush=True)
     failed = [i["id"] for i in story if state.get(i["id"], {}).get("qc") != "pass"]
     if failed:
         raise SystemExit(f"unqualified clips: {failed}")
