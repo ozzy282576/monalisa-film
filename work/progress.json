@@ -3,7 +3,7 @@
   "pending": 7,
   "fail": 0,
   "total": 15,
-  "updated": 1790660970,
+  "updated": 1790661047,
   "clips": [
     {
       "id": "01",
@@ -71,11 +71,11 @@
     {
       "id": "08",
       "title": "空墙被发现",
-      "status": "queued",
-      "tries": 0,
+      "status": "create_failed",
+      "tries": 1,
       "bytes": null,
       "duration": null,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609290358154035958179suZM5nJ)\", \"data\": null}"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929055047736441834213s3e6c)\", \"data\": null}"
     },
     {
       "id": "09",
