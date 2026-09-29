@@ -3,7 +3,7 @@
   "pending": 7,
   "fail": 0,
   "total": 15,
-  "updated": 1790646185,
+  "updated": 1790646262,
   "clips": [
     {
       "id": "01",
@@ -80,11 +80,11 @@
     {
       "id": "09",
       "title": "全城搜查",
-      "status": "queued",
-      "tries": 0,
+      "status": "create_failed",
+      "tries": 1,
       "bytes": null,
       "duration": null,
-      "reason": null
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929014422405470733wCjBgNaY)\", \"data\": null}"
     },
     {
       "id": "10",
