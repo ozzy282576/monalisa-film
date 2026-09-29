@@ -116,12 +116,33 @@
     "qc": "pass"
   },
   "05": {
-    "error": "create_failed",
-    "status": "create_failed"
+    "video_id": "task_XD4SuAYOkpCn7Lj0mNQa0gS0ASvrGJUM",
+    "raw": {
+      "id": "task_XD4SuAYOkpCn7Lj0mNQa0gS0ASvrGJUM",
+      "video_id": "task_XD4SuAYOkpCn7Lj0mNQa0gS0ASvrGJUM",
+      "task_id": "task_XD4SuAYOkpCn7Lj0mNQa0gS0ASvrGJUM",
+      "object": "video",
+      "model": "agnes-video-2.5-flash",
+      "status": "queued",
+      "progress": 0,
+      "created_at": 1790640216,
+      "seconds": "12",
+      "size": "720P",
+      "quality": "standard"
+    },
+    "status": "pending",
+    "tries": 1,
+    "poll": {
+      "status": "pending",
+      "progress": 0,
+      "error": null,
+      "seconds": "12"
+    }
   },
   "06": {
     "error": "create_failed",
-    "status": "create_failed"
+    "status": "create_failed",
+    "tries": 1
   },
   "07": {
     "error": "create_failed",

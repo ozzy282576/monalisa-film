@@ -4,8 +4,8 @@
 - `02` 沙龙卡雷: **pass** tries=1 dur=12.25 bytes=9180833 ok
 - `03` 佩鲁贾登场: **pass** tries=1 dur=12.25 bytes=4564386 ok
 - `04` 藏身储藏室: **pass** tries=1 dur=12.25 bytes=3648546 ok
-- `05` 取下名画: **create_failed** tries=0 dur=None bytes=None 
-- `06` 卸框卷画: **create_failed** tries=0 dur=None bytes=None 
+- `05` 取下名画: **pending** tries=1 dur=None bytes=None 
+- `06` 卸框卷画: **create_failed** tries=1 dur=None bytes=None 
 - `07` 大摇大摆走出: **create_failed** tries=0 dur=None bytes=None 
 - `08` 空墙被发现: **create_failed** tries=0 dur=None bytes=None 
 - `09` 全城搜查: **create_failed** tries=0 dur=None bytes=None 

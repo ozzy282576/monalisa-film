@@ -3,7 +3,7 @@
   "pending": 9,
   "fail": 0,
   "total": 15,
-  "updated": 1790616832,
+  "updated": 1790640243,
   "clips": [
     {
       "id": "01",
@@ -44,8 +44,8 @@
     {
       "id": "05",
       "title": "取下名画",
-      "status": "create_failed",
-      "tries": 0,
+      "status": "pending",
+      "tries": 1,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -54,7 +54,7 @@
       "id": "06",
       "title": "卸框卷画",
       "status": "create_failed",
-      "tries": 0,
+      "tries": 1,
       "bytes": null,
       "duration": null,
       "reason": null
