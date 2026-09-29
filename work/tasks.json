@@ -244,10 +244,10 @@
     "qc": "pass"
   },
   "11": {
-    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929020417393705337OzyN1IIw)\", \"data\": null}",
+    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092902053483843100J7x8e7u1)\", \"data\": null}",
     "status": "create_failed",
-    "tries": 2,
-    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929020417393705337OzyN1IIw)\", \"data\": null}"
+    "tries": 3,
+    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092902053483843100J7x8e7u1)\", \"data\": null}"
   },
   "12": {
     "video_id": "task_DKJMO3ZQdNF8HTGLbiiAjSJxwsWzARM7",
