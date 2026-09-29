@@ -149,9 +149,11 @@ def create_task(item):
     code, body = req("POST", f"{BASE}/v1/videos", payload)
     print(f"CREATE {item['id']} -> {code} {json.dumps(body)[:400]}", flush=True)
     if code >= 400:
-        return None
+        return None, f"http{code}:{json.dumps(body)[:300]}"
     vid = body.get("video_id") or body.get("id")
-    return {"video_id": vid, "raw": body, "status": body.get("status", "queued")}
+    if not vid:
+        return None, f"no_video_id:{json.dumps(body)[:300]}"
+    return {"video_id": vid, "raw": body, "status": body.get("status", "queued")}, None
 
 
 def poll(video_id):
@@ -306,16 +308,17 @@ def process_one(item, story, state):
 
     while st.get("tries", 0) < MAX_TRIES:
         if not st.get("video_id"):
-            created = create_task(item)
+            created, err = create_task(item)
             st["tries"] = st.get("tries", 0) + 1
             if not created:
                 st["status"] = "create_failed"
-                st["error"] = "create_failed"
+                st["error"] = err or "create_failed"
+                st["reason"] = err or "create_failed"
                 state[sid] = st
                 save_state(state)
                 write_progress(story, state)
                 git_push_clip(sid)
-                print(f"CREATE FAIL {sid} tries={st['tries']}", flush=True)
+                print(f"CREATE FAIL {sid} tries={st['tries']} {err}", flush=True)
                 wait_gap(f"create_failed {sid}")
                 continue
             created["tries"] = st["tries"]
@@ -386,7 +389,19 @@ def process_one(item, story, state):
 def main():
     story = json.loads((ROOT / "storyboard.json").read_text())
     state = load_state()
+    for item in story:
+        sid = item["id"]
+        st = state.get(sid, {})
+        dest = CLIPS / f"{sid}.mp4"
+        if not (dest.exists() and st.get("qc") == "pass"):
+            st["tries"] = 0
+            st.pop("video_id", None)
+            st["status"] = "queued"
+            state[sid] = st
+    save_state(state)
     write_progress(story, state)
+    print("COOLDOWN 90s before first new create", flush=True)
+    time.sleep(90)
     last_created = False
     for item in story:
         sid = item["id"]
