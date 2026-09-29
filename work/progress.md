@@ -14,4 +14,4 @@
 - `12` 乌菲兹鉴定: **pass** tries=1 dur=12.25 bytes=5412538 ok
 - `13` 被捕: **create_failed** tries=10 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929063033593967375OtYTSaEl)", "data": null}
 - `14` 荣归卢浮宫: **create_failed** tries=10 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 2026092906444065070198q657Y0oC)", "data": null}
-- `15` 尾声特写: **create_failed** tries=8 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 2026092906561323563795oEs4Ndlb)", "data": null}
+- `15` 尾声特写: **create_failed** tries=9 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929065730795419ZMeZlExF)", "data": null}
