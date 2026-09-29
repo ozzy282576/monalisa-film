@@ -12,6 +12,6 @@
 - `10` 木箱里的两年: **pass** tries=1 dur=12.25 bytes=4438235 ok
 - `11` 佛罗伦萨接头: **create_failed** tries=10 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929021431733181665xZqNwfbx)", "data": null}
 - `12` 乌菲兹鉴定: **pass** tries=1 dur=12.25 bytes=5412538 ok
-- `13` 被捕: **queued** tries=0 dur=None bytes=None 
+- `13` 被捕: **create_failed** tries=1 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 2026092902170591387201tfMGajpp)", "data": null}
 - `14` 荣归卢浮宫: **queued** tries=0 dur=None bytes=None 
 - `15` 尾声特写: **queued** tries=0 dur=None bytes=None 
