@@ -1,1 +1,1 @@
-run=10 fill 06 11 14 15 only
+run=11 wait then fill 06 11 14 15
