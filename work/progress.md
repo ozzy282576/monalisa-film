@@ -4,7 +4,7 @@
 - `02` 沙龙卡雷: **pass** tries=10 dur=12.25 bytes=9180833 http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929051832436715572NpEMykyR)", "data": null}
 - `03` 佩鲁贾登场: **pass** tries=1 dur=12.25 bytes=4564386 ok
 - `04` 藏身储藏室: **pass** tries=7 dur=12.25 bytes=4535180 ok
-- `05` 取下名画: **pass** tries=0 dur=12.25 bytes=3905105 http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 202609290330034930938724LX9Muqw)", "data": null}
+- `05` 取下名画: **pass** tries=1 dur=12.25 bytes=3905105 http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929052105853722177Vwl9cG1s)", "data": null}
 - `06` 卸框卷画: **queued** tries=0 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929034410671874911MVj4m0cS)", "data": null}
 - `07` 大摇大摆走出: **pass** tries=5 dur=12.25 bytes=7008391 ok
 - `08` 空墙被发现: **queued** tries=0 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 202609290358154035958179suZM5nJ)", "data": null}
