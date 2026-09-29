@@ -186,10 +186,22 @@
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929014149392148996DKnVD8Rc)\", \"data\": null}"
   },
   "09": {
-    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092901543682245393B4odgwT9)\", \"data\": null}",
-    "status": "create_failed",
-    "tries": 9,
-    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092901543682245393B4odgwT9)\", \"data\": null}"
+    "video_id": "task_Re2IFefkpswgGv88fVxq7PIt86HvCHVf",
+    "raw": {
+      "id": "task_Re2IFefkpswgGv88fVxq7PIt86HvCHVf",
+      "video_id": "task_Re2IFefkpswgGv88fVxq7PIt86HvCHVf",
+      "task_id": "task_Re2IFefkpswgGv88fVxq7PIt86HvCHVf",
+      "object": "video",
+      "model": "agnes-video-2.5-flash",
+      "status": "queued",
+      "progress": 0,
+      "created_at": 1790646953,
+      "seconds": "12",
+      "size": "720P",
+      "quality": "standard"
+    },
+    "status": "queued",
+    "tries": 10
   },
   "10": {
     "video_id": "task_RrIHKX9DE5p6XiVX7jQQsYv0wfzibqSZ",
