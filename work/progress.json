@@ -3,7 +3,7 @@
   "pending": 6,
   "fail": 0,
   "total": 15,
-  "updated": 1790666995,
+  "updated": 1790667073,
   "clips": [
     {
       "id": "01",
@@ -53,11 +53,11 @@
     {
       "id": "06",
       "title": "卸框卷画",
-      "status": "queued",
-      "tries": 0,
+      "status": "create_failed",
+      "tries": 1,
       "bytes": null,
       "duration": null,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092905481418203450ZwU1RUcr)\", \"data\": null}"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092907311354291846kr1cYgc6)\", \"data\": null}"
     },
     {
       "id": "07",
