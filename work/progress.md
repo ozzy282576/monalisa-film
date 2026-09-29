@@ -7,7 +7,7 @@
 - `05` 取下名画: **pending** tries=1 dur=None bytes=None 
 - `06` 卸框卷画: **create_failed** tries=7 dur=None bytes=None 
 - `07` 大摇大摆走出: **create_failed** tries=7 dur=None bytes=None 
-- `08` 空墙被发现: **create_failed** tries=6 dur=None bytes=None 
+- `08` 空墙被发现: **create_failed** tries=7 dur=None bytes=None 
 - `09` 全城搜查: **create_failed** tries=6 dur=None bytes=None 
 - `10` 木箱里的两年: **pass** tries=1 dur=12.25 bytes=4438235 ok
 - `11` 佛罗伦萨接头: **create_failed** tries=6 dur=None bytes=None 
