@@ -12,7 +12,7 @@ STATE = ROOT / "work" / "tasks.json"
 PROGRESS = ROOT / "work" / "progress.json"
 CLIPS.mkdir(exist_ok=True)
 (ROOT / "work").mkdir(exist_ok=True)
-MAX_TRIES = 3
+MAX_TRIES = 10
 MIN_BYTES = 80_000
 DUR_MIN = 9.0
 DUR_MAX = 14.5
@@ -248,6 +248,8 @@ def qc_clip(path: Path, expected=12.0):
     w, h = info.get("width"), info.get("height")
     if w and w < 640:
         reasons.append(f"width:{w}")
+    if w and h and abs((w / h) - (16 / 9)) > 0.08:
+        reasons.append(f"aspect:{w}x{h}")
     try:
         br = black_ratio(path)
         info["black_ratio"] = br
@@ -255,6 +257,15 @@ def qc_clip(path: Path, expected=12.0):
             reasons.append(f"black:{br:.2f}")
     except Exception as e:
         info["black_err"] = str(e)
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg:
+        p = subprocess.run(
+            [ffmpeg, "-i", str(path), "-vf", "freezedetect=n=0.003:d=2.5", "-f", "null", "-"],
+            capture_output=True,
+            text=True,
+        )
+        if "freeze_start" in (p.stderr or "") and (p.stderr or "").count("freeze_start") >= 2:
+            reasons.append("frozen_frames")
     info["bytes"] = size
     if reasons:
         return False, ",".join(reasons), info
@@ -310,12 +321,22 @@ def main():
             vid = st.get("video_id")
             if not vid:
                 created = create_task(item)
+                st["tries"] = st.get("tries", 0) + 1
                 if created:
-                    created["tries"] = st.get("tries", 0) + 1
+                    created["tries"] = st["tries"]
                     state[sid] = created
                     pending = True
                 else:
-                    pending = True
+                    st["status"] = "create_failed"
+                    st["error"] = "create_failed"
+                    state[sid] = st
+                    print(f"CREATE FAIL {sid} tries={st['tries']}", flush=True)
+                    if st["tries"] < MAX_TRIES:
+                        pending = True
+                        time.sleep(min(20, 3 * st["tries"]))
+                save_state(state)
+                write_progress(story, state)
+                git_push_clip(sid)
                 continue
             code, body = poll(vid)
             status = (body or {}).get("status") or ""
