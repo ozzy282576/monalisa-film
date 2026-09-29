@@ -406,9 +406,21 @@
     "qc": "pass"
   },
   "15": {
-    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929145957973364346qTZO7zii)\", \"data\": null}",
+    "video_id": "task_PzkDPNlhhtUHrgywshHMkFLthjCuzo5S",
+    "raw": {
+      "id": "task_PzkDPNlhhtUHrgywshHMkFLthjCuzo5S",
+      "video_id": "task_PzkDPNlhhtUHrgywshHMkFLthjCuzo5S",
+      "task_id": "task_PzkDPNlhhtUHrgywshHMkFLthjCuzo5S",
+      "object": "video",
+      "model": "agnes-video-2.5-flash",
+      "status": "queued",
+      "progress": 0,
+      "created_at": 1790721950,
+      "seconds": "12",
+      "size": "720P",
+      "quality": "standard"
+    },
     "status": "queued",
-    "tries": 0,
-    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929145957973364346qTZO7zii)\", \"data\": null}"
+    "tries": 1
   }
 }
