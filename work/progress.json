@@ -3,7 +3,7 @@
   "pending": 7,
   "fail": 0,
   "total": 15,
-  "updated": 1790662663,
+  "updated": 1790662740,
   "clips": [
     {
       "id": "01",
@@ -116,11 +116,11 @@
     {
       "id": "13",
       "title": "被捕",
-      "status": "queued",
-      "tries": 0,
+      "status": "create_failed",
+      "tries": 1,
       "bytes": null,
       "duration": null,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929042624148830388USnFdHwA)\", \"data\": null}"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609290619004820771361VM48VH4)\", \"data\": null}"
     },
     {
       "id": "14",
