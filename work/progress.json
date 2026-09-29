@@ -3,7 +3,7 @@
   "pending": 9,
   "fail": 0,
   "total": 15,
-  "updated": 1790640294,
+  "updated": 1790640301,
   "clips": [
     {
       "id": "01",
@@ -63,7 +63,7 @@
       "id": "07",
       "title": "大摇大摆走出",
       "status": "create_failed",
-      "tries": 1,
+      "tries": 2,
       "bytes": null,
       "duration": null,
       "reason": null
