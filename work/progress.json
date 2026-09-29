@@ -3,7 +3,7 @@
   "pending": 9,
   "fail": 0,
   "total": 15,
-  "updated": 1790650976,
+  "updated": 1790651053,
   "clips": [
     {
       "id": "01",
@@ -36,10 +36,10 @@
       "id": "04",
       "title": "藏身储藏室",
       "status": "pass",
-      "tries": 0,
+      "tries": 1,
       "bytes": 3648546,
       "duration": 12.25,
-      "reason": "ok"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929030413387617537wHq3TPkn)\", \"data\": null}"
     },
     {
       "id": "05",
