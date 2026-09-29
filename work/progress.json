@@ -3,7 +3,7 @@
   "pending": 2,
   "fail": 0,
   "total": 15,
-  "updated": 1790688963,
+  "updated": 1790689040,
   "clips": [
     {
       "id": "01",
@@ -135,10 +135,10 @@
       "id": "15",
       "title": "尾声特写",
       "status": "create_failed",
-      "tries": 1,
+      "tries": 2,
       "bytes": null,
       "duration": null,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092913360328236909QrqHYNJZ)\", \"data\": null}"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929133720219920899DplVcLRo)\", \"data\": null}"
     }
   ]
 }
