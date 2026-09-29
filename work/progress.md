@@ -5,7 +5,7 @@
 - `03` 佩鲁贾登场: **pass** tries=1 dur=12.25 bytes=4564386 ok
 - `04` 藏身储藏室: **pass** tries=1 dur=12.25 bytes=3648546 ok
 - `05` 取下名画: **pass** tries=1 dur=12.25 bytes=3905105 ok
-- `06` 卸框卷画: **create_failed** tries=5 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929010959624847685UFxfgMuY)", "data": null}
+- `06` 卸框卷画: **create_failed** tries=6 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929011116350331226fX5sOqRl)", "data": null}
 - `07` 大摇大摆走出: **queued** tries=0 dur=None bytes=None 
 - `08` 空墙被发现: **queued** tries=0 dur=None bytes=None 
 - `09` 全城搜查: **queued** tries=0 dur=None bytes=None 
