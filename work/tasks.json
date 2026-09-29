@@ -285,10 +285,10 @@
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929022835681504482F9ZOc7Ag)\", \"data\": null}"
   },
   "14": {
-    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929023108798975464Om9m0pwv)\", \"data\": null}",
+    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929023225454154671ZFWAFCkn)\", \"data\": null}",
     "status": "create_failed",
-    "tries": 1,
-    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929023108798975464Om9m0pwv)\", \"data\": null}"
+    "tries": 2,
+    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929023225454154671ZFWAFCkn)\", \"data\": null}"
   },
   "15": {
     "error": "create_failed",
