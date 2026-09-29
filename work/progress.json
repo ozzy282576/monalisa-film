@@ -3,7 +3,7 @@
   "pending": 8,
   "fail": 0,
   "total": 15,
-  "updated": 1790642975,
+  "updated": 1790643892,
   "clips": [
     {
       "id": "01",
@@ -54,16 +54,16 @@
       "id": "06",
       "title": "卸框卷画",
       "status": "create_failed",
-      "tries": 10,
+      "tries": 1,
       "bytes": null,
       "duration": null,
-      "reason": null
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929010452706932337r1P7Ganj)\", \"data\": null}"
     },
     {
       "id": "07",
       "title": "大摇大摆走出",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -71,8 +71,8 @@
     {
       "id": "08",
       "title": "空墙被发现",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -80,8 +80,8 @@
     {
       "id": "09",
       "title": "全城搜查",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -98,8 +98,8 @@
     {
       "id": "11",
       "title": "佛罗伦萨接头",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -116,8 +116,8 @@
     {
       "id": "13",
       "title": "被捕",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -125,8 +125,8 @@
     {
       "id": "14",
       "title": "荣归卢浮宫",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -134,8 +134,8 @@
     {
       "id": "15",
       "title": "尾声特写",
-      "status": "create_failed",
-      "tries": 10,
+      "status": "queued",
+      "tries": 0,
       "bytes": null,
       "duration": null,
       "reason": null
