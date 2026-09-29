@@ -3,7 +3,7 @@
   "pending": 9,
   "fail": 0,
   "total": 15,
-  "updated": 1790640262,
+  "updated": 1790640267,
   "clips": [
     {
       "id": "01",
@@ -117,7 +117,7 @@
       "id": "13",
       "title": "被捕",
       "status": "create_failed",
-      "tries": 0,
+      "tries": 1,
       "bytes": null,
       "duration": null,
       "reason": null
