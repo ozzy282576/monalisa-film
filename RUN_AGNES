@@ -1,1 +1,1 @@
-run=5 continue missing sequential 75s
+run=6 flawless redo 02 04 05 + missing, 180s on 503

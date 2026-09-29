@@ -275,11 +275,16 @@ def qc_clip(path: Path, expected=12.0):
 
 
 GAP_SEC = 75
+QUEUE_GAP_SEC = 180
+FORCE_REDO = {"02", "04", "05"}
 
 
-def wait_gap(reason):
-    print(f"WAIT {GAP_SEC}s before next create ({reason})", flush=True)
-    time.sleep(GAP_SEC)
+def wait_gap(reason, seconds=None):
+    n = seconds if seconds is not None else GAP_SEC
+    if "queue_full" in (reason or "") or "503" in (reason or ""):
+        n = QUEUE_GAP_SEC
+    print(f"WAIT {n}s before next create ({reason})", flush=True)
+    time.sleep(n)
 
 
 def process_one(item, story, state):
@@ -393,7 +398,12 @@ def main():
         sid = item["id"]
         st = state.get(sid, {})
         dest = CLIPS / f"{sid}.mp4"
-        if not (dest.exists() and st.get("qc") == "pass"):
+        if sid in FORCE_REDO and dest.exists():
+            print(f"FORCE REDO {sid} visual QC failed last round", flush=True)
+            dest.unlink(missing_ok=True)
+            st = {"tries": 0, "status": "queued", "qc": "redo"}
+            state[sid] = st
+        elif not (dest.exists() and st.get("qc") == "pass"):
             st["tries"] = 0
             st.pop("video_id", None)
             st["status"] = "queued"
