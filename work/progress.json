@@ -3,7 +3,7 @@
   "pending": 9,
   "fail": 0,
   "total": 15,
-  "updated": 1790640301,
+  "updated": 1790640309,
   "clips": [
     {
       "id": "01",
@@ -72,7 +72,7 @@
       "id": "08",
       "title": "空墙被发现",
       "status": "create_failed",
-      "tries": 1,
+      "tries": 2,
       "bytes": null,
       "duration": null,
       "reason": null
