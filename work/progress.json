@@ -3,7 +3,7 @@
   "pending": 8,
   "fail": 0,
   "total": 15,
-  "updated": 1790644966,
+  "updated": 1790645043,
   "clips": [
     {
       "id": "01",
@@ -62,11 +62,11 @@
     {
       "id": "07",
       "title": "大摇大摆走出",
-      "status": "create_failed",
-      "tries": 4,
+      "status": "queued",
+      "tries": 5,
       "bytes": null,
       "duration": null,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929012246788545681tVHGXKQ8)\", \"data\": null}"
+      "reason": null
     },
     {
       "id": "08",
