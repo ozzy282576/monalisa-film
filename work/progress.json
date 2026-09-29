@@ -1,9 +1,9 @@
 {
-  "ok": 9,
-  "pending": 6,
+  "ok": 10,
+  "pending": 5,
   "fail": 0,
   "total": 15,
-  "updated": 1790669605,
+  "updated": 1790670043,
   "clips": [
     {
       "id": "01",
@@ -116,11 +116,11 @@
     {
       "id": "13",
       "title": "被捕",
-      "status": "queued",
+      "status": "pass",
       "tries": 1,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 5157820,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "14",

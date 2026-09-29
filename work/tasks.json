@@ -293,8 +293,19 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "queued",
-    "tries": 1
+    "status": "completed",
+    "tries": 1,
+    "poll": {
+      "status": "completed",
+      "progress": 100,
+      "error": null,
+      "seconds": "12"
+    },
+    "path": "/home/runner/work/monalisa-film/monalisa-film/clips/13.mp4",
+    "bytes": 5157820,
+    "duration": 12.25,
+    "reason": "ok",
+    "qc": "pass"
   },
   "14": {
     "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 2026092906444065070198q657Y0oC)\", \"data\": null}",

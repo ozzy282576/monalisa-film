@@ -1,4 +1,4 @@
-# progress 9/15 pass, 6 pending, 0 fail
+# progress 10/15 pass, 5 pending, 0 fail
 
 - `01` 卢浮宫黎明: **pass** tries=1 dur=12.25 bytes=9232624 ok
 - `02` 沙龙卡雷: **pass** tries=7 dur=12.25 bytes=9405474 ok
@@ -12,6 +12,6 @@
 - `10` 木箱里的两年: **pass** tries=1 dur=12.25 bytes=4438235 ok
 - `11` 佛罗伦萨接头: **create_failed** tries=10 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 202609290810518923298231giiXgVs)", "data": null}
 - `12` 乌菲兹鉴定: **pass** tries=1 dur=12.25 bytes=5412538 ok
-- `13` 被捕: **queued** tries=1 dur=None bytes=None 
+- `13` 被捕: **pass** tries=1 dur=12.25 bytes=5157820 ok
 - `14` 荣归卢浮宫: **queued** tries=0 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 2026092906444065070198q657Y0oC)", "data": null}
 - `15` 尾声特写: **queued** tries=0 dur=None bytes=None http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260929065846939183237nRyME6Eh)", "data": null}
