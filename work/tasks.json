@@ -101,8 +101,19 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "queued",
-    "tries": 7
+    "status": "completed",
+    "tries": 7,
+    "poll": {
+      "status": "completed",
+      "progress": 100,
+      "error": null,
+      "seconds": "12"
+    },
+    "path": "/home/runner/work/monalisa-film/monalisa-film/clips/04.mp4",
+    "bytes": 4535180,
+    "duration": 12.25,
+    "reason": "ok",
+    "qc": "pass"
   },
   "05": {
     "raw": {
