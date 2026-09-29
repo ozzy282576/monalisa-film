@@ -1,9 +1,9 @@
 {
-  "ok": 14,
-  "pending": 1,
+  "ok": 15,
+  "pending": 0,
   "fail": 0,
   "total": 15,
-  "updated": 1790721950,
+  "updated": 1790722240,
   "clips": [
     {
       "id": "01",
@@ -134,11 +134,11 @@
     {
       "id": "15",
       "title": "尾声特写",
-      "status": "queued",
+      "status": "pass",
       "tries": 1,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 4949183,
+      "duration": 12.25,
+      "reason": "ok"
     }
   ]
 }
