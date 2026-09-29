@@ -13,5 +13,5 @@
 - `11` 佛罗伦萨接头: **create_failed** tries=7 dur=None bytes=None 
 - `12` 乌菲兹鉴定: **pass** tries=1 dur=12.25 bytes=5412538 ok
 - `13` 被捕: **create_failed** tries=7 dur=None bytes=None 
-- `14` 荣归卢浮宫: **create_failed** tries=6 dur=None bytes=None 
+- `14` 荣归卢浮宫: **create_failed** tries=7 dur=None bytes=None 
 - `15` 尾声特写: **create_failed** tries=6 dur=None bytes=None 
