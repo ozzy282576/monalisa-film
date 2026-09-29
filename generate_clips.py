@@ -275,8 +275,8 @@ def qc_clip(path: Path, expected=12.0):
 
 
 GAP_SEC = 75
-QUEUE_GAP_SEC = 180
-FORCE_REDO = {"02", "04", "05"}
+QUEUE_GAP_SEC = 240
+FORCE_REDO = {"02", "05"}
 
 
 def wait_gap(reason, seconds=None):
@@ -410,8 +410,8 @@ def main():
             state[sid] = st
     save_state(state)
     write_progress(story, state)
-    print("COOLDOWN 90s before first new create", flush=True)
-    time.sleep(90)
+    print("COOLDOWN 180s before first new create", flush=True)
+    time.sleep(180)
     last_created = False
     for item in story:
         sid = item["id"]
