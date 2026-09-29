@@ -29,7 +29,6 @@
     "qc": "pass"
   },
   "02": {
-    "video_id": "task_6bbHnR0aL35g2jTm1pqPkvMCE4IitGP2",
     "raw": {
       "id": "task_6bbHnR0aL35g2jTm1pqPkvMCE4IitGP2",
       "video_id": "task_6bbHnR0aL35g2jTm1pqPkvMCE4IitGP2",
@@ -43,7 +42,7 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
+    "status": "create_failed",
     "tries": 1,
     "poll": {
       "status": "completed",
@@ -54,8 +53,9 @@
     "path": "/home/runner/work/monalisa-film/monalisa-film/clips/02.mp4",
     "bytes": 9180833,
     "duration": 12.25,
-    "reason": "ok",
-    "qc": "pass"
+    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929025008357962756EeFGn9GZ)\", \"data\": null}",
+    "qc": "pass",
+    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929025008357962756EeFGn9GZ)\", \"data\": null}"
   },
   "03": {
     "video_id": "task_7TthVhhFK7Fdtj4V9mF7IVL8RzAKQYOz",
@@ -87,7 +87,6 @@
     "qc": "pass"
   },
   "04": {
-    "video_id": "task_LwECud6n8D3ZIu2MdzpqYe1dBRcADdtQ",
     "raw": {
       "id": "task_LwECud6n8D3ZIu2MdzpqYe1dBRcADdtQ",
       "video_id": "task_LwECud6n8D3ZIu2MdzpqYe1dBRcADdtQ",
@@ -101,8 +100,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
-    "tries": 1,
+    "status": "queued",
+    "tries": 0,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -116,7 +115,6 @@
     "qc": "pass"
   },
   "05": {
-    "video_id": "task_XD4SuAYOkpCn7Lj0mNQa0gS0ASvrGJUM",
     "raw": {
       "id": "task_XD4SuAYOkpCn7Lj0mNQa0gS0ASvrGJUM",
       "video_id": "task_XD4SuAYOkpCn7Lj0mNQa0gS0ASvrGJUM",
@@ -130,8 +128,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
-    "tries": 1,
+    "status": "queued",
+    "tries": 0,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -146,8 +144,8 @@
   },
   "06": {
     "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929011623397257335u8QZv22I)\", \"data\": null}",
-    "status": "create_failed",
-    "tries": 10,
+    "status": "queued",
+    "tries": 0,
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929011623397257335u8QZv22I)\", \"data\": null}"
   },
   "07": {
@@ -181,8 +179,8 @@
   },
   "08": {
     "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929014149392148996DKnVD8Rc)\", \"data\": null}",
-    "status": "create_failed",
-    "tries": 10,
+    "status": "queued",
+    "tries": 0,
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929014149392148996DKnVD8Rc)\", \"data\": null}"
   },
   "09": {
@@ -245,8 +243,8 @@
   },
   "11": {
     "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929021431733181665xZqNwfbx)\", \"data\": null}",
-    "status": "create_failed",
-    "tries": 10,
+    "status": "queued",
+    "tries": 0,
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929021431733181665xZqNwfbx)\", \"data\": null}"
   },
   "12": {
@@ -280,20 +278,20 @@
   },
   "13": {
     "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929022835681504482F9ZOc7Ag)\", \"data\": null}",
-    "status": "create_failed",
-    "tries": 10,
+    "status": "queued",
+    "tries": 0,
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929022835681504482F9ZOc7Ag)\", \"data\": null}"
   },
   "14": {
     "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929024239364715451gmQS8Cyg)\", \"data\": null}",
-    "status": "create_failed",
-    "tries": 10,
+    "status": "queued",
+    "tries": 0,
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929024239364715451gmQS8Cyg)\", \"data\": null}"
   },
   "15": {
     "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929024746104333327SR34vbjh)\", \"data\": null}",
-    "status": "create_failed",
-    "tries": 3,
+    "status": "queued",
+    "tries": 0,
     "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260929024746104333327SR34vbjh)\", \"data\": null}"
   }
 }
