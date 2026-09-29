@@ -1,9 +1,9 @@
 {
-  "ok": 8,
-  "pending": 7,
+  "ok": 9,
+  "pending": 6,
   "fail": 0,
   "total": 15,
-  "updated": 1790646953,
+  "updated": 1790647302,
   "clips": [
     {
       "id": "01",
@@ -80,11 +80,11 @@
     {
       "id": "09",
       "title": "全城搜查",
-      "status": "queued",
+      "status": "pass",
       "tries": 10,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 8085191,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "10",
