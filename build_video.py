@@ -10,8 +10,8 @@ OUT.mkdir(parents=True,exist_ok=True); BUILD.mkdir(parents=True,exist_ok=True)
 FONT='/tmp/video-build/NotoSC.ttf'; W,H=1080,1920
 CAPTIONS=[
 '一宗已经判无罪的谋杀案，四十多年后为何重回法庭？',
-'这不是虚构剧情，而是英国丹尼斯·麦格罗里案。',
-'一九七五年，十五岁的杰奎琳·蒙哥马利在伦敦遇害。',
+'这不是虚构剧情，而是英国丹尼斯麦格罗里案。',
+'一九七五年，十五岁的杰奎琳蒙哥马利在伦敦遇害。',
 '当年的审判以无罪告终，案件似乎走到尽头。',
 '多年后，警方重新翻查旧案，保存证物仍在。',
 '基因检测技术进步，让当年生物样本得以再次检验。',
@@ -34,22 +34,17 @@ CAPTIONS=[
 '新技术让旧证物再次开口，也要求审判程序更严谨。',
 '这就是跨越近半世纪案件留下的回响。'
 ]
-# Twenty-four cuts from ten clean, text-free generated scenes. Repeated scenes are reframed, not overlaid with new written material.
+# Every story shot uses its own unique clean, text-free illustration or photograph.
 SOURCES=[
 'clean-01-case-desk.jpg','clean-10-courtroom.jpg','clean-02-islington.jpg','clean-04-bedroom.jpg',
-'clean-03-detective.jpg','clean-05-archive.jpg','clean-06-evidence.jpg','clean-07-laboratory.jpg',
-'clean-05-archive.jpg','clean-03-detective.jpg','clean-10-courtroom.jpg','clean-09-courthouse.jpg',
-'clean-05-archive.jpg','clean-09-courthouse.jpg','clean-10-courtroom.jpg','clean-10-courtroom.jpg',
-'clean-10-courtroom.jpg','clean-09-courthouse.jpg','clean-10-courtroom.jpg','clean-08-helix.jpg',
-'clean-04-bedroom.jpg','clean-01-case-desk.jpg','clean-07-laboratory.jpg','clean-10-courtroom.jpg'
+'clean-12-police-desk.jpg','clean-07-laboratory.jpg','clean-06-evidence.jpg','clean-11-fingerprints.jpg',
+'clean-19-evidence-table.jpg','clean-03-detective.jpg','clean-17-gavel.jpg','clean-14-court-steps.jpg',
+'clean-05-archive.jpg','clean-16-stairwell.jpg','clean-09-courthouse.jpg','clean-20-jury-room.jpg',
+'vector-stills/vector-01-scales.jpg','clean-18-prison-gate.jpg','clean-13-calendar.jpg','clean-08-helix.jpg',
+'vector-stills/vector-04-open-door.jpg','vector-stills/vector-02-time.jpg','vector-stills/vector-03-evidence-chain.jpg','clean-15-glass-slide.jpg'
 ]
-CROPS={
- 2:(.08,.05,.90,.91),4:(.12,.08,.86,.90),6:(.16,.08,.90,.86),8:(.1,.1,.9,.9),
- 10:(.12,.06,.88,.84),11:(.08,.14,.84,.92),13:(.08,.1,.86,.9),14:(.15,.08,.9,.84),
- 15:(.12,.14,.88,.94),16:(.16,.08,.9,.86),17:(.08,.12,.84,.92),18:(.15,.1,.92,.92),
- 19:(.08,.1,.84,.9),20:(.14,.08,.9,.86),21:(.1,.1,.9,.9),22:(.12,.06,.9,.88),
- 23:(.08,.16,.86,.92),24:(.14,.08,.92,.88)
-}
+assert len(SOURCES)==24 and len(set(SOURCES))==24, 'Every image must be unique.'
+
 subtitle_font=ImageFont.truetype(FONT,54)
 title_font=ImageFont.truetype(FONT,92)
 small_font=ImageFont.truetype(FONT,38)
@@ -83,7 +78,7 @@ ffmpeg=subprocess.check_output(['/tmp/videotools/bin/python','-c','import imagei
 probe=subprocess.run([ffmpeg,'-hide_banner','-i',str(ROOT/'audio/narration-final.mp3'),'-f','null','-'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
 m=re.search(r'Duration: (\d+):(\d+):(\d+\.\d+)',probe.stderr)
 source_audio=float(m.group(1))*3600+float(m.group(2))*60+float(m.group(3)) if m else 104.69
-voice_seconds=source_audio/.90
+voice_seconds=source_audio/.92
 end_seconds=120-voice_seconds
 weights=[len(t)+1.3*t.count('，')+2*t.count('？')+1.8*t.count('。') for t in CAPTIONS]
 scale=voice_seconds/sum(weights); timings=[]; cursor=0.0
@@ -91,7 +86,7 @@ for weight in weights:
     nxt=cursor+weight*scale; timings.append((cursor,nxt)); cursor=nxt
 
 for i,(name,caption) in enumerate(zip(SOURCES,CAPTIONS),1):
-    im=cover_crop(Image.open(ASSETS/name),CROPS.get(i))
+    im=cover_crop(Image.open(ASSETS/name))
     im=ImageEnhance.Color(im).enhance(.82)
     im=darken_lower(im)
     d=ImageDraw.Draw(im)
@@ -99,11 +94,11 @@ for i,(name,caption) in enumerate(zip(SOURCES,CAPTIONS),1):
     if i==1:
         d.rounded_rectangle((70,175,690,315),radius=22,fill=(23,18,12))
         d.text((105,190),'迟来的证据',font=title_font,fill=(255,231,164),stroke_width=3,stroke_fill=(8,7,5))
-        d.text((110,315),'丹尼斯·麦格罗里案',font=small_font,fill=(249,241,218),stroke_width=3,stroke_fill=(8,7,5))
+        d.text((110,315),'丹尼斯麦格罗里案',font=small_font,fill=(249,241,218),stroke_width=3,stroke_fill=(8,7,5))
     im.save(OUT/f'frame-{i:02d}.jpg',quality=91,optimize=True)
 
 # Fully Chinese end slate, with no Latin letters or Arabic numerals.
-end=cover_crop(Image.open(ASSETS/'clean-10-courtroom.jpg'))
+end=cover_crop(Image.open(ASSETS/'vector-stills/vector-06-end-slate.jpg'))
 end=ImageEnhance.Color(end).enhance(.65)
 end=Image.blend(end,Image.new('RGB',(W,H),(7,8,8)),.5)
 d=ImageDraw.Draw(end)
@@ -127,7 +122,7 @@ concat=BUILD/'concat.txt'; concat.write_text(''.join(f"file '{p.as_posix()}'\n" 
 joined=BUILD/'joined.mp4'
 subprocess.run([ffmpeg,'-y','-loglevel','error','-f','concat','-safe','0','-i',str(concat),'-c','copy',str(joined)],check=True)
 final=ROOT/'Dennis-McGrory-2min-vertical.mp4'
-subprocess.run([ffmpeg,'-y','-loglevel','error','-i',str(joined),'-i',str(ROOT/'audio/narration-final.mp3'),'-af','atempo=0.90','-t','120','-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','112k','-movflags','+faststart',str(final)],check=True)
+subprocess.run([ffmpeg,'-y','-loglevel','error','-i',str(joined),'-i',str(ROOT/'audio/narration-final.mp3'),'-af','atempo=0.92','-t','120','-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','112k','-movflags','+faststart',str(final)],check=True)
 srt=[]
 for n,(caption,(a,b)) in enumerate(zip(CAPTIONS,timings),1): srt += [str(n),f'{srt_time(a)} --> {srt_time(b)}',caption,'']
 (ROOT/'Dennis-McGrory-zh-CN.srt').write_text('\n'.join(srt),encoding='utf-8')
