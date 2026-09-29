@@ -130,14 +130,19 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "in_progress",
+    "status": "completed",
     "tries": 1,
     "poll": {
-      "status": "in_progress",
-      "progress": 10,
+      "status": "completed",
+      "progress": 100,
       "error": null,
       "seconds": "12"
-    }
+    },
+    "path": "/home/runner/work/monalisa-film/monalisa-film/clips/05.mp4",
+    "bytes": 3905105,
+    "duration": 12.25,
+    "reason": "ok",
+    "qc": "pass"
   },
   "06": {
     "error": "create_failed",
@@ -147,17 +152,17 @@
   "07": {
     "error": "create_failed",
     "status": "create_failed",
-    "tries": 10
+    "tries": 9
   },
   "08": {
     "error": "create_failed",
     "status": "create_failed",
-    "tries": 10
+    "tries": 9
   },
   "09": {
     "error": "create_failed",
     "status": "create_failed",
-    "tries": 10
+    "tries": 9
   },
   "10": {
     "video_id": "task_RrIHKX9DE5p6XiVX7jQQsYv0wfzibqSZ",
@@ -191,7 +196,7 @@
   "11": {
     "error": "create_failed",
     "status": "create_failed",
-    "tries": 10
+    "tries": 8
   },
   "12": {
     "video_id": "task_DKJMO3ZQdNF8HTGLbiiAjSJxwsWzARM7",
@@ -225,16 +230,16 @@
   "13": {
     "error": "create_failed",
     "status": "create_failed",
-    "tries": 9
+    "tries": 8
   },
   "14": {
     "error": "create_failed",
     "status": "create_failed",
-    "tries": 9
+    "tries": 8
   },
   "15": {
     "error": "create_failed",
     "status": "create_failed",
-    "tries": 9
+    "tries": 8
   }
 }

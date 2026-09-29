@@ -1,9 +1,9 @@
 {
-  "ok": 6,
-  "pending": 9,
+  "ok": 7,
+  "pending": 8,
   "fail": 0,
   "total": 15,
-  "updated": 1790641434,
+  "updated": 1790641522,
   "clips": [
     {
       "id": "01",
@@ -44,11 +44,11 @@
     {
       "id": "05",
       "title": "取下名画",
-      "status": "in_progress",
+      "status": "pass",
       "tries": 1,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 3905105,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "06",
@@ -63,7 +63,7 @@
       "id": "07",
       "title": "大摇大摆走出",
       "status": "create_failed",
-      "tries": 10,
+      "tries": 9,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -72,7 +72,7 @@
       "id": "08",
       "title": "空墙被发现",
       "status": "create_failed",
-      "tries": 10,
+      "tries": 9,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -81,7 +81,7 @@
       "id": "09",
       "title": "全城搜查",
       "status": "create_failed",
-      "tries": 10,
+      "tries": 9,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -99,7 +99,7 @@
       "id": "11",
       "title": "佛罗伦萨接头",
       "status": "create_failed",
-      "tries": 10,
+      "tries": 8,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -117,7 +117,7 @@
       "id": "13",
       "title": "被捕",
       "status": "create_failed",
-      "tries": 9,
+      "tries": 8,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -126,7 +126,7 @@
       "id": "14",
       "title": "荣归卢浮宫",
       "status": "create_failed",
-      "tries": 9,
+      "tries": 8,
       "bytes": null,
       "duration": null,
       "reason": null
@@ -135,7 +135,7 @@
       "id": "15",
       "title": "尾声特写",
       "status": "create_failed",
-      "tries": 9,
+      "tries": 8,
       "bytes": null,
       "duration": null,
       "reason": null
