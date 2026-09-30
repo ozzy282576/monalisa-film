@@ -129,8 +129,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "queued",
-    "tries": 0,
+    "status": "create_failed",
+    "tries": 1,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -140,8 +140,9 @@
     "path": "/home/runner/work/monalisa-film/monalisa-film/clips/05.mp4",
     "bytes": 4531626,
     "duration": 12.25,
-    "reason": "ok",
-    "qc": "pass"
+    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930002406709670452naG0qxnj)\", \"data\": null}",
+    "qc": "pass",
+    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930002406709670452naG0qxnj)\", \"data\": null}"
   },
   "06": {
     "raw": {
