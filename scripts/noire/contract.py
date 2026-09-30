@@ -39,8 +39,13 @@ SUBTITLE_STROKE = (0, 0, 0)
 
 SUBTITLE = {
     "centre_x": 0.5,
-    "baseline_min": 0.775,   # fraction of canvas height
-    "baseline_max": 0.880,
+    # Kept clear of the bottom of the frame. Douyin overlays a progress bar,
+    # the account name and the caption across roughly the bottom 14%, so a
+    # caption whose ink reaches 86% sits underneath them and is unreadable on
+    # the platform this was cut for. Measured: the old band put the lowest ink
+    # at 85.8% — passing the safe line by two tenths of a percent.
+    "baseline_min": 0.722,   # fraction of canvas height
+    "baseline_max": 0.822,
     "max_lines": 2,
     "line_gap": 1.22,
     "font_size": 60,
@@ -51,7 +56,7 @@ SUBTITLE = {
     "max_width": 0.86,       # fraction of canvas width
     # A gradient scrim under the caption. Without it, white lettering over a
     # blown-out white ground (the mud, the lawn, the puddle) is unreadable.
-    "scrim_top": 0.715,
+    "scrim_top": 0.660,
     "scrim_alpha": 0.66,
     "scrim_curve": 2.2,
 }
