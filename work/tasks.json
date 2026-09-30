@@ -282,8 +282,19 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "queued",
-    "tries": 12
+    "status": "completed",
+    "tries": 12,
+    "poll": {
+      "status": "completed",
+      "progress": 100,
+      "error": null,
+      "seconds": "12"
+    },
+    "path": "/home/runner/work/monalisa-film/monalisa-film/clips/11.mp4",
+    "bytes": 5728232,
+    "duration": 12.25,
+    "reason": "ok",
+    "qc": "pass"
   },
   "12": {
     "video_id": "task_DKJMO3ZQdNF8HTGLbiiAjSJxwsWzARM7",

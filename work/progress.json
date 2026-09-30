@@ -1,9 +1,9 @@
 {
-  "ok": 13,
-  "pending": 2,
+  "ok": 14,
+  "pending": 1,
   "fail": 0,
   "total": 15,
-  "updated": 1790762381,
+  "updated": 1790762687,
   "clips": [
     {
       "id": "01",
@@ -98,11 +98,11 @@
     {
       "id": "11",
       "title": "佛罗伦萨接头",
-      "status": "queued",
+      "status": "pass",
       "tries": 12,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 5728232,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "12",
