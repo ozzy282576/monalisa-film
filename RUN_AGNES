@@ -1,1 +1,1 @@
-run=23 50 retries visual-fail 06 and 11
+run=24 50 retries visual-fail 06 only, keep 11
