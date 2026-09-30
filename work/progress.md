@@ -1,7 +1,7 @@
 # progress 12/15 pass, 3 pending, 0 fail
 
 - `01` 卢浮宫黎明: **pass** tries=1 dur=12.25 bytes=9232624 ok
-- `02` 沙龙卡雷: **pass** tries=1 dur=12.25 bytes=9405474 http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260930025300156014551xeHSmPei)", "data": null}
+- `02` 沙龙卡雷: **pass** tries=2 dur=12.25 bytes=9405474 http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 20260930025417244310285khOXDZ35)", "data": null}
 - `03` 佩鲁贾登场: **pass** tries=1 dur=12.25 bytes=4564386 ok
 - `04` 藏身储藏室: **pass** tries=7 dur=12.25 bytes=4535180 ok
 - `05` 取下名画: **pass** tries=0 dur=12.25 bytes=4531626 http503:{"code": "video_queue_full", "message": "video queue is full, please retry later (request id: 2026093001503168328886mJFsNptC)", "data": null}
