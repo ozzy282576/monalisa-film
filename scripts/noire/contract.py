@@ -109,7 +109,16 @@ MOTIONS: Dict[str, Motion] = {
 # 0.42 measured as a 45% cut to the 90th percentile on a night frame —
 # it was reading as "too dark" rather than as mood. The mood now comes
 # from the grade's split tone and black lift instead.
-VIGNETTE_STRENGTH = 0.16
+VIGNETTE_STRENGTH = 0.12
+
+# Depth of field. Everything on a drawn panel is equally sharp, which is the
+# single biggest reason the frames read as illustration rather than as film — a
+# real lens cannot hold a subject and its background both in focus. A radial
+# defocus away from the focus point buys most of the cinematic quality on its
+# own, and costs one blur and one composite per frame.
+DEPTH_OF_FIELD = 0.42
+FOCUS_POINT = (0.5, 0.44)     # fraction of the frame; slightly above centre
+DOF_FALLOFF = 1.15            # higher keeps more of the centre sharp
 GRAIN_STRENGTH = 0.030
 IMPACT_FLASH_FRAMES = 3      # hard-cut accents
 CROSSFADE_FRAMES = 8
