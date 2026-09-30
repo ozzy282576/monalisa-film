@@ -3,7 +3,7 @@
   "pending": 1,
   "fail": 0,
   "total": 15,
-  "updated": 1790751069,
+  "updated": 1790751146,
   "clips": [
     {
       "id": "01",
@@ -98,11 +98,11 @@
     {
       "id": "11",
       "title": "佛罗伦萨接头",
-      "status": "pass",
-      "tries": 1,
-      "bytes": 5556890,
-      "duration": 12.25,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930065109657467132YjsKDs1O)\", \"data\": null}"
+      "status": "queued",
+      "tries": 2,
+      "bytes": null,
+      "duration": null,
+      "reason": null
     },
     {
       "id": "12",
