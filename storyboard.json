@@ -38,7 +38,7 @@
     "id": "06",
     "seconds": "12",
     "title": "卸框卷画",
-    "prompt": "Close-up: the same mustached workman in white smock on a service stair. He removes the Mona Lisa canvas from the wooden frame, carefully rolls the canvas, slides it under his smock. Hands have five fingers, canvas is the recognizable Mona Lisa. Photorealistic. No text.",
+    "prompt": "Tight close-up 1911, NO gallery, NO other paintings on walls. Dark wooden service stair only. One mustached Italian workman, white painter smock, five fingers. He pries ONE wooden frame, slides out ONE Mona Lisa canvas, rolls it, tucks under smock. Period oil-lamp light, no fluorescent tubes, no wristwatch. Photorealistic. No text.",
     "narration": "在服务楼梯间，他拆掉镜框，把画布卷起，塞进工作服里。世界最著名的微笑，就此消失在一件白色罩衫下面。"
   },
   {
@@ -73,7 +73,7 @@
     "id": "11",
     "seconds": "12",
     "title": "佛罗伦萨接头",
-    "prompt": "Florence 1913 antique shop. The same mustached Italian in a worn suit unrolls the Mona Lisa on a wooden table under a lamp. Two dealers lean in. Renaissance street through window. Photorealistic, one Mona Lisa only. No text.",
+    "prompt": "Florence 1913 antique shop interior. Three men lean over a table. On the table is a clearly recognizable Leonardo Mona Lisa canvas, correct face and smile, not distorted, not melting. Same mustached Italian in a worn brown suit. Warm lamp. Street of Florence visible through open door. Photorealistic, five fingers each hand. No text.",
     "narration": "一九一三年十二月，他写信给佛罗伦萨古董商杰里，声称拥有蒙娜丽莎，愿以十万里拉成交。"
   },
   {
@@ -94,7 +94,7 @@
     "id": "14",
     "seconds": "12",
     "title": "荣归卢浮宫",
-    "prompt": "January 1914 Paris, huge period crowd outside the Louvre, a crate under escort, then the Mona Lisa hung again on the gallery wall. Photorealistic, no modern clothing, no glass pyramid. No readable signs. No text.",
+    "prompt": "January 1914 Paris ONLY. Courtyard of the Louvre WITHOUT the glass pyramid, WITHOUT modern crate barcodes. Period crowd in 1914 coats and hats, horse cavalry, soldiers carrying a simple wooden crate. Then two attendants hang the ONE Mona Lisa on an ornate gallery wall. Photorealistic 1914, no 1980s architecture. No readable text.",
     "narration": "一九一四年一月，蒙娜丽莎在军警护送下返回巴黎。卢浮宫门口人山人海，那抹微笑重新面对世界。"
   },
   {
