@@ -12,9 +12,10 @@ from dataclasses import dataclass
 from typing import Tuple
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 from . import contract
+from . import grade as grade_module
 
 # Pre-generated grain tiles: cheaper and more stable than fresh noise per frame.
 _GRAIN_TILES = 8
@@ -41,6 +42,8 @@ class Camera:
     motion: contract.Motion
     _vignette: np.ndarray
     _grain: list
+    _stats: tuple | None = None
+    _lut: np.ndarray | None = None
 
     @classmethod
     def prepare(
@@ -60,33 +63,94 @@ class Camera:
             big=big, width=width, height=height, motion=motion,
             _vignette=_vignette_mask(width, height),
             _grain=_grain_tiles(width, height),
+            _stats=_on_screen_stats(big, motion, width, height),
         )
 
     def window(self, t: float) -> Tuple[float, float, float, float]:
         """Source box for eased progress ``t`` in 0..1."""
-        motion = self.motion
-        e = contract.ease_value(motion.ease, t)
-        scale = motion.scale_from + (motion.scale_to - motion.scale_from) * e
-        cx = motion.centre_from[0] + (motion.centre_to[0] - motion.centre_from[0]) * e
-        cy = motion.centre_from[1] + (motion.centre_to[1] - motion.centre_from[1]) * e
+        return _window_box(self.motion, self.big.size, t)
 
-        big_w, big_h = self.big.size
-        win_w = big_w / max(1e-6, scale)
-        win_h = big_h / max(1e-6, scale)
-        x0 = cx * big_w - win_w / 2.0
-        y0 = cy * big_h - win_h / 2.0
-        x0 = min(max(0.0, x0), big_w - win_w)
-        y0 = min(max(0.0, y0), big_h - win_h)
-        return (x0, y0, x0 + win_w, y0 + win_h)
+    def frame(self, t: float, frame_index: int, grade=None) -> np.ndarray:
+        """uint8 RGB frame for eased progress ``t``.
 
-    def frame(self, t: float, frame_index: int) -> np.ndarray:
-        """uint8 RGB frame for eased progress ``t``."""
+        Order matters and mirrors a real camera: the grade is the film stock, so
+        it is applied to the exposed image *before* the lens artefacts. Grading
+        after the vignette would darken shadows that the vignette already
+        darkened, and the split tone would fight the falloff.
+        """
         box = self.window(t)
         cropped = self.big.resize((self.width, self.height), Image.BILINEAR, box=box)
         arr = np.asarray(cropped, dtype=np.float32)
+
+        if grade is not None:
+            # Tone-map on uint8 through a cached LUT: identical curve for every
+            # frame of the beat, so the exposure cannot flicker as the camera moves.
+            if grade.mode == "enhance":
+                if self._lut is None:
+                    self._lut = grade.tone_lut(self._stats)
+                index = np.clip(arr, 0.0, 255.0).astype(np.uint8)
+                arr = np.interp(index, np.arange(256, dtype=np.float32),
+                                self._lut * 255.0).astype(np.float32)
+                arr = grade.colour_stage(arr)
+            else:
+                arr = grade.apply_float(arr, self._stats)
+            if grade.bloom > 0.0:
+                arr = _bloom(arr, grade.bloom)
+
         arr *= self._vignette
         arr += self._grain[frame_index % _GRAIN_TILES]
         return np.clip(arr, 0.0, 255.0).astype(np.uint8)
+
+
+def _window_box(motion: contract.Motion, big_size: Tuple[int, int],
+                t: float) -> Tuple[float, float, float, float]:
+    """Source box for eased progress ``t`` in 0..1, in ``big`` coordinates."""
+    e = contract.ease_value(motion.ease, t)
+    scale = motion.scale_from + (motion.scale_to - motion.scale_from) * e
+    cx = motion.centre_from[0] + (motion.centre_to[0] - motion.centre_from[0]) * e
+    cy = motion.centre_from[1] + (motion.centre_to[1] - motion.centre_from[1]) * e
+
+    big_w, big_h = big_size
+    win_w = big_w / max(1e-6, scale)
+    win_h = big_h / max(1e-6, scale)
+    x0 = min(max(0.0, cx * big_w - win_w / 2.0), big_w - win_w)
+    y0 = min(max(0.0, cy * big_h - win_h / 2.0), big_h - win_h)
+    return (x0, y0, x0 + win_w, y0 + win_h)
+
+
+def _on_screen_stats(big: Image.Image, motion: contract.Motion,
+                     width: int, height: int) -> tuple:
+    """Black / mid / white of the crop the camera actually shows.
+
+    Measuring the whole plate instead would mis-set the curve whenever the
+    camera is pushed into a bright or dark corner — the screen would then not
+    land on the grade's tonal target.
+    """
+    box = _window_box(motion, big.size, 0.5)
+    crop = big.resize((width, height), Image.BILINEAR, box=box)
+    return grade_module.source_stats(np.asarray(crop, dtype=np.uint8))
+
+
+def _bloom(arr: np.ndarray, strength: float, threshold: float = 0.62) -> np.ndarray:
+    """Additive highlight glow.
+
+    Bright areas are isolated, blurred on a 1/8-scale buffer and added back. The
+    downscale is what makes it affordable per frame, and it also produces the
+    wide, soft falloff that reads as halation rather than as a blur filter.
+    """
+    luma = arr @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
+    weight = np.clip((luma - threshold * 255.0) / max(1.0, (1.0 - threshold) * 255.0),
+                     0.0, 1.0)
+    if not weight.any():
+        return arr
+
+    bright = (arr * weight[..., None]).astype(np.uint8)
+    height, width = bright.shape[:2]
+    small_w, small_h = max(1, width // 8), max(1, height // 8)
+    small = Image.fromarray(bright, "RGB").resize((small_w, small_h), Image.BOX)
+    small = small.filter(ImageFilter.GaussianBlur(radius=3.2))
+    glow = np.asarray(small.resize((width, height), Image.BILINEAR), dtype=np.float32)
+    return arr + glow * strength
 
 
 def _vignette_mask(width: int, height: int) -> np.ndarray:

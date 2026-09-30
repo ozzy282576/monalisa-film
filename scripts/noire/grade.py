@@ -1,25 +1,44 @@
-"""Zero-cost colour grading for ink artwork.
+"""Colour grading: a filmic tone curve plus creative colour shaping.
 
-Re-generating 23 frames in colour costs 23 more image generations.  Grading the
-existing black-and-white frames costs nothing and is a legitimate look in its own
-right: the ink skeleton is untouched, and colour is applied as a *duotone ramp*
-from a shadow colour to a highlight colour — the same mechanism as a hand-tinted
-press photo or a two-plate risograph.
+Why this is not just ``contrast + saturation``
+----------------------------------------------
+An earlier version multiplied by a fixed exposure and applied contrast about
+0.5.  Measured on the real frames that produced mean luminance 0.306 with the
+90th percentile at 0.312 — no highlights at all — which is exactly what "too
+dark, too grey" looks like in numbers.  Raising the exposure to compensate then
+blew the highlights: several beats clipped at P90 = 1.000.
 
-Luminance is preserved as the ramp position, so contrast and linework survive
-exactly; only the hue changes.  Because the evidence colours (alert red, cold
-blue) are drawn *on top* of the graded frame at render time, they keep their full
-saturation against the graded background.
+A fixed curve cannot fix that, because the source panels have wildly different
+range (one beat's median sits at 0.066, another's at 0.854).  So the tone stage
+is *matched per beat*: each grade declares the tonal targets it wants, and the
+curve maps that beat's own black / mid / white onto them.
+
+That is what a colourist does when matching shots — it keeps the mood spread
+(a night beat still lands darker than a daylight one) while guaranteeing every
+beat has real blacks and real highlights.
+
+Order of operations, and why:
+
+    tone curve  -> S-curve -> film black lift -> split tone -> vibrance -> saturation
+
+Chroma is preserved through the tone stage by applying the same curve to each
+channel, which is what film actually does; highlights desaturate slightly as a
+result, which is a feature.  Split toning comes last so the tint is not itself
+stretched by the curve.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Sequence, Tuple
 
 import numpy as np
 
 RGB = Tuple[float, float, float]
+LUMA_WEIGHTS = np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
+
+# LUT resolution for the tone curve.
+_LUT_SIZE = 256
 
 
 def _rgb(value: str | Tuple[int, int, int]) -> RGB:
@@ -29,43 +48,186 @@ def _rgb(value: str | Tuple[int, int, int]) -> RGB:
     return tuple(channel / 255.0 for channel in value)  # type: ignore[return-value]
 
 
+def _monotone_cubic(xs: np.ndarray, ys: np.ndarray, x: np.ndarray) -> np.ndarray:
+    """Fritsch-Carlson monotone cubic interpolation.
+
+    Plain cubic splines overshoot, and an overshooting tone curve produces
+    bright halos around dark ink lines.  Monotone interpolation cannot.
+    """
+    xs = np.asarray(xs, dtype=np.float64)
+    ys = np.asarray(ys, dtype=np.float64)
+    h = np.diff(xs)
+    delta = np.diff(ys) / h
+
+    m = np.zeros_like(ys)
+    if len(xs) > 2:
+        same_sign = np.sign(delta[:-1]) * np.sign(delta[1:]) > 0
+        w1 = 2.0 * h[1:] + h[:-1]
+        w2 = h[:-1] + 2.0 * h[1:]
+        denom = np.where(same_sign, w1 / np.where(delta[:-1] == 0, 1e-12, delta[:-1])
+                         + w2 / np.where(delta[1:] == 0, 1e-12, delta[1:]), 1.0)
+        harm = np.where(same_sign, 3.0 * (h[:-1] + h[1:]) / np.where(denom == 0, 1e-12, denom), 0.0)
+        m[1:-1] = np.where(same_sign, harm, 0.0)
+    m[0] = delta[0] if len(delta) else 0.0
+    m[-1] = delta[-1] if len(delta) else 0.0
+
+    idx = np.clip(np.searchsorted(xs, x) - 1, 0, len(xs) - 2)
+    t = np.clip((x - xs[idx]) / np.maximum(h[idx], 1e-12), 0.0, 1.0)
+    t2, t3 = t * t, t * t * t
+    return (ys[idx] * (2 * t3 - 3 * t2 + 1)
+            + m[idx] * h[idx] * (t3 - 2 * t2 + t)
+            + ys[idx + 1] * (-2 * t3 + 3 * t2)
+            + m[idx + 1] * h[idx] * (t3 - t2))
+
+
+def source_stats(rgb: np.ndarray) -> Tuple[float, float, float]:
+    """Black / mid / white levels (P2, P50, P98) of a frame, as 0..1."""
+    luma = (rgb.astype(np.float32) / 255.0) @ LUMA_WEIGHTS
+    p2, p50, p98 = np.percentile(luma, [2.0, 50.0, 98.0])
+    return float(p2), float(p50), float(p98)
+
+
 @dataclass(frozen=True)
 class Grade:
-    """A duotone ramp plus saturation passthrough.
+    """A film look.
 
-    ``preserve_saturated`` keeps anything already colourful — the alert red on a
-    4 m marker, the cold blue of luminol — from being dragged onto the ramp and
-    turned navy.  The grade tints the *ink*; painted evidence colour survives.
+    ``mode="enhance"`` runs the filmic chain.  ``mode="duotone"`` is the older
+    shadow-to-highlight ink ramp, kept because the monochrome look is still
+    selectable per beat; there ``preserve_saturated`` stops painted evidence
+    colour (alert red, luminol blue) from being dragged onto the ramp.
     """
 
-    shadow: RGB
-    highlight: RGB
+    # -- duotone path (legacy monochrome look) --
+    shadow: RGB = (0.0, 0.0, 0.0)
+    highlight: RGB = (1.0, 1.0, 1.0)
     strength: float = 1.0
-    contrast: float = 1.0
     preserve_saturated: bool = True
-    saturation_k: float = 4.0   # >25% saturation passes through untouched
-    mode: str = "duotone"       # "duotone" tints ink; "enhance" grades colour art
-    saturation: float = 1.0
+    saturation_k: float = 4.0
     tint: RGB = (0.0, 0.0, 0.0)
     tint_strength: float = 0.0
 
-    def apply(self, frame: np.ndarray) -> np.ndarray:
-        """``frame`` is uint8 (H, W, 3); returns uint8."""
+    # -- filmic path --
+    mode: str = "duotone"
+    # Tonal targets the tone curve maps this beat's P2/P50/P98 onto.
+    t_black: float = 0.030
+    t_mid: float = 0.34
+    t_white: float = 0.90
+    contrast: float = 1.0        # duotone path only
+    s_curve: float = 0.0         # filmic S-curve blend, 0..1 (enhance path)
+    black: float = 0.0           # output black lift — film black is never 0
+    saturation: float = 1.0
+    vibrance: float = 0.0        # lifts muted colour more than saturated colour
+    shadow_desat: float = 0.0    # pulls chroma out of the darks, weighted to them
+    shadow_tint: RGB = (0.0, 0.0, 0.0)      # additive, weighted to the shadows
+    shadow_amount: float = 0.0
+    highlight_tint: RGB = (0.0, 0.0, 0.0)   # additive, weighted to the highlights
+    highlight_amount: float = 0.0
+    bloom: float = 0.0           # highlight glow, applied spatially by the camera
+
+    # -- tone stage ---------------------------------------------------------
+    def tone_lut(self, stats: Sequence[float]) -> np.ndarray:
+        """256-entry curve mapping this frame's levels onto the grade's targets."""
+        p_low, p_mid, p_high = (float(v) for v in stats)
+        # Keep the control points strictly ordered whatever the source looks
+        # like; a flat or inverted frame must not produce a folded curve.
+        eps = 1e-3
+        p_low = min(max(p_low, eps), 0.90)
+        p_mid = min(max(p_mid, p_low + eps), 0.97)
+        p_high = min(max(p_high, p_mid + eps), 0.999)
+
+        xs = np.array([0.0, p_low, p_mid, p_high, 1.0], dtype=np.float64)
+        ys = np.array([0.0, self.t_black, self.t_mid, self.t_white, 1.0], dtype=np.float64)
+        # Guarantee the targets are themselves monotone.
+        ys = np.maximum.accumulate(ys)
+        ys = np.minimum(ys, np.array([0.0, 0.30, 0.70, 0.99, 1.0]))
+
+        x = np.linspace(0.0, 1.0, _LUT_SIZE)
+        return np.clip(_monotone_cubic(xs, ys, x), 0.0, 1.0).astype(np.float32)
+
+    # -- colour stage -------------------------------------------------------
+    def colour_stage(self, frame: np.ndarray) -> np.ndarray:
+        """Split tone / contrast / vibrance / saturation on a float 0..255 array."""
+        return self._colour(frame.astype(np.float32) / 255.0) * 255.0
+
+    def _colour(self, out: np.ndarray) -> np.ndarray:
+        """Split tone, vibrance and saturation. Input/output float 0..1."""
+        luma = out @ LUMA_WEIGHTS
+
+        # Strip chroma out of the darks before tinting. A painted panel can
+        # carry a heavy cast in its shadows — the closing card came back with a
+        # navy background where the script calls for black — and no amount of
+        # additive tint removes it, because the colour is already there. This
+        # is the qualifier a colourist would reach for: desaturate the low end.
+        if self.shadow_desat > 0.0:
+            weight = (1.0 - luma) ** 2 * self.shadow_desat
+            out = luma[..., None] + (out - luma[..., None]) * (1.0 - weight)[..., None]
+            luma = out @ LUMA_WEIGHTS
+
+        # Teal into the shadows, warm into the highlights, weighted quadratically
+        # so the tint stays out of the midtones. A flat tint instead — which is
+        # what this used to do — just washes the whole frame and reads grey.
+        if self.shadow_amount > 0.0:
+            weight = (1.0 - luma) ** 2
+            out = out + np.array(self.shadow_tint, dtype=np.float32) * (
+                self.shadow_amount * weight)[..., None]
+        if self.highlight_amount > 0.0:
+            weight = luma ** 2
+            out = out + np.array(self.highlight_tint, dtype=np.float32) * (
+                self.highlight_amount * weight)[..., None]
+
+        # Contrast as a smoothstep S-curve rather than a straight multiply.
+        # A linear contrast pivots and then hard-clips at 1.0, which is what
+        # blew 9% of a bright beat to flat white; smoothstep flattens towards
+        # both ends instead, so highlights keep their shape.
+        if self.s_curve > 0.0:
+            smooth = out * out * (3.0 - 2.0 * out)
+            out = out + (smooth - out) * self.s_curve
+
+        if self.black > 0.0:
+            out = self.black + out * (1.0 - self.black)
+
+        out = np.clip(out, 0.0, 1.0)
+
+        # Vibrance before saturation: it lifts muted colour and leaves colour
+        # that is already strong alone, so skin and the evidence reds do not go
+        # neon while the rain still gains some blue.
+        luma = out @ LUMA_WEIGHTS
+        chroma = out - luma[..., None]
+        if self.vibrance > 0.0:
+            high = out.max(axis=2)
+            low = out.min(axis=2)
+            sat = np.where(high > 1e-4, (high - low) / np.maximum(high, 1e-4), 0.0)
+            out = luma[..., None] + chroma * (1.0 + self.vibrance * (1.0 - sat))[..., None]
+            luma = out @ LUMA_WEIGHTS
+            chroma = out - luma[..., None]
+        if self.saturation != 1.0:
+            out = luma[..., None] + chroma * self.saturation
+
+        return np.clip(out, 0.0, 1.0)
+
+    # -- entry points -------------------------------------------------------
+    def apply_float(self, frame: np.ndarray, stats: Sequence[float] | None = None) -> np.ndarray:
+        """Grade a float RGB array in 0..255; returns float 0..255."""
         source = frame.astype(np.float32) / 255.0
-
         if self.mode == "enhance":
-            return self._enhance(source)
+            lut = self.tone_lut(stats if stats is not None else source_stats(frame))
+            out = np.interp(source, np.linspace(0.0, 1.0, _LUT_SIZE), lut).astype(np.float32)
+            return self._colour(out) * 255.0
+        return self._duotone(source) * 255.0
 
-        # Rec.709 luma keeps the ink linework's perceived brightness
-        luma = source @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
+    def apply(self, frame: np.ndarray, stats: Sequence[float] | None = None) -> np.ndarray:
+        """``frame`` is uint8 (H, W, 3); returns uint8."""
+        return np.clip(self.apply_float(frame, stats) + 0.5, 0, 255).astype(np.uint8)
+
+    def _duotone(self, source: np.ndarray) -> np.ndarray:
+        """Legacy ink ramp: tint luminance, let painted colour pass through."""
+        luma = source @ LUMA_WEIGHTS
         if self.contrast != 1.0:
             luma = np.clip((luma - 0.5) * self.contrast + 0.5, 0.0, 1.0)
 
         shadow = np.array(self.shadow, dtype=np.float32)
         highlight = np.array(self.highlight, dtype=np.float32)
-        # ramp: shadow colour at luma 0, highlight colour at luma 1
         graded = shadow[None, None, :] + (highlight - shadow)[None, None, :] * luma[..., None]
-
         mixed = source + (graded - source) * self.strength
 
         if self.preserve_saturated:
@@ -75,45 +237,78 @@ class Grade:
             keep = np.clip(saturation * self.saturation_k, 0.0, 1.0)[..., None]
             mixed = mixed * (1.0 - keep) + source * keep
 
-        return np.clip(mixed * 255.0 + 0.5, 0, 255).astype(np.uint8)
-
-    def _enhance(self, source: np.ndarray) -> np.ndarray:
-        """Grade already-coloured artwork: contrast, saturation, mood cast.
-
-        Used once the frames are painted in colour.  Kept gentle on purpose —
-        the artwork carries the palette, this only shapes it.
-        """
-        out = source
-        if self.contrast != 1.0:
-            out = np.clip((out - 0.5) * self.contrast + 0.5, 0.0, 1.0)
-        if self.saturation != 1.0:
-            luma = out @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
-            out = np.clip(luma[..., None] + (out - luma[..., None]) * self.saturation,
-                          0.0, 1.0)
-        if self.tint_strength > 0.0:
-            tint = np.array(self.tint, dtype=np.float32)
-            out = out * (1.0 - self.tint_strength) + tint * self.tint_strength
-        return np.clip(out * 255.0 + 0.5, 0, 255).astype(np.uint8)
+        return np.clip(mixed, 0.0, 1.0)
 
 
-# Colour grades: applied over natively painted frames.
+# Colour script: applied over natively painted frames.
+#
+# ``t_mid`` is the tonal target for each mood's median — this is what fixes the
+# "too dark" complaint, and it is per-grade so a night beat still lands darker
+# than the courtroom. ``t_white`` stays under 1.0 so rain streaks and windows
+# never clip to flat white.
 COLOUR_GRADES = {
-    # mood               contrast  saturation  tint
-    "c_night":  Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.07,
-                      saturation=1.16, tint=(0.42, 0.53, 0.70), tint_strength=0.055),
-    "c_rain":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.05,
-                      saturation=1.20, tint=(0.46, 0.56, 0.68), tint_strength=0.045),
-    "c_amber":  Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.06,
-                      saturation=1.14, tint=(0.72, 0.56, 0.36), tint_strength=0.070),
-    "c_cold":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.08,
-                      saturation=1.10, tint=(0.38, 0.56, 0.78), tint_strength=0.075),
-    "c_warm":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.05,
-                      saturation=1.12, tint=(0.80, 0.62, 0.40), tint_strength=0.060),
-    "c_flat":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.04,
-                      saturation=1.06),
+    "c_night": Grade(
+        mode="enhance", t_black=0.030, t_mid=0.335, t_white=0.875,
+        s_curve=0.34, black=0.012,
+        vibrance=0.34, saturation=1.06,
+        shadow_tint=(0.000, 0.050, 0.115), shadow_amount=1.0,
+        highlight_tint=(0.075, 0.030, -0.018), highlight_amount=1.0,
+        bloom=0.32),
+
+    "c_rain": Grade(
+        mode="enhance", t_black=0.032, t_mid=0.350, t_white=0.895,
+        s_curve=0.32, black=0.012,
+        vibrance=0.32, saturation=1.07,
+        shadow_tint=(0.000, 0.042, 0.100), shadow_amount=1.0,
+        highlight_tint=(0.062, 0.026, -0.012), highlight_amount=1.0,
+        bloom=0.28),
+
+    "c_amber": Grade(
+        mode="enhance", t_black=0.034, t_mid=0.350, t_white=0.905,
+        s_curve=0.30, black=0.014,
+        vibrance=0.30, saturation=1.06,
+        shadow_tint=(0.028, 0.014, 0.042), shadow_amount=1.0,
+        highlight_tint=(0.085, 0.040, -0.026), highlight_amount=1.0,
+        bloom=0.28),
+
+    "c_cold": Grade(
+        mode="enhance", t_black=0.030, t_mid=0.340, t_white=0.900,
+        s_curve=0.32, black=0.012,
+        vibrance=0.32, saturation=1.05,
+        shadow_tint=(0.000, 0.032, 0.112), shadow_amount=1.0,
+        highlight_tint=(0.045, 0.042, 0.000), highlight_amount=1.0,
+        bloom=0.24),
+
+    "c_warm": Grade(
+        mode="enhance", t_black=0.038, t_mid=0.415, t_white=0.940,
+        s_curve=0.28, black=0.015,
+        vibrance=0.28, saturation=1.05,
+        shadow_tint=(0.022, 0.010, 0.032), shadow_amount=1.0,
+        highlight_tint=(0.080, 0.045, -0.022), highlight_amount=1.0,
+        bloom=0.30),
+
+    # The closing card is meant to be a black void with a spotlight. Every
+    # other grade lifts the shadows and cools them, which turned that black a
+    # flat navy. Here the shadow tint runs *negative* on blue instead, which
+    # cancels the cast in the darks without touching the lit pool.
+    "c_void": Grade(
+        mode="enhance", t_black=0.002, t_mid=0.290, t_white=0.985,
+        s_curve=0.30, black=0.0,
+        vibrance=0.16, saturation=1.02, shadow_desat=0.90,
+        shadow_tint=(0.000, 0.004, 0.014), shadow_amount=1.0,
+        highlight_tint=(0.028, 0.012, -0.008), highlight_amount=1.0,
+        bloom=0.38),
+
+    "c_flat": Grade(
+        mode="enhance", t_black=0.042, t_mid=0.430, t_white=0.945,
+        s_curve=0.24, black=0.015,
+        vibrance=0.24, saturation=1.03,
+        shadow_tint=(0.010, 0.014, 0.038), shadow_amount=1.0,
+        highlight_tint=(0.050, 0.028, -0.010), highlight_amount=1.0,
+        bloom=0.20),
 }
 
-# Duotone grades: applied over pure black-and-white ink frames.
+# Duotone grades: the earlier monochrome ink look, still selectable per beat.
 GRADES = {
     "none": None,
 
@@ -138,8 +333,8 @@ GRADES = {
                   strength=0.75, contrast=1.15),
 }
 
-# Per-beat colour script. Frames are painted in colour, so these are light
-# grading passes that keep the palette coherent across 23 beats.
+# Per-beat colour script. Frames are painted in colour, so these keep the
+# palette coherent across 23 beats.
 DEFAULT_GRADE_BY_BEAT = {
     "01": "c_night",   # 暴雨夜，孤楼
     "02": "c_rain",    # 警戒线，警灯
@@ -163,11 +358,10 @@ DEFAULT_GRADE_BY_BEAT = {
     "20": "c_cold",    # 鲁米诺
     "21": "c_warm",    # 法庭
     "22": "c_warm",    # 雨停，阳光
-    "23": "c_flat",    # 互动结尾
+    "23": "c_void",    # 互动结尾，全黑需保持全黑
 }
 
 MONOCHROME_BEATS: tuple = ()
-
 
 ALL_GRADES = {**COLOUR_GRADES, **GRADES}
 

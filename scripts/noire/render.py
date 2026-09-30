@@ -195,9 +195,7 @@ class NoireRenderer:
 
         frames = max(1, int(round(beat.duration * self.fps)))
         t = min(1.0, local / max(1, frames - 1))
-        arr = beat.camera.frame(t, frame_index)
-        if beat.grade is not None:
-            arr = beat.grade.apply(arr)
+        arr = beat.camera.frame(t, frame_index, grade=beat.grade)
 
         image = Image.fromarray(arr, "RGB")
         if beat.annotation:

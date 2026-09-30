@@ -51,9 +51,9 @@ SUBTITLE = {
     "max_width": 0.86,       # fraction of canvas width
     # A gradient scrim under the caption. Without it, white lettering over a
     # blown-out white ground (the mud, the lawn, the puddle) is unreadable.
-    "scrim_top": 0.700,
-    "scrim_alpha": 0.72,
-    "scrim_curve": 2.0,
+    "scrim_top": 0.715,
+    "scrim_alpha": 0.66,
+    "scrim_curve": 2.2,
 }
 
 # Big annotation callouts (the "4 m", "v ≈ 3.6 m/s" style beats)
@@ -94,7 +94,10 @@ MOTIONS: Dict[str, Motion] = {
 
 # --- Look -----------------------------------------------------------------
 
-VIGNETTE_STRENGTH = 0.42
+# 0.42 measured as a 45% cut to the 90th percentile on a night frame —
+# it was reading as "too dark" rather than as mood. The mood now comes
+# from the grade's split tone and black lift instead.
+VIGNETTE_STRENGTH = 0.16
 GRAIN_STRENGTH = 0.030
 IMPACT_FLASH_FRAMES = 3      # hard-cut accents
 CROSSFADE_FRAMES = 8
