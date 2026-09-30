@@ -1,1 +1,1 @@
-run=22 50 retries for clip 06 only
+run=23 50 retries visual-fail 06 and 11
