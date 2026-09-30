@@ -1,9 +1,9 @@
 {
-  "ok": 15,
-  "pending": 0,
+  "ok": 13,
+  "pending": 2,
   "fail": 0,
   "total": 15,
-  "updated": 1790765767,
+  "updated": 1790773297,
   "clips": [
     {
       "id": "01",
@@ -53,11 +53,11 @@
     {
       "id": "06",
       "title": "卸框卷画",
-      "status": "pass",
-      "tries": 6,
-      "bytes": 4431979,
-      "duration": 12.25,
-      "reason": "ok"
+      "status": "redo",
+      "tries": 1,
+      "bytes": null,
+      "duration": null,
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930130137224442745Ztz5nDl4)\", \"data\": null}"
     },
     {
       "id": "07",
@@ -98,11 +98,11 @@
     {
       "id": "11",
       "title": "佛罗伦萨接头",
-      "status": "pass",
-      "tries": 12,
-      "bytes": 5728232,
-      "duration": 12.25,
-      "reason": "ok"
+      "status": "redo",
+      "tries": 0,
+      "bytes": null,
+      "duration": null,
+      "reason": null
     },
     {
       "id": "12",
