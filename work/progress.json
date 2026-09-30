@@ -3,7 +3,7 @@
   "pending": 3,
   "fail": 0,
   "total": 15,
-  "updated": 1790737624,
+  "updated": 1790737701,
   "clips": [
     {
       "id": "01",
@@ -44,11 +44,11 @@
     {
       "id": "05",
       "title": "取下名画",
-      "status": "pass",
-      "tries": 1,
-      "bytes": 4531626,
-      "duration": 12.25,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609300307045207329888u0Z9kUz)\", \"data\": null}"
+      "status": "queued",
+      "tries": 2,
+      "bytes": null,
+      "duration": null,
+      "reason": null
     },
     {
       "id": "06",
