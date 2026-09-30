@@ -377,33 +377,22 @@
     "qc": "pass"
   },
   "14": {
+    "video_id": "task_0NNVUqqIglL8b1au0CJrWMUQgxV2Xczj",
     "raw": {
-      "id": "task_plSKaAHxN0Ztfdu77CsFsSB6PtVVXcbM",
-      "video_id": "task_plSKaAHxN0Ztfdu77CsFsSB6PtVVXcbM",
-      "task_id": "task_plSKaAHxN0Ztfdu77CsFsSB6PtVVXcbM",
+      "id": "task_0NNVUqqIglL8b1au0CJrWMUQgxV2Xczj",
+      "video_id": "task_0NNVUqqIglL8b1au0CJrWMUQgxV2Xczj",
+      "task_id": "task_0NNVUqqIglL8b1au0CJrWMUQgxV2Xczj",
       "object": "video",
       "model": "agnes-video-2.5-flash",
       "status": "queued",
       "progress": 0,
-      "created_at": 1790688448,
+      "created_at": 1790730838,
       "seconds": "12",
       "size": "720P",
       "quality": "standard"
     },
-    "status": "create_failed",
-    "tries": 6,
-    "poll": {
-      "status": "completed",
-      "progress": 100,
-      "error": null,
-      "seconds": "12"
-    },
-    "path": "/home/runner/work/monalisa-film/monalisa-film/clips/14.mp4",
-    "bytes": 8430655,
-    "duration": 12.25,
-    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930011241685770847BSzEwZD0)\", \"data\": null}",
-    "qc": "pass",
-    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930011241685770847BSzEwZD0)\", \"data\": null}"
+    "status": "queued",
+    "tries": 7
   },
   "15": {
     "video_id": "task_PzkDPNlhhtUHrgywshHMkFLthjCuzo5S",
