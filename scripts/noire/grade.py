@@ -44,10 +44,17 @@ class Grade:
     contrast: float = 1.0
     preserve_saturated: bool = True
     saturation_k: float = 4.0   # >25% saturation passes through untouched
+    mode: str = "duotone"       # "duotone" tints ink; "enhance" grades colour art
+    saturation: float = 1.0
+    tint: RGB = (0.0, 0.0, 0.0)
+    tint_strength: float = 0.0
 
     def apply(self, frame: np.ndarray) -> np.ndarray:
         """``frame`` is uint8 (H, W, 3); returns uint8."""
         source = frame.astype(np.float32) / 255.0
+
+        if self.mode == "enhance":
+            return self._enhance(source)
 
         # Rec.709 luma keeps the ink linework's perceived brightness
         luma = source @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
@@ -70,8 +77,43 @@ class Grade:
 
         return np.clip(mixed * 255.0 + 0.5, 0, 255).astype(np.uint8)
 
+    def _enhance(self, source: np.ndarray) -> np.ndarray:
+        """Grade already-coloured artwork: contrast, saturation, mood cast.
 
-# Curated grades. Each keeps deep blacks genuinely dark so the noir reads.
+        Used once the frames are painted in colour.  Kept gentle on purpose —
+        the artwork carries the palette, this only shapes it.
+        """
+        out = source
+        if self.contrast != 1.0:
+            out = np.clip((out - 0.5) * self.contrast + 0.5, 0.0, 1.0)
+        if self.saturation != 1.0:
+            luma = out @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
+            out = np.clip(luma[..., None] + (out - luma[..., None]) * self.saturation,
+                          0.0, 1.0)
+        if self.tint_strength > 0.0:
+            tint = np.array(self.tint, dtype=np.float32)
+            out = out * (1.0 - self.tint_strength) + tint * self.tint_strength
+        return np.clip(out * 255.0 + 0.5, 0, 255).astype(np.uint8)
+
+
+# Colour grades: applied over natively painted frames.
+COLOUR_GRADES = {
+    # mood               contrast  saturation  tint
+    "c_night":  Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.07,
+                      saturation=1.16, tint=(0.42, 0.53, 0.70), tint_strength=0.055),
+    "c_rain":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.05,
+                      saturation=1.20, tint=(0.46, 0.56, 0.68), tint_strength=0.045),
+    "c_amber":  Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.06,
+                      saturation=1.14, tint=(0.72, 0.56, 0.36), tint_strength=0.070),
+    "c_cold":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.08,
+                      saturation=1.10, tint=(0.38, 0.56, 0.78), tint_strength=0.075),
+    "c_warm":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.05,
+                      saturation=1.12, tint=(0.80, 0.62, 0.40), tint_strength=0.060),
+    "c_flat":   Grade((0, 0, 0), (1, 1, 1), mode="enhance", contrast=1.04,
+                      saturation=1.06),
+}
+
+# Duotone grades: applied over pure black-and-white ink frames.
 GRADES = {
     "none": None,
 
@@ -96,31 +138,44 @@ GRADES = {
                   strength=0.75, contrast=1.15),
 }
 
-# Per-beat mood map.  "none" means the beat stays pure black-and-white ink: those
-# are the four beats where the evidence colour has to land hardest, so nothing
-# else is allowed to compete with it.
+# Per-beat colour script. Frames are painted in colour, so these are light
+# grading passes that keep the palette coherent across 23 beats.
 DEFAULT_GRADE_BY_BEAT = {
-    "01": "night", "02": "night", "03": "amber", "04": "cold", "05": "night",
-    "06": "bleach", "07": "cold", "08": "amber", "09": "cold", "10": "night",
-    "11": "night",
-    "12": "none",    # 4 m marker  — pure B&W, red only
-    "13": "amber", "14": "night",
-    "15": "none",    # v ≈ 3.6 m/s — pure B&W, red only
-    "16": "bleach", "17": "night",
-    "18": "none",    # the throw   — pure B&W, red only
-    "19": "night", "20": "cold", "21": "iron", "22": "bleach",
-    "23": "none",    # end card: solid black by design
+    "01": "c_night",   # 暴雨夜，孤楼
+    "02": "c_rain",    # 警戒线，警灯
+    "03": "c_amber",   # 丈夫，昏黄室内
+    "04": "c_cold",    # 窗台积水
+    "05": "c_amber",   # 倒地椅子，窗光
+    "06": "c_flat",    # 对比构图，中性
+    "07": "c_cold",    # 刑警蹲查
+    "08": "c_amber",   # 卷尺
+    "09": "c_cold",    # 刑警的眼睛
+    "10": "c_night",   # 水袋放窗台
+    "11": "c_night",   # 垂直落在墙根
+    "12": "c_night",   # 4 米标记
+    "13": "c_amber",   # 黑板演算
+    "14": "c_night",   # 抛物线
+    "15": "c_amber",   # 数值定格
+    "16": "c_flat",    # 数据图表
+    "17": "c_cold",    # 回头锁定
+    "18": "c_amber",   # 甩出窗外
+    "19": "c_rain",    # 闪电抓捕
+    "20": "c_cold",    # 鲁米诺
+    "21": "c_warm",    # 法庭
+    "22": "c_warm",    # 雨停，阳光
+    "23": "c_flat",    # 互动结尾
 }
 
-MONOCHROME_BEATS = tuple(
-    beat for beat, name in DEFAULT_GRADE_BY_BEAT.items() if name == "none"
-)
+MONOCHROME_BEATS: tuple = ()
+
+
+ALL_GRADES = {**COLOUR_GRADES, **GRADES}
 
 
 def resolve(name: str | None, beat_id: str) -> Grade | None:
     key = name or DEFAULT_GRADE_BY_BEAT.get(beat_id, "none")
     if key in (None, "", "none"):
         return None
-    if key not in GRADES:
+    if key not in ALL_GRADES:
         raise ValueError(f"unknown grade: {key}")
-    return GRADES[key]
+    return ALL_GRADES[key]

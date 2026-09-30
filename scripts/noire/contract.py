@@ -44,20 +44,24 @@ SUBTITLE = {
     "max_lines": 2,
     "line_gap": 1.22,
     "font_size": 60,
-    "stroke_width": 5,
+    "stroke_width": 9,
     "tracking": 2.0,
-    "shadow_offset": (0, 4),
-    "shadow_alpha": 0.55,
+    "shadow_offset": (0, 5),
+    "shadow_alpha": 0.85,
     "max_width": 0.86,       # fraction of canvas width
+    # A gradient scrim under the caption. Without it, white lettering over a
+    # blown-out white ground (the mud, the lawn, the puddle) is unreadable.
+    "scrim_top": 0.700,
+    "scrim_alpha": 0.72,
+    "scrim_curve": 2.0,
 }
 
 # Big annotation callouts (the "4 m", "v ≈ 3.6 m/s" style beats)
 ANNOTATION = {
-    "max_width": 0.86,   # fraction of canvas width
     "font_size": 132,
-    "stroke_width": 9,
+    "stroke_width": 6,
     "tracking": 4.0,
-    "shadow_alpha": 0.78,
+    "shadow_alpha": 0.6,
 }
 
 # --- Motion ---------------------------------------------------------------

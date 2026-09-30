@@ -9,42 +9,15 @@
   "gap": 0.16,
   "style_lock": "极致高对比黑白墨水插画，图像小说 noir（《罪恶之城》质感）。只用纯黑与纯白，无中间灰。硬边阴影、粗犷墨线。整片唯一彩色是“证据色”：警示红 #C1121F 与冰冷蓝 #2E6E8E，每幕至多一处。",
   "media": {
-    "voice_id": "voice-00",
+    "voice_id": "zh-CN-YunxiNeural",
     "voice_dir": "examples/douyin-physics/voice",
-    "voice": {
-      "01": "examples/douyin-physics/voice/01.mp3",
-      "03": "examples/douyin-physics/voice/03.mp3",
-      "04": "examples/douyin-physics/voice/04.mp3",
-      "05": "examples/douyin-physics/voice/05.mp3",
-      "06": "examples/douyin-physics/voice/06.mp3",
-      "07": "examples/douyin-physics/voice/07.mp3",
-      "08": "examples/douyin-physics/voice/08.mp3",
-      "09": "examples/douyin-physics/voice/09.mp3",
-      "10": "examples/douyin-physics/voice/10.mp3",
-      "11": "examples/douyin-physics/voice/11.mp3"
-    }
+    "voice": {}
   },
   "bgm": [
-    {
-      "effect": "strings",
-      "start": 0.0,
-      "duration": 11.5
-    },
-    {
-      "effect": "rumble",
-      "start": 37.0,
-      "duration": 6.0
-    },
-    {
-      "effect": "strings",
-      "start": 62.0,
-      "duration": 16.0
-    },
-    {
-      "effect": "piano",
-      "start": 96.0,
-      "duration": 22.0
-    }
+    {"effect": "strings", "start": 0.0, "duration": 11.5},
+    {"effect": "rumble", "start": 37.0, "duration": 6.0},
+    {"effect": "strings", "start": 62.0, "duration": 16.0},
+    {"effect": "piano", "start": 96.0, "duration": 22.0}
   ],
   "beats": [
     {
@@ -54,9 +27,7 @@
       "image": "examples/douyin-physics/images/01.png",
       "motion": "push_in",
       "accent": null,
-      "sfx": [
-        "thunder"
-      ],
+      "sfx": ["thunder"],
       "min_duration": 3.0,
       "note": "暴雨夜，孤立老式公寓楼，二楼一扇窗透出冷光"
     },
@@ -67,9 +38,7 @@
       "image": "examples/douyin-physics/images/02.png",
       "motion": "pan_right",
       "accent": null,
-      "sfx": [
-        "siren"
-      ],
+      "sfx": ["siren"],
       "min_duration": 3.0,
       "note": "警戒线，警察雨衣反光"
     },
@@ -80,9 +49,7 @@
       "image": "examples/douyin-physics/images/03.png",
       "motion": "push_in",
       "accent": null,
-      "sfx": [
-        "clock"
-      ],
+      "sfx": ["clock"],
       "min_duration": 3.0,
       "note": "丈夫靠门框，阴影遮半张脸"
     },
@@ -104,9 +71,7 @@
       "image": "examples/douyin-physics/images/05.png",
       "motion": "pan_left",
       "accent": null,
-      "sfx": [
-        "shutter"
-      ],
+      "sfx": ["shutter"],
       "min_duration": 3.0,
       "note": "倒地椅子 + 碎玻璃"
     },
@@ -114,16 +79,13 @@
       "id": "06",
       "narration": "妻子身高一米五，体弱多病。而这扇窗户的护栏，一米一。",
       "on_screen": "妻子身高一米五，体弱多病。而这扇窗户的护栏，一米一。",
-      "annotation": null,
+      "annotation": "150 cm  /  110 cm",
       "image": "examples/douyin-physics/images/06.png",
       "motion": "hold",
       "accent": null,
-      "sfx": [
-        "whoosh"
-      ],
+      "sfx": ["whoosh"],
       "min_duration": 3.4,
-      "note": "左：死者照片；右：护栏",
-      "caption_note": "尺寸对比由字幕承载，画面只留构图"
+      "note": "左：死者照片；右：护栏"
     },
     {
       "id": "07",
@@ -132,9 +94,7 @@
       "image": "examples/douyin-physics/images/07.png",
       "motion": "push_in_high",
       "accent": "blue",
-      "sfx": [
-        "friction"
-      ],
+      "sfx": ["friction"],
       "min_duration": 3.4,
       "note": "刑警蹲下观察窗台结构（眼睛冰冷蓝）"
     },
@@ -146,9 +106,7 @@
       "image": "examples/douyin-physics/images/08.png",
       "motion": "creep_in",
       "accent": null,
-      "sfx": [
-        "whoosh"
-      ],
+      "sfx": ["whoosh"],
       "min_duration": 3.0,
       "note": "卷尺绷直测护栏"
     },
@@ -159,9 +117,7 @@
       "image": "examples/douyin-physics/images/09.png",
       "motion": "push_in",
       "accent": "blue",
-      "sfx": [
-        "heartbeat"
-      ],
+      "sfx": ["heartbeat"],
       "min_duration": 3.0,
       "note": "刑警的眼睛（冰冷蓝）"
     },
@@ -172,9 +128,7 @@
       "image": "examples/douyin-physics/images/10.png",
       "motion": "creep_in",
       "accent": null,
-      "sfx": [
-        "friction"
-      ],
+      "sfx": ["friction"],
       "min_duration": 3.4,
       "note": "对照实验一：水袋放窗台"
     },
@@ -185,9 +139,7 @@
       "image": "examples/douyin-physics/images/11.png",
       "motion": "tilt_down",
       "accent": null,
-      "sfx": [
-        "thud"
-      ],
+      "sfx": ["thud"],
       "min_duration": 4.4,
       "note": "对照实验一结果：垂直落在墙根花坛"
     },
@@ -199,9 +151,7 @@
       "image": "examples/douyin-physics/images/12.png",
       "motion": "pull_out",
       "accent": "red",
-      "sfx": [
-        "strings"
-      ],
+      "sfx": ["strings"],
       "min_duration": 3.4,
       "note": "双落点对比，4 米红色标记"
     },
@@ -213,9 +163,7 @@
       "image": "examples/douyin-physics/images/13.png",
       "motion": "push_in",
       "accent": "red",
-      "sfx": [
-        "friction"
-      ],
+      "sfx": ["friction"],
       "min_duration": 3.4,
       "note": "黑板演算，粉笔灰飞扬"
     },
@@ -227,9 +175,7 @@
       "image": "examples/douyin-physics/images/14.png",
       "motion": "hold",
       "accent": "red",
-      "sfx": [
-        "ding"
-      ],
+      "sfx": ["ding"],
       "min_duration": 3.4,
       "note": "红色抛物线轨迹演示"
     },
@@ -241,9 +187,7 @@
       "image": "examples/douyin-physics/images/15.png",
       "motion": "push_in",
       "accent": "red",
-      "sfx": [
-        "impact"
-      ],
+      "sfx": ["impact"],
       "min_duration": 2.6,
       "note": "数值定格，粉笔断裂"
     },
@@ -255,9 +199,7 @@
       "image": "examples/douyin-physics/images/16.png",
       "motion": "hold",
       "accent": null,
-      "sfx": [
-        "rumble"
-      ],
+      "sfx": ["rumble"],
       "min_duration": 5.0,
       "note": "法医统计柱状图（614 例）"
     },
@@ -269,9 +211,7 @@
       "image": "examples/douyin-physics/images/17.png",
       "motion": "push_in",
       "accent": "red",
-      "sfx": [
-        "impact"
-      ],
+      "sfx": ["impact"],
       "min_duration": 3.6,
       "note": "刑警猛地回头锁定丈夫"
     },
@@ -282,10 +222,7 @@
       "image": "examples/douyin-physics/images/18.png",
       "motion": "creep_in",
       "accent": "red",
-      "sfx": [
-        "glass",
-        "whoosh"
-      ],
+      "sfx": ["glass", "whoosh"],
       "min_duration": 4.6,
       "note": "慢动作重现：抱起甩出窗外"
     },
@@ -293,19 +230,13 @@
       "id": "19",
       "narration": "一个一米五、体弱多病的女人，要到四米外，得跳出接近世界纪录的水平速度。",
       "on_screen": "一个体弱多病的女人，要跳出接近世界纪录的速度",
-      "annotation": "3.71 m",
+      "annotation": "立定跳远世界纪录 3.71 m",
       "image": "examples/douyin-physics/images/19.png",
       "motion": "pull_out",
       "accent": null,
-      "sfx": [
-        "siren"
-      ],
+      "sfx": ["siren"],
       "min_duration": 5.4,
-      "note": "抓捕，闪电照亮刑警的脸",
-      "annotation_pos": [
-        0.5,
-        0.105
-      ]
+      "note": "抓捕，闪电照亮刑警的脸"
     },
     {
       "id": "20",
@@ -315,9 +246,7 @@
       "image": "examples/douyin-physics/images/20.png",
       "motion": "push_in",
       "accent": "blue",
-      "sfx": [
-        "heartbeat"
-      ],
+      "sfx": ["heartbeat"],
       "min_duration": 4.4,
       "note": "鲁米诺荧光（冰冷蓝）"
     },
@@ -328,9 +257,7 @@
       "image": "examples/douyin-physics/images/21.png",
       "motion": "push_in",
       "accent": "red",
-      "sfx": [
-        "strings"
-      ],
+      "sfx": ["strings"],
       "min_duration": 5.4,
       "note": "法庭，破碎的红色公式"
     },
@@ -342,9 +269,7 @@
       "image": "examples/douyin-physics/images/22.png",
       "motion": "creep_in",
       "accent": "blue",
-      "sfx": [
-        "piano"
-      ],
+      "sfx": ["piano"],
       "min_duration": 4.4,
       "note": "刑警剪影，阳光透入，物理网格线"
     },
@@ -355,22 +280,9 @@
       "image": "examples/douyin-physics/images/23.png",
       "motion": "hold",
       "accent": null,
-      "sfx": [
-        "gavel"
-      ],
+      "sfx": ["gavel"],
       "min_duration": 5.0,
       "note": "全黑压大字互动结尾"
     }
-  ],
-  "art": "colour",
-  "palette": {
-    "name": "cinematic-desaturated",
-    "note": "低饱和电影彩色；整片唯一高饱和的元素是证据色（警示红 #C1121F / 冰冷蓝 #2E6E8E）",
-    "skin": "muted, slightly unhealthy, no rosy glow",
-    "shadow": "deep desaturated teal, never pure black",
-    "practical_light": "sickly warm amber / sodium vapour",
-    "rain_and_wet": "cold steel blue with hard specular highlights",
-    "saturation": 0.4,
-    "contrast": "high — keep every hard shadow exactly as drawn"
-  }
+  ]
 }

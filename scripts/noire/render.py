@@ -53,7 +53,6 @@ class Beat:
     sfx: List[str]
     min_duration: float
     image: Optional[str]
-    annotation_pos: Optional[list] = None
     grade_name: Optional[str] = None
     image_path: Optional[Path] = None
     voice_path: Optional[Path] = None
@@ -71,7 +70,6 @@ class Script:
     style_lock: str = ""
     bgm: List[dict] = field(default_factory=list)
     voice: str = ""
-    art: str = "ink"          # "ink" = duotone grade on B&W linework, "colour" = leave alone
     padding: float = 0.45
     tail: float = 1.2
     gap: float = 0.18
@@ -91,34 +89,40 @@ def load_script(path: Path, project_dir: Path) -> Script:
             sfx=list(item.get("sfx") or []),
             min_duration=float(item.get("min_duration", 2.0)),
             image=item.get("image"),
-            annotation_pos=item.get("annotation_pos"),
             grade_name=item.get("grade"),
         )
         if beat.image:
             candidate = Path(beat.image)
             if not candidate.is_absolute():
                 candidate = project_dir / candidate
-            # A colourised plate, when it exists, always wins over the ink master.
-            # That lets artwork be colourised a few beats at a time: beats with a
-            # colour plate render in colour, the rest still render from the ink
-            # master (graded, if the script asks for it).
-            colour = candidate.parent / "colour" / candidate.name
-            if colour.exists():
-                candidate = colour
             beat.image_path = candidate if candidate.exists() else None
         beats.append(beat)
 
     media = raw.get("media", {}) or {}
     voice_map: Dict[str, str] = media.get("voice") or {}
+    voice_dir = media.get("voice_dir")
+    voice_root: Optional[Path] = None
+    if voice_dir:
+        voice_root = Path(voice_dir)
+        if not voice_root.is_absolute():
+            voice_root = project_dir / voice_root
+
     for beat in beats:
-        name = voice_map.get(beat.id)
-        if name:
-            candidate = Path(name)
+        candidate: Optional[Path] = None
+        if voice_map.get(beat.id):
+            candidate = Path(voice_map[beat.id])
             if not candidate.is_absolute():
                 candidate = project_dir / candidate
-            if candidate.exists():
-                beat.voice_path = candidate
-                beat.voice_duration = probe_duration(candidate)
+        elif voice_root is not None:
+            # auto-discovery: drop <beat id>.mp3 / .wav / .m4a into voice_dir
+            for suffix in (".mp3", ".wav", ".m4a", ".opus", ".flac"):
+                probe_path = voice_root / f"{beat.id}{suffix}"
+                if probe_path.exists():
+                    candidate = probe_path
+                    break
+        if candidate is not None and candidate.exists():
+            beat.voice_path = candidate
+            beat.voice_duration = probe_duration(candidate)
 
     return Script(
         title=raw.get("title", "未命名"),
@@ -126,7 +130,6 @@ def load_script(path: Path, project_dir: Path) -> Script:
         style_lock=raw.get("style_lock", ""),
         bgm=list(raw.get("bgm") or []),
         voice=media.get("voice_id", ""),
-        art=str(raw.get("art", "ink")),
         padding=float(raw.get("padding", 0.45)),
         tail=float(raw.get("tail", 1.2)),
         gap=float(raw.get("gap", 0.18)),
@@ -147,7 +150,7 @@ class NoireRenderer:
         self.width = width
         self.height = height
         self.fps = fps
-        self.panel = TextPanel(self.project_dir, width)
+        self.panel = TextPanel(self.project_dir, width, height)
         self._schedule()
 
     # -- timing --------------------------------------------------------------
@@ -164,12 +167,7 @@ class NoireRenderer:
         self.total_seconds = round(cursor + self.script.tail, 3)
 
         for beat in self.script.beats:
-            # With colour artwork there is nothing to tint; an explicit per-beat
-            # "grade" still wins, so a single beat can be pushed monochrome.
-            if self.script.art == "colour" and not beat.grade_name:
-                beat.grade = None
-            else:
-                beat.grade = grade_module.resolve(beat.grade_name, beat.id)
+            beat.grade = grade_module.resolve(beat.grade_name, beat.id)
             if beat.image_path is None:
                 continue
             motion = contract.MOTIONS.get(beat.motion, contract.MOTIONS["push_in"])
@@ -203,8 +201,7 @@ class NoireRenderer:
 
         image = Image.fromarray(arr, "RGB")
         if beat.annotation:
-            pos = tuple(beat.annotation_pos) if beat.annotation_pos else (0.5, 0.24)
-            self.panel.annotation(image, beat.annotation, beat.accent, position=pos)
+            self.panel.annotation(image, beat.annotation, beat.accent)
         if beat.on_screen:
             self.panel.subtitle(image, beat.on_screen)
 
@@ -260,13 +257,7 @@ class NoireRenderer:
         output = Path(output)
         output.parent.mkdir(parents=True, exist_ok=True)
         total = self.total_frames
-
-        # Only write the picture to a separate file when it is actually going to
-        # be muxed; otherwise encode straight to the requested output so the
-        # returned path always exists.
-        has_voice = any(beat.voice_path for beat in self.script.beats)
-        will_mux = with_audio and has_voice
-        silent = output.with_name(output.stem + "-picture.mp4") if will_mux else output
+        silent = output.with_name(output.stem + "-picture.mp4") if with_audio else output
 
         with Encoder(silent, self.width, self.height, self.fps, crf=crf,
                      project_dir=self.project_dir) as encoder:
@@ -286,7 +277,7 @@ class NoireRenderer:
             "audio": False,
         }
 
-        if will_mux:
+        if with_audio and any(beat.voice_path for beat in self.script.beats):
             wav = output.with_name(output.stem + "-mix.wav")
             self.render_audio(wav)
             from .encoder import find_ffmpeg

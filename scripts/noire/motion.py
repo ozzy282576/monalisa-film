@@ -20,39 +20,6 @@ from . import contract
 _GRAIN_TILES = 8
 
 
-def trim_border(image: Image.Image, tolerance: float = 6.0,
-                white: float = 240.0) -> Image.Image:
-    """Strip flat *white* margins that image tools like to add.
-
-    A band of white at the top of one frame reads as a glitch once the frame is
-    scaled to fill a 9:16 canvas, so every plate is trimmed on import.  Only
-    perfectly flat white is removed: flat black is part of this art style (the
-    artwork is meant to bleed off into black), so it is left alone.
-    """
-    gray = np.asarray(image.convert("L"), dtype=np.float32)
-    height, width = gray.shape
-
-    def flat(line: np.ndarray) -> bool:
-        return line.std() < tolerance and line.mean() > white
-
-    top = 0
-    while top < height - 1 and flat(gray[top]):
-        top += 1
-    bottom = height
-    while bottom > top + 1 and flat(gray[bottom - 1]):
-        bottom -= 1
-    left = 0
-    while left < width - 1 and flat(gray[:, left]):
-        left += 1
-    right = width
-    while right > left + 1 and flat(gray[:, right - 1]):
-        right -= 1
-
-    if (top, left, right, bottom) == (0, 0, width, height):
-        return image
-    return image.crop((left, top, right, bottom))
-
-
 def cover_resize(image: Image.Image, width: int, height: int) -> Image.Image:
     """CSS ``object-fit: cover`` — fill the frame, crop the overflow."""
     source_w, source_h = image.size
@@ -83,7 +50,7 @@ class Camera:
         width: int,
         height: int,
     ) -> "Camera":
-        base = cover_resize(trim_border(image.convert("RGB")), width, height)
+        base = cover_resize(image.convert("RGB"), width, height)
         scale = motion.max_scale
         big = base.resize(
             (max(1, int(round(width * scale))), max(1, int(round(height * scale)))),

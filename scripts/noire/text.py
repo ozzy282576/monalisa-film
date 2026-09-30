@@ -12,10 +12,11 @@ from pathlib import Path
 from typing import Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
+
 from PIL import Image, ImageDraw, ImageFilter
 
 from . import contract
-from .fonts import FontStack, cached_latin_stack, cached_stack, draw_text, is_formula
+from .fonts import FontStack, cached_stack, draw_text
 
 
 def wrap(text: str, stack: FontStack, max_width: float, tracking: float) -> List[str]:
@@ -116,46 +117,36 @@ def _all_splits(length: int, count: int) -> Iterable[Tuple[int, ...]]:
 class TextPanel:
     """Reusable renderer for subtitle and annotation text."""
 
-    def __init__(self, project_dir: Path, canvas_width: int) -> None:
+    def __init__(self, project_dir: Path, canvas_width: int, canvas_height: int = contract.HEIGHT) -> None:
         self.project_dir = Path(project_dir)
         self.factor = canvas_width / contract.WIDTH
+        self.canvas_height = canvas_height
+        self._scrim: Optional[Image.Image] = None
+
+    def _scrim_layer(self, width: int, height: int) -> Image.Image:
+        """Cached black gradient, transparent at the top, opaque at the bottom."""
+        if self._scrim is not None and self._scrim.size == (width, height):
+            return self._scrim
+        cfg = contract.SUBTITLE
+        top = int(round(height * cfg["scrim_top"]))
+        mask = np.zeros((height, width), dtype=np.float32)
+        if top < height:
+            rows = height - top
+            ramp = np.linspace(0.0, 1.0, rows, dtype=np.float32) ** cfg["scrim_curve"]
+            mask[top:] = (ramp * cfg["scrim_alpha"])[:, None]
+        alpha = Image.fromarray((mask * 255.0).astype(np.uint8), "L")
+        self._scrim = Image.new("RGB", (width, height), (0, 0, 0))
+        self._scrim.putalpha(alpha)
+        return self._scrim
+
+    def apply_scrim(self, frame: Image.Image) -> Image.Image:
+        width, height = frame.size
+        frame.paste(self._scrim_layer(width, height), (0, 0), self._scrim_layer(width, height))
+        return frame
 
     def _stack(self, design_size: int) -> Tuple[FontStack, int, float]:
         size = max(12, int(round(design_size * self.factor)))
         return cached_stack(str(self.project_dir), size), size, self.factor
-
-    def _scrim(self, frame: Image.Image, top: float, alpha: float = 0.62) -> None:
-        """Soft gradient darkening under the caption band.
-
-        White captions with a black outline still get lost over blown-out
-        highlights, and this art style is full of them.  A gentle bottom-up
-        gradient buys legibility without looking like a lower-third graphic.
-        """
-        width, height = frame.size
-        y = np.arange(height, dtype=np.float32)[:, None]
-        # Reach full strength a short way below the fade start, then hold it all
-        # the way down: the captions themselves sit low, and a ramp that only
-        # peaks at the very last row would leave them unprotected.
-        ramp = np.clip((y - top) / max(1.0, 0.28 * (height - top)), 0.0, 1.0) ** 1.1
-        mask = (ramp * alpha * 255.0).astype(np.uint8)
-        mask = np.repeat(mask, width, axis=1)
-        frame.paste(Image.new("RGB", (width, height), (0, 0, 0)),
-                    (0, 0), Image.fromarray(mask, "L"))
-
-    def _scrim_top(self, frame: Image.Image, bottom: float, alpha: float = 0.50) -> None:
-        """Soft top-down darkening behind a callout.
-
-        Callouts sit high in the frame, where the artwork is often a blown-out
-        sky or a white-lit face; the same treatment the captions get keeps them
-        readable no matter what they land on.
-        """
-        width, height = frame.size
-        y = np.arange(height, dtype=np.float32)[:, None]
-        ramp = np.clip((bottom - y) / max(1.0, bottom), 0.0, 1.0) ** 0.9
-        mask = (ramp * alpha * 255.0).astype(np.uint8)
-        mask = np.repeat(mask, width, axis=1)
-        frame.paste(Image.new("RGB", (width, height), (0, 0, 0)),
-                    (0, 0), Image.fromarray(mask, "L"))
 
     def _shadow(
         self,
@@ -187,6 +178,7 @@ class TextPanel:
             return frame
         cfg = contract.SUBTITLE
         width, height = frame.size
+        self.apply_scrim(frame)
 
         # Auto-shrink: a caption the script did not anticipate must not be
         # silently truncated to two lines, so step the size down until it fits.
@@ -217,7 +209,6 @@ class TextPanel:
         top = baseline - block / 2.0
         centre_x = width * cfg["centre_x"]
 
-        self._scrim(frame, top - size * 0.75)
         self._shadow(
             frame, lines, stack, size, tracking, centre_x, top, line_gap,
             (cfg["shadow_offset"][0] * factor, cfg["shadow_offset"][1] * factor),
@@ -245,20 +236,8 @@ class TextPanel:
         if not text:
             return frame
         cfg = contract.ANNOTATION
-        # Long callouts (a full formula) must not run off the frame, so step the
-        # size down until the widest line fits the safe width.
-        formula = is_formula(text)
-        design = cfg["font_size"]
-        for _ in range(10):
-            size = max(12, int(round(design * self.factor)))
-            stack = (cached_latin_stack(str(self.project_dir), size) if formula
-                     else cached_stack(str(self.project_dir), size))
-            factor = self.factor
-            tracking = cfg["tracking"] * factor
-            widest = max(stack.measure(line, tracking) for line in text.split("\n"))
-            if widest <= frame.size[0] * cfg["max_width"]:
-                break
-            design = int(design * 0.9)
+        stack, size, factor = self._stack(cfg["font_size"])
+        tracking = cfg["tracking"] * factor
         colour = {"red": contract.ALERT_RED, "blue": contract.COLD_BLUE}.get(
             accent or "", contract.PAPER
         )
@@ -268,7 +247,6 @@ class TextPanel:
         top = frame.size[1] * position[1] - block / 2.0
         centre_x = frame.size[0] * position[0]
 
-        self._scrim_top(frame, top + block + size * 0.30)
         self._shadow(frame, lines, stack, size, tracking, centre_x, top,
                      line_gap, (0, 6 * factor), cfg["shadow_alpha"])
         draw = ImageDraw.Draw(frame)

@@ -41,8 +41,6 @@ def main() -> None:
     parser.add_argument("--preview", action="store_true", help="540x960 快速预览")
     parser.add_argument("--output")
     parser.add_argument("--crf", type=int, default=20)
-    parser.add_argument("--art", choices=("ink", "colour"),
-                        help="覆盖脚本里的画风模式（ink=双色阶，colour=彩色原图）")
     parser.add_argument("--no-audio", action="store_true")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--project-dir", type=Path, default=default_project())
@@ -60,11 +58,6 @@ def main() -> None:
         return
 
     renderer = build(args)
-    if args.art:
-        renderer.script.art = args.art
-        for beat in renderer.script.beats:
-            beat.grade = (None if args.art == "colour" and not beat.grade_name
-                          else grade_module.resolve(beat.grade_name, beat.id))
 
     if args.mode == "plan":
         missing = [b.id for b in renderer.script.beats if b.image_path is None]
