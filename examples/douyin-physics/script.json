@@ -9,7 +9,7 @@
   "gap": 0.16,
   "style_lock": "高对比手绘图像小说质感：粗犷墨线 + 厚涂上色，浓郁但克制的电影色。夜景偏冷青、室内偏暖琥珀，全片走暖冷分离。证据色只用于关键物证与物理轨迹：警示红 #C1121F、冰冷蓝 #2E6E8E。",
   "media": {
-    "voice_id": "zh-CN-YunxiNeural",
+    "voice_id": "Arena voice-00（中文男声旁白）",
     "voice_dir": "examples/douyin-physics/voice",
     "voice": {}
   },

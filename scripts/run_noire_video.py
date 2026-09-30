@@ -62,12 +62,24 @@ def main() -> None:
     if args.mode == "plan":
         missing = [b.id for b in renderer.script.beats if b.image_path is None]
         voiced = sum(1 for b in renderer.script.beats if b.voice_path)
+        # Beats with no narration are title cards by design, so counting them as
+        # "missing audio" makes a finished film look incomplete.
+        needs_voice = [b for b in renderer.script.beats if (b.narration or "").strip()]
+        silent_by_design = [b.id for b in renderer.script.beats
+                            if not (b.narration or "").strip()]
         print(f"标题：{renderer.script.title}")
         print(f"画布：{renderer.width}×{renderer.height} @ {renderer.fps}fps")
         print(f"幕数：{len(renderer.script.beats)}   总时长：{renderer.total_seconds:.1f}s "
               f"（{renderer.total_frames} 帧）")
-        print(f"配音：{voiced}/{len(renderer.script.beats)} 幕已有音频"
-              + (f"  音色：{renderer.script.voice}" if renderer.script.voice else ""))
+        voice_line = f"配音：{voiced}/{len(needs_voice)} 幕已有音频"
+        if silent_by_design:
+            voice_line += f"（{'、'.join(silent_by_design)} 为标题卡，无旁白）"
+        if renderer.script.voice:
+            voice_line += f"  音色：{renderer.script.voice}"
+        print(voice_line)
+        absent = [b.id for b in needs_voice if not b.voice_path]
+        if absent:
+            print(f"      ⚠ 缺配音 → {', '.join(absent)}（时长会退回每幕最小值）")
         print(f"缺图：{len(missing)} 幕" + (f"  → {', '.join(missing)}" if missing else "  ✅ 齐全"))
         print("\n逐幕时长：")
         for beat in renderer.script.beats:

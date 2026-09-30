@@ -13,6 +13,44 @@ Remotion/Chrome 换成不依赖浏览器的 Python + numpy + ffmpeg 实现——
 
 ![成片关键帧](docs/contact-sheet.png)
 
+## 第二条产线：9:16 竖版悬疑解说
+
+上面这条是 3:4 横版手绘故事动画。仓库里还有第二条产线 `scripts/noire/`，
+做的是**抖音竖版（9:16）悬疑解说**——一图一幕快切、画面下方硬字幕、带配音与
+程序合成音效。它的验收用例是一支完整成片：
+
+**《物理学撕碎的"意外"》——123.1 秒 · 1080×1920 · 30fps · 23 幕**
+
+| 文件 | 说明 |
+| --- | --- |
+| `renders/noire-1080x1920.mp4` | 正式成片，79 MB，H.264 + AAC |
+| `web/preview-540x960.mp4` | 9 MB 预览片，秒开 |
+| `examples/douyin-physics/README.md` | 影片说明、出片命令、素材出处 |
+| `docs/film-contact-sheet.png` | 从成片逐幕抽帧的画面总览 |
+
+```bash
+python3 -m pip install --break-system-packages pillow numpy
+npm install                                  # 提供 ffmpeg / ffprobe
+
+python3 scripts/run_noire_video.py --mode plan    # 先看时长与调色分配，不出图
+python3 scripts/run_noire_video.py --mode render  # 出片
+python3 tools/serve_video.py --root web --port 8000   # 带 Range 的播放页
+```
+
+和第一条产线的区别：
+
+| | `run_story_video.py` | `run_noire_video.py` |
+| --- | --- | --- |
+| 画布 | 3:4 竖屏 1080×1440 / 720×960 | 9:16 竖屏 1080×1920 |
+| 结构 | 故事文本 → 三层揭示 | 分幕脚本 → 一图一幕 |
+| 字幕 | 手写字体居中 | 画面下方硬字幕 + CJK 断行禁则 |
+| 音频 | 静音（留给后期） | 配音 + 16 个程序合成音效 |
+| 调色 | 彩铅分色 | 电影分级（按幕测光 + 青橙分离） |
+| 时长 | 由文案固定 | 由真实配音驱动 |
+
+技术说明见 `examples/douyin-physics/README.md`；分级管线写在
+`scripts/noire/grade.py` 的模块注释里。
+
 ## 先看效果
 
 仓库里已经带着渲染好的成片（都用同一段示例故事《蒙娜丽莎的一笑》生成）：
@@ -24,6 +62,9 @@ Remotion/Chrome 换成不依赖浏览器的 Python + numpy + ffmpeg 实现——
 | `renders/demo-pageflip-1080x1440.mp4` | 1080×1440 · 30fps · 13.6s | 翻书转场版本 |
 
 三条都**没有音轨**——这是设计如此，配音和 BGM 属于后期（见下文「怎么配音」）。
+
+另有 `renders/noire-1080x1920.mp4`（123.1s · 1080×1920 · **带音轨**），
+来自下面第二条产线。
 
 ## 快速开始
 
