@@ -13,3 +13,5 @@ public/assets/generated/
 storyboard.json
 *.log
 .DS_Store
+tmp/
+examples/*/voice/
