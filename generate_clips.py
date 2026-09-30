@@ -276,7 +276,7 @@ def qc_clip(path: Path, expected=12.0):
 
 GAP_SEC = 75
 QUEUE_GAP_SEC = 240
-FORCE_REDO = {"06"}
+FORCE_REDO = {"08", "14"}
 
 
 def wait_gap(reason, seconds=None):

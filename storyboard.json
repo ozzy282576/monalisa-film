@@ -52,7 +52,7 @@
     "id": "08",
     "seconds": "12",
     "title": "空墙被发现",
-    "prompt": "Louvre gallery 1911. Close on a pale empty rectangle and a nail on a purple wall where the Mona Lisa was. Guards and officials in period uniforms rush in, shocked. Push-in on the empty wall. No Mona Lisa visible anywhere. Photorealistic. No text.",
+    "prompt": "Louvre gallery 1911. Pale empty rectangle and a nail on a purple wall. Period French guards in kepis rush in, shocked, looking at the empty wall. Each man wears ONE hat only, hats stay ON heads, nobody removes a hat, no second hat in any hand. No Mona Lisa visible. Photorealistic. No text.",
     "narration": "直到星期二，人们才发现墙上只剩一个苍白的空框痕迹。法兰西共和国最珍贵的画像，不翼而飞。"
   },
   {
@@ -94,7 +94,7 @@
     "id": "14",
     "seconds": "12",
     "title": "荣归卢浮宫",
-    "prompt": "January 1914 Paris ONLY. Courtyard of the Louvre WITHOUT the glass pyramid, WITHOUT modern crate barcodes. Period crowd in 1914 coats and hats, horse cavalry, soldiers carrying a simple wooden crate. Then two attendants hang the ONE Mona Lisa on an ornate gallery wall. Photorealistic 1914, no 1980s architecture. No readable text.",
+    "prompt": "January 1914 Paris. Louvre courtyard 1914 architecture ONLY: stone palace, NO glass pyramid, NO I.M. Pei, NO steel cables. Horse cavalry, soldiers carry ONE plain wooden crate. Then two attendants hang ONE Mona Lisa. Photorealistic 1914. No readable text.",
     "narration": "一九一四年一月，蒙娜丽莎在军警护送下返回巴黎。卢浮宫门口人山人海，那抹微笑重新面对世界。"
   },
   {

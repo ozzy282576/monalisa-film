@@ -1,1 +1,1 @@
-run=24 50 retries visual-fail 06 only, keep 11
+run=25 50 retries visual-fail 08 hat-glitch and 14 pyramid
