@@ -1,9 +1,9 @@
 {
-  "ok": 15,
-  "pending": 0,
+  "ok": 10,
+  "pending": 5,
   "fail": 0,
   "total": 15,
-  "updated": 1790722240,
+  "updated": 1790727001,
   "clips": [
     {
       "id": "01",
@@ -18,10 +18,10 @@
       "id": "02",
       "title": "沙龙卡雷",
       "status": "pass",
-      "tries": 7,
+      "tries": 1,
       "bytes": 9405474,
       "duration": 12.25,
-      "reason": "ok"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930001001652524871NEmp5MLX)\", \"data\": null}"
     },
     {
       "id": "03",
@@ -45,7 +45,7 @@
       "id": "05",
       "title": "取下名画",
       "status": "pass",
-      "tries": 8,
+      "tries": 0,
       "bytes": 4531626,
       "duration": 12.25,
       "reason": "ok"
@@ -54,7 +54,7 @@
       "id": "06",
       "title": "卸框卷画",
       "status": "pass",
-      "tries": 5,
+      "tries": 0,
       "bytes": 5418160,
       "duration": 12.25,
       "reason": "ok"
@@ -99,7 +99,7 @@
       "id": "11",
       "title": "佛罗伦萨接头",
       "status": "pass",
-      "tries": 1,
+      "tries": 0,
       "bytes": 5556890,
       "duration": 12.25,
       "reason": "ok"
@@ -126,7 +126,7 @@
       "id": "14",
       "title": "荣归卢浮宫",
       "status": "pass",
-      "tries": 4,
+      "tries": 0,
       "bytes": 8430655,
       "duration": 12.25,
       "reason": "ok"

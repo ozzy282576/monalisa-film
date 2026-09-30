@@ -29,7 +29,6 @@
     "qc": "pass"
   },
   "02": {
-    "video_id": "task_sAylfaM3ZzkqmwmbmCXCTxzsQD2bRg4N",
     "raw": {
       "id": "task_sAylfaM3ZzkqmwmbmCXCTxzsQD2bRg4N",
       "video_id": "task_sAylfaM3ZzkqmwmbmCXCTxzsQD2bRg4N",
@@ -43,8 +42,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
-    "tries": 7,
+    "status": "create_failed",
+    "tries": 1,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -54,8 +53,9 @@
     "path": "/home/runner/work/monalisa-film/monalisa-film/clips/02.mp4",
     "bytes": 9405474,
     "duration": 12.25,
-    "reason": "ok",
-    "qc": "pass"
+    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930001001652524871NEmp5MLX)\", \"data\": null}",
+    "qc": "pass",
+    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930001001652524871NEmp5MLX)\", \"data\": null}"
   },
   "03": {
     "video_id": "task_7TthVhhFK7Fdtj4V9mF7IVL8RzAKQYOz",
@@ -116,7 +116,6 @@
     "qc": "pass"
   },
   "05": {
-    "video_id": "task_dd6zi3Ovx1XOze3lwigLUlLtFspwHtJw",
     "raw": {
       "id": "task_dd6zi3Ovx1XOze3lwigLUlLtFspwHtJw",
       "video_id": "task_dd6zi3Ovx1XOze3lwigLUlLtFspwHtJw",
@@ -130,8 +129,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
-    "tries": 8,
+    "status": "queued",
+    "tries": 0,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -145,7 +144,6 @@
     "qc": "pass"
   },
   "06": {
-    "video_id": "task_YQvh64dFfGLFNATgR7NWHBD1WZzVFxk7",
     "raw": {
       "id": "task_YQvh64dFfGLFNATgR7NWHBD1WZzVFxk7",
       "video_id": "task_YQvh64dFfGLFNATgR7NWHBD1WZzVFxk7",
@@ -159,8 +157,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
-    "tries": 5,
+    "status": "queued",
+    "tries": 0,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -290,7 +288,6 @@
     "qc": "pass"
   },
   "11": {
-    "video_id": "task_mLXXAUjfTs3ydXZmlRoaPEwlLf4M3SlB",
     "raw": {
       "id": "task_mLXXAUjfTs3ydXZmlRoaPEwlLf4M3SlB",
       "video_id": "task_mLXXAUjfTs3ydXZmlRoaPEwlLf4M3SlB",
@@ -304,8 +301,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
-    "tries": 1,
+    "status": "queued",
+    "tries": 0,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -377,7 +374,6 @@
     "qc": "pass"
   },
   "14": {
-    "video_id": "task_plSKaAHxN0Ztfdu77CsFsSB6PtVVXcbM",
     "raw": {
       "id": "task_plSKaAHxN0Ztfdu77CsFsSB6PtVVXcbM",
       "video_id": "task_plSKaAHxN0Ztfdu77CsFsSB6PtVVXcbM",
@@ -391,8 +387,8 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "completed",
-    "tries": 4,
+    "status": "queued",
+    "tries": 0,
     "poll": {
       "status": "completed",
       "progress": 100,
