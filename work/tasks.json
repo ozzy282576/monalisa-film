@@ -43,7 +43,7 @@
       "quality": "standard"
     },
     "status": "create_failed",
-    "tries": 2,
+    "tries": 3,
     "poll": {
       "status": "completed",
       "progress": 100,
@@ -53,9 +53,9 @@
     "path": "/home/runner/work/monalisa-film/monalisa-film/clips/02.mp4",
     "bytes": 9405474,
     "duration": 12.25,
-    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930055224247930372vUVLtAWI)\", \"data\": null}",
+    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930055341133185382R4W14P16)\", \"data\": null}",
     "qc": "pass",
-    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930055224247930372vUVLtAWI)\", \"data\": null}"
+    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930055341133185382R4W14P16)\", \"data\": null}"
   },
   "03": {
     "video_id": "task_7TthVhhFK7Fdtj4V9mF7IVL8RzAKQYOz",
