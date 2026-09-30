@@ -12,7 +12,7 @@ STATE = ROOT / "work" / "tasks.json"
 PROGRESS = ROOT / "work" / "progress.json"
 CLIPS.mkdir(exist_ok=True)
 (ROOT / "work").mkdir(exist_ok=True)
-MAX_TRIES = 30
+MAX_TRIES = 50
 MIN_BYTES = 80_000
 DUR_MIN = 9.0
 DUR_MAX = 14.5
@@ -276,7 +276,7 @@ def qc_clip(path: Path, expected=12.0):
 
 GAP_SEC = 75
 QUEUE_GAP_SEC = 240
-FORCE_REDO = {"06", "11"}
+FORCE_REDO = {"06"}
 
 
 def wait_gap(reason, seconds=None):
