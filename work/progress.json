@@ -1,9 +1,9 @@
 {
-  "ok": 14,
-  "pending": 1,
+  "ok": 15,
+  "pending": 0,
   "fail": 0,
   "total": 15,
-  "updated": 1790765353,
+  "updated": 1790765767,
   "clips": [
     {
       "id": "01",
@@ -53,11 +53,11 @@
     {
       "id": "06",
       "title": "卸框卷画",
-      "status": "queued",
+      "status": "pass",
       "tries": 6,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 4431979,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "07",
