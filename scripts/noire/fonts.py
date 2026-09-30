@@ -89,9 +89,42 @@ def cjk_stack(project_dir: Path, size: int, latin_size: Optional[int] = None) ->
     ])
 
 
+# Characters a brush face renders badly: the single-letter "v" comes out as a
+# cursive stroke that reads as "1", and every math operator becomes tofu.
+# Callouts (formulas, units, numbers) are therefore typeset entirely in DejaVu
+# rather than mixed.
+_FORMULA_CHARS = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                     "0123456789=+-*/()[]{}<>≈≡≠≤≥√²³·×÷°µ%^._,")
+
+
+def is_formula(text: str) -> bool:
+    """True when a callout should be typeset in the Latin/math face."""
+    stripped = [c for c in text if not c.isspace()]
+    if not stripped or any(c.isspace() for c in text if ord(c) > 0x2E80):
+        pass
+    has_cjk = any(ord(c) > 0x2E80 for c in text)
+    if has_cjk:
+        return False
+    return sum(1 for c in stripped if c in _FORMULA_CHARS) >= len(stripped) * 0.6
+
+
+def latin_stack(project_dir: Path, size: int) -> FontStack:
+    """DejaVu only — for formulas, units and numerals."""
+    fonts_dir = Path(project_dir) / "assets" / "fonts"
+    return FontStack([
+        ("dejavubold", fonts_dir / "DejaVuSans-Bold.ttf", size),
+        ("dejavu", fonts_dir / "DejaVuSans.ttf", size),
+    ])
+
+
 @lru_cache(maxsize=16)
 def cached_stack(project_dir: str, size: int) -> FontStack:
     return cjk_stack(Path(project_dir), size)
+
+
+@lru_cache(maxsize=16)
+def cached_latin_stack(project_dir: str, size: int) -> FontStack:
+    return latin_stack(Path(project_dir), size)
 
 
 def draw_text(

@@ -31,12 +31,19 @@ def _rgb(value: str | Tuple[int, int, int]) -> RGB:
 
 @dataclass(frozen=True)
 class Grade:
-    """A duotone ramp plus a saturation nudge."""
+    """A duotone ramp plus saturation passthrough.
+
+    ``preserve_saturated`` keeps anything already colourful — the alert red on a
+    4 m marker, the cold blue of luminol — from being dragged onto the ramp and
+    turned navy.  The grade tints the *ink*; painted evidence colour survives.
+    """
 
     shadow: RGB
     highlight: RGB
     strength: float = 1.0
     contrast: float = 1.0
+    preserve_saturated: bool = True
+    saturation_k: float = 4.0   # >25% saturation passes through untouched
 
     def apply(self, frame: np.ndarray) -> np.ndarray:
         """``frame`` is uint8 (H, W, 3); returns uint8."""
@@ -53,6 +60,14 @@ class Grade:
         graded = shadow[None, None, :] + (highlight - shadow)[None, None, :] * luma[..., None]
 
         mixed = source + (graded - source) * self.strength
+
+        if self.preserve_saturated:
+            high = source.max(axis=2)
+            low = source.min(axis=2)
+            saturation = np.where(high > 1e-4, (high - low) / np.maximum(high, 1e-4), 0.0)
+            keep = np.clip(saturation * self.saturation_k, 0.0, 1.0)[..., None]
+            mixed = mixed * (1.0 - keep) + source * keep
+
         return np.clip(mixed * 255.0 + 0.5, 0, 255).astype(np.uint8)
 
 
@@ -81,14 +96,25 @@ GRADES = {
                   strength=0.75, contrast=1.15),
 }
 
-# Beats default to the mood the script asked for; override per-beat with "grade".
+# Per-beat mood map.  "none" means the beat stays pure black-and-white ink: those
+# are the four beats where the evidence colour has to land hardest, so nothing
+# else is allowed to compete with it.
 DEFAULT_GRADE_BY_BEAT = {
     "01": "night", "02": "night", "03": "amber", "04": "cold", "05": "night",
     "06": "bleach", "07": "cold", "08": "amber", "09": "cold", "10": "night",
-    "11": "night", "12": "night", "13": "amber", "14": "night", "15": "amber",
-    "16": "bleach", "17": "night", "18": "amber", "19": "night", "20": "cold",
-    "21": "iron", "22": "bleach", "23": "iron",
+    "11": "night",
+    "12": "none",    # 4 m marker  — pure B&W, red only
+    "13": "amber", "14": "night",
+    "15": "none",    # v ≈ 3.6 m/s — pure B&W, red only
+    "16": "bleach", "17": "night",
+    "18": "none",    # the throw   — pure B&W, red only
+    "19": "night", "20": "cold", "21": "iron", "22": "bleach",
+    "23": "none",    # end card: solid black by design
 }
+
+MONOCHROME_BEATS = tuple(
+    beat for beat, name in DEFAULT_GRADE_BY_BEAT.items() if name == "none"
+)
 
 
 def resolve(name: str | None, beat_id: str) -> Grade | None:
