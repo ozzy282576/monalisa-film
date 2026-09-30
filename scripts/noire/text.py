@@ -225,6 +225,46 @@ class TextPanel:
             y += size * line_gap
         return frame
 
+    def disclaimer(self, frame: Image.Image, text: str) -> Image.Image:
+        """Fine print under the caption: one line, dimmed, never wrapped.
+
+        Drawn on its own RGBA layer so it can be semi-transparent — the artwork
+        behind it varies from near-black to a lit window, and an opaque line
+        would either shout over the darker beats or vanish on the brighter ones.
+        """
+        text = (text or "").strip()
+        if not text:
+            return frame
+        cfg = contract.DISCLAIMER
+        width, height = frame.size
+        stack, size, factor = self._stack(cfg["font_size"])
+        tracking = cfg["tracking"] * factor
+        stroke = max(1, int(round(cfg["stroke_width"] * factor)))
+
+        line_width = stack.measure(text, tracking)
+        max_width = width * cfg["max_width"]
+        if line_width > max_width:  # shrink rather than run off the edge
+            scale = max_width / line_width
+            stack, size, factor = self._stack(max(8, int(cfg["font_size"] * scale)))
+            tracking = cfg["tracking"] * factor
+            stroke = max(1, int(round(cfg["stroke_width"] * factor)))
+            line_width = stack.measure(text, tracking)
+
+        alpha = int(round(255 * cfg["alpha"]))
+        layer = Image.new("RGBA", frame.size, (0, 0, 0, 0))
+        draw_text(
+            ImageDraw.Draw(layer),
+            (width * 0.5 - line_width / 2.0, height * cfg["baseline"]),
+            text, stack,
+            fill=tuple(cfg["colour"]) + (alpha,),
+            anchor="la", tracking=tracking,
+            stroke_width=stroke,
+            stroke_fill=(0, 0, 0, alpha),
+        )
+        merged = Image.alpha_composite(frame.convert("RGBA"), layer).convert("RGB")
+        frame.paste(merged, (0, 0))
+        return frame
+
     def _plate(
         self,
         frame: Image.Image,

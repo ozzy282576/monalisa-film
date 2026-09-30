@@ -57,6 +57,20 @@ SUBTITLE = {
 }
 
 # Big annotation callouts (the "4 m", "v ≈ 3.6 m/s" style beats)
+# A compliance line. Chinese short-video platforms require dramatised cases to
+# say so, and the brief for this film does too: it is built on real forensic
+# methods but is not a single real case, so it must never claim to be one.
+# Deliberately smaller and dimmer than a subtitle so it reads as fine print.
+DISCLAIMER = {
+    "font_size": 30,
+    "stroke_width": 3,
+    "tracking": 1.2,
+    "baseline": 0.947,       # fraction of canvas height, below the subtitles
+    "alpha": 0.66,
+    "max_width": 0.88,
+    "colour": (232, 232, 236),
+}
+
 ANNOTATION = {
     "max_width": 0.90,       # fraction of canvas width before auto-shrink
     "shrink": 0.90,

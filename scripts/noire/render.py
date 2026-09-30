@@ -48,6 +48,7 @@ class Beat:
     narration: str
     on_screen: Optional[str]
     annotation: Optional[str]
+    disclaimer: Optional[str]
     motion: str
     accent: Optional[str]
     sfx: List[str]
@@ -85,6 +86,7 @@ def load_script(path: Path, project_dir: Path) -> Script:
             narration=item.get("narration", "") or "",
             on_screen=item.get("on_screen"),
             annotation=item.get("annotation"),
+            disclaimer=item.get("disclaimer"),
             motion=item.get("motion", "push_in"),
             accent=item.get("accent"),
             sfx=list(item.get("sfx") or []),
@@ -100,6 +102,7 @@ def load_script(path: Path, project_dir: Path) -> Script:
         beats.append(beat)
 
     media = raw.get("media", {}) or {}
+    unsounded: List[str] = []
     voice_map: Dict[str, str] = media.get("voice") or {}
     voice_dir = media.get("voice_dir")
     voice_root: Optional[Path] = None
@@ -124,6 +127,20 @@ def load_script(path: Path, project_dir: Path) -> Script:
         if candidate is not None and candidate.exists():
             beat.voice_path = candidate
             beat.voice_duration = probe_duration(candidate)
+            if beat.voice_duration <= 0.0:
+                # ffprobe missing, or the file is unreadable. Without this the
+                # beat silently falls back to min_duration and the finished film
+                # comes out tens of seconds short with no error at all.
+                unsounded.append(beat.id)
+
+    if unsounded:
+        import warnings
+        warnings.warn(
+            f"{len(unsounded)} beat(s) have audio on disk but no readable "
+            f"duration ({', '.join(unsounded)}) — ffprobe is probably missing, "
+            f"and those beats will fall back to their minimum duration.",
+            stacklevel=2,
+        )
 
     return Script(
         title=raw.get("title", "未命名"),
@@ -238,6 +255,8 @@ class NoireRenderer:
             self.panel.annotation(image, beat.annotation, beat.accent)
         if beat.on_screen:
             self.panel.subtitle(image, beat.on_screen)
+        if beat.disclaimer:
+            self.panel.disclaimer(image, beat.disclaimer)
 
         out = np.asarray(image, dtype=np.uint8)
 
