@@ -114,6 +114,7 @@ class Grade:
     saturation: float = 1.0
     vibrance: float = 0.0        # lifts muted colour more than saturated colour
     shadow_desat: float = 0.0    # pulls chroma out of the darks, weighted to them
+    blue_suppress: float = 0.0   # pulls chroma out of blue/cyan, weighted by blueness
     shadow_tint: RGB = (0.0, 0.0, 0.0)      # additive, weighted to the shadows
     shadow_amount: float = 0.0
     highlight_tint: RGB = (0.0, 0.0, 0.0)   # additive, weighted to the highlights
@@ -184,6 +185,23 @@ class Grade:
 
         out = np.clip(out, 0.0, 1.0)
 
+        # Blue suppression. Measured on the source plates, 65% of the coloured
+        # pixels are blue or cyan and 47% sit above 0.6 saturation — these were
+        # painted as blue posters, and then saturation was *added* on top, which
+        # is why the result read as flat poster art rather than as film. Pulling
+        # chroma out of blue specifically, weighted by how blue each pixel is,
+        # is what restores the warm/cool contrast the eye reads as cinematic.
+        if self.blue_suppress > 0.0:
+            luma = out @ LUMA_WEIGHTS
+            red, green, blue = out[..., 0], out[..., 1], out[..., 2]
+            chroma_full = out.max(axis=2) - out.min(axis=2)
+            blueness = np.clip((blue - np.maximum(red, green))
+                               / np.maximum(chroma_full, 1e-4), 0.0, 1.0)
+            saturation_here = chroma_full / np.maximum(out.max(axis=2), 1e-4)
+            apply = self.blue_suppress * blueness * np.clip(saturation_here * 1.5, 0.0, 1.0)
+            out = luma[..., None] + (out - luma[..., None]) * (1.0 - apply)[..., None]
+            out = np.clip(out, 0.0, 1.0)
+
         # Vibrance before saturation: it lifts muted colour and leaves colour
         # that is already strong alone, so skin and the evidence reds do not go
         # neon while the rain still gains some blue.
@@ -245,7 +263,7 @@ COLOUR_GRADES = {
     "c_night": Grade(
         mode="enhance", t_black=0.052, t_mid=0.430, t_white=0.905,
         s_curve=0.44, black=0.010,
-        vibrance=0.62, saturation=1.36,
+        vibrance=0.18, shadow_desat=0.2, blue_suppress=0.52, saturation=0.94,
         shadow_tint=(0.012, 0.058, 0.128), shadow_amount=1.0,
         highlight_tint=(0.120, 0.048, -0.029), highlight_amount=1.0,
         bloom=0.40),
@@ -253,7 +271,7 @@ COLOUR_GRADES = {
     "c_rain": Grade(
         mode="enhance", t_black=0.050, t_mid=0.440, t_white=0.908,
         s_curve=0.43, black=0.010,
-        vibrance=0.60, saturation=1.37,
+        vibrance=0.18, shadow_desat=0.18, blue_suppress=0.48, saturation=0.95,
         shadow_tint=(0.010, 0.050, 0.116), shadow_amount=1.0,
         highlight_tint=(0.099, 0.042, -0.019), highlight_amount=1.0,
         bloom=0.35),
@@ -261,7 +279,7 @@ COLOUR_GRADES = {
     "c_amber": Grade(
         mode="enhance", t_black=0.055, t_mid=0.465, t_white=0.912,
         s_curve=0.41, black=0.012,
-        vibrance=0.58, saturation=1.36,
+        vibrance=0.2, shadow_desat=0.14, blue_suppress=0.34, saturation=0.98,
         shadow_tint=(0.042, 0.021, 0.063), shadow_amount=1.0,
         highlight_tint=(0.136, 0.064, -0.042), highlight_amount=1.0,
         bloom=0.35),
@@ -269,7 +287,7 @@ COLOUR_GRADES = {
     "c_cold": Grade(
         mode="enhance", t_black=0.052, t_mid=0.445, t_white=0.910,
         s_curve=0.43, black=0.010,
-        vibrance=0.60, saturation=1.35,
+        vibrance=0.18, shadow_desat=0.18, blue_suppress=0.44, saturation=0.96,
         shadow_tint=(0.008, 0.040, 0.130), shadow_amount=1.0,
         highlight_tint=(0.072, 0.063, 0.000), highlight_amount=1.0,
         bloom=0.30),
@@ -277,7 +295,7 @@ COLOUR_GRADES = {
     "c_warm": Grade(
         mode="enhance", t_black=0.060, t_mid=0.500, t_white=0.922,
         s_curve=0.39, black=0.012,
-        vibrance=0.55, saturation=1.34,
+        vibrance=0.22, shadow_desat=0.1, blue_suppress=0.16, saturation=1.0,
         shadow_tint=(0.033, 0.015, 0.048), shadow_amount=1.0,
         highlight_tint=(0.128, 0.072, -0.035), highlight_amount=1.0,
         bloom=0.38),
@@ -289,7 +307,7 @@ COLOUR_GRADES = {
     "c_soft": Grade(
         mode="enhance", t_black=0.045, t_mid=0.440, t_white=0.912,
         s_curve=0.30, black=0.010,
-        vibrance=0.18, saturation=1.05,
+        vibrance=0.16, shadow_desat=0.16, blue_suppress=0.42, saturation=0.96,
         shadow_tint=(0.006, 0.014, 0.040), shadow_amount=1.0,
         highlight_tint=(0.026, 0.012, -0.006), highlight_amount=1.0,
         bloom=0.20),
@@ -297,7 +315,7 @@ COLOUR_GRADES = {
     "c_void": Grade(
         mode="enhance", t_black=0.004, t_mid=0.330, t_white=0.925,
         s_curve=0.30, black=0.0,
-        vibrance=0.20, saturation=1.08, shadow_desat=0.35,
+        vibrance=0.16, blue_suppress=0.3, saturation=0.94, shadow_desat=0.45,
         shadow_tint=(0.000, 0.004, 0.014), shadow_amount=1.0,
         highlight_tint=(0.028, 0.012, -0.008), highlight_amount=1.0,
         bloom=0.38),
@@ -305,7 +323,7 @@ COLOUR_GRADES = {
     "c_flat": Grade(
         mode="enhance", t_black=0.055, t_mid=0.460, t_white=0.905,
         s_curve=0.32, black=0.010,
-        vibrance=0.14, saturation=1.03,
+        vibrance=0.14, shadow_desat=0.14, blue_suppress=0.34, saturation=0.95,
         shadow_tint=(0.004, 0.010, 0.032), shadow_amount=1.0,
         highlight_tint=(0.010, 0.006, 0.000), highlight_amount=1.0,
         bloom=0.14),

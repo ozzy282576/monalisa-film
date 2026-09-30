@@ -236,12 +236,29 @@ class TextPanel:
         if not text:
             return frame
         cfg = contract.ANNOTATION
-        stack, size, factor = self._stack(cfg["font_size"])
-        tracking = cfg["tracking"] * factor
+        lines = text.split("\n")
+        # Auto-shrink to fit the safe width. Long annotations ("立定跳远世界纪录
+        # 3.71 m") used to run off both edges of the frame, unreadable. Same
+        # ladder as the subtitle: step the size down until it fits, and only
+        # give up after max_steps.
+        max_width = frame.size[0] * cfg["max_width"]
+        size_key = cfg["font_size"]
+        chosen = None
+        for _ in range(int(cfg["max_steps"]) + 1):
+            stack, size, factor = self._stack(size_key)
+            tracking = cfg["tracking"] * factor
+            if max(stack.measure(line, tracking) for line in lines) <= max_width:
+                chosen = (stack, size, factor, tracking)
+                break
+            size_key = size_key * cfg["shrink"]
+        if chosen is None:
+            stack, size, factor = self._stack(size_key)
+            tracking = cfg["tracking"] * factor
+            chosen = (stack, size, factor, tracking)
+        stack, size, factor, tracking = chosen
         colour = {"red": contract.ALERT_RED, "blue": contract.COLD_BLUE}.get(
             accent or "", contract.PAPER
         )
-        lines = text.split("\n")
         line_gap = 1.15
         block = size * line_gap * len(lines)
         top = frame.size[1] * position[1] - block / 2.0

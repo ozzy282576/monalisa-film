@@ -58,6 +58,9 @@ SUBTITLE = {
 
 # Big annotation callouts (the "4 m", "v ≈ 3.6 m/s" style beats)
 ANNOTATION = {
+    "max_width": 0.90,       # fraction of canvas width before auto-shrink
+    "shrink": 0.90,
+    "max_steps": 8,
     "font_size": 132,
     "stroke_width": 6,
     "tracking": 4.0,
