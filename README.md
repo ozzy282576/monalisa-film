@@ -178,12 +178,34 @@ ffmpeg -i renders/demo-cut-1080x1440.mp4 -i narration.m4a \
 **B. 丢进剪映 / Premiere / CapCut**
 把 MP4 拖进时间线，逐幕对齐配音即可；白底手绘的风格本来就适合后期加留白和音效。
 
+## 姊妹片：《物理学撕碎的意外》（9:16 手绘悬疑解说）
+
+同一套仓库里还有一条 **noire 管线**（`scripts/noire/` + `scripts/run_noire_video.py`），
+输出 1080×1920 竖屏、逐幕调色、带配音与字幕的抖音式悬疑解说。
+示例成片用的是 `examples/douyin-physics/`：23 幕分镜、22 幕云希配音、
+手绘母图全部入库，讲一场用抛体物理戳穿的"意外坠楼"。
+
+```bash
+python3 scripts/run_noire_video.py --mode plan     # 检查幕数/配音/缺图
+python3 scripts/run_noire_video.py --mode render   # 出片（含音轨）
+```
+
+| 成片 | 规格 | 说明 |
+| --- | --- | --- |
+| `renders/noire.mp4` | 1080×1920 · 30fps · 123.1s · 23 幕 | 母版（CRF 22，含 AAC 音轨） |
+| `renders/noire-web.mp4` | 同上 · ~10 Mbps | 发布版，faststart |
+| `renders/noire-preview.mp4` | 540×960 | 快速预览 |
+
+成片不入库（`renders/*` 已 gitignore），按上面命令可离线复现。
+画面核验见 `docs/film-contact-sheet.png`（23 幕抽帧拼版）。
+
 ## 项目结构
 
 ```
 ├── scripts/
 │   ├── run_story_video.py          统一 CLI（plan / generate / import / preview / render）
-│   └── handdrawn/
+│   ├── run_noire_video.py          9:16 悬疑解说 CLI（plan / render / grades）
+│   ├── handdrawn/
 │       ├── contract.py             渲染契约：画布、排版、图层时序、翻书几何
 │       ├── imaging.py              CSS filter 模拟、contain 适配、线稿派生
 │       ├── caption.py              手写字幕渲染（真字形，OCR 级准确）
