@@ -188,10 +188,25 @@ class NoireRenderer:
                 return beat, local
         return (self.script.beats[-1] if self.script.beats else None), 0
 
+    def _release_other_cameras(self, keep: "Beat") -> None:
+        """Drop every other beat's prepared camera.
+
+        Each camera holds a scaled plate plus a blurred copy; holding 23 of them
+        at 1080p does not fit in this box's memory. Beats are rendered in order,
+        so anything more than a couple of beats back will never be asked for
+        again.
+        """
+        for other in self.script.beats:
+            if other is keep or other.camera is None:
+                continue
+            if other.start + other.duration <= keep.start:
+                other.camera = None
+
     def render_frame(self, frame_index: int) -> np.ndarray:
         beat, local = self.beat_at(frame_index)
         if beat is None or beat.camera is None:
             return np.zeros((self.height, self.width, 3), dtype=np.uint8)
+        self._release_other_cameras(beat)
 
         frames = max(1, int(round(beat.duration * self.fps)))
         t = min(1.0, local / max(1, frames - 1))

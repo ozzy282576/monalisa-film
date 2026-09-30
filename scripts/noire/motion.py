@@ -66,7 +66,7 @@ class Camera:
             _vignette=_vignette_mask(width, height),
             _grain=_grain_tiles(width, height),
             _stats=_on_screen_stats(big, motion, width, height),
-            _defocus=_defocused_plate(big, width, height),
+            _defocus=None,   # built on first frame, released when the beat ends
             _defocus_mask=(_defocus_mask(width, height)
                            if contract.DEPTH_OF_FIELD > 0.0 else None),
         )
@@ -123,6 +123,8 @@ class Camera:
                 arr = _bloom(arr, grade.bloom, grade.bloom_threshold)
 
         if contract.DEPTH_OF_FIELD > 0.0:
+            if self._defocus is None:
+                self._defocus = _defocused_plate(self.big, self.width, self.height)
             arr = _depth_of_field(arr, self._defocus, self._defocus_mask)
 
         arr *= self._vignette
@@ -131,10 +133,11 @@ class Camera:
 
 
 def _defocused_plate(big: Image.Image, width: int, height: int) -> np.ndarray:
-    """A blurred copy of the whole plate, cropped to the lens' widest view.
+    """A blurred copy of the plate at the lens' widest view.
 
-    Precomputed once per beat: blurring per frame would cost more than the rest
-    of the render combined.
+    Built once per beat on first use and released when the beat changes. The
+    full-resolution float32 plate is 25 MB, so holding one per camera cost
+    573 MB across 23 beats — affordable per beat, ruinous in aggregate.
     """
     if contract.DEPTH_OF_FIELD <= 0.0:
         return None
@@ -227,19 +230,48 @@ def _bloom(arr: np.ndarray, strength: float, threshold: float = 0.62) -> np.ndar
 
 def _vignette_mask(width: int, height: int) -> np.ndarray:
     """Radial falloff, strength from the contract. Shape (H, W, 1)."""
+    key = (width, height)
+    cached = _VIGNETTE_CACHE.get(key)
+    if cached is not None:
+        return cached
     ys = (np.arange(height, dtype=np.float32) + 0.5) / height * 2.0 - 1.0
     xs = (np.arange(width, dtype=np.float32) + 0.5) / width * 2.0 - 1.0
     radius = np.sqrt(ys[:, None] ** 2 * 0.85 + xs[None, :] ** 2)
     falloff = np.clip(radius, 0.0, 1.0) ** 2.2
     gain = 1.0 - falloff * contract.VIGNETTE_STRENGTH
-    return gain[:, :, None].astype(np.float32)
+    mask = gain[:, :, None].astype(np.float32)
+    _VIGNETTE_CACHE[key] = mask
+    return mask
+
+
+# Grain and vignette depend only on the frame size, so they are cached globally
+# rather than per beat. Each camera used to build its own set: at 1080x1920 the
+# grain alone was 8 x 8.3 MB per beat, and 23 beats held 1.5 GB of identical
+# noise. On a 3 GB box that is the difference between finishing and being OOM
+# killed.
+_GRAIN_CACHE: dict = {}
+_VIGNETTE_CACHE: dict = {}
+_GRAIN_TILE_PX = 384
 
 
 def _grain_tiles(width: int, height: int) -> list:
-    tiles = []
+    key = (width, height)
+    cached = _GRAIN_CACHE.get(key)
+    if cached is not None:
+        return cached
+
+    # Noise is generated once at a modest size and tiled up. Full-resolution
+    # noise costs 17x the memory for a texture the eye cannot tell apart.
     rng = np.random.default_rng(20260930)
     amplitude = contract.GRAIN_STRENGTH * 255.0
+    tw = min(_GRAIN_TILE_PX, width)
+    th = min(_GRAIN_TILE_PX, height)
+    reps_y = -(-height // th)
+    reps_x = -(-width // tw)
+    tiles = []
     for _ in range(_GRAIN_TILES):
-        tile = rng.normal(0.0, amplitude, size=(height, width, 1)).astype(np.float32)
-        tiles.append(tile)
+        small = rng.normal(0.0, amplitude, size=(th, tw, 1)).astype(np.float32)
+        big = np.tile(small, (reps_y, reps_x, 1))[:height, :width]
+        tiles.append(np.ascontiguousarray(big))
+    _GRAIN_CACHE[key] = tiles
     return tiles
