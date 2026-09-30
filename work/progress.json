@@ -1,9 +1,9 @@
 {
-  "ok": 14,
-  "pending": 1,
+  "ok": 15,
+  "pending": 0,
   "fail": 0,
   "total": 15,
-  "updated": 1790788661,
+  "updated": 1790788989,
   "clips": [
     {
       "id": "01",
@@ -71,11 +71,11 @@
     {
       "id": "08",
       "title": "空墙被发现",
-      "status": "queued",
+      "status": "pass",
       "tries": 49,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 5234173,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "09",
