@@ -3,7 +3,7 @@
   "pending": 2,
   "fail": 0,
   "total": 15,
-  "updated": 1790747698,
+  "updated": 1790747774,
   "clips": [
     {
       "id": "01",
@@ -18,10 +18,10 @@
       "id": "02",
       "title": "沙龙卡雷",
       "status": "pass",
-      "tries": 4,
+      "tries": 5,
       "bytes": 9405474,
       "duration": 12.25,
-      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 202609300554578951623792quPn9jg)\", \"data\": null}"
+      "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930055614564553703nO2iUXH2)\", \"data\": null}"
     },
     {
       "id": "03",
