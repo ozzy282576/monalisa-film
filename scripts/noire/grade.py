@@ -40,13 +40,11 @@ LUMA_WEIGHTS = np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
 # LUT resolution for the tone curve.
 _LUT_SIZE = 256
 
-
 def _rgb(value: str | Tuple[int, int, int]) -> RGB:
     if isinstance(value, str):
         value = value.lstrip("#")
         return tuple(int(value[i:i + 2], 16) / 255.0 for i in (0, 2, 4))  # type: ignore[return-value]
     return tuple(channel / 255.0 for channel in value)  # type: ignore[return-value]
-
 
 def _monotone_cubic(xs: np.ndarray, ys: np.ndarray, x: np.ndarray) -> np.ndarray:
     """Fritsch-Carlson monotone cubic interpolation.
@@ -79,13 +77,11 @@ def _monotone_cubic(xs: np.ndarray, ys: np.ndarray, x: np.ndarray) -> np.ndarray
             + ys[idx + 1] * (-2 * t3 + 3 * t2)
             + m[idx + 1] * h[idx] * (t3 - t2))
 
-
 def source_stats(rgb: np.ndarray) -> Tuple[float, float, float]:
     """Black / mid / white levels (P2, P50, P98) of a frame, as 0..1."""
     luma = (rgb.astype(np.float32) / 255.0) @ LUMA_WEIGHTS
     p2, p50, p98 = np.percentile(luma, [2.0, 50.0, 98.0])
     return float(p2), float(p50), float(p98)
-
 
 @dataclass(frozen=True)
 class Grade:
@@ -239,7 +235,6 @@ class Grade:
 
         return np.clip(mixed, 0.0, 1.0)
 
-
 # Colour script: applied over natively painted frames.
 #
 # ``t_mid`` is the tonal target for each mood's median — this is what fixes the
@@ -248,64 +243,73 @@ class Grade:
 # never clip to flat white.
 COLOUR_GRADES = {
     "c_night": Grade(
-        mode="enhance", t_black=0.030, t_mid=0.335, t_white=0.875,
-        s_curve=0.34, black=0.012,
-        vibrance=0.34, saturation=1.06,
-        shadow_tint=(0.000, 0.050, 0.115), shadow_amount=1.0,
-        highlight_tint=(0.075, 0.030, -0.018), highlight_amount=1.0,
-        bloom=0.32),
+        mode="enhance", t_black=0.052, t_mid=0.430, t_white=0.905,
+        s_curve=0.44, black=0.010,
+        vibrance=0.62, saturation=1.36,
+        shadow_tint=(0.012, 0.058, 0.128), shadow_amount=1.0,
+        highlight_tint=(0.120, 0.048, -0.029), highlight_amount=1.0,
+        bloom=0.40),
 
     "c_rain": Grade(
-        mode="enhance", t_black=0.032, t_mid=0.350, t_white=0.895,
-        s_curve=0.32, black=0.012,
-        vibrance=0.32, saturation=1.07,
-        shadow_tint=(0.000, 0.042, 0.100), shadow_amount=1.0,
-        highlight_tint=(0.062, 0.026, -0.012), highlight_amount=1.0,
-        bloom=0.28),
+        mode="enhance", t_black=0.050, t_mid=0.440, t_white=0.908,
+        s_curve=0.43, black=0.010,
+        vibrance=0.60, saturation=1.37,
+        shadow_tint=(0.010, 0.050, 0.116), shadow_amount=1.0,
+        highlight_tint=(0.099, 0.042, -0.019), highlight_amount=1.0,
+        bloom=0.35),
 
     "c_amber": Grade(
-        mode="enhance", t_black=0.034, t_mid=0.350, t_white=0.905,
-        s_curve=0.30, black=0.014,
-        vibrance=0.30, saturation=1.06,
-        shadow_tint=(0.028, 0.014, 0.042), shadow_amount=1.0,
-        highlight_tint=(0.085, 0.040, -0.026), highlight_amount=1.0,
-        bloom=0.28),
+        mode="enhance", t_black=0.055, t_mid=0.465, t_white=0.912,
+        s_curve=0.41, black=0.012,
+        vibrance=0.58, saturation=1.36,
+        shadow_tint=(0.042, 0.021, 0.063), shadow_amount=1.0,
+        highlight_tint=(0.136, 0.064, -0.042), highlight_amount=1.0,
+        bloom=0.35),
 
     "c_cold": Grade(
-        mode="enhance", t_black=0.030, t_mid=0.340, t_white=0.900,
-        s_curve=0.32, black=0.012,
-        vibrance=0.32, saturation=1.05,
-        shadow_tint=(0.000, 0.032, 0.112), shadow_amount=1.0,
-        highlight_tint=(0.045, 0.042, 0.000), highlight_amount=1.0,
-        bloom=0.24),
+        mode="enhance", t_black=0.052, t_mid=0.445, t_white=0.910,
+        s_curve=0.43, black=0.010,
+        vibrance=0.60, saturation=1.35,
+        shadow_tint=(0.008, 0.040, 0.130), shadow_amount=1.0,
+        highlight_tint=(0.072, 0.063, 0.000), highlight_amount=1.0,
+        bloom=0.30),
 
     "c_warm": Grade(
-        mode="enhance", t_black=0.038, t_mid=0.415, t_white=0.940,
-        s_curve=0.28, black=0.015,
-        vibrance=0.28, saturation=1.05,
-        shadow_tint=(0.022, 0.010, 0.032), shadow_amount=1.0,
-        highlight_tint=(0.080, 0.045, -0.022), highlight_amount=1.0,
-        bloom=0.30),
+        mode="enhance", t_black=0.060, t_mid=0.500, t_white=0.922,
+        s_curve=0.39, black=0.012,
+        vibrance=0.55, saturation=1.34,
+        shadow_tint=(0.033, 0.015, 0.048), shadow_amount=1.0,
+        highlight_tint=(0.128, 0.072, -0.035), highlight_amount=1.0,
+        bloom=0.38),
 
     # The closing card is meant to be a black void with a spotlight. Every
     # other grade lifts the shadows and cools them, which turned that black a
     # flat navy. Here the shadow tint runs *negative* on blue instead, which
     # cancels the cast in the darks without touching the lit pool.
+    "c_soft": Grade(
+        mode="enhance", t_black=0.045, t_mid=0.440, t_white=0.912,
+        s_curve=0.30, black=0.010,
+        vibrance=0.18, saturation=1.05,
+        shadow_tint=(0.006, 0.014, 0.040), shadow_amount=1.0,
+        highlight_tint=(0.026, 0.012, -0.006), highlight_amount=1.0,
+        bloom=0.20),
+
     "c_void": Grade(
-        mode="enhance", t_black=0.002, t_mid=0.290, t_white=0.985,
+        mode="enhance", t_black=0.004, t_mid=0.330, t_white=0.925,
         s_curve=0.30, black=0.0,
-        vibrance=0.16, saturation=1.02, shadow_desat=0.90,
+        vibrance=0.20, saturation=1.08, shadow_desat=0.35,
         shadow_tint=(0.000, 0.004, 0.014), shadow_amount=1.0,
         highlight_tint=(0.028, 0.012, -0.008), highlight_amount=1.0,
         bloom=0.38),
 
     "c_flat": Grade(
-        mode="enhance", t_black=0.042, t_mid=0.430, t_white=0.945,
-        s_curve=0.24, black=0.015,
-        vibrance=0.24, saturation=1.03,
-        shadow_tint=(0.010, 0.014, 0.038), shadow_amount=1.0,
-        highlight_tint=(0.050, 0.028, -0.010), highlight_amount=1.0,
-        bloom=0.20),
+        mode="enhance", t_black=0.055, t_mid=0.460, t_white=0.905,
+        s_curve=0.32, black=0.010,
+        vibrance=0.14, saturation=1.03,
+        shadow_tint=(0.004, 0.010, 0.032), shadow_amount=1.0,
+        highlight_tint=(0.010, 0.006, 0.000), highlight_amount=1.0,
+        bloom=0.14),
+
 }
 
 # Duotone grades: the earlier monochrome ink look, still selectable per beat.
@@ -347,11 +351,11 @@ DEFAULT_GRADE_BY_BEAT = {
     "09": "c_cold",    # 刑警的眼睛
     "10": "c_night",   # 水袋放窗台
     "11": "c_night",   # 垂直落在墙根
-    "12": "c_night",   # 4 米标记
+    "12": "c_soft",   # 4 米标记
     "13": "c_amber",   # 黑板演算
-    "14": "c_night",   # 抛物线
+    "14": "c_soft",   # 抛物线
     "15": "c_amber",   # 数值定格
-    "16": "c_flat",    # 数据图表
+    "16": "c_soft",    # 数据图表
     "17": "c_cold",    # 回头锁定
     "18": "c_amber",   # 甩出窗外
     "19": "c_rain",    # 闪电抓捕
@@ -364,7 +368,6 @@ DEFAULT_GRADE_BY_BEAT = {
 MONOCHROME_BEATS: tuple = ()
 
 ALL_GRADES = {**COLOUR_GRADES, **GRADES}
-
 
 def resolve(name: str | None, beat_id: str) -> Grade | None:
     key = name or DEFAULT_GRADE_BY_BEAT.get(beat_id, "none")

@@ -88,9 +88,25 @@ class Camera:
             if grade.mode == "enhance":
                 if self._lut is None:
                     self._lut = grade.tone_lut(self._stats)
-                index = np.clip(arr, 0.0, 255.0).astype(np.uint8)
-                arr = np.interp(index, np.arange(256, dtype=np.float32),
-                                self._lut * 255.0).astype(np.float32)
+                # Tone-map LUMINANCE and keep the channel ratios.
+                #
+                # Running the curve through each channel independently was the
+                # obvious reading of "film applies the curve per channel", and it
+                # is wrong for panning artwork: a steep per-channel curve
+                # multiplies saturation, so a crimson arc went pink once lifted
+                # and a cream report page went yellow. Preserving the ratios
+                # keeps the painted colour exactly as the artist left it.
+                luma = arr @ grade_module.LUMA_WEIGHTS
+                mapped = np.interp(luma, np.arange(256, dtype=np.float32),
+                                   self._lut * 255.0).astype(np.float32)
+                gain = mapped / np.maximum(luma, 1.0)
+                # Cap the gain per pixel so no channel clips. Without this, a
+                # saturated red lifts until R pins at 255 while G and B keep
+                # climbing — the hue survives but the colour washes out, which
+                # is why the crimson arc was reading as pink.
+                headroom = 252.0 / np.maximum(arr.max(axis=2), 1.0)
+                gain = np.minimum(gain, headroom)
+                arr = np.clip(arr * gain[..., None], 0.0, 255.0)
                 arr = grade.colour_stage(arr)
             else:
                 arr = grade.apply_float(arr, self._stats)
@@ -134,9 +150,14 @@ def _on_screen_stats(big: Image.Image, motion: contract.Motion,
 def _bloom(arr: np.ndarray, strength: float, threshold: float = 0.62) -> np.ndarray:
     """Additive highlight glow.
 
-    Bright areas are isolated, blurred on a 1/8-scale buffer and added back. The
-    downscale is what makes it affordable per frame, and it also produces the
-    wide, soft falloff that reads as halation rather than as a blur filter.
+    Bright areas are isolated, blurred on a 1/8-scale buffer and screened back
+    in. The downscale is what makes it affordable per frame, and it also
+    produces the wide, soft falloff that reads as halation rather than as a
+    blur filter.
+
+    Screen rather than add: adding glow on top of highlights that already sit
+    near white clipped 14% of a bright beat to flat white. A screen blend
+    asymptotes towards white instead, so the glow stays a glow.
     """
     luma = arr @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
     weight = np.clip((luma - threshold * 255.0) / max(1.0, (1.0 - threshold) * 255.0),
@@ -149,8 +170,8 @@ def _bloom(arr: np.ndarray, strength: float, threshold: float = 0.62) -> np.ndar
     small_w, small_h = max(1, width // 8), max(1, height // 8)
     small = Image.fromarray(bright, "RGB").resize((small_w, small_h), Image.BOX)
     small = small.filter(ImageFilter.GaussianBlur(radius=3.2))
-    glow = np.asarray(small.resize((width, height), Image.BILINEAR), dtype=np.float32)
-    return arr + glow * strength
+    glow = np.asarray(small.resize((width, height), Image.BILINEAR), dtype=np.float32) * strength
+    return 255.0 - (255.0 - arr) * (255.0 - glow) / 255.0
 
 
 def _vignette_mask(width: int, height: int) -> np.ndarray:
