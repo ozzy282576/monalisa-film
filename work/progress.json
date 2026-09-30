@@ -1,9 +1,9 @@
 {
-  "ok": 10,
-  "pending": 5,
+  "ok": 11,
+  "pending": 4,
   "fail": 0,
   "total": 15,
-  "updated": 1790730838,
+  "updated": 1790731186,
   "clips": [
     {
       "id": "01",
@@ -125,11 +125,11 @@
     {
       "id": "14",
       "title": "荣归卢浮宫",
-      "status": "queued",
+      "status": "pass",
       "tries": 7,
-      "bytes": null,
-      "duration": null,
-      "reason": null
+      "bytes": 8107888,
+      "duration": 12.25,
+      "reason": "ok"
     },
     {
       "id": "15",
