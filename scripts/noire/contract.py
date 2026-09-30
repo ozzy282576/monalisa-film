@@ -62,9 +62,18 @@ ANNOTATION = {
     "shrink": 0.90,
     "max_steps": 8,
     "font_size": 132,
-    "stroke_width": 6,
+    "stroke_width": 10,
     "tracking": 4.0,
     "shadow_alpha": 0.6,
+    # A soft dark plate behind the annotation. The accent colours carry meaning
+    # (red = the physical impossibility, blue = the forensic detail) so they
+    # cannot simply be recoloured for contrast. Once the frames were graded
+    # brighter, red-on-red-brown and grey-blue-on-grey-blue stopped being
+    # readable; a feathered plate keeps the accent legible over any artwork.
+    "plate_alpha": 0.46,
+    "plate_bleed_x": 0.60,   # fraction of font size added around the text
+    "plate_bleed_y": 0.34,
+    "plate_feather": 22.0,
 }
 
 # --- Motion ---------------------------------------------------------------

@@ -255,79 +255,92 @@ class Grade:
 
 # Colour script: applied over natively painted frames.
 #
-# ``t_mid`` is the tonal target for each mood's median — this is what fixes the
-# "too dark" complaint, and it is per-grade so a night beat still lands darker
-# than the courtroom. ``t_white`` stays under 1.0 so rain streaks and windows
-# never clip to flat white.
+# Tuning history, because these numbers are not arbitrary.  Three complaints
+# drove them, in order:
+#
+#   1. "too dark" - fixed contrast about 0.5 plus a 0.42 vignette crushed the
+#      frame to mean 0.31 / P90 0.31. No highlights, hence no depth.
+#   2. "still too dark" - the fix raised t_mid and t_white, but ALSO lifted
+#      t_black to ~0.05 and dropped saturation to 0.94. Lifting the black point
+#      removes contrast, and low contrast in the midtones is what the eye
+#      reports as grey.
+#   3. "too dark, too grey, want it more cinematic" - this set.
+#
+# So these aim at film contrast rather than at raw brightness: blacks stay deep
+# and clean, midtones sit high, highlights stay bright, S-curve is strong. A
+# frame can be dark and still not look muddy - what looks muddy is the darks
+# being lifted AND tinted AND desaturated at once, which is what pass 2 did.
+#
+# Per mood:
+#   t_black  deep, near-zero - film black is black, not charcoal
+#   t_mid    high, so the picture reads bright despite dark subject matter
+#   t_white  just under 1.0, so rain and windows glow without clipping flat
+#   s_curve  strong, buying contrast back without re-crushing the midtones
+#   blue_suppress  tames the blue these plates were painted in, which is what
+#                  restores the warm/cool split the eye reads as cinematic
 COLOUR_GRADES = {
+    # 01 11 12 14 - rain-soaked night
     "c_night": Grade(
-        mode="enhance", t_black=0.052, t_mid=0.430, t_white=0.905,
-        s_curve=0.44, black=0.010,
-        vibrance=0.18, shadow_desat=0.2, blue_suppress=0.52, saturation=0.94,
-        shadow_tint=(0.012, 0.058, 0.128), shadow_amount=1.0,
-        highlight_tint=(0.120, 0.048, -0.029), highlight_amount=1.0,
+        mode="enhance", t_black=0.014, t_mid=0.455, t_white=0.952,
+        s_curve=0.54, black=0.004,
+        vibrance=0.24, shadow_desat=0.26, blue_suppress=0.54, saturation=1.09,
+        shadow_tint=(0.010, 0.044, 0.104), shadow_amount=1.0,
+        highlight_tint=(0.150, 0.058, -0.042), highlight_amount=1.0,
+        bloom=0.42),
+
+    # 02 19 - cordon, police strobes
+    "c_rain": Grade(
+        mode="enhance", t_black=0.014, t_mid=0.465, t_white=0.955,
+        s_curve=0.53, black=0.004,
+        vibrance=0.24, shadow_desat=0.24, blue_suppress=0.50, saturation=1.09,
+        shadow_tint=(0.010, 0.040, 0.098), shadow_amount=1.0,
+        highlight_tint=(0.136, 0.056, -0.034), highlight_amount=1.0,
+        bloom=0.38),
+
+    # 03 05 08 13 15 18 - sodium-lit interiors
+    "c_amber": Grade(
+        mode="enhance", t_black=0.016, t_mid=0.490, t_white=0.958,
+        s_curve=0.51, black=0.005,
+        vibrance=0.22, shadow_desat=0.16, blue_suppress=0.30, saturation=1.09,
+        shadow_tint=(0.036, 0.018, 0.054), shadow_amount=1.0,
+        highlight_tint=(0.118, 0.056, -0.036), highlight_amount=1.0,
+        bloom=0.38),
+
+    # 04 07 09 17 20 - cold blue
+    "c_cold": Grade(
+        mode="enhance", t_black=0.014, t_mid=0.470, t_white=0.955,
+        s_curve=0.53, black=0.004,
+        vibrance=0.24, shadow_desat=0.26, blue_suppress=0.52, saturation=1.08,
+        shadow_tint=(0.008, 0.034, 0.104), shadow_amount=1.0,
+        highlight_tint=(0.104, 0.066, -0.014), highlight_amount=1.0,
+        bloom=0.32),
+
+    # 21 22 - courtroom and sunrise
+    "c_warm": Grade(
+        mode="enhance", t_black=0.022, t_mid=0.520, t_white=0.965,
+        s_curve=0.48, black=0.006,
+        vibrance=0.22, shadow_desat=0.12, blue_suppress=0.18, saturation=1.08,
+        shadow_tint=(0.030, 0.014, 0.044), shadow_amount=1.0,
+        highlight_tint=(0.112, 0.062, -0.030), highlight_amount=1.0,
         bloom=0.40),
 
-    "c_rain": Grade(
-        mode="enhance", t_black=0.050, t_mid=0.440, t_white=0.908,
-        s_curve=0.43, black=0.010,
-        vibrance=0.18, shadow_desat=0.18, blue_suppress=0.48, saturation=0.95,
-        shadow_tint=(0.010, 0.050, 0.116), shadow_amount=1.0,
-        highlight_tint=(0.099, 0.042, -0.019), highlight_amount=1.0,
-        bloom=0.35),
-
-    "c_amber": Grade(
-        mode="enhance", t_black=0.055, t_mid=0.465, t_white=0.912,
-        s_curve=0.41, black=0.012,
-        vibrance=0.2, shadow_desat=0.14, blue_suppress=0.34, saturation=0.98,
-        shadow_tint=(0.042, 0.021, 0.063), shadow_amount=1.0,
-        highlight_tint=(0.136, 0.064, -0.042), highlight_amount=1.0,
-        bloom=0.35),
-
-    "c_cold": Grade(
-        mode="enhance", t_black=0.052, t_mid=0.445, t_white=0.910,
-        s_curve=0.43, black=0.010,
-        vibrance=0.18, shadow_desat=0.18, blue_suppress=0.44, saturation=0.96,
-        shadow_tint=(0.008, 0.040, 0.130), shadow_amount=1.0,
-        highlight_tint=(0.072, 0.063, 0.000), highlight_amount=1.0,
-        bloom=0.30),
-
-    "c_warm": Grade(
-        mode="enhance", t_black=0.060, t_mid=0.500, t_white=0.922,
-        s_curve=0.39, black=0.012,
-        vibrance=0.22, shadow_desat=0.1, blue_suppress=0.16, saturation=1.0,
-        shadow_tint=(0.033, 0.015, 0.048), shadow_amount=1.0,
-        highlight_tint=(0.128, 0.072, -0.035), highlight_amount=1.0,
-        bloom=0.38),
-
-    # The closing card is meant to be a black void with a spotlight. Every
-    # other grade lifts the shadows and cools them, which turned that black a
-    # flat navy. Here the shadow tint runs *negative* on blue instead, which
-    # cancels the cast in the darks without touching the lit pool.
-    "c_soft": Grade(
-        mode="enhance", t_black=0.045, t_mid=0.440, t_white=0.912,
-        s_curve=0.30, black=0.010,
-        vibrance=0.16, shadow_desat=0.16, blue_suppress=0.42, saturation=0.96,
-        shadow_tint=(0.006, 0.014, 0.040), shadow_amount=1.0,
-        highlight_tint=(0.026, 0.012, -0.006), highlight_amount=1.0,
+    # 06 16 - neutral comparison / forensic chart; less drama on purpose
+    "c_flat": Grade(
+        mode="enhance", t_black=0.020, t_mid=0.480, t_white=0.946,
+        s_curve=0.38, black=0.005,
+        vibrance=0.16, shadow_desat=0.16, blue_suppress=0.34, saturation=1.04,
+        shadow_tint=(0.006, 0.014, 0.038), shadow_amount=1.0,
+        highlight_tint=(0.030, 0.014, -0.008), highlight_amount=1.0,
         bloom=0.20),
 
+    # 23 - closing black card. Spotlight bright, surround must stay true black.
     "c_void": Grade(
-        mode="enhance", t_black=0.004, t_mid=0.330, t_white=0.925,
-        s_curve=0.30, black=0.0,
-        vibrance=0.16, blue_suppress=0.3, saturation=0.94, shadow_desat=0.45,
-        shadow_tint=(0.000, 0.004, 0.014), shadow_amount=1.0,
-        highlight_tint=(0.028, 0.012, -0.008), highlight_amount=1.0,
-        bloom=0.38),
-
-    "c_flat": Grade(
-        mode="enhance", t_black=0.055, t_mid=0.460, t_white=0.905,
-        s_curve=0.32, black=0.010,
-        vibrance=0.14, shadow_desat=0.14, blue_suppress=0.34, saturation=0.95,
-        shadow_tint=(0.004, 0.010, 0.032), shadow_amount=1.0,
-        highlight_tint=(0.010, 0.006, 0.000), highlight_amount=1.0,
-        bloom=0.14),
-
+        mode="enhance", t_black=0.002, t_mid=0.380, t_white=0.985,
+        s_curve=0.46, black=0.0,
+        vibrance=0.18, blue_suppress=0.24, saturation=1.02, shadow_desat=0.55,
+        shadow_tint=(0.000, 0.004, 0.012), shadow_amount=1.0,
+        highlight_tint=(0.030, 0.013, -0.008), highlight_amount=1.0,
+        bloom=0.42),
 }
 
 # Duotone grades: the earlier monochrome ink look, still selectable per beat.
@@ -369,11 +382,11 @@ DEFAULT_GRADE_BY_BEAT = {
     "09": "c_cold",    # 刑警的眼睛
     "10": "c_night",   # 水袋放窗台
     "11": "c_night",   # 垂直落在墙根
-    "12": "c_soft",   # 4 米标记
+    "12": "c_night",  # 4 米标记
     "13": "c_amber",   # 黑板演算
-    "14": "c_soft",   # 抛物线
+    "14": "c_night",  # 抛物线
     "15": "c_amber",   # 数值定格
-    "16": "c_soft",    # 数据图表
+    "16": "c_flat",   # 数据图表
     "17": "c_cold",    # 回头锁定
     "18": "c_amber",   # 甩出窗外
     "19": "c_rain",    # 闪电抓捕

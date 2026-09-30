@@ -225,6 +225,42 @@ class TextPanel:
             y += size * line_gap
         return frame
 
+    def _plate(
+        self,
+        frame: Image.Image,
+        centre_x: float,
+        top: float,
+        width: float,
+        height: float,
+        size: float,
+        cfg: dict,
+    ) -> None:
+        """Feathered dark plate behind an annotation.
+
+        Accent colours are semantic and cannot be swapped for contrast, so the
+        contrast is bought from the background instead.
+        """
+        alpha = float(cfg.get("plate_alpha", 0.0))
+        if alpha <= 0.0:
+            return
+        bleed_x = size * float(cfg.get("plate_bleed_x", 0.0))
+        bleed_y = size * float(cfg.get("plate_bleed_y", 0.0))
+        x0 = int(centre_x - width / 2.0 - bleed_x)
+        x1 = int(centre_x + width / 2.0 + bleed_x)
+        y0 = int(top - bleed_y)
+        y1 = int(top + height + bleed_y)
+        x0, y0 = max(0, x0), max(0, y0)
+        x1, y1 = min(frame.size[0], x1), min(frame.size[1], y1)
+        if x1 <= x0 or y1 <= y0:
+            return
+
+        mask = Image.new("L", (x1 - x0, y1 - y0), 0)
+        ImageDraw.Draw(mask).rectangle([0, 0, mask.size[0] - 1, mask.size[1] - 1],
+                                       fill=int(round(alpha * 255)))
+        feather = max(1.0, float(cfg.get("plate_feather", 12.0)) * self.factor)
+        mask = mask.filter(ImageFilter.GaussianBlur(feather))
+        frame.paste(Image.new("RGB", mask.size, (0, 0, 0)), (x0, y0), mask)
+
     def annotation(
         self,
         frame: Image.Image,
@@ -263,7 +299,9 @@ class TextPanel:
         block = size * line_gap * len(lines)
         top = frame.size[1] * position[1] - block / 2.0
         centre_x = frame.size[0] * position[0]
+        widest = max(stack.measure(line, tracking) for line in lines)
 
+        self._plate(frame, centre_x, top, widest, block, size, cfg)
         self._shadow(frame, lines, stack, size, tracking, centre_x, top,
                      line_gap, (0, 6 * factor), cfg["shadow_alpha"])
         draw = ImageDraw.Draw(frame)
