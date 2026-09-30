@@ -9,6 +9,7 @@ renders/*
 !renders/.gitkeep
 !renders/demo-*.mp4
 !renders/noire-1080x1920.mp4
+!renders/noire-1080x1920.mp4
 public/assets/generated/
 .story-video/
 storyboard.json
