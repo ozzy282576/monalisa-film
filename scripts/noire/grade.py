@@ -276,63 +276,63 @@ class Grade:
 COLOUR_GRADES = {
     # 01 11 12 14 — rain-soaked night
     "c_night": Grade(
-        mode="enhance", t_black=0.034, t_mid=0.600, t_white=0.918,
-        s_curve=0.46, black=0.010,
-        vibrance=0.40, saturation=1.22,
+        mode="enhance", t_black=0.028, t_mid=0.500, t_white=0.960,
+        s_curve=0.60, black=0.010,
+        vibrance=0.22, saturation=1.00,
         shadow_tint=(0.000, 0.038, 0.092), shadow_amount=1.0,
         highlight_tint=(0.120, 0.050, -0.030), highlight_amount=1.0,
         bloom=0.34, bloom_threshold=0.80),
 
     # 02 19 — cordon, police strobes
     "c_rain": Grade(
-        mode="enhance", t_black=0.036, t_mid=0.610, t_white=0.925,
-        s_curve=0.45, black=0.010,
-        vibrance=0.40, saturation=1.21,
+        mode="enhance", t_black=0.030, t_mid=0.515, t_white=0.958,
+        s_curve=0.60, black=0.010,
+        vibrance=0.22, saturation=1.00,
         shadow_tint=(0.000, 0.034, 0.086), shadow_amount=1.0,
         highlight_tint=(0.110, 0.048, -0.026), highlight_amount=1.0,
         bloom=0.32, bloom_threshold=0.78),
 
     # 03 05 08 13 15 18 — sodium-lit interiors
     "c_amber": Grade(
-        mode="enhance", t_black=0.038, t_mid=0.630, t_white=0.935,
-        s_curve=0.44, black=0.012,
-        vibrance=0.38, saturation=1.20,
+        mode="enhance", t_black=0.034, t_mid=0.530, t_white=0.955,
+        s_curve=0.60, black=0.012,
+        vibrance=0.22, saturation=1.00,
         shadow_tint=(0.026, 0.014, 0.044), shadow_amount=1.0,
         highlight_tint=(0.100, 0.046, -0.026), highlight_amount=1.0,
         bloom=0.32, bloom_threshold=0.78),
 
     # 04 07 09 17 20 — cold blue
     "c_cold": Grade(
-        mode="enhance", t_black=0.036, t_mid=0.615, t_white=0.928,
-        s_curve=0.45, black=0.010,
-        vibrance=0.40, saturation=1.20,
+        mode="enhance", t_black=0.030, t_mid=0.510, t_white=0.958,
+        s_curve=0.60, black=0.010,
+        vibrance=0.22, saturation=1.00,
         shadow_tint=(0.000, 0.030, 0.090), shadow_amount=1.0,
         highlight_tint=(0.088, 0.052, -0.014), highlight_amount=1.0,
         bloom=0.32, bloom_threshold=0.76),
 
     # 21 22 — courtroom and sunrise
     "c_warm": Grade(
-        mode="enhance", t_black=0.044, t_mid=0.660, t_white=0.950,
-        s_curve=0.42, black=0.014,
-        vibrance=0.36, saturation=1.18,
+        mode="enhance", t_black=0.038, t_mid=0.555, t_white=0.968,
+        s_curve=0.60, black=0.014,
+        vibrance=0.22, saturation=1.00,
         shadow_tint=(0.022, 0.012, 0.036), shadow_amount=1.0,
         highlight_tint=(0.092, 0.048, -0.024), highlight_amount=1.0,
         bloom=0.42, bloom_threshold=0.74),
 
     # 06 16 — neutral comparison / forensic chart; less drama on purpose
     "c_flat": Grade(
-        mode="enhance", t_black=0.046, t_mid=0.635, t_white=0.940,
-        s_curve=0.36, black=0.014,
-        vibrance=0.28, saturation=1.12,
+        mode="enhance", t_black=0.042, t_mid=0.570, t_white=0.970,
+        s_curve=0.60, black=0.014,
+        vibrance=0.22, saturation=1.00,
         shadow_tint=(0.006, 0.012, 0.032), shadow_amount=1.0,
         highlight_tint=(0.040, 0.020, -0.008), highlight_amount=1.0,
         bloom=0.22, bloom_threshold=0.80),
 
     # 23 — closing black card. Spotlight bright, surround must stay true black.
     "c_void": Grade(
-        mode="enhance", t_black=0.004, t_mid=0.510, t_white=0.965,
-        s_curve=0.44, black=0.0,
-        vibrance=0.24, saturation=1.10, shadow_desat=0.45,
+        mode="enhance", t_black=0.002, t_mid=0.440, t_white=0.980,
+        s_curve=0.60, black=0.0,
+        vibrance=0.22, saturation=1.00, shadow_desat=0.45,
         shadow_tint=(0.000, 0.004, 0.012), shadow_amount=1.0,
         highlight_tint=(0.030, 0.013, -0.008), highlight_amount=1.0,
         bloom=0.46, bloom_threshold=0.70),

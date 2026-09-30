@@ -69,8 +69,9 @@ class Encoder:
         width: int,
         height: int,
         fps: int,
-        crf: int = 20,
+        crf: int = 22,
         preset: str = "medium",
+        max_bitrate: str = "14M",
         project_dir: Optional[Path] = None,
     ) -> None:
         self.output = Path(output)
@@ -82,7 +83,13 @@ class Encoder:
                 "-hide_banner", "-loglevel", "error", "-y",
                 "-f", "rawvideo", "-pix_fmt", "rgb24",
                 "-s", f"{width}x{height}", "-r", str(fps), "-i", "-",
+                # The renderer adds per-frame film grain, and grain is noise:
+                # x264 cannot predict it, so a low CRF explodes the file. CRF 19
+                # at 1080x1920 produced 809 MB / 55 Mbps for 123 seconds, which
+                # nothing will accept as an upload. The cap keeps the ceiling
+                # sane while CRF still decides how the cheap frames are spent.
                 "-an", "-c:v", "libx264", "-preset", preset, "-crf", str(crf),
+                "-maxrate", max_bitrate, "-bufsize", "28M",
                 "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(self.output),
             ],
             stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,

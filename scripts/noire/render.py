@@ -61,6 +61,7 @@ class Beat:
     start: float = 0.0
     camera: Optional[Camera] = None
     grade: object = None
+    motion_spec: object = None
 
 
 @dataclass
@@ -170,9 +171,10 @@ class NoireRenderer:
             beat.grade = grade_module.resolve(beat.grade_name, beat.id)
             if beat.image_path is None:
                 continue
-            motion = contract.MOTIONS.get(beat.motion, contract.MOTIONS["push_in"])
+            beat.motion_spec = contract.MOTIONS.get(
+                beat.motion, contract.MOTIONS["push_in"])
             with Image.open(beat.image_path) as handle:
-                beat.camera = Camera.prepare(handle, motion, self.width, self.height)
+                beat.camera = Camera.prepare(handle, beat.motion_spec, self.width, self.height)
 
     # -- frames --------------------------------------------------------------
 
@@ -187,6 +189,25 @@ class NoireRenderer:
                 local = int(round((seconds - beat.start) * self.fps))
                 return beat, local
         return (self.script.beats[-1] if self.script.beats else None), 0
+
+    def _ensure_camera(self, beat: "Beat") -> bool:
+        """Prepare ``beat``'s camera if it was released, since releasing is lossy.
+
+        ``_release_other_cameras`` exists because holding 23 prepared plates at
+        1080p does not fit in memory, but freeing without a way back made the
+        renderer unseekable: asking for an already-finished beat returned a
+        black frame instead of an error. Rebuilding here keeps the memory win
+        and makes the renderer safe to call out of order.
+        """
+        if beat.camera is not None:
+            return True
+        if beat.image_path is None or not beat.image_path.exists():
+            return False
+        motion = beat.motion_spec or contract.MOTIONS.get(
+            beat.motion, contract.MOTIONS["push_in"])
+        with Image.open(beat.image_path) as handle:
+            beat.camera = Camera.prepare(handle, motion, self.width, self.height)
+        return True
 
     def _release_other_cameras(self, keep: "Beat") -> None:
         """Drop every other beat's prepared camera.
@@ -204,7 +225,7 @@ class NoireRenderer:
 
     def render_frame(self, frame_index: int) -> np.ndarray:
         beat, local = self.beat_at(frame_index)
-        if beat is None or beat.camera is None:
+        if beat is None or not self._ensure_camera(beat):
             return np.zeros((self.height, self.width, 3), dtype=np.uint8)
         self._release_other_cameras(beat)
 
