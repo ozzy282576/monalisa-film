@@ -281,10 +281,10 @@
       "size": "720P",
       "quality": "standard"
     },
-    "status": "queued",
-    "tries": 0,
-    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930081616490132828yzD8z4vC)\", \"data\": null}",
-    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930081616490132828yzD8z4vC)\", \"data\": null}"
+    "status": "create_failed",
+    "tries": 1,
+    "error": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930094538388053837GP2zeBS)\", \"data\": null}",
+    "reason": "http503:{\"code\": \"video_queue_full\", \"message\": \"video queue is full, please retry later (request id: 20260930094538388053837GP2zeBS)\", \"data\": null}"
   },
   "12": {
     "video_id": "task_DKJMO3ZQdNF8HTGLbiiAjSJxwsWzARM7",
