@@ -290,9 +290,22 @@
     "qc": "pass"
   },
   "11": {
-    "tries": 0,
+    "video_id": "task_JeFwXOK0fLBS9FU95L0eaChvPJB0VkSW",
+    "raw": {
+      "id": "task_JeFwXOK0fLBS9FU95L0eaChvPJB0VkSW",
+      "video_id": "task_JeFwXOK0fLBS9FU95L0eaChvPJB0VkSW",
+      "task_id": "task_JeFwXOK0fLBS9FU95L0eaChvPJB0VkSW",
+      "object": "video",
+      "model": "agnes-video-2.5-flash",
+      "status": "queued",
+      "progress": 0,
+      "created_at": 1790774446,
+      "seconds": "12",
+      "size": "720P",
+      "quality": "standard"
+    },
     "status": "queued",
-    "qc": "redo"
+    "tries": 1
   },
   "12": {
     "video_id": "task_DKJMO3ZQdNF8HTGLbiiAjSJxwsWzARM7",
