@@ -1,4 +1,4 @@
-# progress 14/15 pass, 1 pending, 0 fail
+# progress 15/15 pass, 0 pending, 0 fail
 
 - `01` 卢浮宫黎明: **pass** tries=1 dur=12.25 bytes=9232624 ok
 - `02` 沙龙卡雷: **pass** tries=15 dur=12.25 bytes=8768637 ok
@@ -13,5 +13,5 @@
 - `11` 佛罗伦萨接头: **pass** tries=1 dur=12.25 bytes=4997259 ok
 - `12` 乌菲兹鉴定: **pass** tries=1 dur=12.25 bytes=5412538 ok
 - `13` 被捕: **pass** tries=1 dur=12.25 bytes=5157820 ok
-- `14` 荣归卢浮宫: **queued** tries=13 dur=None bytes=None 
+- `14` 荣归卢浮宫: **pass** tries=13 dur=12.25 bytes=9492053 ok
 - `15` 尾声特写: **pass** tries=1 dur=12.25 bytes=4949183 ok
