@@ -1,0 +1,49 @@
+name: Norway film - serial Agnes generation
+on:
+  push:
+    branches: [arena/01a0f777-monalisa-film]
+    paths: [RUN_AGNES]
+  workflow_dispatch:
+    inputs:
+      resume_run:
+        description: Prior run ID whose raw-clips artifact should be restored (optional)
+        required: false
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: agnes-film
+  cancel-in-progress: false
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/01a0f777-monalisa-film
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - name: Restore explicitly selected prior run
+        if: ${{ inputs.resume_run != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: raw-clips
+          path: .
+          run-id: ${{ inputs.resume_run }}
+          github-token: ${{ github.token }}
+      - name: Generate sequentially (machine QC only)
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py
+      - name: Save raw clips and resumable state even after failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clips
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: warn

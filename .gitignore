@@ -1,0 +1,8 @@
+.env
+.env.*
+__pycache__/
+clips/
+work/
+out/
+audio/
+*.part
