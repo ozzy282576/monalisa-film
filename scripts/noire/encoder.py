@@ -71,7 +71,11 @@ class Encoder:
         fps: int,
         crf: int = 22,
         preset: str = "medium",
-        max_bitrate: str = "14M",
+        # 14M was too loose: at 1080x1920 with per-frame grain a 123 s film
+        # landed at 201 MB, and CRF 25 alone still produced 100 MB — right on
+        # GitHub's per-file limit. 5M keeps a two-minute vertical short near
+        # 80 MB, which is the size these platforms actually want anyway.
+        max_bitrate: str = "5M",
         project_dir: Optional[Path] = None,
     ) -> None:
         self.output = Path(output)
@@ -89,7 +93,7 @@ class Encoder:
                 # nothing will accept as an upload. The cap keeps the ceiling
                 # sane while CRF still decides how the cheap frames are spent.
                 "-an", "-c:v", "libx264", "-preset", preset, "-crf", str(crf),
-                "-maxrate", max_bitrate, "-bufsize", "28M",
+                "-maxrate", max_bitrate, "-bufsize", "11M",
                 "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(self.output),
             ],
             stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,
