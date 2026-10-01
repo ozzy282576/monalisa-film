@@ -24,12 +24,17 @@ def default_project() -> Path:
     return Path(__file__).resolve().parents[1]
 
 
+def resolve_script_path(args) -> Path:
+    project = args.project_dir.expanduser().resolve()
+    path = Path(args.script)
+    if not path.is_absolute():
+        path = project / path
+    return path
+
+
 def build(args) -> NoireRenderer:
     project = args.project_dir.expanduser().resolve()
-    script_path = Path(args.script)
-    if not script_path.is_absolute():
-        script_path = project / script_path
-    script = load_script(script_path, project)
+    script = load_script(resolve_script_path(args), project)
     width, height = contract.canvas_size(args.preview)
     return NoireRenderer(project, script, width, height)
 
@@ -40,9 +45,11 @@ def main() -> None:
     parser.add_argument("--mode", choices=("plan", "render", "grades"), default="plan")
     parser.add_argument("--preview", action="store_true", help="540x960 快速预览")
     parser.add_argument("--output")
-    parser.add_argument("--crf", type=int, default=20)
+    parser.add_argument("--crf", type=int, default=22)
     parser.add_argument("--no-audio", action="store_true")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--skip-dialogue-check", action="store_true",
+                        help="不检查字幕与旁白是否一致（默认检查）")
     parser.add_argument("--project-dir", type=Path, default=default_project())
     args = parser.parse_args()
 
@@ -88,6 +95,16 @@ def main() -> None:
             print(f"  {beat.id}  {beat.start:6.2f}s +{beat.duration:5.2f}s  "
                   f"({voice}, 调色 {grade})  {beat.on_screen or ''}")
         return
+
+    # Gate: captions are burned into the picture, so a mismatch between what the
+    # audience hears and what they read is baked in permanently. Catch it before
+    # spending half an hour rendering.
+    from noire import check_dialogue
+    if check_dialogue.main(["--script", str(resolve_script_path(args)), "--quiet"]) != 0:
+        print("\n字幕与旁白不一致，已中止渲染（加 --skip-dialogue-check 可强制继续）")
+        if not args.skip_dialogue_check:
+            return
+        print("  → 按 --skip-dialogue-check 继续")
 
     output = Path(args.output) if args.output else (
         project / "renders" / ("noire-preview.mp4" if args.preview else "noire.mp4")

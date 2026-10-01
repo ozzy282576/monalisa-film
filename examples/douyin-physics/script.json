@@ -118,8 +118,8 @@
     },
     {
       "id": "07",
-      "narration": "老刑警没看地上。他先看了窗台——干干净净，没有一处蹬踏的痕迹。",
-      "on_screen": "他先看了窗台——干干净净，没有一处蹬踏的痕迹。",
+      "narration": "老刑警没看地上。他先看了窗台，干干净净，没有一处蹬踏的痕迹。",
+      "on_screen": "老刑警没看地上。他先看了窗台——干干净净，没有一处蹬踏的痕迹。",
       "image": "examples/douyin-physics/images/07.png",
       "motion": "push_in_high",
       "accent": "blue",
@@ -171,8 +171,8 @@
     },
     {
       "id": "11",
-      "narration": "失足滑落的人，水平方向没有初速度。没有初速度，就没有水平位移。它只会贴着墙根掉下去。",
-      "on_screen": "水平方向没有初速度，就没有水平位移。只会贴着墙根掉下去。",
+      "narration": "水平方向没有初速度，就没有水平位移。它只会贴着墙根掉下去。",
+      "on_screen": "水平方向没有初速度，就没有水平位移。它只会贴着墙根掉下去。",
       "image": "examples/douyin-physics/images/11.png",
       "motion": "tilt_down",
       "accent": null,
@@ -240,7 +240,7 @@
     },
     {
       "id": "16",
-      "narration": "法医统计里，一到十米高度的坠落，平均水平位移只有零点七四米。四米，是这个数字的五倍以上。",
+      "narration": "一到十米高度的坠落，平均水平位移只有零点七四米。",
       "on_screen": "一到十米高度的坠落，平均水平位移只有 0.74 米",
       "annotation": "0.74 m",
       "image": "examples/douyin-physics/images/16.png",
@@ -254,7 +254,7 @@
     },
     {
       "id": "17",
-      "narration": "她自己跳不出这个距离——她连翻过那道护栏都做不到。",
+      "narration": "她自己跳不出这个距离。",
       "on_screen": "她自己跳不出这个距离。",
       "annotation": "这不是意外。",
       "image": "examples/douyin-physics/images/17.png",
@@ -268,7 +268,7 @@
     },
     {
       "id": "18",
-      "narration": "而且凶手不是“推”。推，给不了这个速度。只能是抱起她，甩出去。",
+      "narration": "不是推。推给不了这个速度。只能是抱起她，甩出去。",
       "on_screen": "不是“推”。推给不了这个速度——只能是抱起她，甩出去。",
       "image": "examples/douyin-physics/images/18.png",
       "motion": "creep_in",
@@ -282,7 +282,7 @@
     },
     {
       "id": "19",
-      "narration": "一个一米五、体弱多病的女人，要到四米外，得跳出接近世界纪录的水平速度。",
+      "narration": "一个体弱多病的女人，要跳出接近世界纪录的速度。",
       "on_screen": "一个体弱多病的女人，要跳出接近世界纪录的速度",
       "annotation": "立定跳远世界纪录 3.71 m",
       "image": "examples/douyin-physics/images/19.png",
@@ -310,7 +310,7 @@
     },
     {
       "id": "21",
-      "narration": "物理算出来的，只是一个“不可能”。真正定罪的，是痕迹、物证、口供，一环扣一环的证据链。",
+      "narration": "物理算出的只是不可能，定罪靠的是完整证据链。",
       "on_screen": "物理算出的只是“不可能”，定罪靠的是完整证据链",
       "image": "examples/douyin-physics/images/21.png",
       "motion": "push_in",
