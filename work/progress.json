@@ -1,0 +1,144 @@
+{
+  "ok": 15,
+  "pending": 0,
+  "fail": 0,
+  "total": 15,
+  "updated": 1790788989,
+  "clips": [
+    {
+      "id": "01",
+      "title": "卢浮宫黎明",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 9232624,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "02",
+      "title": "沙龙卡雷",
+      "status": "pass",
+      "tries": 15,
+      "bytes": 8768637,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "03",
+      "title": "佩鲁贾登场",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 4564386,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "04",
+      "title": "藏身储藏室",
+      "status": "pass",
+      "tries": 7,
+      "bytes": 4535180,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "05",
+      "title": "取下名画",
+      "status": "pass",
+      "tries": 2,
+      "bytes": 5619137,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "06",
+      "title": "卸框卷画",
+      "status": "pass",
+      "tries": 9,
+      "bytes": 4224697,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "07",
+      "title": "大摇大摆走出",
+      "status": "pass",
+      "tries": 5,
+      "bytes": 7008391,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "08",
+      "title": "空墙被发现",
+      "status": "pass",
+      "tries": 49,
+      "bytes": 5234173,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "09",
+      "title": "全城搜查",
+      "status": "pass",
+      "tries": 10,
+      "bytes": 8085191,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "10",
+      "title": "木箱里的两年",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 4438235,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "11",
+      "title": "佛罗伦萨接头",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 4997259,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "12",
+      "title": "乌菲兹鉴定",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 5412538,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "13",
+      "title": "被捕",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 5157820,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "14",
+      "title": "荣归卢浮宫",
+      "status": "pass",
+      "tries": 13,
+      "bytes": 9492053,
+      "duration": 12.25,
+      "reason": "ok"
+    },
+    {
+      "id": "15",
+      "title": "尾声特写",
+      "status": "pass",
+      "tries": 1,
+      "bytes": 4949183,
+      "duration": 12.25,
+      "reason": "ok"
+    }
+  ]
+}
