@@ -1,0 +1,353 @@
+{
+  "title": "物理学撕碎的意外",
+  "ratio": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "padding": 0.5,
+  "tail": 1.6,
+  "gap": 0.16,
+  "style_lock": "高对比手绘图像小说质感：粗犷墨线 + 厚涂上色，浓郁但克制的电影色。夜景偏冷青、室内偏暖琥珀，全片走暖冷分离。证据色只用于关键物证与物理轨迹：警示红 #C1121F、冰冷蓝 #2E6E8E。",
+  "media": {
+    "voice_id": "Arena voice-00（中文男声旁白）",
+    "voice_dir": "examples/douyin-physics/voice",
+    "voice": {}
+  },
+  "bgm": [
+    {
+      "effect": "strings",
+      "start": 0.0,
+      "duration": 11.5
+    },
+    {
+      "effect": "rumble",
+      "start": 37.0,
+      "duration": 6.0
+    },
+    {
+      "effect": "strings",
+      "start": 62.0,
+      "duration": 16.0
+    },
+    {
+      "effect": "piano",
+      "start": 96.0,
+      "duration": 22.0
+    }
+  ],
+  "beats": [
+    {
+      "id": "01",
+      "narration": "现场干净得可怕。雨，把一切都冲掉了。",
+      "on_screen": "现场干净得可怕。雨，把一切都冲掉了。",
+      "image": "examples/douyin-physics/images/01.png",
+      "motion": "push_in",
+      "accent": null,
+      "sfx": [
+        "thunder"
+      ],
+      "min_duration": 3.0,
+      "note": "暴雨夜，孤立老式公寓楼，二楼一扇窗透出冷光",
+      "disclaimer": "根据真实办案方法改编 · 综合多起案件 · 非单一真实案件"
+    },
+    {
+      "id": "02",
+      "narration": "",
+      "on_screen": "完美伪装的“意外”",
+      "image": "examples/douyin-physics/images/02.png",
+      "motion": "pan_right",
+      "accent": null,
+      "sfx": [
+        "siren"
+      ],
+      "min_duration": 3.0,
+      "note": "警戒线，警察雨衣反光",
+      "disclaimer": "根据真实办案方法改编 · 综合多起案件 · 非单一真实案件"
+    },
+    {
+      "id": "03",
+      "narration": "所有人都以为这是悲剧，除了那个老刑警。",
+      "on_screen": "所有人都以为这是悲剧，除了那个老刑警。",
+      "image": "examples/douyin-physics/images/03.png",
+      "motion": "push_in",
+      "accent": null,
+      "sfx": [
+        "clock"
+      ],
+      "min_duration": 3.0,
+      "note": "丈夫靠门框，阴影遮半张脸",
+      "disclaimer": "根据真实办案方法改编 · 综合多起案件 · 非单一真实案件"
+    },
+    {
+      "id": "04",
+      "narration": "丈夫说，她擦玻璃时，失足坠楼。",
+      "on_screen": "丈夫说，她擦玻璃时，失足坠楼。",
+      "image": "examples/douyin-physics/images/04.png",
+      "motion": "creep_in",
+      "accent": "blue",
+      "sfx": [],
+      "min_duration": 3.0,
+      "note": "窗台积水（冰冷蓝）"
+    },
+    {
+      "id": "05",
+      "narration": "没有挣扎痕迹，椅子倒在一边，看起来合情合理。",
+      "on_screen": "没有挣扎痕迹，椅子倒在一边，看起来合情合理。",
+      "image": "examples/douyin-physics/images/05.png",
+      "motion": "pan_left",
+      "accent": null,
+      "sfx": [
+        "shutter"
+      ],
+      "min_duration": 3.0,
+      "note": "倒地椅子 + 碎玻璃"
+    },
+    {
+      "id": "06",
+      "narration": "妻子身高一米五，体弱多病。而这扇窗户的护栏，一米一。",
+      "on_screen": "妻子身高一米五，体弱多病。而这扇窗户的护栏，一米一。",
+      "annotation": "150 cm  /  110 cm",
+      "image": "examples/douyin-physics/images/06.png",
+      "motion": "hold",
+      "accent": null,
+      "sfx": [
+        "whoosh"
+      ],
+      "min_duration": 3.4,
+      "note": "左：死者照片；右：护栏"
+    },
+    {
+      "id": "07",
+      "narration": "老刑警没看地上。他先看了窗台，干干净净，没有一处蹬踏的痕迹。",
+      "on_screen": "老刑警没看地上。他先看了窗台——干干净净，没有一处蹬踏的痕迹。",
+      "image": "examples/douyin-physics/images/07.png",
+      "motion": "push_in_high",
+      "accent": "blue",
+      "sfx": [
+        "friction"
+      ],
+      "min_duration": 3.4,
+      "note": "刑警蹲下观察窗台结构（眼睛冰冷蓝）"
+    },
+    {
+      "id": "08",
+      "narration": "一米一。暴雨天，开着窗，擦玻璃？",
+      "on_screen": "一米一。暴雨天，开着窗，擦玻璃？",
+      "annotation": "1100 mm",
+      "image": "examples/douyin-physics/images/08.png",
+      "motion": "creep_in",
+      "accent": null,
+      "sfx": [
+        "whoosh"
+      ],
+      "min_duration": 3.0,
+      "note": "卷尺绷直测护栏"
+    },
+    {
+      "id": "09",
+      "narration": "真正让他停住的，是窗外那片草坪。",
+      "on_screen": "真正让他停住的，是窗外那片草坪。",
+      "image": "examples/douyin-physics/images/09.png",
+      "motion": "push_in",
+      "accent": "blue",
+      "sfx": [
+        "heartbeat"
+      ],
+      "min_duration": 3.0,
+      "note": "刑警的眼睛（冰冷蓝）"
+    },
+    {
+      "id": "10",
+      "narration": "他找来一只和死者体重相当的水袋。放在窗台上，松手。",
+      "on_screen": "他找来一只和死者体重相当的水袋，放在窗台上，松手。",
+      "image": "examples/douyin-physics/images/10.png",
+      "motion": "creep_in",
+      "accent": null,
+      "sfx": [
+        "friction"
+      ],
+      "min_duration": 3.4,
+      "note": "对照实验一：水袋放窗台"
+    },
+    {
+      "id": "11",
+      "narration": "水平方向没有初速度，就没有水平位移。它只会贴着墙根掉下去。",
+      "on_screen": "水平方向没有初速度，就没有水平位移。它只会贴着墙根掉下去。",
+      "image": "examples/douyin-physics/images/11.png",
+      "motion": "tilt_down",
+      "accent": null,
+      "sfx": [
+        "thud"
+      ],
+      "min_duration": 4.4,
+      "note": "对照实验一结果：垂直落在墙根花坛"
+    },
+    {
+      "id": "12",
+      "narration": "可她的首次触地点，离墙根四米。",
+      "on_screen": "可她的首次触地点，离墙根四米。",
+      "annotation": "4 m",
+      "image": "examples/douyin-physics/images/12.png",
+      "motion": "pull_out",
+      "accent": "red",
+      "sfx": [
+        "strings"
+      ],
+      "min_duration": 3.4,
+      "note": "双落点对比，4 米红色标记"
+    },
+    {
+      "id": "13",
+      "narration": "窗台离地六米。落地时间，一点一秒。",
+      "on_screen": "窗台离地六米。落地时间，一点一秒。",
+      "annotation": "y = 6 m\nt ≈ 1.1 s",
+      "image": "examples/douyin-physics/images/13.png",
+      "motion": "push_in",
+      "accent": "red",
+      "sfx": [
+        "friction"
+      ],
+      "min_duration": 3.4,
+      "note": "黑板演算，粉笔灰飞扬"
+    },
+    {
+      "id": "14",
+      "narration": "要落在四米外，她离开窗户的那一刻，就必须有一个水平初速度。",
+      "on_screen": "要落在四米外，她离开窗户的那一刻，就必须有一个水平初速度。",
+      "annotation": "v = √( g·x² / 2y )",
+      "image": "examples/douyin-physics/images/14.png",
+      "motion": "hold",
+      "accent": "red",
+      "sfx": [
+        "ding"
+      ],
+      "min_duration": 3.4,
+      "note": "红色抛物线轨迹演示"
+    },
+    {
+      "id": "15",
+      "narration": "三点六米每秒。",
+      "on_screen": "三点六米每秒。",
+      "annotation": "v ≈ 3.6 m/s",
+      "image": "examples/douyin-physics/images/15.png",
+      "motion": "push_in",
+      "accent": "red",
+      "sfx": [
+        "impact"
+      ],
+      "min_duration": 2.6,
+      "note": "数值定格，粉笔断裂"
+    },
+    {
+      "id": "16",
+      "narration": "一到十米高度的坠落，平均水平位移只有零点七四米。",
+      "on_screen": "一到十米高度的坠落，平均水平位移只有 0.74 米",
+      "annotation": "0.74 m",
+      "image": "examples/douyin-physics/images/16.png",
+      "motion": "hold",
+      "accent": null,
+      "sfx": [
+        "rumble"
+      ],
+      "min_duration": 5.0,
+      "note": "法医统计柱状图（614 例）"
+    },
+    {
+      "id": "17",
+      "narration": "她自己跳不出这个距离。",
+      "on_screen": "她自己跳不出这个距离。",
+      "annotation": "这不是意外。",
+      "image": "examples/douyin-physics/images/17.png",
+      "motion": "push_in",
+      "accent": "red",
+      "sfx": [
+        "impact"
+      ],
+      "min_duration": 3.6,
+      "note": "刑警猛地回头锁定丈夫"
+    },
+    {
+      "id": "18",
+      "narration": "不是推。推给不了这个速度。只能是抱起她，甩出去。",
+      "on_screen": "不是“推”。推给不了这个速度——只能是抱起她，甩出去。",
+      "image": "examples/douyin-physics/images/18.png",
+      "motion": "creep_in",
+      "accent": "red",
+      "sfx": [
+        "glass",
+        "whoosh"
+      ],
+      "min_duration": 4.6,
+      "note": "慢动作重现：抱起甩出窗外"
+    },
+    {
+      "id": "19",
+      "narration": "一个体弱多病的女人，要跳出接近世界纪录的速度。",
+      "on_screen": "一个体弱多病的女人，要跳出接近世界纪录的速度",
+      "annotation": "立定跳远世界纪录 3.71 m",
+      "image": "examples/douyin-physics/images/19.png",
+      "motion": "pull_out",
+      "accent": null,
+      "sfx": [
+        "siren"
+      ],
+      "min_duration": 5.4,
+      "note": "抓捕，闪电照亮刑警的脸"
+    },
+    {
+      "id": "20",
+      "narration": "杂物间的拖把上，还留着被擦过的痕迹。鲁米诺一喷，全都亮了。",
+      "on_screen": "杂物间的拖把上，还留着被擦过的痕迹。鲁米诺一喷，全都亮了。",
+      "annotation": "鲁米诺反应",
+      "image": "examples/douyin-physics/images/20.png",
+      "motion": "push_in",
+      "accent": "blue",
+      "sfx": [
+        "heartbeat"
+      ],
+      "min_duration": 4.4,
+      "note": "鲁米诺荧光（冰冷蓝）"
+    },
+    {
+      "id": "21",
+      "narration": "物理算出的只是不可能，定罪靠的是完整证据链。",
+      "on_screen": "物理算出的只是“不可能”，定罪靠的是完整证据链",
+      "image": "examples/douyin-physics/images/21.png",
+      "motion": "push_in",
+      "accent": "red",
+      "sfx": [
+        "strings"
+      ],
+      "min_duration": 5.4,
+      "note": "法庭，破碎的红色公式"
+    },
+    {
+      "id": "22",
+      "narration": "谎言可以编得天衣无缝。但它不能违反物理。",
+      "on_screen": "谎言可以编得天衣无缝，但它不能违反物理。",
+      "annotation": "物理学，是谎言的照妖镜",
+      "image": "examples/douyin-physics/images/22.png",
+      "motion": "creep_in",
+      "accent": "blue",
+      "sfx": [
+        "piano"
+      ],
+      "min_duration": 4.4,
+      "note": "刑警剪影，阳光透入，物理网格线"
+    },
+    {
+      "id": "23",
+      "narration": "当谎言撞上物理定律，你觉得它还能撑多久？评论区告诉我。",
+      "on_screen": "当谎言撞上物理定律，你觉得它还能撑多久？",
+      "image": "examples/douyin-physics/images/23.png",
+      "motion": "hold",
+      "accent": null,
+      "sfx": [
+        "gavel"
+      ],
+      "min_duration": 5.0,
+      "note": "全黑压大字互动结尾",
+      "disclaimer": "根据真实办案方法改编 · 综合多起案件 · 非单一真实案件"
+    }
+  ]
+}

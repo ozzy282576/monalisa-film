@@ -1,0 +1,4 @@
+# Runtime dependencies for the headless renderer.
+#   pip install -r requirements.txt
+numpy>=1.24
+Pillow>=10.0
