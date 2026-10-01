@@ -17,4 +17,4 @@ Agnes Video 2.5 Flash 生成的约 3 分钟成片（15 段真动画 + 男声解�
 1. 仓库 Settings → Secrets → Actions 确认已有 `AGNES_API_KEY`（不要再 New，不要提交 Key）
 2. 改 `storyboard.json`
 3. 只开一个 workflow：**Generate Mona Lisa film (Agnes)**
-4. 按手册抽帧质检，不合格重做；再配等长解说、烧字幕
+4. 按手册抽帧质检，不合格重做；**先对照实际画面写解说**，再等长配音、烧字幕
