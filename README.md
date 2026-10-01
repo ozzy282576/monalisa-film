@@ -11,11 +11,11 @@
 
 已完成脚本重写、来源核查和串行任务调度代码。**尚无本片生成视频；没有做完畸变、配音、字幕、音画同步验收。**
 
-2026-10-01：当前 GitHub 集成可推送分支，但调用 Actions workflow_dispatch 返回 HTTP 403 `Resource not accessible by integration`；读取 Actions Secret 列表也被拒绝。不能据此判断现有 Secret 是否可用。无须导出、粘贴或重建现有 API Key。
+2026-10-01：手动 workflow_dispatch 与读取 Secret 列表返回 HTTP 403，但本分支 push 已成功自动触发工作流，当前正在生成步骤。运行链接：https://github.com/ozzy282576/monalisa-film/actions/runs/36865885084 。不要重复启动；不需要导出、粘贴或重建现有 API Key。
 
 ## 启动
 
-在 Arena 重新连接 GitHub 并允许 Actions 操作，然后由代理继续；或者在 GitHub Actions 中手动运行已存在的 `agnes-film.yml`，**必须选择本分支** `arena/01a0f777-monalisa-film`（列表中可能仍显示旧工作流名称）。只启动一个运行。
+首次运行已经启动。只有原运行结束且确需恢复时，才在 Arena 重新连接 GitHub 以允许 Actions 操作，或者在 GitHub Actions 中手动运行已存在的 `agnes-film.yml`，**必须选择本分支** `arena/01a0f777-monalisa-film`（列表中可能仍显示旧工作流名称）。只启动一个运行。
 
 现有仓库 Secret `AGNES_API_KEY` 由 runner 读取；不将密钥发送给代理。原分支和 main 均不修改。
 
