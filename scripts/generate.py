@@ -79,7 +79,129 @@ def cooldown():
     time.sleep(GAP)
 
 
+def collect_one(item, state, key):
+    """Collect raw media only; never call QC in this phase."""
+    sid = item['id']
+    st = state.setdefault(sid, {'tries': 0, 'status': 'pending'})
+    dest = CLIPS / (sid + '.mp4')
+    if st['status'] in ('downloaded', 'machine_pass') and dest.exists():
+        print(f'Clip {sid}: raw file retained, QC deferred', flush=True)
+        return
+    if st['status'] in ('submission_uncertain', 'submitting'):
+        raise SystemExit('Prior create outcome uncertain; reconcile provider task before resuming.')
+    while True:
+        if not st.get('video_id'):
+            if st['tries'] >= MAX_TRIES:
+                raise SystemExit(f'{sid}: 50 attempts exhausted; saved other completed clips.')
+            st['tries'] += 1
+            st['status'] = 'submitting'
+            save(state)
+            print(f'Clip {sid}, create attempt {st["tries"]}/50', flush=True)
+            try:
+                body = api('POST', '/v1/videos', key, {
+                    'model': MODEL, 'prompt': item['prompt'], 'seconds': '12',
+                    'mode': 'text', 'size': '720P', 'aspect_ratio': '16:9'})
+            except urllib.error.HTTPError as e:
+                st['status'] = 'create_rejected'
+                st['http_code'] = e.code
+                save(state)
+                print(f'Clip {sid}: create rejected HTTP {e.code}', flush=True)
+                if e.code in (401, 403):
+                    raise SystemExit('Provider authentication/permission rejection; stop rather than repeat invalid requests.')
+                cooldown()
+                continue
+            except Exception:
+                st['status'] = 'submission_uncertain'
+                save(state)
+                raise SystemExit('Create outcome unknown; stopped safely for task reconciliation.')
+            vid = body.get('video_id')
+            if not vid:
+                st['status'] = 'submission_uncertain'
+                save(state)
+                raise SystemExit('No documented video_id returned; task reconciliation required.')
+            st.update(video_id=vid, status='polling')
+            save(state)
+        while True:
+            try:
+                body = api('GET', '/agnesapi?' + urlencode({
+                    'video_id': st['video_id'], 'model_name': MODEL}), key)
+            except Exception:
+                cooldown()
+                continue
+            status = body.get('status')
+            print(f'Clip {sid}: {status}', flush=True)
+            if status == 'failed':
+                st.pop('video_id')
+                st['status'] = 'generation_failed'
+                save(state)
+                cooldown()
+                break
+            if status == 'completed' and body.get('url'):
+                tmp = dest.with_suffix('.part')
+                try:
+                    with urllib.request.urlopen(body['url'], timeout=180) as response, tmp.open('wb') as out:
+                        while block := response.read(1024*1024):
+                            out.write(block)
+                    tmp.replace(dest)
+                except Exception:
+                    cooldown()
+                    continue
+                st.update(status='downloaded', visual_review='pending', machine_qc='pending',
+                          bytes=dest.stat().st_size)
+                save(state)
+                print(f'Clip {sid}: downloaded, QC DEFERRED', flush=True)
+                cooldown()
+                return
+            time.sleep(15)
+
+
+def review_and_repair(story, state, key):
+    # Hard gate: never begin QA or repair while a first-pass clip is missing.
+    if not all((CLIPS / (i['id']+'.mp4')).exists() for i in story):
+        raise SystemExit('First pass incomplete: QC and repair not started.')
+    while True:
+        rejected = []
+        for item in story:
+            sid = item['id']
+            try:
+                good = qc(CLIPS / (sid+'.mp4'), sid)
+            except Exception:
+                good = False
+                (WORK / f'qc-{sid}.json').write_text(json.dumps({
+                    'machine_qc': 'fail', 'reasons': ['probe_or_decode_error'],
+                    'visual_review': 'pending'}))
+            state[sid]['machine_qc'] = 'pass' if good else 'fail'
+            state[sid]['visual_review'] = 'pending'
+            if not good:
+                rejected.append(item)
+            save(state)
+        (WORK / 'redo.json').write_text(json.dumps([s['id'] for s in rejected]))
+        if not rejected:
+            print('All raw clips pass machine QC. Human visual QA and narration still pending.', flush=True)
+            return
+        for item in rejected:
+            sid = item['id']
+            st = state[sid]
+            if st['tries'] >= MAX_TRIES:
+                raise SystemExit(f'{sid}: repair budget exhausted; raw file preserved, NOT approved.')
+            # Retain rejected originals for audit; never overwrite accepted clips.
+            archive = WORK / 'rejected'
+            archive.mkdir(exist_ok=True)
+            (CLIPS / (sid+'.mp4')).replace(archive / f'{sid}-attempt-{st["tries"]}.mp4')
+            st.pop('video_id', None)
+            st['status'] = 'redo_pending'
+            save(state)
+            collect_one(item, state, key)
+
+
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--scene', choices=[f'{i:02}' for i in range(1,16)])
+    parser.add_argument('--review', action='store_true')
+    parser.add_argument('--renew-exhausted', action='store_true',
+                        help='Explicitly authorized new batch; preserve prior attempt history')
+    args = parser.parse_args()
     key = os.environ.get('AGNES_API_KEY', '').strip()
     if not key:
         raise SystemExit('Missing AGNES_API_KEY Actions secret. No request sent.')
@@ -89,92 +211,21 @@ def main():
     state = json.loads(statefile.read_text()) if statefile.exists() else {}
     story = json.loads((ROOT / 'storyboard.json').read_text())
     assert len(story) == 15 and all(s['seconds'] == '12' for s in story)
+    if args.renew_exhausted:
+        for sid, st in state.items():
+            if st.get('tries', 0) >= MAX_TRIES and not st.get('video_id') and st.get('status') not in ('submitting', 'submission_uncertain'):
+                st.setdefault('prior_batches', []).append({
+                    'tries': st['tries'], 'status': st['status'], 'http_code': st.get('http_code')})
+                print(f'Clip {sid}: prior batch tries={st["tries"]}, HTTP={st.get("http_code")}; new batch authorized', flush=True)
+                st.update(tries=0, status='pending')
+        save(state)
+    if args.review:
+        review_and_repair(story, state, key)
+        return
     for item in story:
-        sid = item['id']
-        st = state.setdefault(sid, {'tries': 0, 'status': 'pending'})
-        dest = CLIPS / (sid + '.mp4')
-        if st['status'] == 'machine_pass' and dest.exists() and qc(dest, sid):
-            continue
-        if st['status'] in ('submission_uncertain', 'submitting'):
-            raise SystemExit('Prior create outcome uncertain; reconcile provider task before resuming. No duplicate submission.')
-        while True:
-            if not st.get('video_id'):
-                if st['tries'] >= MAX_TRIES:
-                    raise SystemExit(f'{sid}: 50 attempts exhausted. Later clips NOT started.')
-                st['tries'] += 1
-                st['status'] = 'submitting'
-                save(state)
-                print(f'Clip {sid}, create attempt {st["tries"]}/50', flush=True)
-                try:
-                    body = api('POST', '/v1/videos', key, {
-                        'model': MODEL, 'prompt': item['prompt'], 'seconds': '12',
-                        'mode': 'text', 'size': '720P', 'aspect_ratio': '16:9'})
-                except urllib.error.HTTPError as e:
-                    st['status'] = 'create_rejected'
-                    st['http_code'] = e.code
-                    save(state)
-                    cooldown()
-                    continue
-                except Exception:
-                    st['status'] = 'submission_uncertain'
-                    save(state)
-                    # Retrying a timed-out POST could create concurrent billable tasks.
-                    raise SystemExit('Create outcome unknown; stopped safely for task reconciliation.')
-                vid = body.get('video_id')
-                if not vid:
-                    st['status'] = 'submission_uncertain'
-                    save(state)
-                    raise SystemExit('No documented video_id returned; task reconciliation required.')
-                st.update(video_id=vid, status='polling')
-                save(state)
-            while True:
-                try:
-                    body = api('GET', '/agnesapi?' + urlencode({
-                        'video_id': st['video_id'], 'model_name': MODEL}), key)
-                except Exception:
-                    # Retry the same task, NOT another create.
-                    cooldown()
-                    continue
-                status = body.get('status')
-                print(f'Clip {sid}: {status}', flush=True)
-                if status == 'failed':
-                    st.pop('video_id')
-                    st['status'] = 'generation_failed'
-                    save(state)
-                    cooldown()
-                    break
-                if status == 'completed' and body.get('url'):
-                    tmp = dest.with_suffix('.part')
-                    try:
-                        # No API credentials forwarded to third-party media hosts.
-                        with urllib.request.urlopen(body['url'], timeout=180) as response, tmp.open('wb') as out:
-                            while block := response.read(1024*1024):
-                                out.write(block)
-                        tmp.replace(dest)
-                    except Exception:
-                        cooldown()
-                        continue
-                    try:
-                        good = qc(dest, sid)
-                    except Exception:
-                        good = False
-                    if good:
-                        st['status'] = 'machine_pass'
-                        st['visual_review'] = 'pending'
-                        save(state)
-                        print(f'Clip {sid}: machine QC passed; visual review still pending', flush=True)
-                        cooldown()
-                        break
-                    st.pop('video_id')
-                    st['status'] = 'qc_failed'
-                    save(state)
-                    dest.unlink(missing_ok=True)
-                    cooldown()
-                    break
-                time.sleep(15)
-            if st['status'] == 'machine_pass':
-                break
-    print('15 raw clips generated. NOT a finished or visually approved film.', flush=True)
+        if not args.scene or args.scene == item['id']:
+            collect_one(item, state, key)
+    print('Requested raw collection complete; QC NOT yet performed.', flush=True)
 
 
 if __name__ == '__main__':

@@ -7,23 +7,17 @@
 - 从旧制作分支找回的原手册：[docs/ORIGINAL_HANDBOOK.md](docs/ORIGINAL_HANDBOOK.md)
 - Agnes 分镜输入：[storyboard.json](storyboard.json)
 
-## 状态
+## 当前流水线：先出齐 15 段，再校验
 
-已完成脚本重写、来源核查和串行任务调度代码。**尚无本片生成视频；没有做完畸变、配音、字幕、音画同步验收。**
+上次运行 36865885084 已失败。本轮从其 artifact 恢复状态，先串行下载 15 段原片，全部到齐后批量机器 QC，仅重做不合格片段。每段成功即上传 `raw-clip-XX`，更方便实时看进度。人工畸变、配音、字幕和同步审核尚未完成。
 
-2026-10-01：手动 workflow_dispatch 与读取 Secret 列表返回 HTTP 403，但本分支 push 已成功自动触发工作流，当前正在生成步骤。运行链接：https://github.com/ozzy282576/monalisa-film/actions/runs/36865885084 。不要重复启动；不需要导出、粘贴或重建现有 API Key。
+本轮根据用户“继续生成”授权，耗尽的旧批次保存在 `prior_batches` 后开启新一批最多 50 次；其余状态继续恢复。明确 HTTP 401/403 拒绝会停止，不反复重试无效权限。失败和片间均等待 75 秒；不并发创建任务。
 
-## 启动
-
-首次运行已经启动。只有原运行结束且确需恢复时，才在 Arena 重新连接 GitHub 以允许 Actions 操作，或者在 GitHub Actions 中手动运行已存在的 `agnes-film.yml`，**必须选择本分支** `arena/01a0f777-monalisa-film`（列表中可能仍显示旧工作流名称）。只启动一个运行。
-
-现有仓库 Secret `AGNES_API_KEY` 由 runner 读取；不将密钥发送给代理。原分支和 main 均不修改。
+push 更新 `RUN_AGNES` 可触发当前分支工作流。当前重启固定恢复上次运行 36865885084；下一次恢复必须通过 `resume_run` 选择最新运行，或修改工作流中的恢复 ID 后再 push。不要从旧状态重复启动。
 
 Workflow: https://github.com/ozzy282576/monalisa-film/actions/workflows/agnes-film.yml
 
-成功后在该次运行下载 `raw-clips` artifact：包含 15 个原片、逐镜机器 QC、六个时点的抽帧、可恢复任务状态。**该 artifact 不是最终有声成片。**
-
-若运行超时或失败，从同一工作流 `resume_run` 填入原运行 ID，恢复 artifact 后继续；不要空状态反复运行。提交状态不明时需核对服务端任务，不能重发 POST。
+仅使用当前分支 `arena/01a0f777-monalisa-film`，密钥仍由 runner 的 AGNES_API_KEY Secret 注入，无须导出。手动 Actions 调度接口曾返回 403；push 触发已在上一轮验证可用。同一时间只运行一个任务。
 
 ## 后续
 

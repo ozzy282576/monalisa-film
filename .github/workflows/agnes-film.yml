@@ -26,17 +26,209 @@ jobs:
       - name: Install ffmpeg
         run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
       - name: Restore explicitly selected prior run
-        if: ${{ inputs.resume_run != '' }}
         uses: actions/download-artifact@v4
         with:
           name: raw-clips
           path: .
-          run-id: ${{ inputs.resume_run }}
+          run-id: ${{ inputs.resume_run || '36865885084' }}
           github-token: ${{ github.token }}
-      - name: Generate sequentially (machine QC only)
+      - name: Locate restored state and summarize prior failure
+        run: |
+          python3 - <<'PYCODE'
+          import json, pathlib, shutil
+          p=pathlib.Path('work/state.json')
+          if not p.exists() and pathlib.Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Restored state missing; refusing an untracked restart')
+          for sid, st in json.loads(p.read_text()).items():
+              print(sid, 'status=',st.get('status'), 'tries=',st.get('tries'), 'HTTP=',st.get('http_code'))
+          PYCODE
+      - name: Collect raw clip 01 - no QC yet
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
-        run: python3 -u scripts/generate.py
+        run: python3 -u scripts/generate.py --scene 01 --renew-exhausted
+      - name: Publish raw clip 01 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-01
+          path: |
+            clips/01.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 02 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 02
+      - name: Publish raw clip 02 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-02
+          path: |
+            clips/02.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 03 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 03
+      - name: Publish raw clip 03 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-03
+          path: |
+            clips/03.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 04 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 04
+      - name: Publish raw clip 04 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-04
+          path: |
+            clips/04.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 05 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 05
+      - name: Publish raw clip 05 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-05
+          path: |
+            clips/05.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 06 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 06
+      - name: Publish raw clip 06 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-06
+          path: |
+            clips/06.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 07 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07
+      - name: Publish raw clip 07 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-07
+          path: |
+            clips/07.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 08 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 08
+      - name: Publish raw clip 08 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-08
+          path: |
+            clips/08.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 09 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 09
+      - name: Publish raw clip 09 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-09
+          path: |
+            clips/09.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 10 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10
+      - name: Publish raw clip 10 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-10
+          path: |
+            clips/10.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 11 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11
+      - name: Publish raw clip 11 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-11
+          path: |
+            clips/11.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 12 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12
+      - name: Publish raw clip 12 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-12
+          path: |
+            clips/12.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 13 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13
+      - name: Publish raw clip 13 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-13
+          path: |
+            clips/13.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 14 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 14
+      - name: Publish raw clip 14 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-14
+          path: |
+            clips/14.mp4
+            work/state.json
+          retention-days: 30
+      - name: Collect raw clip 15 - no QC yet
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 15
+      - name: Publish raw clip 15 and progress
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-clip-15
+          path: |
+            clips/15.mp4
+            work/state.json
+          retention-days: 30
+      - name: All 15 collected - batch machine QC and selective repair
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --review
       - name: Save raw clips and resumable state even after failure
         if: always()
         uses: actions/upload-artifact@v4
