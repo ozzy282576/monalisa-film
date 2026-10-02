@@ -1,0 +1,678 @@
+name: Visual QC - regenerate rejected scenes serially
+on:
+  push:
+    branches: [arena/01a0f777-monalisa-film]
+    paths: [RUN_VISUAL_REPAIR]
+permissions:
+  contents: write
+  actions: read
+env:
+  AGNES_MAX_TRIES: '200'
+concurrency:
+  group: agnes-film
+  cancel-in-progress: false
+jobs:
+  repair_01_1:
+    name: Repair 01 - window 1 - max 200
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: raw-clips
+          path: .
+          run-id: '37011035670'
+          github-token: ${{ github.token }}
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 01
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 01 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-01-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_01_2:
+    name: Repair 01 - window 2 - max 200
+    needs: repair_01_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-01-1
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 01
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 01 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-01-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_01_3:
+    name: Repair 01 - window 3 - max 200
+    needs: repair_01_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-01-2
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 01
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 01 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-01-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_01_4:
+    name: Repair 01 - window 4 - max 200
+    needs: repair_01_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-01-3
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 01
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 01 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-01-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_07_1:
+    name: Repair 07 - window 1 - max 200
+    needs: repair_01_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-01-4
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 07
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-07-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_07_2:
+    name: Repair 07 - window 2 - max 200
+    needs: repair_07_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-07-1
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 07
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-07-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_07_3:
+    name: Repair 07 - window 3 - max 200
+    needs: repair_07_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-07-2
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 07
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-07-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_07_4:
+    name: Repair 07 - window 4 - max 200
+    needs: repair_07_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-07-3
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 07
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-07-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_10_1:
+    name: Repair 10 - window 1 - max 200
+    needs: repair_07_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-07-4
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 10
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-10-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_10_2:
+    name: Repair 10 - window 2 - max 200
+    needs: repair_10_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-10-1
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 10
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-10-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_10_3:
+    name: Repair 10 - window 3 - max 200
+    needs: repair_10_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-10-2
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 10
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-10-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_10_4:
+    name: Repair 10 - window 4 - max 200
+    needs: repair_10_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-10-3
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 10
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-10-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_11_1:
+    name: Repair 11 - window 1 - max 200
+    needs: repair_10_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-10-4
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 11
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-11-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_11_2:
+    name: Repair 11 - window 2 - max 200
+    needs: repair_11_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-11-1
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 11
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-11-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_11_3:
+    name: Repair 11 - window 3 - max 200
+    needs: repair_11_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-11-2
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 11
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-11-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_11_4:
+    name: Repair 11 - window 4 - max 200
+    needs: repair_11_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-11-3
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 11
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-11-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_12_1:
+    name: Repair 12 - window 1 - max 200
+    needs: repair_11_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-11-4
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 12
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-12-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_12_2:
+    name: Repair 12 - window 2 - max 200
+    needs: repair_12_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-12-1
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 12
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-12-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_12_3:
+    name: Repair 12 - window 3 - max 200
+    needs: repair_12_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-12-2
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 12
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-12-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_12_4:
+    name: Repair 12 - window 4 - max 200
+    needs: repair_12_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-12-3
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 12
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-12-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_13_1:
+    name: Repair 13 - window 1 - max 200
+    needs: repair_12_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-12-4
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 13
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-13-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_13_2:
+    name: Repair 13 - window 2 - max 200
+    needs: repair_13_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-13-1
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 13
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-13-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_13_3:
+    name: Repair 13 - window 3 - max 200
+    needs: repair_13_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-13-2
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 13
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-13-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_13_4:
+    name: Repair 13 - window 4 - max 200
+    needs: repair_13_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-13-3
+          path: .
+      - name: Archive reviewed source and apply revised shot
+        run: python3 scripts/init_visual_repair.py --scene 13
+      - name: Generate candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-13-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  review_candidates:
+    needs: repair_13_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual-13-4
+          path: .
+      - name: Install inspection tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python3 -m pip install pillow
+      - name: Machine checks - visual approval remains pending
+        run: python3 scripts/review_replacements.py
+      - name: New candidate evidence only
+        env:
+          REVIEW_IDS: '01,07,10,11,12,13'
+          REVIEW_OUTPUT: review/visual-repair-v1
+        run: python3 scripts/prepare_visual_review.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-repair-candidates
+          path: |
+            clips/
+            work/
+            review/visual-repair-v1/
+          retention-days: 30
+      - name: Publish new small evidence sheets for manual review
+        run: |
+          git config user.name 'arena-ai-coding-agent[bot]'
+          git config user.email '298482267+arena-ai-coding-agent[bot]@users.noreply.github.com'
+          git add review/visual-repair-v1
+          git diff --cached --quiet && exit 0
+          git commit -m 'Add replacement candidate evidence - NOT visually approved'
+          git pull --rebase origin arena/01a0f777-monalisa-film
+          git push origin HEAD:arena/01a0f777-monalisa-film

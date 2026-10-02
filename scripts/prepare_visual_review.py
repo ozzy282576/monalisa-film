@@ -2,12 +2,13 @@
 import concurrent.futures
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'review' / 'evidence'
+OUT = ROOT / os.environ.get('REVIEW_OUTPUT', 'review/evidence')
 TMP = ROOT / 'work' / 'dense-frames'
 OUT.mkdir(parents=True, exist_ok=True)
 TMP.mkdir(parents=True, exist_ok=True)
@@ -21,9 +22,12 @@ def extract(args):
 
 
 report = []
-for i in range(1,16):
+for i in [int(s) for s in os.environ.get("REVIEW_IDS", ",".join(str(i) for i in range(1,16))).split(",") if s]:
     sid = f'{i:02}'
     clip = ROOT / 'clips' / f'{sid}.mp4'
+    if not clip.exists():
+        print(f'::warning title=Missing review candidate::Clip {sid} is missing; no visual approval.')
+        continue
     data = json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams',
                       '-show_format','-of','json',str(clip)]))
     times = [round(.25 + j*.5,2) for j in range(24)]
