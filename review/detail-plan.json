@@ -1,0 +1,15 @@
+{
+  "source_run": 37011035670,
+  "fps": 24,
+  "clips": [
+    {"id":"02","start":2,"seconds":2,"crop":[320,160,640,560],"focus":"walking legs, arm ownership, clothing continuity"},
+    {"id":"03","start":0.75,"seconds":2,"crop":[360,360,680,360],"focus":"gloved hands and closing file"},
+    {"id":"04","start":8.25,"seconds":2,"crop":[240,200,800,520],"focus":"rescuer hand/wrist contact and walking"},
+    {"id":"05","start":1.5,"seconds":2,"crop":[120,260,720,440],"focus":"license plate, body shape, wheels"},
+    {"id":"06","start":8,"seconds":2,"crop":[300,160,900,560],"focus":"guitar case lid, hand contact and latch"},
+    {"id":"08","start":8.75,"seconds":2,"crop":[440,260,700,460],"focus":"phone handover, fingers and sleeves"},
+    {"id":"09","start":8,"seconds":2,"crop":[250,0,1030,720],"focus":"life ring flight and landing; rotation versus shape change"},
+    {"id":"14","start":6,"seconds":2,"crop":[250,200,740,520],"focus":"door handle and hand contact"},
+    {"id":"15","start":2,"seconds":2,"crop":[120,180,1040,540],"focus":"flower stems, fingers and release"}
+  ]
+}
