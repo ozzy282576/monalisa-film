@@ -197,11 +197,31 @@ def review_and_repair(story, state, key):
             collect_one(item, state, key)
 
 
+def prepare_retry_batch(state, sid, batch_id):
+    """Renew only a missing, exhausted scene once for this user-authorized batch."""
+    if (CLIPS / (sid + '.mp4')).exists():
+        return
+    st = state.get(sid)
+    if not st or st.get('retry_batch') == batch_id:
+        return
+    if st.get('video_id') or st.get('status') in ('submitting', 'submission_uncertain'):
+        return  # Let collect_one resume the task or safely stop; never duplicate it.
+    if st.get('tries', 0) < MAX_TRIES:
+        return
+    st.setdefault('prior_batches', []).append({
+        'tries': st['tries'], 'status': st['status'], 'http_code': st.get('http_code'),
+        'retry_batch': st.get('retry_batch')})
+    st.update(tries=0, status='pending', retry_batch=batch_id)
+    save(state)
+    print(f'::notice title=Retry batch::Clip {sid}: new 50-attempt allowance; old history retained.', flush=True)
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--scene', choices=[f'{i:02}' for i in range(1,16)])
     parser.add_argument('--review', action='store_true')
+    parser.add_argument('--retry-batch', help='Idempotent user-authorized retry batch ID; requires --scene')
     parser.add_argument('--renew-exhausted', action='store_true',
                         help='Explicitly authorized new batch; preserve prior attempt history')
     args = parser.parse_args()
@@ -214,6 +234,10 @@ def main():
     state = json.loads(statefile.read_text()) if statefile.exists() else {}
     story = json.loads((ROOT / 'storyboard.json').read_text())
     assert len(story) == 15 and all(s['seconds'] == '12' for s in story)
+    if args.retry_batch:
+        if not args.scene or args.renew_exhausted:
+            raise SystemExit('--retry-batch requires --scene and cannot combine with --renew-exhausted')
+        prepare_retry_batch(state, args.scene, args.retry_batch)
     if args.renew_exhausted:
         for sid, st in state.items():
             if st.get('tries', 0) >= MAX_TRIES and not st.get('video_id') and st.get('status') not in ('submitting', 'submission_uncertain'):

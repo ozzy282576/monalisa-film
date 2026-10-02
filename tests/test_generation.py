@@ -13,6 +13,38 @@ spec.loader.exec_module(g)
 
 
 class GenerationTests(unittest.TestCase):
+    def test_retry_batch_renews_only_selected_scene_and_preserves_history(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            state = {sid: {'tries':50, 'status':'exhausted', 'http_code':503} for sid in ('01','07')}
+            with patch.object(g, 'CLIPS', Path(tmp)), patch.object(g, 'save'):
+                g.prepare_retry_batch(state, '01', 'batch-1')
+                self.assertEqual(state['01']['tries'], 0)
+                self.assertEqual(state['01']['prior_batches'][0]['tries'], 50)
+                self.assertEqual(state['07']['tries'], 50)
+                state['01'].update(tries=50, status='exhausted')
+                g.prepare_retry_batch(state, '01', 'batch-1')
+                self.assertEqual(state['01']['tries'], 50)
+                self.assertEqual(len(state['01']['prior_batches']), 1)
+
+    def test_retry_keeps_downloaded_fifteen(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root/'15.mp4').write_bytes(b'raw')
+            state = {'15': {'tries':50, 'status':'downloaded'}}
+            with patch.object(g, 'CLIPS', root), patch.object(g, 'save') as save:
+                g.prepare_retry_batch(state, '15', 'batch-1')
+                save.assert_not_called()
+                self.assertEqual(state['15']['tries'], 50)
+
+    def test_retry_never_resets_active_or_uncertain_task(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for values in ({'video_id':'known-task','status':'polling'}, {'status':'submission_uncertain'}):
+                state = {'15':dict(tries=50, **values)}
+                with patch.object(g, 'CLIPS', Path(tmp)), patch.object(g, 'save') as save:
+                    g.prepare_retry_batch(state, '15', 'batch-1')
+                    save.assert_not_called()
+                    self.assertEqual(state['15']['tries'], 50)
+
     def test_downloaded_clip_skips_qc(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
