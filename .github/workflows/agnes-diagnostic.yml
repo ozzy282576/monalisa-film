@@ -1,0 +1,33 @@
+name: Agnes failure diagnosis - single probe
+on:
+  push:
+    branches: [arena/01a0f777-monalisa-film]
+    paths: [RUN_DIAGNOSTIC]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: agnes-film
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: raw-clips
+          path: restored
+          run-id: '36876593240'
+          github-token: ${{ github.token }}
+      - name: Inspect prior state and one controlled provider request
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/diagnose_agnes.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: diagnostic-state
+          path: diagnostic/
+          retention-days: 30
