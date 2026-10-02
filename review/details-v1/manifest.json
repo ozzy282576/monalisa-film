@@ -1,0 +1,146 @@
+[
+  {
+    "id": "02",
+    "start": 2,
+    "seconds": 2,
+    "crop": [
+      320,
+      160,
+      640,
+      560
+    ],
+    "focus": "walking legs, arm ownership, clothing continuity",
+    "source_sha256": "2febb611e6bb19d76d3120a561e9d7e52c15876792267186dccb08d877b874af",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "03",
+    "start": 0.75,
+    "seconds": 2,
+    "crop": [
+      360,
+      360,
+      680,
+      360
+    ],
+    "focus": "gloved hands and closing file",
+    "source_sha256": "f71567e00826b95ec398c9acdd7359121818022e78c839acd5d4e4951882fb82",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "04",
+    "start": 8.25,
+    "seconds": 2,
+    "crop": [
+      240,
+      200,
+      800,
+      520
+    ],
+    "focus": "rescuer hand/wrist contact and walking",
+    "source_sha256": "641e0d840b067200925f969042818f12e119b18bbddd3598d41b6ce1bc3a4ad8",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "05",
+    "start": 1.5,
+    "seconds": 2,
+    "crop": [
+      120,
+      260,
+      720,
+      440
+    ],
+    "focus": "license plate, body shape, wheels",
+    "source_sha256": "2df8a51fccbdb1c99a086c43f6b69a73cecedf79a9bd8c556211ad7ae2d35e4a",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "06",
+    "start": 8,
+    "seconds": 2,
+    "crop": [
+      300,
+      160,
+      900,
+      560
+    ],
+    "focus": "guitar case lid, hand contact and latch",
+    "source_sha256": "b750d8a9adb319b912d1867ac252cff143ce3f739b0fb3f077c4695672936275",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "08",
+    "start": 8.75,
+    "seconds": 2,
+    "crop": [
+      440,
+      260,
+      700,
+      460
+    ],
+    "focus": "phone handover, fingers and sleeves",
+    "source_sha256": "76f9d09f6412605a22a030a47dadc3812b8e4e11fcfcf0431cb378132845b052",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "09",
+    "start": 8,
+    "seconds": 2,
+    "crop": [
+      250,
+      0,
+      1030,
+      720
+    ],
+    "focus": "life ring flight and landing; rotation versus shape change",
+    "source_sha256": "6f494ac87ba970656fadb4e024db14dac27a4a60f80ffeb2570281207aa09f51",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "14",
+    "start": 6,
+    "seconds": 2,
+    "crop": [
+      250,
+      200,
+      740,
+      520
+    ],
+    "focus": "door handle and hand contact",
+    "source_sha256": "bac60fb3295271c5a9dfe89d06f8fa42c1555b9827209fcd7e1a73b798d85024",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  },
+  {
+    "id": "15",
+    "start": 2,
+    "seconds": 2,
+    "crop": [
+      120,
+      180,
+      1040,
+      540
+    ],
+    "focus": "flower stems, fingers and release",
+    "source_sha256": "2d527351d7ddbba5709eb2f711ac0152157e4e077bfd09a9ec00996faef9d598",
+    "consecutive_frame_count": 48,
+    "approval": "pending",
+    "limitation": "This covers only the named 2-second interval and ROI, not the entire clip."
+  }
+]
