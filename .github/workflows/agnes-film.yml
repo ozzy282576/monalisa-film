@@ -1,14 +1,8 @@
-name: Norway film - serial Agnes generation
+name: Norway film - serial per-scene attempts
 on:
   push:
     branches: [arena/01a0f777-monalisa-film]
     paths: [RUN_AGNES]
-  workflow_dispatch:
-    inputs:
-      resume_run:
-        description: Prior run ID whose raw-clips artifact should be restored (optional)
-        required: false
-        type: string
 permissions:
   contents: read
   actions: read
@@ -16,220 +10,609 @@ concurrency:
   group: agnes-film
   cancel-in-progress: false
 jobs:
-  generate:
+  clip_01:
+    name: Clip 01 - up to 50 attempts
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: arena/01a0f777-monalisa-film
-      - name: Install ffmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
-      - name: Restore explicitly selected prior run
+      - name: Restore prior serial checkpoint
         uses: actions/download-artifact@v4
         with:
           name: raw-clips
           path: .
-          run-id: ${{ inputs.resume_run || '36865885084' }}
+          run-id: '36876593240'
           github-token: ${{ github.token }}
-      - name: Locate restored state and summarize prior failure
+      - name: Ensure state is present
         run: |
           python3 - <<'PYCODE'
-          import json, pathlib, shutil
-          p=pathlib.Path('work/state.json')
-          if not p.exists() and pathlib.Path('state.json').exists():
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
               p.parent.mkdir(exist_ok=True)
               shutil.move('state.json', p)
           if not p.exists():
-              raise SystemExit('Restored state missing; refusing an untracked restart')
-          for sid, st in json.loads(p.read_text()).items():
-              print(sid, 'status=',st.get('status'), 'tries=',st.get('tries'), 'HTTP=',st.get('http_code'))
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
           PYCODE
-      - name: Collect raw clip 01 - no QC yet
+      - name: Collect 01; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
-        run: python3 -u scripts/generate.py --scene 01 --renew-exhausted
-      - name: Publish raw clip 01 and progress
+        run: python3 -u scripts/generate.py --scene 01
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-01
+          name: checkpoint-01
           path: |
-            clips/01.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 02 - no QC yet
+          if-no-files-found: error
+  clip_02:
+    name: Clip 02 - up to 50 attempts
+    needs: clip_01
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-01
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 02; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 02
-      - name: Publish raw clip 02 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-02
+          name: checkpoint-02
           path: |
-            clips/02.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 03 - no QC yet
+          if-no-files-found: error
+  clip_03:
+    name: Clip 03 - up to 50 attempts
+    needs: clip_02
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-02
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 03; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 03
-      - name: Publish raw clip 03 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-03
+          name: checkpoint-03
           path: |
-            clips/03.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 04 - no QC yet
+          if-no-files-found: error
+  clip_04:
+    name: Clip 04 - up to 50 attempts
+    needs: clip_03
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-03
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 04; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 04
-      - name: Publish raw clip 04 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-04
+          name: checkpoint-04
           path: |
-            clips/04.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 05 - no QC yet
+          if-no-files-found: error
+  clip_05:
+    name: Clip 05 - up to 50 attempts
+    needs: clip_04
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-04
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 05; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 05
-      - name: Publish raw clip 05 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-05
+          name: checkpoint-05
           path: |
-            clips/05.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 06 - no QC yet
+          if-no-files-found: error
+  clip_06:
+    name: Clip 06 - up to 50 attempts
+    needs: clip_05
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-05
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 06; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 06
-      - name: Publish raw clip 06 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-06
+          name: checkpoint-06
           path: |
-            clips/06.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 07 - no QC yet
+          if-no-files-found: error
+  clip_07:
+    name: Clip 07 - up to 50 attempts
+    needs: clip_06
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-06
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 07; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 07
-      - name: Publish raw clip 07 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-07
+          name: checkpoint-07
           path: |
-            clips/07.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 08 - no QC yet
+          if-no-files-found: error
+  clip_08:
+    name: Clip 08 - up to 50 attempts
+    needs: clip_07
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-07
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 08; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 08
-      - name: Publish raw clip 08 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-08
+          name: checkpoint-08
           path: |
-            clips/08.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 09 - no QC yet
+          if-no-files-found: error
+  clip_09:
+    name: Clip 09 - up to 50 attempts
+    needs: clip_08
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-08
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 09; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 09
-      - name: Publish raw clip 09 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-09
+          name: checkpoint-09
           path: |
-            clips/09.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 10 - no QC yet
+          if-no-files-found: error
+  clip_10:
+    name: Clip 10 - up to 50 attempts
+    needs: clip_09
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-09
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 10; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 10
-      - name: Publish raw clip 10 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-10
+          name: checkpoint-10
           path: |
-            clips/10.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 11 - no QC yet
+          if-no-files-found: error
+  clip_11:
+    name: Clip 11 - up to 50 attempts
+    needs: clip_10
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-10
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 11; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 11
-      - name: Publish raw clip 11 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-11
+          name: checkpoint-11
           path: |
-            clips/11.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 12 - no QC yet
+          if-no-files-found: error
+  clip_12:
+    name: Clip 12 - up to 50 attempts
+    needs: clip_11
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-11
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 12; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 12
-      - name: Publish raw clip 12 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-12
+          name: checkpoint-12
           path: |
-            clips/12.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 13 - no QC yet
+          if-no-files-found: error
+  clip_13:
+    name: Clip 13 - up to 50 attempts
+    needs: clip_12
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-12
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 13; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 13
-      - name: Publish raw clip 13 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-13
+          name: checkpoint-13
           path: |
-            clips/13.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 14 - no QC yet
+          if-no-files-found: error
+  clip_14:
+    name: Clip 14 - up to 50 attempts
+    needs: clip_13
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-13
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 14; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 14
-      - name: Publish raw clip 14 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-14
+          name: checkpoint-14
           path: |
-            clips/14.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: Collect raw clip 15 - no QC yet
+          if-no-files-found: error
+  clip_15:
+    name: Clip 15 - up to 50 attempts
+    needs: clip_14
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-14
+          path: .
+      - name: Ensure state is present
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; refusing to reset request budgets')
+          PYCODE
+      - name: Collect 15; exhausted quota continues to next job
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 15
-      - name: Publish raw clip 15 and progress
+      - name: Preserve media and state
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clip-15
+          name: checkpoint-15
           path: |
-            clips/15.mp4
-            work/state.json
+            clips/
+            work/
           retention-days: 30
-      - name: All 15 collected - batch machine QC and selective repair
+          if-no-files-found: error
+  batch_review:
+    name: Review only if all 15 raw clips exist
+    needs: clip_15
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-15
+          path: .
+      - name: Check collection completeness
+        id: gate
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import os
+          missing=[f'{i:02}' for i in range(1,16) if not Path(f'clips/{i:02}.mp4').exists()]
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write('complete='+str(not missing).lower()+'\n')
+          if missing:
+              print(f'::warning title=Incomplete collection::Missing {missing}; no QC, no finished film. Attempts completed is not video completion.')
+          PYCODE
+      - name: Install ffmpeg
+        if: steps.gate.outputs.complete == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - name: Batch QC and selective repair
+        if: steps.gate.outputs.complete == 'true'
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --review
-      - name: Save raw clips and resumable state even after failure
+      - name: Preserve aggregate results
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -238,4 +621,3 @@ jobs:
             clips/
             work/
           retention-days: 30
-          if-no-files-found: warn

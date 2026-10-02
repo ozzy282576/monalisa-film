@@ -92,7 +92,10 @@ def collect_one(item, state, key):
     while True:
         if not st.get('video_id'):
             if st['tries'] >= MAX_TRIES:
-                raise SystemExit(f'{sid}: 50 attempts exhausted; saved other completed clips.')
+                st['status'] = 'exhausted'
+                save(state)
+                print(f'::warning title=Clip {sid} exhausted::50 attempts used; no video. Continue to next scene.', flush=True)
+                return False
             st['tries'] += 1
             st['status'] = 'submitting'
             save(state)
@@ -225,7 +228,9 @@ def main():
     for item in story:
         if not args.scene or args.scene == item['id']:
             collect_one(item, state, key)
-    print('Requested raw collection complete; QC NOT yet performed.', flush=True)
+    downloaded = [i['id'] for i in story if (CLIPS / (i['id']+'.mp4')).exists()]
+    missing = [i['id'] for i in story if i['id'] not in downloaded]
+    print(f'::notice title=Collection progress::Downloaded {len(downloaded)}/15; missing={missing}; QC deferred.', flush=True)
 
 
 if __name__ == '__main__':

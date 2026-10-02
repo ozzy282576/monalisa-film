@@ -42,7 +42,7 @@ class GenerationTests(unittest.TestCase):
         self.assertEqual(sum(int(s['seconds']) for s in story), 180)
         self.assertTrue(all(s['visual_review'] == 'pending' for s in story))
 
-    def execute(self, response, initial=None):
+    def execute(self, response, initial=None, scene=None, expect_exit=True):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / 'work').mkdir()
@@ -52,19 +52,30 @@ class GenerationTests(unittest.TestCase):
             with patch.multiple(g, ROOT=root, WORK=root/'work', CLIPS=root/'clips'), \
                  patch.dict('os.environ', {'AGNES_API_KEY': 'unit-test-not-a-real-key'}), \
                  patch.object(g, 'api', side_effect=response) as api, \
-                 patch.object(g.time, 'sleep') as sleep, patch('builtins.print'), patch('sys.argv', ['generate.py']):
-                with self.assertRaises(SystemExit):
+                 patch.object(g.time, 'sleep') as sleep, patch('builtins.print'), patch('sys.argv', ['generate.py'] + (['--scene', scene] if scene else [])):
+                if expect_exit:
+                    with self.assertRaises(SystemExit):
+                        g.main()
+                else:
                     g.main()
                 state = json.loads((root / 'work/state.json').read_text())
                 return api.call_count, sleep.call_args_list, state
 
-    def test_fifty_rejections_stop_without_next_scene(self):
-        calls, sleeps, state = self.execute(HTTPError('https://example.invalid', 429, 'busy', {}, None))
-        self.assertEqual(calls, 50)
-        self.assertEqual(len(sleeps), 50)
+    def test_fifty_rejections_per_scene_continue_through_all_fifteen(self):
+        calls, sleeps, state = self.execute(HTTPError('https://example.invalid', 503, 'busy', {}, None), expect_exit=False)
+        self.assertEqual(calls, 750)
+        self.assertEqual(len(sleeps), 750)
         self.assertTrue(all(c.args == (75,) for c in sleeps))
+        self.assertEqual(len(state), 15)
+        self.assertTrue(all(st['tries'] == 50 and st['status'] == 'exhausted' for st in state.values()))
+
+    def test_exhausted_first_scene_does_not_block_second(self):
+        calls, _, state = self.execute(HTTPError('https://example.invalid', 503, 'busy', {}, None),
+            {'01': {'tries':50, 'status':'create_rejected'}}, expect_exit=False)
+        self.assertEqual(calls, 700)
         self.assertEqual(state['01']['tries'], 50)
-        self.assertNotIn('02', state)
+        self.assertEqual(state['02']['tries'], 50)
+        self.assertEqual(state['15']['tries'], 50)
 
     def test_ambiguous_submission_does_not_duplicate(self):
         calls, _, state = self.execute(TimeoutError())
@@ -73,7 +84,7 @@ class GenerationTests(unittest.TestCase):
 
     def test_resume_preserves_attempt_budget(self):
         calls, _, state = self.execute(HTTPError('https://example.invalid', 429, 'busy', {}, None),
-                                      {'01': {'tries':49, 'status':'create_rejected'}})
+                                      {'01': {'tries':49, 'status':'create_rejected'}}, scene='01', expect_exit=False)
         self.assertEqual(calls, 1)
         self.assertEqual(state['01']['tries'], 50)
 
