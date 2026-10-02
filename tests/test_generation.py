@@ -13,6 +13,38 @@ spec.loader.exec_module(g)
 
 
 class GenerationTests(unittest.TestCase):
+    def test_200_budget_continues_from_50_across_windows_without_reset(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root/'work').mkdir()
+            state = {'11': {'tries':50, 'status':'exhausted', 'prior_batches':[{'tries':50}]}}
+            item = {'id':'11', 'prompt':'unit-test'}
+            with patch.multiple(g, ROOT=root, WORK=root/'work', CLIPS=root/'clips', MAX_TRIES=200), \
+                 patch.object(g, 'api', side_effect=HTTPError('https://example.invalid',503,'busy',{},None)) as api, \
+                 patch.object(g.time,'sleep') as sleep, patch('builtins.print'):
+                for expected in (100,150,200,200):
+                    g.collect_one(item,state,'fake',create_window=50)
+                    self.assertEqual(state['11']['tries'],expected)
+                self.assertEqual(api.call_count,150)
+                self.assertEqual(sleep.call_count,150)
+                self.assertTrue(all(call.args==(75,) for call in sleep.call_args_list))
+                self.assertEqual(state['11']['status'],'exhausted')
+                self.assertEqual(state['11']['prior_batches'],[{'tries':50}])
+
+    def test_checkpoint_window_polls_existing_task_before_new_create(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root/'work').mkdir()
+            state = {'11':{'tries':50,'status':'polling','video_id':'existing-task'}}
+            responses=[{'status':'failed'},HTTPError('https://example.invalid',503,'busy',{},None)]
+            with patch.multiple(g, ROOT=root,WORK=root/'work',CLIPS=root/'clips',MAX_TRIES=200), \
+                 patch.object(g,'api',side_effect=responses) as api, patch.object(g.time,'sleep'), patch('builtins.print'):
+                g.collect_one({'id':'11','prompt':'unit-test'},state,'fake',create_window=1)
+                self.assertEqual(api.call_args_list[0].args[0],'GET')
+                self.assertEqual(api.call_args_list[1].args[0],'POST')
+                self.assertEqual(api.call_count,2)
+                self.assertEqual(state['11']['tries'],51)
+
     def test_retry_batch_renews_only_selected_scene_and_preserves_history(self):
         with tempfile.TemporaryDirectory() as tmp:
             state = {sid: {'tries':50, 'status':'exhausted', 'http_code':503} for sid in ('01','07')}

@@ -15,7 +15,9 @@ WORK = ROOT / 'work'
 CLIPS = ROOT / 'clips'
 BASE = 'https://apihub.agnes-ai.com'
 MODEL = 'agnes-video-2.5-flash'
-MAX_TRIES = 50
+MAX_TRIES = int(os.environ.get('AGNES_MAX_TRIES', '50'))
+if not 1 <= MAX_TRIES <= 200:
+    raise ValueError('AGNES_MAX_TRIES must be between 1 and 200')
 GAP = 75
 
 
@@ -79,7 +81,7 @@ def cooldown():
     time.sleep(GAP)
 
 
-def collect_one(item, state, key):
+def collect_one(item, state, key, create_window=None):
     """Collect raw media only; never call QC in this phase."""
     sid = item['id']
     st = state.setdefault(sid, {'tries': 0, 'status': 'pending'})
@@ -89,17 +91,22 @@ def collect_one(item, state, key):
         return
     if st['status'] in ('submission_uncertain', 'submitting'):
         raise SystemExit('Prior create outcome uncertain; reconcile provider task before resuming.')
+    initial_tries = st.get('tries', 0)
     while True:
         if not st.get('video_id'):
             if st['tries'] >= MAX_TRIES:
                 st['status'] = 'exhausted'
                 save(state)
-                print(f'::warning title=Clip {sid} exhausted::50 attempts used; no video. Continue to next scene.', flush=True)
+                print(f'::warning title=Clip {sid} exhausted::{MAX_TRIES} attempts used; no video. Continue to next scene.', flush=True)
                 return False
+            if create_window is not None and st['tries'] - initial_tries >= create_window:
+                save(state)
+                print(f'::notice title=Checkpoint handoff::Clip {sid}: {st["tries"]}/{MAX_TRIES}; next serial job will continue.', flush=True)
+                return None
             st['tries'] += 1
             st['status'] = 'submitting'
             save(state)
-            print(f'Clip {sid}, create attempt {st["tries"]}/50', flush=True)
+            print(f'Clip {sid}, create attempt {st["tries"]}/{MAX_TRIES}', flush=True)
             try:
                 body = api('POST', '/v1/videos', key, {
                     'model': MODEL, 'prompt': item['prompt'], 'seconds': '12',
@@ -213,7 +220,7 @@ def prepare_retry_batch(state, sid, batch_id):
         'retry_batch': st.get('retry_batch')})
     st.update(tries=0, status='pending', retry_batch=batch_id)
     save(state)
-    print(f'::notice title=Retry batch::Clip {sid}: new 50-attempt allowance; old history retained.', flush=True)
+    print(f'::notice title=Retry batch::Clip {sid}: new {MAX_TRIES}-attempt allowance; old history retained.', flush=True)
 
 
 def main():
@@ -221,6 +228,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--scene', choices=[f'{i:02}' for i in range(1,16)])
     parser.add_argument('--review', action='store_true')
+    parser.add_argument('--create-window', type=int, choices=range(1, 51), help='Checkpoint after at most this many creates; never abandon an active task')
     parser.add_argument('--retry-batch', help='Idempotent user-authorized retry batch ID; requires --scene')
     parser.add_argument('--renew-exhausted', action='store_true',
                         help='Explicitly authorized new batch; preserve prior attempt history')
@@ -251,7 +259,7 @@ def main():
         return
     for item in story:
         if not args.scene or args.scene == item['id']:
-            collect_one(item, state, key)
+            collect_one(item, state, key, create_window=args.create_window)
     downloaded = [i['id'] for i in story if (CLIPS / (i['id']+'.mp4')).exists()]
     missing = [i['id'] for i in story if i['id'] not in downloaded]
     print(f'::notice title=Collection progress::Downloaded {len(downloaded)}/15; missing={missing}; QC deferred.', flush=True)
