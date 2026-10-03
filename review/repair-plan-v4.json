@@ -1,0 +1,25 @@
+{
+  "revision": "visual-repair-v4",
+  "supersedes": "visual-repair-v3 (07 rejected: US flag persisted) ; 05 first-pass plate defect",
+  "review_date": "2026-10-03",
+  "clips": [
+    {
+      "id": "07",
+      "rejected_candidate_sha256": "b16e542c30f5113b8cd3c3b2ecec29c5ec77b0dec29b0daaf62dd522547fcd3a",
+      "fixes": [
+        "Mast must be a BARE pole/antenna: absolutely no flag, no pennant, no stars-and-stripes, no cloth of any kind on mast or rigging (v3 defect 0.25-5.75s).",
+        "Keep correct disembark-to-island direction and blank hull from v3."
+      ],
+      "prompt": "12-second real moving cinematic reconstruction, 16:9 720P. Contemporary Norway, July 2011. Photorealistic film style, muted olive and tobacco palette, soft overcast side light, natural skin, not a painting. Natural restrained motion, stable geometry. Absolutely NO text, lettering, numbers, logo, brand, coat of arms, flag, pennant, banner, badge, salute, weapons, gore, bodies, extra limbs or cloned people. The vessel's mast is a COMPLETELY BARE metal pole and antenna: no flag, no pennant, no cloth anywhere on the boat. Hull and superstructure are blank white with no name. Overcast wet July island pier. 0-6 seconds: camera ON THE ISLAND looking toward a small civilian ferry moored at a wooden pier; one anonymous adult in plain dark navy unbranded clothing steps OUT OF THE BOAT onto a stable gangway and walks TOWARD THE CAMERA onto the island, filmed from behind at a distance, face never visible; the ferry stays moored and stationary; nobody boards. No crowd, no seagulls. 6-9 seconds: two adult camp staff in plain unbranded rain jackets glance toward the landing from a distance, faces soft and non-identifiable, hands out of shot. 9-12 seconds: cut to empty pier details and wet mooring rope in a light breeze; the bare-masted ferry remains attached and does not depart."
+    },
+    {
+      "id": "05",
+      "source_sha256": "2df8a51fccbdb1c99a086c43f6b69a73cecedf79a9bd8c556211ad7ae2d35e4a",
+      "fixes": [
+        "Remove readable pseudo license plate and body lettering (first-pass defect 0.25-4.75s): rear and front completely blank, no plate, no characters on body.",
+        "Keep wheels, road perspective and overcast weather consistent."
+      ],
+      "prompt": "12-second real moving cinematic reconstruction, 16:9 720P. Contemporary Norway, July 2011. Photorealistic film style, muted olive and tobacco palette, soft overcast light, not a painting. Natural restrained motion, stable geometry. Absolutely NO text, lettering, numbers, logo, brand, flag, badge, or readable license plate anywhere; the car's rear and front are COMPLETELY BLANK with no plate and no characters on the body. 0-5 seconds: an anonymous unmarked ordinary 2011 passenger car, plain grey, no police livery, travels at normal speed on a wet Norwegian road; correct wheel and road perspective; overcast sky. 5-12 seconds: ferry landing across a grey rippling lake toward a small forested island; rain ripples and trees sway; observational, no map, no route. No people close up, no faces."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "revision_reviewed": "visual-repair-v3",
+  "review_date": "2026-10-03",
+  "reviewer": "arena-session visual review (agent)",
+  "evidence": "review/visual-repair-v3/*.jpg",
+  "decisions": [
+    {
+      "id": "07",
+      "candidate_sha256": "b16e542c30f5113b8cd3c3b2ecec29c5ec77b0dec29b0daaf62dd522547fcd3a",
+      "decision": "reject",
+      "resolved_ok": "Direction corrected: single subject steps out and walks TOWARD camera onto island (0.25-5.75s).",
+      "defects": [
+        "0.25-5.75s: ferry mast STILL flies a US-style stars-and-stripes flag in every sampled frame, despite v3 requiring a completely bare mast (forbidden: no flags, and a US flag is historically wrong for Norway 2011)."
+      ],
+      "action": "regenerate with repair-plan-v4 (bare pole mast, no flag/pennant)."
+    }
+  ],
+  "summary": {"accepted": [], "rejected": ["07"]}
+}
