@@ -21,6 +21,12 @@ ROOT = Path(__file__).resolve().parents[1]
 FONT_CJK = ROOT / 'assets/fonts/MaShanZheng-Regular.ttf'
 LABEL = 'AI 情景重现 · 非历史影像'
 
+# Documented localized cleanups for residual generator artifacts that prompts
+# could not eliminate (tiny mast pennant). Applied as delogo before concat.
+POSTFIX = {
+    '07': [("between(t,0,6)", 860, 0, 140, 120)],   # bare-mast: remove residual pennant at mast top
+}
+
 
 def _run(args, **kw):
     return subprocess.run(args, capture_output=True, text=True, **kw)
@@ -33,6 +39,19 @@ def has_filter(name):
 
 def approved_ids(approval):
     return set(json.loads(Path(approval).read_text()).get('approved', []))
+
+
+def apply_postfix(path, fixes):
+    """In-place localized delogo cleanups (documented residual-artifact removal)."""
+    vf = ','.join("delogo=x=%d:y=%d:w=%d:h=%d:enable='%s'" % (x, y, w, h, en)
+                  for (en, x, y, w, h) in fixes)
+    tmp = str(path) + '.pf.mp4'
+    r = _run([na.FFMPEG, '-y', '-v', 'error', '-i', str(path), '-vf', vf,
+              '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18',
+              '-pix_fmt', 'yuv420p', '-an', tmp])
+    if r.returncode != 0:
+        raise SystemExit('postfix failed %s\n%s' % (path, r.stderr))
+    Path(tmp).replace(path)
 
 
 def build_audio(vo_dir, out, ids):
@@ -85,6 +104,9 @@ def finalize(clips, norm, out, approval, vo_dir=None, srt=None, label=True):
         if not src.exists():
             raise SystemExit('Missing raw clip %s' % sid)
         na.normalize_clip(src, norm / ('%s.mp4' % sid))
+        if sid in POSTFIX:
+            apply_postfix(norm / ('%s.mp4' % sid), POSTFIX[sid])
+            print('postfix applied:', sid)
     video = na.assemble(norm, str(Path(out).with_suffix('.video.mp4')), approval)
     if not video['ok']:
         raise SystemExit('video master invalid: %s' % video['reasons'])

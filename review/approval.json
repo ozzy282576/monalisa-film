@@ -1,7 +1,7 @@
 {
   "updated": "2026-10-03",
-  "basis": "review/replacement-review-v1.json (01,10,11,12,13) + review/retained-approval-v1.json (02,03,04,06,08,09,14,15); 05/07 pending visual-repair-v5",
-  "approved": ["01","02","03","04","06","08","09","10","11","12","13","14","15"],
-  "pending": ["05","07"],
-  "note": "Final 180s assembly stays blocked until 05 and 07 v5 are approved."
+  "basis": "replacement-review-v1 (01,10,11,12,13) + retained-approval-v1 (02,03,04,06,08,09,14,15) + replacement-review-v5 (05, 07-with-documented-postfix)",
+  "approved": ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15"],
+  "pending": [],
+  "note": "All 15 approved. 07 carries a documented localized delogo postfix (mast-top pennant). Final cut burns 'AI 情景重现 · 非历史影像'."
 }

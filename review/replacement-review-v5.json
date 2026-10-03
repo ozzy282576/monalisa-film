@@ -1,0 +1,21 @@
+{
+  "revision_reviewed": "visual-repair-v5",
+  "review_date": "2026-10-03",
+  "reviewer": "arena-session visual review (agent)",
+  "evidence": "review/visual-repair-v5/*.jpg",
+  "decisions": [
+    {
+      "id": "07",
+      "decision": "accept_with_postfix",
+      "resolved_ok": "Direction correct (subject disembarks and walks toward camera, front visible); hull blank; staff/pier restrained.",
+      "residual": "Tiny red pennant at mast top in 0-6s despite bare-mast prompt.",
+      "postfix": "finalize_film.py POSTFIX['07']: localized delogo over mast-top (x860,y0,w140,h120) for t in [0,6]; documented, applied before concat."
+    },
+    {
+      "id": "05",
+      "decision": "accept",
+      "resolved_ok": "Car half plate blank; ferry landing half now bare-masted with blank hull, no flags/pennants/lettering (v4 defect removed)."
+    }
+  ],
+  "summary": {"accepted": ["05", "07(with documented postfix)"], "rejected": []}
+}
