@@ -25,6 +25,9 @@ def resolve_ffmpeg():
     env = os.environ.get('FFMPEG')
     if env and Path(env).exists():
         return env
+    vendored = ROOT / '.tools' / 'ffmpeg'
+    if vendored.exists():
+        return str(vendored)
     found = shutil.which('ffmpeg')
     if found:
         return found

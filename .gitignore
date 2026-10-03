@@ -6,3 +6,5 @@ work/
 out/
 audio/
 *.part
+.tools/
+.tools-py/

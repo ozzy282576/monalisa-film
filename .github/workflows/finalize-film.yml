@@ -1,0 +1,78 @@
+name: Finalize 180s film - normalize, VO, subs, label
+on:
+  push:
+    branches: [arena/01a10095-monalisa-film]
+    paths: [RUN_FINALIZE]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: finalize-only
+  cancel-in-progress: false
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Download raw clips
+        uses: actions/download-artifact@v4
+        with:
+          name: raw-clips
+          run-id: '37011035670'
+          github-token: ${{ github.token }}
+          path: .
+      - name: Download replacement candidates
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: visual-repair-candidates
+          run-id: '37078250154'
+          github-token: ${{ github.token }}
+          path: .repl
+      - name: Download scene 07 v2 candidate
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: visual07-v2-4
+          github-token: ${{ github.token }}
+          path: .repl07
+      - name: Overlay approved replacements onto raw clips
+        run: |
+          python3 - <<'PY'
+          import json, shutil
+          from pathlib import Path
+          appr = set(json.loads(Path('review/approval.json').read_text()).get('approved', []))
+          repl = {i: Path('.repl/clips')/f'{i}.mp4' for i in ['01','07','10','11','12','13']}
+          if Path('.repl07/clips/07.mp4').exists():
+              repl['07'] = Path('.repl07/clips/07.mp4')
+          for sid in appr:
+              src = repl.get(sid)
+              if src and src.exists():
+                  shutil.copy(src, Path('clips')/f'{sid}.mp4')
+                  print('overlay', sid, 'from replacement')
+          PY
+      - name: Install ffmpeg, fonts, pillow
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python3 -m pip install pillow
+      - name: Finalize 180s film
+        run: python3 scripts/finalize_film.py
+      - name: Upload final film
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-film-180
+          path: out/
+          retention-days: 30
+      - name: Extract preview contact sheet and publish
+        run: |
+          ffmpeg -v error -i out/monalisa_180_final.mp4 -vf "select='not(mod(n,450))',scale=480:270,tile=5x3" -frames:v 1 docs/final-contact-sheet.png
+          git config user.name 'arena-ai-coding-agent[bot]'
+          git config user.email '298482267+arena-ai-coding-agent[bot]@users.noreply.github.com'
+          git add docs/final-contact-sheet.png
+          git diff --cached --quiet && exit 0
+          git commit -m 'Add final 180s contact sheet'
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
