@@ -23,8 +23,9 @@ LABEL = 'AI 情景重现 · 非历史影像'
 
 # Documented localized cleanups for residual generator artifacts that prompts
 # could not eliminate (tiny mast pennant). Applied as delogo before concat.
+# Raw ffmpeg vf strings (drawbox fill works at frame edges; delogo does not).
 POSTFIX = {
-    '07': [("between(t,0,6)", 860, 0, 140, 120)],   # bare-mast: remove residual pennant at mast top
+    '07': ["drawbox=x=852:y=0:w=160:h=88:color=0xBFBFB7:t=fill:enable='between(t,0,6)'"],
 }
 
 
@@ -42,9 +43,8 @@ def approved_ids(approval):
 
 
 def apply_postfix(path, fixes):
-    """In-place localized delogo cleanups (documented residual-artifact removal)."""
-    vf = ','.join("delogo=x=%d:y=%d:w=%d:h=%d:enable='%s'" % (x, y, w, h, en)
-                  for (en, x, y, w, h) in fixes)
+    """In-place localized cleanups (documented residual-artifact removal)."""
+    vf = ','.join(fixes)
     tmp = str(path) + '.pf.mp4'
     r = _run([na.FFMPEG, '-y', '-v', 'error', '-i', str(path), '-vf', vf,
               '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18',
