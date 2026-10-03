@@ -1,0 +1,23 @@
+{
+  "review_date": "2026-10-03",
+  "reviewer": "arena-session visual review (agent); interval-level, not final human sign-off",
+  "evidence": "review/details-v1/*.jpg (native 24fps consecutive frames in named risk intervals)",
+  "decisions": [
+    {
+      "id": "02",
+      "interval_seconds": "2.0-4.0",
+      "focus": "walking legs, arm ownership, clothing continuity",
+      "decision": "interval_clear",
+      "finding": "f48-f95 continuous rear-view gait; arms attach at shoulders and swing naturally; no extra limbs, no clipping; jacket/jeans consistent; silhouette lighting change continuous."
+    },
+    { "id": "03", "interval_seconds": "0.75-1.75;3.75-5.75", "focus": "gloved hands and closing file", "decision": "pending", "finding": "not yet reviewed this pass." },
+    { "id": "04", "interval_seconds": "8.25-10.25", "focus": "rescuer hand/wrist contact and walking", "decision": "pending", "finding": "not yet reviewed this pass." },
+    { "id": "05", "interval_seconds": "1.5-3.5", "focus": "license plate, body shape, wheels", "decision": "pending", "finding": "not yet reviewed this pass." },
+    { "id": "06", "interval_seconds": "8-10", "focus": "guitar case lid, hand contact and latch", "decision": "pending", "finding": "not yet reviewed this pass." },
+    { "id": "08", "interval_seconds": "8.75-10.75", "focus": "phone handover, fingers and sleeves", "decision": "pending", "finding": "not yet reviewed this pass." },
+    { "id": "09", "interval_seconds": "8-10", "focus": "life ring flight and landing", "decision": "pending", "finding": "not yet reviewed this pass." },
+    { "id": "14", "interval_seconds": "6-8", "focus": "door handle and hand contact", "decision": "pending", "finding": "not yet reviewed this pass." },
+    { "id": "15", "interval_seconds": "2-4", "focus": "flower stems, fingers and release", "decision": "pending", "finding": "not yet reviewed this pass." }
+  ],
+  "note": "interval_clear is not final visual approval; full-clip viewing still required before assembly per docs/制作与核查.md."
+}
