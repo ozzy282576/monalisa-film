@@ -1,6 +1,6 @@
 # 挪威七月二十二日｜180 秒 AI 情景重现
 
-当前制作分支：`arena/01a0f777-monalisa-film`。
+当前制作分支：`arena/01a10095-monalisa-film`（接续自 `arena/01a0f777-monalisa-film`）。
 
 - 文案与镜头：[docs/分镜文案.md](docs/分镜文案.md)
 - 核查来源与 QC / QA 门槛：[docs/制作与核查.md](docs/制作与核查.md)
@@ -16,6 +16,18 @@
 - 原片都是 12.25 秒，尚需精确归一到每段 12 秒；无最终有声成片。
 - [逐段质检报告](review/逐段质检报告.md) / [机器可读记录](review/findings.json) / [原片抽帧](review/evidence/) / [针对性重做提示词](review/repair-plan.json)。
 - 视觉修复用独立 RUN_VISUAL_REPAIR 触发；每段先备份原片和原状态，再生成候选。新版本最多 200 次创建、失败等 75 秒，严格串行。候选下载后还必须复核，不能自动视觉放行。
+
+## 替换候选人工复核（2026-10-03，本轮新增）
+
+已对 visual-repair-v1 的六段替换候选逐张复核（每段 24 个标注采样），记录在 [replacement-review-v1.json](review/replacement-review-v1.json) / [替换候选复核.md](review/替换候选复核.md)：
+
+- **通过 5 段：01、10、11、12、13**（原缺陷均已消除，仅记轻微偏差）。
+- **退回 1 段：07**——夹克带 THE NORTH FACE 商标、船体伪文字 GOCSNANL、渡轮挂蓝旗、人脸过清。已写 [repair-plan-v2.json](review/repair-plan-v2.json)。
+- 放行清单见 [review/approval.json](review/approval.json)；保留的 9 段与 07 v2 仍 pending。
+
+归一化/拼接工具（制作规范 §5）已落地并用真实 ffmpeg 验证：`scripts/normalize_assemble.py` 将每段精确归一到 12.000s/25fps/300 帧，15 段拼成 180.000s/4500 帧；**未集齐 15 段放行时拼接被硬门禁阻断**（见 tests/test_normalize.py）。
+
+07 v2 重做工作流：`.github/workflows/visual-repair-v2.yml`（4 串行窗口、上限 200、证据页回提交），由本分支 `RUN_VISUAL_REPAIR_V2` 触发；本轮未创建该触发文件，故不会误启动。
 
 ## 当前流水线：剩余四段自动接续至 200 次
 

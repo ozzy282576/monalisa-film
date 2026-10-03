@@ -1,0 +1,65 @@
+{
+  "revision_reviewed": "visual-repair-v1",
+  "review_date": "2026-10-03",
+  "reviewer": "arena-session visual review (agent, recorded per-shot); not a substitute for final human sign-off",
+  "evidence": "review/visual-repair-v1/*.jpg (24 labelled samples each, 0.25-11.75s)",
+  "machine_qc": "all six candidates pass machine QC (see visual-repair-v1/manifest.json)",
+  "scope": "labelled 0.5s-cadence samples; inter-sample gaps and 0-0.25s / 11.75-12.25s not exhaustively checked",
+  "decisions": [
+    {
+      "id": "01",
+      "candidate_sha256": "f752f67be5f9c71b86b0429550430249bbfb1f5453e48fa27bedc02201878bc3",
+      "decision": "accept",
+      "original_defect_resolved": "prone figures / repeated hi-vis on pavement removed; two upright rescue workers with visible feet at 3.25-7.25s; lake tail 7.75-11.75s stable.",
+      "notes": [
+        "0.25-2.25s figures seen through shattered glass read as reflections; geometry stable.",
+        "Ambulance carries emergency livery (chevrons / 113-style marking); acceptable as vehicle livery, not memorial pseudo-text."
+      ]
+    },
+    {
+      "id": "07",
+      "candidate_sha256": "f5646dd8bc5e447cd332f1e6de070599e92d392222d9719dbb28f9ebda105c15",
+      "decision": "reject",
+      "defects": [
+        "6.25-8.75s: two staff jackets carry a visible THE NORTH FACE brand logo (forbidden: no logos).",
+        "9.25-11.75s: hull bears pseudo-text 'GOCSNANL' (forbidden: no vessel lettering).",
+        "0.25-5.75s: blue flag flown on the ferry (forbidden: no flags).",
+        "4.75-5.75s: subject face too clear; prompt required medium-wide, face not identifiable."
+      ],
+      "resolved_ok": "disembark direction corrected (walks from boat toward island) and ferry stays moored.",
+      "action": "regenerate with repair-plan-v2 (see review/repair-plan-v2.json)."
+    },
+    {
+      "id": "10",
+      "candidate_sha256": "f2c5aef82c1a1825cba506c93f669430ed5274c6f8feab88b33d13c98e5b6507",
+      "decision": "accept",
+      "original_defect_resolved": "no monument engraving, no flags, no crowd; single hand places one rose; lake tail stable.",
+      "notes": ["Candles are lit though prompt said unlit; flame stable across samples, no safety/text issue (minor deviation)."]
+    },
+    {
+      "id": "11",
+      "candidate_sha256": "d5bc79bc33aeede7ae875a32d88fdc6bd01a05a39f95e4733ec04c0ecbc2cc9d",
+      "decision": "accept",
+      "original_defect_resolved": "US-style flag and circular seal removed; plain wood courtroom, closed unlabelled folders, no gavel/jury box.",
+      "notes": ["Folders show blank white label stickers (unlabelled), acceptable."]
+    },
+    {
+      "id": "12",
+      "candidate_sha256": "34514f4e10a2c06db800280630853524c258b8a3e15d062f83f4b881a5638fec",
+      "decision": "accept",
+      "original_defect_resolved": "multi-national flags and pseudo-badges removed; corridor ceiling lighting constant across 6.25-11.75s samples (no flicker).",
+      "notes": ["Folder propped open briefly at 0.25s then laid closed; minor."]
+    },
+    {
+      "id": "13",
+      "candidate_sha256": "1bcf57e46894a127e7c39f1b13e21d0fe6438f1c4b193db5ac0dee35be5b58a8",
+      "decision": "accept",
+      "original_defect_resolved": "guard is behind the barred gate from the first frame (6.25s) and never crosses it; bars stay foreground; contemporary dress.",
+      "notes": [
+        "0.25-0.75s the reviewed file is briefly open though prompt said consult it closed; pages blank (minor).",
+        "6.25-6.75s guard faces camera before turning to walk away; stays deep behind gate (minor)."
+      ]
+    }
+  ],
+  "summary": {"accepted": ["01", "10", "11", "12", "13"], "rejected": ["07"]}
+}

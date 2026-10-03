@@ -1,0 +1,18 @@
+{
+  "revision": "visual-repair-v2",
+  "supersedes": "visual-repair-v1 (clip 07 rejected in review/replacement-review-v1.json)",
+  "review_date": "2026-10-03",
+  "clips": [
+    {
+      "id": "07",
+      "rejected_candidate_sha256": "f5646dd8bc5e447cd332f1e6de070599e92d392222d9719dbb28f9ebda105c15",
+      "fixes": [
+        "Remove THE NORTH FACE / any brand logo on clothing (v1 defect 6.25-8.75s).",
+        "Remove hull lettering; plain unmarked hull (v1 defect 9.25-11.75s 'GOCSNANL').",
+        "Remove flag from ferry (v1 defect 0.25-5.75s).",
+        "Keep subject distant / from behind so face is never identifiable (v1 defect 4.75-5.75s)."
+      ],
+      "prompt": "12-second real moving cinematic reconstruction, 16:9 720P. Contemporary Norway, July 2011. Photorealistic film style, muted olive and tobacco palette, soft overcast side light, natural skin, not a painting or static image. Natural restrained motion and stable object geometry. Absolutely NO text, lettering, numbers, logo, brand name, coat of arms, flag, banner, badge, salute, weapons, gore, bodies, extra limbs or cloned people. All clothing is completely plain and unbranded; every hull, wall and surface is blank and unmarked. This is an illustrative reconstruction, not actual archival footage. Overcast wet July island pier. 0-6 seconds: camera ON THE ISLAND looking toward a small civilian ferry moored at the end of a wooden pier; the ferry has a completely blank white hull with no name and no flag anywhere. One anonymous adult in plain dark navy unbranded clothing steps OUT OF THE BOAT onto a simple stable gangway and walks TOWARD THE CAMERA onto the island, filmed from BEHIND at a distance so the face is never visible and never identifiable. The ferry stays completely moored and stationary; nobody boards or walks away from camera. No crowd, no seagulls. 6-9 seconds: two adult camp staff in plain unbranded contemporary rain jackets, no logo on chest or sleeve, glance toward the landing from a distance, restrained neutral expressions, hands out of shot, faces soft and non-identifiable. 9-12 seconds: cut to empty pier details and wet mooring rope in a light breeze; the blank-hulled ferry remains attached and does not depart."
+    }
+  ]
+}

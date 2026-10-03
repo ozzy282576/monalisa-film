@@ -8,9 +8,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def prepare(root, sid):
-    plan = json.loads((root/'review/repair-plan.json').read_text())
+def prepare(root, sid, plan_rel='review/repair-plan.json'):
+    plan = json.loads((root/plan_rel).read_text())
     item = next(i for i in plan['clips'] if i['id'] == sid)
+    src_hash = item.get('source_sha256') or item.get('rejected_candidate_sha256')
     revision = plan['revision']
     statepath = root/'work/state.json'
     state = json.loads(statepath.read_text())
@@ -19,7 +20,7 @@ def prepare(root, sid):
     if st.get('visual_repair_revision') != revision:
         if st.get('status') not in ('downloaded','machine_pass'):
             raise SystemExit('Source is not a confirmed completed download; no replacement initialized')
-        if hashlib.sha256(dest.read_bytes()).hexdigest() != item['source_sha256']:
+        if hashlib.sha256(dest.read_bytes()).hexdigest() != src_hash:
             raise SystemExit('Source hash mismatch; refusing to replace unreviewed media')
         archive = root/'work/rejected'/revision
         archive.mkdir(parents=True, exist_ok=True)
@@ -30,7 +31,7 @@ def prepare(root, sid):
             report.replace(archive/f'qc-{sid}-original.json')
         dest.replace(archive/f'{sid}.mp4')
         state[sid] = {'tries':0,'status':'pending','visual_review':'pending',
-            'visual_repair_revision':revision,'rejected_source_sha256':item['source_sha256'],
+            'visual_repair_revision':revision,'rejected_source_sha256':src_hash,
             'previous_generation':old}
         tmp = statepath.with_suffix('.tmp')
         tmp.write_text(json.dumps(state,ensure_ascii=False,indent=2))
@@ -49,4 +50,7 @@ def prepare(root, sid):
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--scene',required=True)
-    prepare(ROOT,parser.parse_args().scene)
+    parser.add_argument('--plan',default='review/repair-plan.json',
+                        help='Repair plan path (e.g. review/repair-plan-v2.json)')
+    args=parser.parse_args()
+    prepare(ROOT,args.scene,args.plan)

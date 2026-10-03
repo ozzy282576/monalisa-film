@@ -51,6 +51,24 @@ class VisualRepairTests(unittest.TestCase):
                 m.prepare(root,'01')
             self.assertEqual((root/'clips/01.mp4').read_bytes(),b'reviewed-original')
 
+    def test_v2_plan_uses_rejected_candidate_hash(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            for folder in ('clips','work','review'):
+                (root/folder).mkdir()
+            (root/'clips/07.mp4').write_bytes(b'v1-candidate')
+            digest=hashlib.sha256(b'v1-candidate').hexdigest()
+            (root/'review/repair-plan-v2.json').write_text(json.dumps({'revision':'visual-repair-v2','clips':[{
+                'id':'07','rejected_candidate_sha256':digest,'prompt':'v2 shot'}]}))
+            (root/'work/state.json').write_text(json.dumps({'07':{
+                'status':'downloaded','tries':3,'visual_repair_revision':'visual-repair-v1'}}))
+            (root/'storyboard.json').write_text(json.dumps([{'id':'07','prompt':'v1 shot'}]))
+            m.prepare(root,'07','review/repair-plan-v2.json')
+            self.assertEqual((root/'work/rejected/visual-repair-v2/07.mp4').read_bytes(),b'v1-candidate')
+            state=json.loads((root/'work/state.json').read_text())
+            self.assertEqual(state['07']['visual_repair_revision'],'visual-repair-v2')
+            self.assertEqual(state['07']['rejected_source_sha256'],digest)
+
     def test_no_final_approvals_in_initial_review(self):
         report=json.loads((ROOT/'review/findings.json').read_text())
         self.assertEqual(len(report['clips']),15)
