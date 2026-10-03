@@ -1,0 +1,42 @@
+name: Publish final film contact sheet
+on:
+  push:
+    branches: [arena/01a10095-monalisa-film]
+    paths: [RUN_CONTACT]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  sheet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: final-film-180
+          run-id: '37160879958'
+          github-token: ${{ github.token }}
+          path: out/
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - name: Build 15-frame contact sheet
+        run: |
+          ffmpeg -y -v error -i out/monalisa_180_final.mp4 \
+            -vf "select='not(mod(n,300))',scale=480:270,tile=5x3" -frames:v 1 docs/final-contact-sheet.png
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-contact-sheet
+          path: docs/final-contact-sheet.png
+          retention-days: 30
+      - name: Commit contact sheet
+        run: |
+          git config user.name 'arena-ai-coding-agent[bot]'
+          git config user.email '298482267+arena-ai-coding-agent[bot]@users.noreply.github.com'
+          git add docs/final-contact-sheet.png
+          git diff --cached --quiet && exit 0
+          git commit -m 'Add final 180s contact sheet'
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
