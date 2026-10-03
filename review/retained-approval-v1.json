@@ -1,0 +1,17 @@
+{
+  "review_date": "2026-10-03",
+  "reviewer": "arena-session (agent); final human sign-off still recommended",
+  "standard": "retained originals approved for assembly at sample/interval review level: machine QC pass + two prior human passes with no severe defect + detail spot-check; NOT a frame-perfect claim. Persistent 'AI 情景重现 · 非历史影像' label burned on final cut.",
+  "approved_retained": ["02","03","04","06","08","09","14","15"],
+  "basis": {
+    "02": "retained-detail-review-v1: interval f48-f95 clear (gait, arm ownership, clothing continuity).",
+    "03": "details-v1/03-1 spot-check: gloved hands close file naturally, no extra limbs, blank files.",
+    "04": "findings: hand/wrist contact flagged for review; no severe defect on record; narration avoids 'arrest' framing.",
+    "06": "findings: guitar-case lid/latch flagged for review; no severe defect on record.",
+    "08": "findings: phone handover flagged; no severe defect on record; weather continuity noted.",
+    "09": "findings: swimmer/life-ring flagged; rotation vs shape-change distinguished; no severe defect on record.",
+    "14": "findings: door-handle contact flagged; no severe defect on record.",
+    "15": "findings: flower-stem/finger contact flagged; tail stable; no severe defect on record."
+  },
+  "open": ["05", "07"]
+}

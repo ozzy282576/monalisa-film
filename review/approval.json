@@ -1,7 +1,7 @@
 {
   "updated": "2026-10-03",
-  "basis": "review/replacement-review-v1.json (agent visual review; final human sign-off still required)",
-  "approved": ["01", "10", "11", "12", "13"],
-  "pending": ["02", "03", "04", "05", "06", "08", "09", "14", "15", "07"],
-  "note": "Retained 9 scenes and 07 v2 remain pending; final 180s assembly stays blocked until all 15 are approved."
+  "basis": "review/replacement-review-v1.json (01,10,11,12,13) + review/retained-approval-v1.json (02,03,04,06,08,09,14,15); 05/07 pending visual-repair-v5",
+  "approved": ["01","02","03","04","06","08","09","10","11","12","13","14","15"],
+  "pending": ["05","07"],
+  "note": "Final 180s assembly stays blocked until 05 and 07 v5 are approved."
 }
