@@ -1,0 +1,21 @@
+{
+  "revision_reviewed": "visual-repair-v2",
+  "review_date": "2026-10-03",
+  "reviewer": "arena-session visual review (agent); recorded per-shot",
+  "evidence": "review/visual-repair-v2/07-1.jpg / 07-2.jpg (24 labelled samples)",
+  "decisions": [
+    {
+      "id": "07",
+      "candidate_sha256": "6e90f8fbb398b08c9a9677c7d4eec9d5f378e8c90e919e1afd02928e2469ea0d",
+      "decision": "reject",
+      "fixed_from_v1": ["staff jackets no longer carry THE NORTH FACE logo (6.25-8.75s)."],
+      "defects": [
+        "0.25-5.75s: ferry flies a blue-white-red flag on the mast (forbidden: no flags).",
+        "0.25-5.75s: main subject walks AWAY from camera TOWARD the moored ferry (opposite of required disembark-to-island), and a second person descends the gangway -> two subjects / wrong direction.",
+        "9.25-11.75s: hull/superstructure bears pseudo-name lettering (forbidden: blank hull)."
+      ],
+      "action": "regenerate with repair-plan-v3.json."
+    }
+  ],
+  "summary": {"accepted": [], "rejected": ["07"]}
+}

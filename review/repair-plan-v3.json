@@ -1,0 +1,18 @@
+{
+  "revision": "visual-repair-v3",
+  "supersedes": "visual-repair-v2 (clip 07 rejected in review/replacement-review-v2.json)",
+  "review_date": "2026-10-03",
+  "clips": [
+    {
+      "id": "07",
+      "rejected_candidate_sha256": "6e90f8fbb398b08c9a9677c7d4eec9d5f378e8c90e919e1afd02928e2469ea0d",
+      "fixes": [
+        "Remove the blue-white-red flag: mast and rigging completely bare (v2 defect 0.25-5.75s).",
+        "Correct direction: exactly ONE person steps out of the boat and walks TOWARD the camera onto the island; nobody walks toward the boat and nobody boards (v2 defect 0.25-5.75s).",
+        "Blank hull: no name/letters/numbers on hull or superstructure (v2 defect 9.25-11.75s).",
+        "Keep staff unbranded and faces soft/unidentifiable."
+      ],
+      "prompt": "12-second real moving cinematic reconstruction, 16:9 720P. Contemporary Norway, July 2011. Photorealistic film style, muted olive and tobacco palette, soft overcast side light, natural skin, restrained 35mm grain, not a painting. Absolutely NO text, lettering, numbers, name, logo, brand, coat of arms, flag, pennant, bunting, badge, salute, weapons, gore, bodies, extra limbs or cloned people anywhere in the frame. The ferry's mast, rigging, hull and superstructure are completely bare and blank white with no flag and no name. Overcast wet July island pier. 0-6 seconds: camera fixed ON THE ISLAND looking down a wooden pier toward a small civilian ferry moored at the far end. Exactly ONE anonymous adult in plain dark navy unbranded clothing steps OUT OF THE BOAT onto the gangway and walks steadily TOWARD THE CAMERA onto the island, filmed from the front-island so we see him approach and grow larger; his face stays in soft shadow and is never identifiable. No other person is on the pier, nobody walks toward the boat, nobody boards, and the ferry remains moored and stationary the whole time. 6-9 seconds: two adult camp staff in plain unbranded rain jackets, faces soft and non-identifiable, no logo on chest or sleeve, glance toward the landing from a distance, hands out of shot. 9-12 seconds: cut to empty wet pier details and a mooring rope in a light breeze; the blank-hulled bare-masted ferry stays attached and does not depart."
+    }
+  ]
+}

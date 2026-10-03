@@ -1,0 +1,108 @@
+name: Visual repair v3 - redo scene 07 only
+on:
+  push:
+    branches: [arena/01a10095-monalisa-film]
+    paths: [RUN_VISUAL_REPAIR_V3]
+permissions:
+  contents: write
+  actions: read
+env:
+  AGNES_MAX_TRIES: '200'
+concurrency:
+  group: agnes-film
+  cancel-in-progress: false
+jobs:
+  repair_07_1:
+    name: Repair 07 v3 - window 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual07-v2-4
+          github-token: ${{ github.token }}
+          path: .
+      - name: Archive v2 candidate and apply v3 prompt
+        run: python3 scripts/init_visual_repair.py --scene 07 --plan review/repair-plan-v3.json
+      - name: Generate v3 candidate - never mark visual approval
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual07-v3-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  repair_07_2:
+    name: Repair 07 v3 - window 2
+    needs: repair_07_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual07-v3-1
+          path: .
+      - name: Apply v3 prompt on later window
+        run: python3 scripts/init_visual_repair.py --scene 07 --plan review/repair-plan-v3.json
+      - name: Generate v3 candidate
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual07-v3-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  evidence:
+    name: Publish v3 evidence sheets - no approval
+    needs: repair_07_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual07-v3-2
+          path: .
+      - name: Install frame review tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python3 -m pip install pillow
+      - name: Extract scene 07 v3 evidence
+        env:
+          REVIEW_IDS: '07'
+          REVIEW_OUTPUT: review/visual-repair-v3
+        run: python3 scripts/prepare_visual_review.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visual07-v3-frames
+          path: |
+            work/dense-frames/
+            review/visual-repair-v3/
+          retention-days: 30
+      - name: Publish small review sheets to the working branch
+        run: |
+          git config user.name 'arena-ai-coding-agent[bot]'
+          git config user.email '298482267+arena-ai-coding-agent[bot]@users.noreply.github.com'
+          git add review/visual-repair-v3
+          git diff --cached --quiet && exit 0
+          git commit -m 'Add scene 07 v3 replacement evidence - NOT visually approved'
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
