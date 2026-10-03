@@ -22,7 +22,7 @@ jobs:
           ref: ${{ github.ref_name }}
       - uses: actions/download-artifact@v4
         with:
-          name: visual07-v3-4
+          name: visual07-v3-2
           run-id: '37117514371'
           github-token: ${{ github.token }}
           path: .
@@ -76,8 +76,8 @@ jobs:
           ref: ${{ github.ref_name }}
       - uses: actions/download-artifact@v4
         with:
-          name: raw-clips
-          run-id: '37011035670'
+          name: visual05-v4-2
+          run-id: '37124212331'
           github-token: ${{ github.token }}
           path: .
       - run: python3 scripts/init_visual_repair.py --scene 05 --plan review/repair-plan-v4.json
