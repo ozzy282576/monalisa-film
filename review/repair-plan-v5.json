@@ -1,0 +1,25 @@
+{
+  "revision": "visual-repair-v5",
+  "supersedes": "visual-repair-v4 (07 direction wrong; 05 ferry-half flags/text)",
+  "review_date": "2026-10-03",
+  "clips": [
+    {
+      "id": "07",
+      "rejected_candidate_sha256": "208d96506feaf8e3dcdc40104302c8023d07e7c24d4cd1ca5146f1650a7ba886",
+      "fixes": [
+        "Direction: subject must walk FROM the boat TOWARD the camera (front visible, growing larger); never his back walking to the boat (v4 defect).",
+        "Keep bare mast (no flag) and blank hull from v4."
+      ],
+      "prompt": "12-second real moving cinematic reconstruction, 16:9 720P. Contemporary Norway, July 2011. Photorealistic, muted olive and tobacco palette, overcast soft light, not a painting. Absolutely NO text, lettering, numbers, logo, brand, flag, pennant, badge, salute, weapons, gore, bodies, extra limbs. The ferry mast is a BARE pole, no flag; hull blank white, no name. Camera is FIXED on the island at the gangway end, FACING the moored ferry. 0-6 seconds: one anonymous adult in plain dark navy unbranded clothing steps out of the boat and walks straight TOWARD the camera along the gangway onto the island; his FRONT faces the camera and he grows larger as he approaches; face kept soft and non-identifiable; he never turns his back to the camera and never walks toward the boat; the ferry stays moored and stationary. 6-9 seconds: two adult camp staff in plain unbranded rain jackets glance toward the landing from a distance, faces soft, hands out of shot. 9-12 seconds: cut to empty wet pier details and mooring rope in a light breeze; bare-masted ferry remains attached, does not depart."
+    },
+    {
+      "id": "05",
+      "rejected_candidate_sha256": "b36ae6472a7cdfe39c2318f00781d7263a12f4ddebee997621aa414b90c00c44",
+      "fixes": [
+        "Keep blank plate car half from v4.",
+        "Ferry landing half: NO flags, NO colored pennants, NO pole banners, hull and superstructure completely blank with NO lettering (v4 defect 5.25-11.75s)."
+      ],
+      "prompt": "12-second real moving cinematic reconstruction, 16:9 720P. Contemporary Norway, July 2011. Photorealistic, muted olive and tobacco palette, overcast light, not a painting. Absolutely NO text, lettering, numbers, logo, brand, flag, pennant, banner, badge, or readable license plate anywhere in the whole clip. 0-5 seconds: an anonymous unmarked plain grey 2011 passenger car, completely blank front and rear with no plate, travels at normal speed on a wet Norwegian road; correct wheel and road perspective; overcast. 5-12 seconds: a small civilian ferry at a simple landing across a grey rippling lake toward a forested island; the vessel and all mooring poles are COMPLETELY BARE: no flags, no pennants, no banners; hull and superstructure blank with no name or letters; rain ripples and trees sway; observational, no people close up, no faces."
+    }
+  ]
+}

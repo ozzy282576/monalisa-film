@@ -1,0 +1,25 @@
+{
+  "revision_reviewed": "visual-repair-v4",
+  "review_date": "2026-10-03",
+  "reviewer": "arena-session visual review (agent)",
+  "evidence": "review/visual-repair-v4/*.jpg",
+  "decisions": [
+    {
+      "id": "07",
+      "candidate_sha256": "208d96506feaf8e3dcdc40104302c8023d07e7c24d4cd1ca5146f1650a7ba886",
+      "decision": "reject",
+      "resolved_ok": "Mast now a bare pole/antenna with NO flag; hull blank.",
+      "defects": ["0.25-5.75s: subject seen from behind walks AWAY from camera toward the ferry (boarding), opposite of required disembark-to-island."],
+      "action": "v5: combine bare mast + correct disembark-to-island direction."
+    },
+    {
+      "id": "05",
+      "candidate_sha256": "b36ae6472a7cdfe39c2318f00781d7263a12f4ddebee997621aa414b90c00c44",
+      "decision": "reject",
+      "resolved_ok": "0-4.75s car front/rear plate area blank, no readable plate.",
+      "defects": ["5.25-11.75s ferry landing: red/white/blue flags on mooring poles and vessel, plus pseudo hull lettering (forbidden: no flags, no text)."],
+      "action": "v5: blank plate + ferry landing with NO flags/poles lettering/blank hull."
+    }
+  ],
+  "summary": {"accepted": [], "rejected": ["07", "05"]}
+}

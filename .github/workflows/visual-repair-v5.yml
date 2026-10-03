@@ -1,0 +1,165 @@
+name: Visual repair v5 - redo 07 (direction+no flag) and 05 (no flags/text)
+on:
+  push:
+    branches: [arena/01a10095-monalisa-film]
+    paths: [RUN_VISUAL_REPAIR_V5]
+permissions:
+  contents: write
+  actions: read
+env:
+  AGNES_MAX_TRIES: '200'
+concurrency:
+  group: agnes-film
+  cancel-in-progress: false
+jobs:
+  r07_1:
+    name: Repair 07 v5 - window 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual07-v4-2
+          run-id: '37128895784'
+          github-token: ${{ github.token }}
+          path: .
+      - run: python3 scripts/init_visual_repair.py --scene 07 --plan review/repair-plan-v5.json
+      - name: Generate 07 v5
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual07-v5-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  r07_2:
+    needs: r07_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual07-v5-1
+          path: .
+      - run: python3 scripts/init_visual_repair.py --scene 07 --plan review/repair-plan-v5.json
+      - name: Generate 07 v5
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual07-v5-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  r05_1:
+    name: Repair 05 v5 - window 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual05-v4-2
+          run-id: '37128895784'
+          github-token: ${{ github.token }}
+          path: .
+      - run: python3 scripts/init_visual_repair.py --scene 05 --plan review/repair-plan-v5.json
+      - name: Generate 05 v5
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 05 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual05-v5-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  r05_2:
+    needs: r05_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual05-v5-1
+          path: .
+      - run: python3 scripts/init_visual_repair.py --scene 05 --plan review/repair-plan-v5.json
+      - name: Generate 05 v5
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 05 --create-window 50
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual05-v5-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+  evidence:
+    name: Publish v5 evidence sheets - no approval
+    needs: [r07_2, r05_2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual07-v5-2
+          path: .
+      - uses: actions/download-artifact@v4
+        with:
+          name: visual05-v5-2
+          path: .repl05
+      - name: Merge 05 clip and install tools
+        run: |
+          mkdir -p clips && cp .repl05/clips/05.mp4 clips/05.mp4
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python3 -m pip install pillow
+      - name: Extract v5 evidence
+        env:
+          REVIEW_IDS: '07,05'
+          REVIEW_OUTPUT: review/visual-repair-v5
+        run: python3 scripts/prepare_visual_review.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visual07-05-v5-frames
+          path: |
+            work/dense-frames/
+            review/visual-repair-v5/
+          retention-days: 30
+      - name: Publish small review sheets to the working branch
+        run: |
+          git config user.name 'arena-ai-coding-agent[bot]'
+          git config user.email '298482267+arena-ai-coding-agent[bot]@users.noreply.github.com'
+          git add review/visual-repair-v5
+          git diff --cached --quiet && exit 0
+          git commit -m 'Add 07 v5 and 05 v5 replacement evidence - NOT visually approved'
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
