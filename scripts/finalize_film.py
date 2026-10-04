@@ -62,9 +62,15 @@ def build_audio(vo_dir, out, ids):
         if not src.exists():
             raise SystemExit('Missing VO for %s' % sid)
         padded = Path(out).with_suffix('.%s.wav' % sid)
+        d = na.probe(src)['duration'] or na.TARGET_DURATION
+        if d > na.TARGET_DURATION:
+            # Time-compress (mild atempo) so the narration exactly fills the 12s
+            # clip without cutting words -> narration == clip length.
+            af = 'atempo=%.4f,atrim=end=%d' % (d / na.TARGET_DURATION, na.TARGET_DURATION)
+        else:
+            af = 'atrim=end=%d,apad,atrim=end=%d' % (na.TARGET_DURATION, na.TARGET_DURATION)
         r = _run([na.FFMPEG, '-y', '-v', 'error', '-i', str(src),
-                  '-af', 'atrim=end=%d,apad,atrim=end=%d' % (na.TARGET_DURATION, na.TARGET_DURATION),
-                  '-ar', '48000', '-ac', '2', str(padded)])
+                  '-af', af, '-ar', '48000', '-ac', '2', str(padded)])
         if r.returncode != 0:
             raise SystemExit('vo pad failed %s\n%s' % (sid, r.stderr))
         parts.append(padded)
@@ -80,13 +86,35 @@ def build_audio(vo_dir, out, ids):
     return out
 
 
+def _to_sec(t):
+    t = t.replace(',', '.')
+    h, m, s = t.split(':')
+    return int(h) * 3600 + int(m) * 60 + float(s)
+
+
+def parse_srt(path):
+    cues = []
+    for block in Path(path).read_text(encoding='utf-8').replace('\r', '').split('\n\n'):
+        lines = [l for l in block.splitlines() if l.strip()]
+        if len(lines) >= 3:
+            m = re.match(r'(\d+:\d+:\d+[.,]\d+)\s*-->\s*(\d+:\d+:\d+[.,]\d+)', lines[1])
+            if m:
+                cues.append((_to_sec(m.group(1)), _to_sec(m.group(2)), lines[2].strip()))
+    return cues
+
+
 def build_vf(srt=None, label=True):
+    """Burn subtitles as per-cue drawtext (reliable CJK rendering) and render the
+    AI-reconstruction label as a SMALL caption at the TOP, out of the subtitle zone."""
     vf = []
     if srt and Path(srt).exists():
-        vf.append("subtitles='%s':fontsdir='%s'" % (Path(srt).resolve(), (ROOT / 'assets/fonts').resolve()))
+        for st, en, txt in parse_srt(srt):
+            vf.append("drawtext=fontfile='%s':text='%s':fontcolor=white:fontsize=40:"
+                      "box=1:boxcolor=black@0.45:boxborderw=10:x=(w-text_w)/2:y=h-th-48:"
+                      "enable='between(t,%.2f,%.2f)'" % (FONT_CJK, txt, st, en))
     if label and FONT_CJK.exists():
-        vf.append("drawtext=fontfile='%s':text='%s':fontcolor=white@0.85:fontsize=28:"
-                  "box=1:boxcolor=black@0.35:boxborderw=8:x=(w-text_w)/2:y=h-th-24" % (FONT_CJK, LABEL))
+        vf.append("drawtext=fontfile='%s':text='%s':fontcolor=white@0.9:fontsize=24:"
+                  "box=1:boxcolor=black@0.35:boxborderw=6:x=(w-text_w)/2:y=16" % (FONT_CJK, LABEL))
     return vf
 
 
