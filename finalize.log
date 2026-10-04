@@ -1,8 +1,2 @@
-postfix failed /home/runner/work/monalisa-film/monalisa-film/work/normalized/07.mp4
-[delogo @ 0x5639146f9a40] Logo area is outside of the frame.
-[Parsed_delogo_0 @ 0x5639146f9940] Failed to configure input pad on Parsed_delogo_0
-[vf#0:0 @ 0x563914669540] Error reinitializing filters!
-Failed to inject frame into filter network: Invalid argument
-Error while filtering: Invalid argument
-[out#0/mp4 @ 0x5639146a9e80] Nothing was written into output file, because at least one of its streams received no packets.
-
+postfix applied: 07
+finalize -> FAIL frames=4488 dur=179.52 audio=True subs=True
