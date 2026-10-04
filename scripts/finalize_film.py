@@ -151,7 +151,9 @@ def finalize(clips, norm, out, approval, vo_dir=None, srt=None, label=True):
         cmd += ['-vf', ','.join(vf)]
     cmd += ['-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p']
     if audio:
-        cmd += ['-c:a', 'aac', '-b:a', '192k', '-shortest']
+        # No -shortest: keep the 180.000s video master authoritative; a sub-second
+        # audio shortfall at the tail is padded by silence, never truncates video.
+        cmd += ['-c:a', 'aac', '-b:a', '192k']
     cmd += [str(out)]
     r = _run(cmd)
     if r.returncode != 0:
