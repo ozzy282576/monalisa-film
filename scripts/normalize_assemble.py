@@ -75,7 +75,7 @@ def normalize_clip(src, dst):
     """Re-encode one source to CFR 25fps, exactly 300 frames (12.000s), 1280x720."""
     src, dst = str(src), str(dst)
     cmd = [FFMPEG, '-y', '-v', 'error', '-i', src, '-an',
-           '-vf', 'scale=1280:720:flags=bicubic,setsar=1,fps=%d' % TARGET_FPS,
+           '-vf', 'scale=1280:720:flags=bicubic,setsar=1,fps=%d,tpad=stop_mode=clone:stop_duration=2' % TARGET_FPS,
            '-frames:v', str(TARGET_FRAMES),
            '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18',
            '-pix_fmt', 'yuv420p', dst]
