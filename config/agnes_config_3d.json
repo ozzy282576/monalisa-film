@@ -1,0 +1,28 @@
+{
+  "base_url": "https://api.agnes.ai/v1",
+  "api_key_env": "AGNES_API_KEY",
+  "model": "agnes-video-v3-3d-realistic",
+  "style_preset": "realistic_3d_noir",
+  "timeout_seconds": 180,
+  "poll_interval_seconds": 5,
+  "max_retries_per_clip": 200,
+  "total_clips": 15,
+  "clip_duration_seconds": 12,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 24,
+  "aspect_ratio": "9:16",
+  "output_format": "mp4",
+  "serial_execution": true,
+  "mock_mode": false,
+  "3d_settings": {
+    "render_engine": "unreal_engine_5",
+    "lighting": "noir_neon_rain",
+    "character_style": "stylized_realistic_non_photorealistic",
+    "ethics_filter": "strict_no_gore_no_nudity_memorial",
+    "camera": "cinematic_anamorphic"
+  },
+  "notes": "真实3D动画，写实但非真人照片，风格化写实，尊重受害者，无血腥无裸露，抖音合规"
+}

@@ -1,0 +1,145 @@
+{
+  "project": "蒙娜丽莎的雨夜 - 林过云3D写实动画抖音版",
+  "total_duration_seconds": 180,
+  "clip_duration_seconds": 12,
+  "total_clips": 15,
+  "style_global": "3D realistic animation, Unreal Engine 5, stylized realistic non-photorealistic characters, respectful memorial, no gore no nudity, Hong Kong 1982 rainy night noir, neon reflections, cinematic anamorphic, volumetric rain, 9:16 vertical, 24fps, high quality, no distortion, perfect anatomy",
+  "negative_global": "blood, gore, corpse, dismemberment, explicit nudity, real person photo, low quality, blurry, distorted limbs, extra fingers, warped face, deformed, ugly, bad anatomy",
+  "scenes": [
+    {
+      "id": 1,
+      "title": "雨夜香港 1982 - 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, 1982 Hong Kong rainy night cityscape, Unreal Engine 5, neon signs with traditional Chinese characters, wet asphalt reflecting neon, volumetric rain, empty street, cinematic camera dolly, anamorphic lens, atmospheric fog, high detail, 9:16 vertical",
+      "prompt_cn": "3D写实动画，1982年香港雨夜城市全景，虚幻5引擎，霓虹招牌繁体字，湿沥青倒影，体积雨，空街，电影感推轨，变形宽银幕，雾气，高细节",
+      "narration": "1982年，香港，雨季。",
+      "3d_notes": "Cityscape, no characters, focus on rain and neon"
+    },
+    {
+      "id": 2,
+      "title": "夜班出租车 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation interior of 1980s yellow Toyota Crown taxi, dashboard mechanical meter close-up, rain on windshield with wipers moving rhythmically, driver's hands on wheel only stylized realistic, no face, dark moody, volumetric light, Unreal Engine 5, 9:16",
+      "prompt_cn": "3D写实动画，80年代黄色皇冠出租车内部，机械计程表特写，挡风玻璃雨水雨刷有节奏，只有司机双手不见脸，阴郁，体积光",
+      "narration": "一辆夜班出租车，亮着空车牌。",
+      "3d_notes": "Only hands, no face, to avoid identity"
+    },
+    {
+      "id": 3,
+      "title": "阿兰 3D",
+      "duration": 12,
+      "prompt": "3D stylized realistic animation, young Hong Kong woman 22 years old 1980s fashion, waiting at phone booth in rain, holding high heels, tired but gentle Mona Lisa smile, respectful non-sexualized, umbrella, street lamp volumetric light, Unreal Engine 5, cinematic",
+      "prompt_cn": "3D风格化写实动画，22岁香港女子80年代打扮，雨中电话亭等车，提高跟鞋，疲惫温柔蒙娜丽莎微笑，尊重不色情，伞，路灯体积光",
+      "narration": "阿兰，22岁，舞厅领舞，今晚想早点回家。",
+      "3d_notes": "Stylized realistic, not photorealistic photo, respectful"
+    },
+    {
+      "id": 4,
+      "title": "暗房红光 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, 1980s photo darkroom red safelight, photographic paper in developer tray with image slowly appearing, gloved hands close-up, chemical bubbles, mysterious, no gore, Unreal Engine 5, subsurface scattering, 9:16",
+      "prompt_cn": "3D写实动画，80年代暗房红光，相纸在显影液中慢慢浮现，戴手套手特写，药水气泡，神秘，无血腥",
+      "narration": "在那个年代，照片必须经由别人的手，才能被看见。",
+      "3d_notes": "Red light but not blood, warm white paper"
+    },
+    {
+      "id": 5,
+      "title": "城门河报纸 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, 1982 Hong Kong newspaper on desk with rain on window, newspaper pages flipping in wind, headline about missing women respectful no graphic, desk lamp volumetric, noir, Unreal Engine 5",
+      "prompt_cn": "3D写实动画，1982年香港报纸桌上，雨打窗户，报纸风中翻页，失踪女性标题尊重无血腥图，台灯体积光，黑色电影",
+      "narration": "城门河发现了东西，但没人在意。",
+      "3d_notes": "Newspaper, no corpse"
+    },
+    {
+      "id": 6,
+      "title": "阿洁 3D",
+      "duration": 12,
+      "prompt": "3D stylized realistic animation, Hong Kong convenience store night 1980s, 31-year-old woman cashier stylized realistic respectful, tired taking off shoes behind counter, holding pineapple bun, child's crayon drawing on register, warm light, Unreal Engine 5",
+      "prompt_cn": "3D风格化写实动画，80年代便利店夜景，31岁女收银员风格化写实尊重，疲惫柜台后脱鞋，拿菠萝包，收银机孩子蜡笔画，暖光",
+      "narration": "阿洁，31岁，夜班收银，包里总有一个菠萝包。",
+      "3d_notes": "Mother, respectful, no sexualization"
+    },
+    {
+      "id": 7,
+      "title": "女法医地图 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, female forensic doctor 32 years old professional stylized realistic, drawing red lines on Hong Kong map, microscope, cold fluorescent light, clay face reconstruction on table, determined respectful, Unreal Engine 5",
+      "prompt_cn": "3D写实动画，32岁女法医专业风格化写实，香港地图上红笔连线，显微镜，冷荧光灯，桌上黏土重建，坚定尊重",
+      "narration": "何医生发现，雨夜、出租车、夜归女性，连成了一张网。",
+      "3d_notes": "Professional woman, not victim"
+    },
+    {
+      "id": 8,
+      "title": "阿云 3D",
+      "duration": 12,
+      "prompt": "3D stylized realistic animation, Hong Kong woman 29 years old dishwasher, holding new driver's license proudly, practicing driving on rooftop in rain, strong personality respectful, Unreal Engine 5",
+      "prompt_cn": "3D风格化写实动画，29岁香港洗碗工拿新驾照自豪，天台雨中练习开车，泼辣尊重",
+      "narration": "阿云，29岁，刚拿到驾照，想自己开车。",
+      "3d_notes": "Strong woman, empowerment"
+    },
+    {
+      "id": 9,
+      "title": "后视镜凝视 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, taxi rearview mirror close-up, reflection of empty passenger seat then silhouette, rain streaks, driver's eyes blurred in mirror, psychological thriller no violence, Unreal Engine 5 ray tracing",
+      "prompt_cn": "3D写实动画，出租车后视镜特写，空座倒影后出现剪影，雨痕，后视镜司机眼睛模糊，心理惊悚无暴力，光追",
+      "narration": "后视镜是一个取景器，决定谁入画，谁被抹去。",
+      "3d_notes": "Gaze, power, no violence"
+    },
+    {
+      "id": 10,
+      "title": "阿心 3D",
+      "duration": 12,
+      "prompt": "3D stylized realistic animation, 17-year-old Hong Kong schoolgirl uniform 1980s, holding borrowed film camera curious bright, school bag, rain, youthful respectful non-sexualized, Unreal Engine 5",
+      "prompt_cn": "3D风格化写实动画，17岁香港女学生校服80年代，拿借来胶片相机好奇明亮，书包雨青春尊重不色情",
+      "narration": "阿心，17岁，会考结束，想拍下所有美好的东西。",
+      "3d_notes": "Youth, camera, innocence"
+    },
+    {
+      "id": 11,
+      "title": "冲印店发现 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, teenage boy 17 years old apprentice in 1980s Kodak photo shop, face turning from smile to shock looking at developing photo, red safelight, hands shaking, chemical spill, no gore only reaction, Unreal Engine 5",
+      "prompt_cn": "3D写实动画，80年代柯达冲印店17岁学徒，表情从笑到震惊看显影照片，红光手抖药水洒，只有反应无血腥",
+      "narration": "那卷菲林，颜色不对。",
+      "3d_notes": "Reaction, not content"
+    },
+    {
+      "id": 12,
+      "title": "雨停逮捕 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, Hong Kong street after rain 1982, plainclothes police arresting taxi driver outside photo shop, no violence calm, puddles reflecting neon, bystanders, quiet cinematic, Unreal Engine 5",
+      "prompt_cn": "3D写实动画，1982年香港雨后街道，便衣冲印店外逮捕司机无暴力平静，水洼霓虹路人安静电影感",
+      "narration": "1982年8月18日，雨停了。",
+      "3d_notes": "Quiet arrest, no violence"
+    },
+    {
+      "id": 13,
+      "title": "四幅蒙娜丽莎 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, four clay face reconstructions on table by window, sunlight volumetric dust motes, four different women smiling gently Mona Lisa style, artistic memorial respectful warm light, Unreal Engine 5",
+      "prompt_cn": "3D写实动画，窗边桌上四座黏土面部重建，阳光尘埃，四位不同女性温柔蒙娜丽莎微笑，艺术纪念尊重暖光",
+      "narration": "她们不是标本，她们是人，她们都有名字。",
+      "3d_notes": "Memorial, clay, not real corpse"
+    },
+    {
+      "id": 14,
+      "title": "空车开走 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, empty yellow taxi driving away in rainy Hong Kong night from behind, taillights reflecting in puddles, no passengers, radio music, neon reflections melancholic, Unreal Engine 5, 9:16 vertical",
+      "prompt_cn": "3D写实动画，空黄出租车雨夜香港开走背面，尾灯水洼倒影无乘客，收音机霓虹忧郁，虚幻5垂直",
+      "narration": "那辆车开走了，但雨还在下。",
+      "3d_notes": "Empty, melancholic"
+    },
+    {
+      "id": 15,
+      "title": "尾声 3D",
+      "duration": 12,
+      "prompt": "3D realistic animation, black screen with rain particles, four names appearing in white Chinese calligraphy 3D extruded, text '愿所有想回家的女孩都能安全到家' minimalist respectful, rain drops on black, final abstract Mona Lisa smile, Unreal Engine 5",
+      "prompt_cn": "3D写实动画，黑屏雨粒子，四名字白色书法3D挤出，文字愿所有想回家的女孩安全到家，极简尊重黑底雨滴最后蒙娜丽莎微笑抽象",
+      "narration": "谨以此片，纪念1982年雨夜中想回家的四位女性。愿所有夜归人，都能平安到家。",
+      "3d_notes": "Memorial, text, ethical ending"
+    }
+  ]
+}
