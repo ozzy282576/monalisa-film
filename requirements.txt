@@ -1,0 +1,22 @@
+# 蒙娜丽莎的雨夜 - 林过云抖音项目
+# 基于挪威722事件流程
+
+# 核心
+opencv-python-headless==5.0.0.93
+numpy==2.4.6
+Pillow==11.3.0
+requests==2.34.2
+pydantic==2.13.5
+tqdm==4.70.1
+
+# 视频处理
+imageio-ffmpeg==0.6.0
+imageio==2.38.0
+moviepy==2.2.1
+
+# 可选 - 用于更精确的畸变检测
+# mediapipe==0.10.14
+# torch==2.3.0
+
+# 开发
+python-dotenv==1.2.4

@@ -1,0 +1,19 @@
+# 忽略中间尝试文件，只保留最终片段和成片
+output/clips/clip_*_attempt_*.mp4
+output/qc_reports/
+# 保留最终
+!output/clips/final_clip_*.mp4
+!output/final/
+
+# 临时
+test_cv2.mp4
+*.log
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+.DS_Store
+
+# 大文件 - 可选，如果需要节省空间
+# output/final/monalisa_lam_3min_douyin_final.mp4
+# output/final/monalisa_lam_3min_1080p.mp4

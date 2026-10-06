@@ -1,0 +1,133 @@
+{
+  "final_video": "output/final/final_with_effects.mp4",
+  "resolution": "540x960",
+  "fps": 24.0,
+  "duration_seconds": 180.0,
+  "frame_count": 4320,
+  "file_size_mb": 5.302448272705078,
+  "total_clips": 15,
+  "clips": [
+    {
+      "clip_id": 1,
+      "title": "雨夜香港 1982 - 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9853054673818554,
+      "passed": true
+    },
+    {
+      "clip_id": 2,
+      "title": "夜班出租车 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9550161324521457,
+      "passed": true
+    },
+    {
+      "clip_id": 3,
+      "title": "阿兰 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.8273353850419909,
+      "passed": true
+    },
+    {
+      "clip_id": 4,
+      "title": "暗房红光 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.7044730489164711,
+      "passed": true
+    },
+    {
+      "clip_id": 5,
+      "title": "城门河报纸 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9106829936649937,
+      "passed": true
+    },
+    {
+      "clip_id": 6,
+      "title": "阿洁 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.8682120383328353,
+      "passed": true
+    },
+    {
+      "clip_id": 7,
+      "title": "女法医地图 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9229056685119512,
+      "passed": true
+    },
+    {
+      "clip_id": 8,
+      "title": "阿云 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.7750953346539823,
+      "passed": true
+    },
+    {
+      "clip_id": 9,
+      "title": "后视镜凝视 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9063247028448688,
+      "passed": true
+    },
+    {
+      "clip_id": 10,
+      "title": "阿心 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9183819388096985,
+      "passed": true
+    },
+    {
+      "clip_id": 11,
+      "title": "冲印店发现 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.8993649747441304,
+      "passed": true
+    },
+    {
+      "clip_id": 12,
+      "title": "雨停逮捕 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.8713072707539261,
+      "passed": true
+    },
+    {
+      "clip_id": 13,
+      "title": "四幅蒙娜丽莎 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9091186346527246,
+      "passed": true
+    },
+    {
+      "clip_id": 14,
+      "title": "空车开走 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.9257625765097459,
+      "passed": true
+    },
+    {
+      "clip_id": 15,
+      "title": "尾声 3D",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.8750224941492206,
+      "passed": true
+    }
+  ],
+  "overall_passed": true,
+  "avg_qc_score": 0.883620577428036
+}
