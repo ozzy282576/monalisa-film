@@ -1,0 +1,30 @@
+======================================================================
+最终成片 QC 报告 - 蒙娜丽莎的雨夜 (林过云抖音版)
+======================================================================
+文件: output/final/final_with_effects.mp4
+分辨率: 540x960 (抖音要求 1080x1920)
+FPS: 24.0
+时长: 180.0秒 (目标180秒)
+文件大小: 5.3MB
+总片段: 15
+平均QC分数: 0.884
+全部通过: True
+
+片段详情:
+  Clip 01 雨夜香港 1982 - 3D: Attempt 1/1 Score 0.985 ✓
+  Clip 02 夜班出租车 3D: Attempt 1/1 Score 0.955 ✓
+  Clip 03 阿兰 3D: Attempt 1/1 Score 0.827 ✓
+  Clip 04 暗房红光 3D: Attempt 1/1 Score 0.704 ✓
+  Clip 05 城门河报纸 3D: Attempt 1/1 Score 0.911 ✓
+  Clip 06 阿洁 3D: Attempt 1/1 Score 0.868 ✓
+  Clip 07 女法医地图 3D: Attempt 1/1 Score 0.923 ✓
+  Clip 08 阿云 3D: Attempt 1/1 Score 0.775 ✓
+  Clip 09 后视镜凝视 3D: Attempt 1/1 Score 0.906 ✓
+  Clip 10 阿心 3D: Attempt 1/1 Score 0.918 ✓
+  Clip 11 冲印店发现 3D: Attempt 1/1 Score 0.899 ✓
+  Clip 12 雨停逮捕 3D: Attempt 1/1 Score 0.871 ✓
+  Clip 13 四幅蒙娜丽莎 3D: Attempt 1/1 Score 0.909 ✓
+  Clip 14 空车开走 3D: Attempt 1/1 Score 0.926 ✓
+  Clip 15 尾声 3D: Attempt 1/1 Score 0.875 ✓
+
+伦理声明: 本视频尊重受害者，无血腥，无裸露，仅为纪念与警示。
