@@ -1,0 +1,37 @@
+{
+  "name": "monalisa-film",
+  "version": "1.0.0",
+  "description": "抖音横版三分钟纪录片短视频生产线",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "render": "node src/render.js",
+    "music": "python3 src/music.py",
+    "assemble": "node src/assemble.js",
+    "qa": "python3 tools/qa.py",
+    "sample": "node tools/sample.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ozzy282576/monalisa-film.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ozzy282576/monalisa-film/issues"
+  },
+  "homepage": "https://github.com/ozzy282576/monalisa-film#readme",
+  "private": "true",
+  "type": "commonjs",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
+    "@fontsource/noto-sans-sc": "^5.3.0",
+    "@fontsource/noto-serif-sc": "^5.3.0",
+    "@napi-rs/canvas": "^1.0.10",
+    "chromium": "^3.0.3",
+    "playwright": "^1.56.1",
+    "puppeteer": "^25.12.0"
+  }
+}
