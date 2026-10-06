@@ -1,4 +1,4 @@
-name: Generate Mona Lisa film (Agnes) - Norway 722 style 15 clips
+name: Generate Mona Lisa film (Agnes) - Lam Norway style 15 clips x 200
 on:
   push:
     branches: [arena/7d72cae2-monalisa-film]
@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       scene:
-        description: '指定片段 (01-15) 空则全部'
+        description: '指定片段 01-15'
         required: false
         default: ''
 
 permissions:
-  contents: write
+  contents: read
   actions: write
 
 env:
@@ -22,9 +22,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Clip 01 - 4 windows x 50 = 200 attempts
   clip_01_window_1:
-    name: Clip 01 - window 1/4 - total cap 200 - Norway style
+    name: Clip 01 - checkpoint window 1 of 4 - total cap 200 - Norway style
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
@@ -33,11 +32,11 @@ jobs:
           ref: arena/7d72cae2-monalisa-film
       - name: Install deps
         run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
-      - name: Generate clip 01 window 1
+      - name: Continue clip 01 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 01 --create-window 50
-      - name: Save checkpoint
+      - name: Save cumulative media and request budget
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -49,22 +48,38 @@ jobs:
           if-no-files-found: error
 
   clip_01_window_2:
+    name: Clip 01 - checkpoint window 2 of 4 - total cap 200 - Norway style
     needs: clip_01_window_1
-    name: Clip 01 - window 2/4
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - name: Restore checkpoint
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
         uses: actions/download-artifact@v4
         with:
           name: checkpoint-01-window-1
           path: .
-      - name: Generate
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 01 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 01 --create-window 50
-      - name: Save
+      - name: Save cumulative media and request budget
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -73,23 +88,41 @@ jobs:
             clips/
             work/
           retention-days: 30
+          if-no-files-found: error
 
   clip_01_window_3:
+    name: Clip 01 - checkpoint window 3 of 4 - total cap 200 - Norway style
     needs: clip_01_window_2
-    name: Clip 01 - window 3/4
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
         with:
           name: checkpoint-01-window-2
           path: .
-      - name: Generate
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 01 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 01 --create-window 50
-      - name: Save
+      - name: Save cumulative media and request budget
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -98,23 +131,41 @@ jobs:
             clips/
             work/
           retention-days: 30
+          if-no-files-found: error
 
   clip_01_window_4:
+    name: Clip 01 - checkpoint window 4 of 4 - total cap 200 - Norway style
     needs: clip_01_window_3
-    name: Clip 01 - window 4/4
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
         with:
           name: checkpoint-01-window-3
           path: .
-      - name: Generate
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 01 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 01 --create-window 50
-      - name: Save
+      - name: Save cumulative media and request budget
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -123,25 +174,41 @@ jobs:
             clips/
             work/
           retention-days: 30
+          if-no-files-found: error
 
-  # 为了节省YAML长度，后续clip使用相同模式，02-15
-  # Clip 02
   clip_02_window_1:
+    name: Clip 02 - checkpoint window 1 of 4 - total cap 200 - Norway style
     needs: clip_01_window_4
-    name: Clip 02 - window 1/4
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
         with:
           name: checkpoint-01-window-4
           path: .
-      - name: Generate
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 02 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 02 --create-window 50
-      - name: Save
+      - name: Save cumulative media and request budget
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -150,107 +217,2414 @@ jobs:
             clips/
             work/
           retention-days: 30
+          if-no-files-found: error
 
   clip_02_window_2:
+    name: Clip 02 - checkpoint window 2 of 4 - total cap 200 - Norway style
     needs: clip_02_window_1
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
         with:
           name: checkpoint-02-window-1
           path: .
-      - name: Generate
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 02 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 02 --create-window 50
-      - uses: actions/upload-artifact@v4
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: checkpoint-02-window-2
           path: |
             clips/
             work/
           retention-days: 30
+          if-no-files-found: error
 
   clip_02_window_3:
+    name: Clip 02 - checkpoint window 3 of 4 - total cap 200 - Norway style
     needs: clip_02_window_2
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
         with:
           name: checkpoint-02-window-2
           path: .
-      - name: Generate
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 02 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 02 --create-window 50
-      - uses: actions/upload-artifact@v4
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: checkpoint-02-window-3
           path: |
             clips/
             work/
           retention-days: 30
+          if-no-files-found: error
 
   clip_02_window_4:
+    name: Clip 02 - checkpoint window 4 of 4 - total cap 200 - Norway style
     needs: clip_02_window_3
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
         with:
           name: checkpoint-02-window-3
           path: .
-      - name: Generate
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 02 within cumulative 200-attempt limit
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
         run: python3 -u scripts/generate.py --scene 02 --create-window 50
-      - uses: actions/upload-artifact@v4
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: checkpoint-02-window-4
           path: |
             clips/
             work/
           retention-days: 30
+          if-no-files-found: error
 
-  # Clip 03-15 would follow same pattern, but for brevity we use a single job for remaining in this demo
-  # In real Norway 722 project, each clip has 4 windows serially
-  clips_03_to_15:
+  clip_03_window_1:
+    name: Clip 03 - checkpoint window 1 of 4 - total cap 200 - Norway style
     needs: clip_02_window_4
-    name: Clips 03-15 - Norway style serial 200 attempts each
     runs-on: ubuntu-latest
-    timeout-minutes: 600
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-02-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 03 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 03 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-03-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_03_window_2:
+    name: Clip 03 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_03_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-03-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 03 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 03 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-03-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_03_window_3:
+    name: Clip 03 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_03_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-03-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 03 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 03 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-03-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_03_window_4:
+    name: Clip 03 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_03_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-03-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 03 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 03 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-03-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_04_window_1:
+    name: Clip 04 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_03_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-03-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 04 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 04 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-04-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_04_window_2:
+    name: Clip 04 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_04_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-04-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 04 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 04 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-04-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_04_window_3:
+    name: Clip 04 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_04_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-04-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 04 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 04 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-04-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_04_window_4:
+    name: Clip 04 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_04_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-04-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 04 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 04 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-04-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_05_window_1:
+    name: Clip 05 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_04_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-04-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 05 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 05 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-05-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_05_window_2:
+    name: Clip 05 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_05_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-05-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 05 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 05 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-05-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_05_window_3:
+    name: Clip 05 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_05_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-05-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 05 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 05 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-05-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_05_window_4:
+    name: Clip 05 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_05_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-05-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 05 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 05 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-05-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_06_window_1:
+    name: Clip 06 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_05_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-05-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 06 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 06 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-06-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_06_window_2:
+    name: Clip 06 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_06_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-06-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 06 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 06 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-06-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_06_window_3:
+    name: Clip 06 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_06_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-06-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 06 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 06 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-06-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_06_window_4:
+    name: Clip 06 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_06_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-06-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 06 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 06 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-06-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_07_window_1:
+    name: Clip 07 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_06_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-06-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 07 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-07-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_07_window_2:
+    name: Clip 07 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_07_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-07-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 07 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-07-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_07_window_3:
+    name: Clip 07 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_07_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-07-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 07 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-07-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_07_window_4:
+    name: Clip 07 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_07_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-07-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 07 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 07 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-07-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_08_window_1:
+    name: Clip 08 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_07_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-07-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 08 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 08 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-08-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_08_window_2:
+    name: Clip 08 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_08_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-08-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 08 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 08 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-08-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_08_window_3:
+    name: Clip 08 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_08_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-08-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 08 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 08 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-08-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_08_window_4:
+    name: Clip 08 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_08_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-08-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 08 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 08 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-08-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_09_window_1:
+    name: Clip 09 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_08_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-08-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 09 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 09 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-09-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_09_window_2:
+    name: Clip 09 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_09_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-09-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 09 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 09 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-09-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_09_window_3:
+    name: Clip 09 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_09_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-09-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 09 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 09 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-09-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_09_window_4:
+    name: Clip 09 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_09_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-09-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 09 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 09 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-09-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_10_window_1:
+    name: Clip 10 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_09_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-09-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 10 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-10-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_10_window_2:
+    name: Clip 10 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_10_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-10-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 10 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-10-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_10_window_3:
+    name: Clip 10 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_10_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-10-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 10 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-10-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_10_window_4:
+    name: Clip 10 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_10_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-10-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 10 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 10 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-10-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_11_window_1:
+    name: Clip 11 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_10_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-10-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 11 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-11-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_11_window_2:
+    name: Clip 11 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_11_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-11-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 11 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-11-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_11_window_3:
+    name: Clip 11 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_11_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-11-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 11 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-11-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_11_window_4:
+    name: Clip 11 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_11_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-11-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 11 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 11 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-11-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_12_window_1:
+    name: Clip 12 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_11_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-11-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 12 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-12-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_12_window_2:
+    name: Clip 12 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_12_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-12-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 12 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-12-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_12_window_3:
+    name: Clip 12 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_12_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-12-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 12 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-12-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_12_window_4:
+    name: Clip 12 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_12_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-12-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 12 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 12 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-12-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_13_window_1:
+    name: Clip 13 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_12_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-12-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 13 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-13-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_13_window_2:
+    name: Clip 13 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_13_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-13-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 13 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-13-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_13_window_3:
+    name: Clip 13 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_13_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-13-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 13 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-13-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_13_window_4:
+    name: Clip 13 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_13_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-13-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 13 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 13 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-13-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_14_window_1:
+    name: Clip 14 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_13_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-13-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 14 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 14 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-14-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_14_window_2:
+    name: Clip 14 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_14_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-14-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 14 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 14 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-14-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_14_window_3:
+    name: Clip 14 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_14_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-14-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 14 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 14 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-14-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_14_window_4:
+    name: Clip 14 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_14_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-14-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 14 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 14 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-14-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_15_window_1:
+    name: Clip 15 - checkpoint window 1 of 4 - total cap 200 - Norway style
+    needs: clip_14_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-14-window-4
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 15 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 15 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-15-window-1
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_15_window_2:
+    name: Clip 15 - checkpoint window 2 of 4 - total cap 200 - Norway style
+    needs: clip_15_window_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-15-window-1
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 15 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 15 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-15-window-2
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_15_window_3:
+    name: Clip 15 - checkpoint window 3 of 4 - total cap 200 - Norway style
+    needs: clip_15_window_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-15-window-2
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 15 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 15 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-15-window-3
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  clip_15_window_4:
+    name: Clip 15 - checkpoint window 4 of 4 - total cap 200 - Norway style
+    needs: clip_15_window_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/7d72cae2-monalisa-film
+      - name: Restore prior serial checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          name: checkpoint-15-window-3
+          path: .
+      - name: Require saved state - never reset attempts
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import shutil
+          p=Path('work/state.json')
+          if not p.exists() and Path('state.json').exists():
+              p.parent.mkdir(exist_ok=True)
+              shutil.move('state.json', p)
+          if not p.exists():
+              raise SystemExit('Checkpoint missing; no request sent')
+          PYCODE
+      - name: Install deps
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
+      - name: Continue clip 15 within cumulative 200-attempt limit
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: python3 -u scripts/generate.py --scene 15 --create-window 50
+      - name: Save cumulative media and request budget
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkpoint-15-window-4
+          path: |
+            clips/
+            work/
+          retention-days: 30
+          if-no-files-found: error
+
+  batch_review:
+    name: Review only if all 15 raw clips exist - QC QA distortion check
+    needs: clip_15_window_4
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
         with:
           ref: arena/7d72cae2-monalisa-film
       - uses: actions/download-artifact@v4
         with:
-          name: checkpoint-02-window-4
+          name: checkpoint-15-window-4
           path: .
-      - name: Install deps
+      - name: Check collection completeness
+        id: gate
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import os
+          missing=[f'{i:02}' for i in range(1,16) if not Path(f'clips/{i:02}.mp4').exists()]
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write('complete='+str(not missing).lower()+'\n')
+          if missing:
+              print(f'::warning title=Incomplete collection::Missing {missing}; no QC, no finished film.')
+          PYCODE
+      - name: Install ffmpeg
+        if: steps.gate.outputs.complete == 'true'
         run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg && pip install pillow
-      - name: Generate remaining clips 03-15 serially 200 attempts each
+      - name: Batch QC and selective repair - distortion check
+        if: steps.gate.outputs.complete == 'true'
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
-        run: |
-          for scene in 03 04 05 06 07 08 09 10 11 12 13 14 15; do
-            echo "Generating scene $scene with 200 attempts cap, 4 windows of 50"
-            python3 -u scripts/generate.py --scene $scene --create-window 50 || true
-            python3 -u scripts/generate.py --scene $scene --create-window 50 || true
-            python3 -u scripts/generate.py --scene $scene --create-window 50 || true
-            python3 -u scripts/generate.py --scene $scene --create-window 50 || true
-          done
-      - name: Save final raw clips
+        run: python3 -u scripts/generate.py --review
+      - name: Preserve aggregate results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: raw-clips-lam-norway-style
+          name: raw-clips-lam-norway
           path: |
             clips/
             work/
+            review/
           retention-days: 30
+
