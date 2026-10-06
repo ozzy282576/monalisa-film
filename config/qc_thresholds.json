@@ -1,0 +1,40 @@
+{
+  "distortion_check": {
+    "max_optical_flow_anomaly_ratio": 0.35,
+    "max_frame_blur_score": 100,
+    "min_sharpness": 20,
+    "max_limb_distortion_score": 0.3,
+    "face_warp_threshold": 0.4,
+    "enabled": true
+  },
+  "flicker_check": {
+    "max_brightness_variance": 50,
+    "max_flicker_frequency": 0.2,
+    "enabled": true
+  },
+  "continuity_check": {
+    "min_ssim_between_frames": 0.60,
+    "max_scene_cut_per_clip": 35,
+    "enabled": true
+  },
+  "nsfw_check": {
+    "max_nudity_score": 0.2,
+    "max_gore_score": 0.15,
+    "forbidden_objects": ["blood", "corpse", "saw", "explicit_nudity"],
+    "enabled": true
+  },
+  "douyin_compliance": {
+    "resolution": [1080, 1920],
+    "fps": 24,
+    "max_duration_seconds": 13.5,
+    "min_duration_seconds": 2.5,
+    "aspect_ratio": "9:16",
+    "max_file_size_mb": 50
+  },
+  "overall_qa": {
+    "min_overall_score": 0.70,
+    "required_passes": ["distortion", "flicker", "continuity", "nsfw", "douyin_compliance"],
+    "retry_until_pass": true,
+    "max_retries": 200
+  }
+}

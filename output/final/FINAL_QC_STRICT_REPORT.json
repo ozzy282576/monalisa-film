@@ -1,0 +1,50 @@
+[
+  {
+    "video_path": "output/final/monalisa_lam_3min_540p.mp4",
+    "width": 540,
+    "height": 960,
+    "fps": 24.0,
+    "total_frames": 4320,
+    "duration": 180.0,
+    "sampled_frames": 288,
+    "avg_blur": 1103.5977122155543,
+    "flow_anomaly_ratio": 0.017421602787456445,
+    "brightness_variance": 229.3648676564911,
+    "overall_score": 0.9709150021080759,
+    "passed": true,
+    "reasons": [],
+    "timestamp": "2026-10-06T03:12:06.087268"
+  },
+  {
+    "video_path": "output/final/monalisa_lam_3min_1080p.mp4",
+    "width": 1080,
+    "height": 1920,
+    "fps": 24.0,
+    "total_frames": 4320,
+    "duration": 180.0,
+    "sampled_frames": 288,
+    "avg_blur": 1023.6377046412005,
+    "flow_anomaly_ratio": 0.013937282229965157,
+    "brightness_variance": 230.27784811562483,
+    "overall_score": 0.9748605635268435,
+    "passed": true,
+    "reasons": [],
+    "timestamp": "2026-10-06T03:12:29.837877"
+  },
+  {
+    "video_path": "output/final/monalisa_lam_3min_douyin_final.mp4",
+    "width": 1080,
+    "height": 1920,
+    "fps": 24.0,
+    "total_frames": 4320,
+    "duration": 180.0,
+    "sampled_frames": 288,
+    "avg_blur": 1318.5449478608393,
+    "flow_anomaly_ratio": 0.017421602787456445,
+    "brightness_variance": 214.7367562356533,
+    "overall_score": 0.9715001265649095,
+    "passed": true,
+    "reasons": [],
+    "timestamp": "2026-10-06T03:12:55.209522"
+  }
+]

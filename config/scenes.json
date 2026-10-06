@@ -1,0 +1,145 @@
+{
+  "project": "蒙娜丽莎的雨夜 - 林过云抖音版",
+  "total_duration_seconds": 180,
+  "clip_duration_seconds": 12,
+  "total_clips": 15,
+  "style_global": "1982年香港雨夜，新黑色动画，吉卜力+王家卫+胶片颗粒，动画视频非图片轮播，人物为风格化动画非写实真人，尊重受害者不展示血腥，垂直9:16，电影感，雨水特效，霓虹灯反射",
+  "scenes": [
+    {
+      "id": 1,
+      "title": "雨夜香港 1982",
+      "duration": 12,
+      "prompt": "1982 Hong Kong rainy night cityscape, animated, neon signs in traditional Chinese, wet streets reflecting lights, light rain falling, empty streets, cinematic pan, Studio Ghibli style mixed with noir, vertical 9:16, 24fps, no text, atmospheric",
+      "prompt_cn": "1982年香港雨夜城市全景，动画风格，霓虹招牌，湿漉漉街道倒影，细雨，空无一人的街道，电影感横移镜头",
+      "narration": "1982年，香港，雨季。",
+      "keywords": ["cityscape", "rain", "neon", "1982"],
+      "forbidden": ["blood", "gore", "real person photo"]
+    },
+    {
+      "id": 2,
+      "title": "夜班出租车",
+      "duration": 12,
+      "prompt": "Inside animated yellow taxi 1980s Toyota Crown, dashboard with mechanical meter, rain on windshield, wipers moving rhythmically, radio playing, driver's hands on wheel only, no face, dark, moody, animated not photorealistic",
+      "prompt_cn": "1980年代黄色出租车内部，动画，机械计程表，雨水打在挡风玻璃，雨刷有节奏摆动，收音机，只有司机双手不见脸，阴郁",
+      "narration": "一辆夜班出租车，亮着空车牌。",
+      "keywords": ["taxi interior", "rain", "wipers"]
+    },
+    {
+      "id": 3,
+      "title": "阿兰 - 想回家的舞女",
+      "duration": 12,
+      "prompt": "Young animated Hong Kong woman 22 years old 1980s fashion, waiting at phone booth in rain, holding high heels, tired but gentle smile like Mona Lisa, stylized animation, respectful, no sexualization, umbrella, street lamp",
+      "prompt_cn": "22岁香港年轻女子，80年代打扮，雨中电话亭等车，提着高跟鞋，疲惫但温柔的蒙娜丽莎式微笑，风格化动画，尊重不色情",
+      "narration": "阿兰，22岁，舞厅领舞，今晚想早点回家。",
+      "keywords": ["woman waiting", "respectful", "Mona Lisa smile"]
+    },
+    {
+      "id": 4,
+      "title": "暗房红光",
+      "duration": 12,
+      "prompt": "1980s photo darkroom with red safelight, animated, photographic paper in developer tray, image slowly appearing, close-up of gloved hands, chemical bubbles, mysterious, no gore, animated",
+      "prompt_cn": "80年代冲印店暗房，红光，动画，相纸在显影液中慢慢浮现，戴手套的手特写，药水气泡，神秘感",
+      "narration": "在那个年代，照片必须经由别人的手，才能被看见。",
+      "keywords": ["darkroom", "red light", "developing"]
+    },
+    {
+      "id": 5,
+      "title": "城门河的报纸",
+      "duration": 12,
+      "prompt": "1982 Hong Kong newspaper headline animated, rain on window, newspaper spinning in wind, headline about missing women, no graphic images, noir animation, desk lamp",
+      "prompt_cn": "1982年香港报纸头条动画，雨打窗户，报纸在风中旋转，关于失踪女性的标题，无血腥图，黑色电影动画",
+      "narration": "城门河发现了东西，但没人在意。",
+      "keywords": ["newspaper", "rain window"]
+    },
+    {
+      "id": 6,
+      "title": "阿洁 - 便利店的菠萝包",
+      "duration": 12,
+      "prompt": "Animated Hong Kong convenience store night 1980s, 31-year-old woman cashier, tired, taking off shoes behind counter, holding pineapple bun, child's crayon drawing on cash register, warm light, respectful animation",
+      "prompt_cn": "80年代香港便利店夜景动画，31岁女收银员，疲惫，柜台后脱鞋，拿着菠萝包，收银机上孩子蜡笔画，暖光，尊重",
+      "narration": "阿洁，31岁，夜班收银，包里总有一个菠萝包。",
+      "keywords": ["convenience store", "pineapple bun"]
+    },
+    {
+      "id": 7,
+      "title": "女法医的地图",
+      "duration": 12,
+      "prompt": "Female forensic doctor in 1980s lab, animated, 32 years old professional woman, drawing red lines connecting locations on map of Hong Kong, microscope, cold fluorescent light, clay face reconstruction on table, respectful, determined",
+      "prompt_cn": "80年代实验室女法医动画，32岁专业女性，在香港地图上用红笔连线，显微镜，冷荧光灯，桌上黏土面部重建，尊重坚定",
+      "narration": "何医生发现，雨夜、出租车、夜归女性，连成了一张网。",
+      "keywords": ["female forensic", "map", "reconstruction"]
+    },
+    {
+      "id": 8,
+      "title": "阿云 - 刚拿到驾照",
+      "duration": 12,
+      "prompt": "Animated Hong Kong woman 29 years old, restaurant dishwasher, holding new driver's license, smiling proudly, practicing driving gesture on rooftop, rain, strong personality, respectful",
+      "prompt_cn": "29岁香港女子动画，酒楼洗碗工，拿着新驾照，自豪微笑，天台练习开车动作，雨，性格泼辣，尊重",
+      "narration": "阿云，29岁，刚拿到驾照，想自己开车。",
+      "keywords": ["driver license", "strong woman"]
+    },
+    {
+      "id": 9,
+      "title": "后视镜里的凝视",
+      "duration": 12,
+      "prompt": "Taxi rearview mirror animated, reflection of passenger seat empty then with silhouette, rain streaks on mirror, driver's eyes in mirror but blurred, psychological thriller, no violence, tension through composition, animated",
+      "prompt_cn": "出租车后视镜动画，倒影空座然后出现剪影，雨痕，后视镜里司机眼睛模糊，心理惊悚，无暴力，通过构图制造张力，动画",
+      "narration": "后视镜是一个取景器，决定谁入画，谁被抹去。",
+      "keywords": ["rearview mirror", "gaze", "psychological"]
+    },
+    {
+      "id": 10,
+      "title": "阿心 - 借来的相机",
+      "duration": 12,
+      "prompt": "Animated 17-year-old Hong Kong schoolgirl in uniform 1980s, holding borrowed film camera, curious and bright, talking about photography, school bag, rain, youthful, respectful, no sexualization",
+      "prompt_cn": "80年代香港17岁女学生校服动画，拿着借来的胶片相机，好奇明亮，聊摄影，书包，雨，青春，尊重不色情",
+      "narration": "阿心，17岁，会考结束，想拍下所有美好的东西。",
+      "keywords": ["schoolgirl", "camera", "youth"]
+    },
+    {
+      "id": 11,
+      "title": "冲印店的发现",
+      "duration": 12,
+      "prompt": "Teenage boy in 1980s Kodak photo shop, animated, 17 years old apprentice, face turning from smile to shock as he looks at developing photo, red light, hands shaking, chemical spill, no gore shown only reaction, tension",
+      "prompt_cn": "80年代柯达冲印店少年动画，17岁学徒，表情从笑到震惊，看着显影照片，红光，手抖，药水洒，只有反应无血腥，张力",
+      "narration": "那卷菲林，颜色不对。",
+      "keywords": ["photo shop", "shock", "discovery"]
+    },
+    {
+      "id": 12,
+      "title": "雨停了 逮捕",
+      "duration": 12,
+      "prompt": "1982 Hong Kong street after rain, animated, police plainclothes arresting taxi driver outside photo shop, no violence, driver calm, puddles reflecting neon, bystanders, quiet arrest, cinematic",
+      "prompt_cn": "1982年香港雨后街道动画，便衣在冲印店外逮捕出租车司机，无暴力，司机平静，水洼倒影霓虹，路人，安静的逮捕，电影感",
+      "narration": "1982年8月18日，雨停了。",
+      "keywords": ["arrest", "after rain", "quiet"]
+    },
+    {
+      "id": 13,
+      "title": "四幅蒙娜丽莎",
+      "duration": 12,
+      "prompt": "Four clay face reconstructions on table by window, animated, sunlight, four different women smiling gently like Mona Lisa, artistic, memorial, respectful, warm light, dust motes",
+      "prompt_cn": "窗边桌上四座黏土面部重建动画，阳光，四位不同女性温柔蒙娜丽莎式微笑，艺术，纪念，尊重，暖光，尘埃",
+      "narration": "她们不是标本，她们是人，她们都有名字。",
+      "keywords": ["memorial", "clay reconstruction", "Mona Lisa"]
+    },
+    {
+      "id": 14,
+      "title": "空车开走",
+      "duration": 12,
+      "prompt": "Empty yellow taxi driving away in rainy Hong Kong night, animated, from behind, taillights reflecting in puddles, no passengers, radio music, neon reflections, melancholic, Studio Ghibli style, vertical",
+      "prompt_cn": "空黄色出租车在雨夜香港开走动画，背面，尾灯倒影水洼，无乘客，收音机音乐，霓虹倒影，忧郁，吉卜力风格，垂直",
+      "narration": "那辆车开走了，但雨还在下。",
+      "keywords": ["empty taxi", "driving away", "melancholic"]
+    },
+    {
+      "id": 15,
+      "title": "尾声 - 想回家的女孩",
+      "duration": 12,
+      "prompt": "Black screen with rain sound, then four names appearing in white Chinese calligraphy animated, then text '愿所有想回家的女孩都能安全到家', minimalist, respectful, rain drops on black, final frame Mona Lisa smile abstract",
+      "prompt_cn": "黑屏雨声动画，然后四个名字白色书法浮现，然后文字愿所有想回家的女孩都能安全到家，极简，尊重，黑底雨滴，最后蒙娜丽莎微笑抽象",
+      "narration": "谨以此片，纪念1982年雨夜中想回家的四位女性。愿所有夜归人，都能平安到家。",
+      "keywords": ["memorial", "names", "ethical ending"]
+    }
+  ]
+}

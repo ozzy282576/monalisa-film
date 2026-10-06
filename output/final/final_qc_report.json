@@ -1,0 +1,21 @@
+{
+  "final_video": "output/final/final_with_effects.mp4",
+  "resolution": "540x960",
+  "fps": 24.0,
+  "duration_seconds": 12.0,
+  "frame_count": 288,
+  "file_size_mb": 0.24316692352294922,
+  "total_clips": 1,
+  "clips": [
+    {
+      "clip_id": 15,
+      "title": "尾声 - 想回家的女孩",
+      "attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.8778214475598368,
+      "passed": true
+    }
+  ],
+  "overall_passed": true,
+  "avg_qc_score": 0.8778214475598368
+}

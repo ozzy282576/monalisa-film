@@ -1,0 +1,21 @@
+{
+  "base_url": "https://api.agnes.ai/v1",
+  "api_key_env": "AGNES_API_KEY",
+  "model": "agnes-video-v3-animated",
+  "style_preset": "noir_animation",
+  "timeout_seconds": 120,
+  "poll_interval_seconds": 3,
+  "max_retries_per_clip": 200,
+  "total_clips": 15,
+  "clip_duration_seconds": 12,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 24,
+  "aspect_ratio": "9:16",
+  "output_format": "mp4",
+  "serial_execution": true,
+  "mock_mode": true,
+  "mock_mode_note": "当未配置真实AGNES_API_KEY时，自动进入Mock动画生成模式，用于本地QC流程测试。真实环境请设置环境变量 AGNES_API_KEY 并将 mock_mode 设为 false"
+}

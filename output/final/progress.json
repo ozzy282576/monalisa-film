@@ -1,0 +1,17 @@
+{
+  "timestamp": 1791255745.706787,
+  "completed_clips": 1,
+  "total_clips": 15,
+  "failed_clips": [],
+  "clips": [
+    {
+      "clip_id": 15,
+      "title": "尾声 - 想回家的女孩",
+      "final_path": "output/clips/final_clip_15.mp4",
+      "best_attempt": 1,
+      "total_attempts": 1,
+      "qc_score": 0.8778214475598368,
+      "passed": true
+    }
+  ]
+}
