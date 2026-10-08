@@ -1,0 +1,4 @@
+.env
+*.part
+audio/*.mp3
+work/*.part

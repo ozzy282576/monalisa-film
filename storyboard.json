@@ -1,0 +1,107 @@
+[
+  {
+    "id": "01",
+    "seconds": "12",
+    "title": "卢浮宫黎明",
+    "prompt": "Photorealistic 1911 cinematic film, 16:9. Slow aerial push along the Seine toward the Louvre Palace at pale dawn. Horse carriages, no cars, no modern lamps, no glass pyramid. Warm gold mist. Architecture must stay physically correct, no warped columns. No text, no logos, no subtitles.",
+    "narration": "一九一一年八月二十一日，巴黎。塞纳河上薄雾未散，卢浮宫在黎明里静得像一座沉睡的宫殿。"
+  },
+  {
+    "id": "02",
+    "seconds": "12",
+    "title": "沙龙卡雷",
+    "prompt": "Photorealistic 1911 Louvre Salon Carre. ONE single Mona Lisa only, hanging on the far wall in a plain wooden 1911 frame, not gilt overkill, not behind glass. Other paintings are different historical works, NEVER a second Mona Lisa. Edwardian visitors, skylight, camera dollies slowly toward that one Mona Lisa. Correct anatomy, no extra fingers, no warped frames. No text.",
+    "narration": "沙龙卡雷厅里，达芬奇的蒙娜丽莎还挂在墙上。那时她还没有防弹玻璃，也没有日夜不歇的人群。"
+  },
+  {
+    "id": "03",
+    "seconds": "12",
+    "title": "佩鲁贾登场",
+    "prompt": "Same lead character in every shot: Vincenzo Peruggia, Italian man age 32, lean, short black hair, thick dark mustache, white painter smock over dark trousers, carrying a wooden ladder at night in empty Louvre corridors. Oil lamp and moonlight. Photorealistic, correct hands, five fingers, no face morph. No text.",
+    "narration": "温琴佐·佩鲁贾，意大利籍工人，曾在卢浮宫做过镜框与玻璃安装。他熟悉每一条走廊，也熟悉那幅画。"
+  },
+  {
+    "id": "04",
+    "seconds": "12",
+    "title": "藏身储藏室",
+    "prompt": "Same man as before: age 32, short black hair, thick dark mustache, white painter smock. He hides behind stacked empty frames and crates in a Louvre storage room at night, listening, a lantern of a watchman passing in the corridor. Photorealistic, no face change, correct hands. No text.",
+    "narration": "周日闭馆。他躲进储藏室，听着守夜人的脚步远去，把整座博物馆留给了自己。"
+  },
+  {
+    "id": "05",
+    "seconds": "12",
+    "title": "取下名画",
+    "prompt": "Monday morning empty Louvre gallery. The SAME mustached Italian workman in white smock stands on a small ladder and lifts the ONE Mona Lisa in its wooden frame DOWN OFF THE WALL. After it comes off, a pale rectangle and a nail remain on the wall. The painting in his hands must be the Mona Lisa smile, not a black damaged canvas, not an easel in the room center. Photorealistic, no extra people. No text.",
+    "narration": "星期一清晨，厅里还没有参观者。他把蒙娜丽莎连同镜框从墙上取下，动作熟练得像在完成一件日常工作。"
+  },
+  {
+    "id": "06",
+    "seconds": "12",
+    "title": "卸框卷画",
+    "prompt": "1911 dark wooden SERVICE STAIR only. Bare dirty plaster wall, NO paintings hanging, NO gilt frames, NO gallery. ONE mustached Italian in white smock, bare wrists no watch, five fingers. He holds ONE unframed Mona Lisa canvas only, rolls that single canvas, tucks it under smock. One oil lamp. Never a second Mona Lisa. Photorealistic. No text.",
+    "narration": "在服务楼梯间，他拆掉镜框，把画布卷起，塞进工作服里。世界最著名的微笑，就此消失在一件白色罩衫下面。"
+  },
+  {
+    "id": "07",
+    "seconds": "12",
+    "title": "大摇大摆走出",
+    "prompt": "Same mustached workman in white smock at a Louvre side door at morning, unscrews a stuck doorknob, then walks calmly into a 1911 Paris street. No readable shop signs, no English letters, blank or out-of-focus signage only. Photorealistic, no cars. No text.",
+    "narration": "出门时一扇侧门卡住了。他从容拧下门把手，走进巴黎的晨光。没有警报，没有追捕。"
+  },
+  {
+    "id": "08",
+    "seconds": "12",
+    "title": "空墙被发现",
+    "prompt": "Louvre gallery 1911. Pale empty rectangle and a nail on a purple damask wall. Two French guards in kepis rush in and STOP, staring at the empty wall. BOTH hands empty, no object in hands, hats glued to heads, never removed, never a second hat. No Mona Lisa on any wall. Photorealistic. No text.",
+    "narration": "直到星期二，人们才发现墙上只剩一个苍白的空框痕迹。法兰西共和国最珍贵的画像，不翼而飞。"
+  },
+  {
+    "id": "09",
+    "seconds": "12",
+    "title": "全城搜查",
+    "prompt": "1911 Paris investigation: detectives in bowler hats, crowd outside the Louvre, a printing press. No readable letters on newspapers or posters, all text illegible blur. Photorealistic faces with correct eyes and five fingers. No text overlays.",
+    "narration": "警察封锁港口与车站，画家阿波利奈尔一度被怀疑，毕加索也被传讯。整个巴黎陷入一场荒唐而狂热的猎巫。"
+  },
+  {
+    "id": "10",
+    "seconds": "12",
+    "title": "木箱里的两年",
+    "prompt": "Same mustached Italian man, now in a worn vest, poor Paris room 1913. He opens a wooden trunk on the floor revealing the unrolled Mona Lisa canvas inside, only one painting. Photorealistic, correct hands. No text.",
+    "narration": "佩鲁贾把画藏在公寓的木箱里，一藏就是两年。他自称要把达芬奇的杰作带回意大利，还给祖国。"
+  },
+  {
+    "id": "11",
+    "seconds": "12",
+    "title": "佛罗伦萨接头",
+    "prompt": "Florence 1913 antique shop. EXACTLY THREE men total, never four. Center: mustached Italian in worn brown suit. They lean over a table that holds ONE large clearly recognizable Leonardo Mona Lisa, correct face and smile, not melting, filling the table. Warm lamp. Florence street through open door behind them. Five fingers each hand. Photorealistic. No text.",
+    "narration": "一九一三年十二月，他写信给佛罗伦萨古董商杰里，声称拥有蒙娜丽莎，愿以十万里拉成交。"
+  },
+  {
+    "id": "12",
+    "seconds": "12",
+    "title": "乌菲兹鉴定",
+    "prompt": "Uffizi back room 1913. Experts examine the real Mona Lisa on an easel with a magnifying glass and lamps. The painting must look like Leonardo's Mona Lisa. Photorealistic faces, no extra limbs. No text.",
+    "narration": "乌菲兹美术馆馆长波吉前来鉴定。裂纹、颜料、达芬奇的笔触，这的确是失踪两年的那一张脸。"
+  },
+  {
+    "id": "13",
+    "seconds": "12",
+    "title": "被捕",
+    "prompt": "Hotel corridor Florence 1913. Italian police in period uniforms arrest the same mustached man. He looks calm, almost proud, not panicked. Handcuffs. Photorealistic. No text.",
+    "narration": "旅馆里，警察带走了佩鲁贾。他并不慌张，甚至带着一种把名画送回家的骄傲。"
+  },
+  {
+    "id": "14",
+    "seconds": "12",
+    "title": "荣归卢浮宫",
+    "prompt": "January 1914 Paris. Louvre courtyard 1914 architecture ONLY: stone palace, NO glass pyramid, NO I.M. Pei, NO steel cables. Horse cavalry, soldiers carry ONE plain wooden crate. Then two attendants hang ONE Mona Lisa. Photorealistic 1914. No readable text.",
+    "narration": "一九一四年一月，蒙娜丽莎在军警护送下返回巴黎。卢浮宫门口人山人海，那抹微笑重新面对世界。"
+  },
+  {
+    "id": "15",
+    "seconds": "12",
+    "title": "尾声特写",
+    "prompt": "Slow cinematic close-up of the single Mona Lisa painting on a museum wall, subtle camera drift, photorealistic Leonardo surface, craquelure, no extra faces in the paint. Fade toward darkness. No text.",
+    "narration": "一场笨拙的盗窃，让她成为地球上最有名的面孔。微笑还在，只是从此再也无法被轻易取下。"
+  }
+]
