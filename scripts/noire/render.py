@@ -1,0 +1,346 @@
+"""Orchestrates the 9:16 noire explainer: timing, frames, sound, muxing.
+
+Timing is driven by the *real narration audio*, not by a character-count guess:
+each beat lasts ``max(min_duration, voice_length + padding)``.  That is what makes
+subtitles and cuts land on the voice instead of drifting away from it.
+"""
+
+from __future__ import annotations
+
+import json
+import subprocess
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Dict, List, Optional, Sequence, Tuple
+
+import numpy as np
+from PIL import Image
+
+from . import audio as audio_module
+from . import contract
+from . import grade as grade_module
+from .encoder import Encoder
+from .motion import Camera
+from .text import TextPanel
+
+
+def probe_duration(path: Path) -> float:
+    """Duration of an audio file in seconds, via ffprobe."""
+    from .encoder import find_ffprobe
+
+    binary = find_ffprobe(path.parent)
+    if not binary:
+        return 0.0
+    out = subprocess.run(
+        [binary, "-v", "error", "-show_entries", "format=duration",
+         "-of", "default=nw=1:nk=1", str(path)],
+        capture_output=True, text=True,
+    )
+    try:
+        return float(out.stdout.strip())
+    except ValueError:
+        return 0.0
+
+
+@dataclass
+class Beat:
+    id: str
+    narration: str
+    on_screen: Optional[str]
+    annotation: Optional[str]
+    disclaimer: Optional[str]
+    motion: str
+    accent: Optional[str]
+    sfx: List[str]
+    min_duration: float
+    image: Optional[str]
+    grade_name: Optional[str] = None
+    image_path: Optional[Path] = None
+    voice_path: Optional[Path] = None
+    voice_duration: float = 0.0
+    duration: float = 0.0
+    start: float = 0.0
+    camera: Optional[Camera] = None
+    grade: object = None
+    motion_spec: object = None
+
+
+@dataclass
+class Script:
+    title: str
+    beats: List[Beat]
+    style_lock: str = ""
+    bgm: List[dict] = field(default_factory=list)
+    voice: str = ""
+    padding: float = 0.45
+    tail: float = 1.2
+    gap: float = 0.18
+
+
+def load_script(path: Path, project_dir: Path) -> Script:
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    beats: List[Beat] = []
+    for index, item in enumerate(raw["beats"], start=1):
+        beat = Beat(
+            id=str(item.get("id") or f"{index:02d}"),
+            narration=item.get("narration", "") or "",
+            on_screen=item.get("on_screen"),
+            annotation=item.get("annotation"),
+            disclaimer=item.get("disclaimer"),
+            motion=item.get("motion", "push_in"),
+            accent=item.get("accent"),
+            sfx=list(item.get("sfx") or []),
+            min_duration=float(item.get("min_duration", 2.0)),
+            image=item.get("image"),
+            grade_name=item.get("grade"),
+        )
+        if beat.image:
+            candidate = Path(beat.image)
+            if not candidate.is_absolute():
+                candidate = project_dir / candidate
+            beat.image_path = candidate if candidate.exists() else None
+        beats.append(beat)
+
+    media = raw.get("media", {}) or {}
+    unsounded: List[str] = []
+    voice_map: Dict[str, str] = media.get("voice") or {}
+    voice_dir = media.get("voice_dir")
+    voice_root: Optional[Path] = None
+    if voice_dir:
+        voice_root = Path(voice_dir)
+        if not voice_root.is_absolute():
+            voice_root = project_dir / voice_root
+
+    for beat in beats:
+        candidate: Optional[Path] = None
+        if voice_map.get(beat.id):
+            candidate = Path(voice_map[beat.id])
+            if not candidate.is_absolute():
+                candidate = project_dir / candidate
+        elif voice_root is not None:
+            # auto-discovery: drop <beat id>.mp3 / .wav / .m4a into voice_dir
+            for suffix in (".mp3", ".wav", ".m4a", ".opus", ".flac"):
+                probe_path = voice_root / f"{beat.id}{suffix}"
+                if probe_path.exists():
+                    candidate = probe_path
+                    break
+        if candidate is not None and candidate.exists():
+            beat.voice_path = candidate
+            beat.voice_duration = probe_duration(candidate)
+            if beat.voice_duration <= 0.0:
+                # ffprobe missing, or the file is unreadable. Without this the
+                # beat silently falls back to min_duration and the finished film
+                # comes out tens of seconds short with no error at all.
+                unsounded.append(beat.id)
+
+    if unsounded:
+        import warnings
+        warnings.warn(
+            f"{len(unsounded)} beat(s) have audio on disk but no readable "
+            f"duration ({', '.join(unsounded)}) — ffprobe is probably missing, "
+            f"and those beats will fall back to their minimum duration.",
+            stacklevel=2,
+        )
+
+    return Script(
+        title=raw.get("title", "未命名"),
+        beats=beats,
+        style_lock=raw.get("style_lock", ""),
+        bgm=list(raw.get("bgm") or []),
+        voice=media.get("voice_id", ""),
+        padding=float(raw.get("padding", 0.45)),
+        tail=float(raw.get("tail", 1.2)),
+        gap=float(raw.get("gap", 0.18)),
+    )
+
+
+class NoireRenderer:
+    def __init__(
+        self,
+        project_dir: Path,
+        script: Script,
+        width: int = contract.WIDTH,
+        height: int = contract.HEIGHT,
+        fps: int = contract.FPS,
+    ) -> None:
+        self.project_dir = Path(project_dir)
+        self.script = script
+        self.width = width
+        self.height = height
+        self.fps = fps
+        self.panel = TextPanel(self.project_dir, width, height)
+        self._schedule()
+
+    # -- timing --------------------------------------------------------------
+
+    def _schedule(self) -> None:
+        cursor = 0.0
+        for index, beat in enumerate(self.script.beats):
+            duration = max(beat.min_duration, beat.voice_duration + self.script.padding)
+            beat.duration = round(duration, 3)
+            beat.start = round(cursor, 3)
+            cursor += beat.duration
+            if index < len(self.script.beats) - 1:
+                cursor += self.script.gap
+        self.total_seconds = round(cursor + self.script.tail, 3)
+
+        for beat in self.script.beats:
+            beat.grade = grade_module.resolve(beat.grade_name, beat.id)
+            if beat.image_path is None:
+                continue
+            beat.motion_spec = contract.MOTIONS.get(
+                beat.motion, contract.MOTIONS["push_in"])
+            with Image.open(beat.image_path) as handle:
+                beat.camera = Camera.prepare(handle, beat.motion_spec, self.width, self.height)
+
+    # -- frames --------------------------------------------------------------
+
+    @property
+    def total_frames(self) -> int:
+        return max(1, int(round(self.total_seconds * self.fps)))
+
+    def beat_at(self, frame_index: int) -> Tuple[Optional[Beat], int]:
+        seconds = frame_index / self.fps
+        for beat in self.script.beats:
+            if beat.start <= seconds < beat.start + beat.duration:
+                local = int(round((seconds - beat.start) * self.fps))
+                return beat, local
+        return (self.script.beats[-1] if self.script.beats else None), 0
+
+    def _ensure_camera(self, beat: "Beat") -> bool:
+        """Prepare ``beat``'s camera if it was released, since releasing is lossy.
+
+        ``_release_other_cameras`` exists because holding 23 prepared plates at
+        1080p does not fit in memory, but freeing without a way back made the
+        renderer unseekable: asking for an already-finished beat returned a
+        black frame instead of an error. Rebuilding here keeps the memory win
+        and makes the renderer safe to call out of order.
+        """
+        if beat.camera is not None:
+            return True
+        if beat.image_path is None or not beat.image_path.exists():
+            return False
+        motion = beat.motion_spec or contract.MOTIONS.get(
+            beat.motion, contract.MOTIONS["push_in"])
+        with Image.open(beat.image_path) as handle:
+            beat.camera = Camera.prepare(handle, motion, self.width, self.height)
+        return True
+
+    def _release_other_cameras(self, keep: "Beat") -> None:
+        """Drop every other beat's prepared camera.
+
+        Each camera holds a scaled plate plus a blurred copy; holding 23 of them
+        at 1080p does not fit in this box's memory. Beats are rendered in order,
+        so anything more than a couple of beats back will never be asked for
+        again.
+        """
+        for other in self.script.beats:
+            if other is keep or other.camera is None:
+                continue
+            if other.start + other.duration <= keep.start:
+                other.camera = None
+
+    def render_frame(self, frame_index: int) -> np.ndarray:
+        beat, local = self.beat_at(frame_index)
+        if beat is None or not self._ensure_camera(beat):
+            return np.zeros((self.height, self.width, 3), dtype=np.uint8)
+        self._release_other_cameras(beat)
+
+        frames = max(1, int(round(beat.duration * self.fps)))
+        t = min(1.0, local / max(1, frames - 1))
+        arr = beat.camera.frame(t, frame_index, grade=beat.grade)
+
+        image = Image.fromarray(arr, "RGB")
+        if beat.annotation:
+            self.panel.annotation(image, beat.annotation, beat.accent)
+        if beat.on_screen:
+            self.panel.subtitle(image, beat.on_screen)
+        if beat.disclaimer:
+            self.panel.disclaimer(image, beat.disclaimer)
+
+        out = np.asarray(image, dtype=np.uint8)
+
+        # hard cut accent: a couple of blown-out frames on the beat
+        if local < contract.IMPACT_FLASH_FRAMES and beat.accent == "red":
+            fade = 1.0 - local / max(1, contract.IMPACT_FLASH_FRAMES)
+            out = np.clip(
+                out.astype(np.float32) + (255.0 - out.astype(np.float32)) * 0.85 * fade,
+                0, 255,
+            ).astype(np.uint8)
+        elif local < contract.IMPACT_FLASH_FRAMES:
+            fade = 1.0 - local / max(1, contract.IMPACT_FLASH_FRAMES)
+            out = (out.astype(np.float32) * (1.0 - 0.9 * fade)).astype(np.uint8)
+        return out
+
+    # -- audio ---------------------------------------------------------------
+
+    def audio_plan(self) -> audio_module.AudioPlan:
+        plan = audio_module.AudioPlan(total_seconds=self.total_seconds)
+        plan.bgm.append(("rain", 0.0, min(40.0, self.total_seconds)))
+        for start in (30.0, 78.0):
+            if start + 6.0 < self.total_seconds:
+                plan.bgm.append(("rain", start, 14.0))
+        for entry in self.script.bgm:
+            plan.bgm.append((
+                entry.get("effect", "strings"),
+                float(entry.get("start", 0.0)),
+                float(entry.get("duration", 5.0)),
+            ))
+        for beat in self.script.beats:
+            if beat.voice_path is not None:
+                plan.voice.append((beat.voice_path, beat.start))
+            for effect in beat.sfx:
+                plan.cues.append((effect, beat.start))
+        return plan
+
+    def render_audio(self, path: Path) -> Path:
+        samples = audio_module.build(self.audio_plan())
+        audio_module.write_wav(path, samples)
+        return path
+
+    # -- render --------------------------------------------------------------
+
+    def render(
+        self,
+        output: Path,
+        crf: int = 20,
+        with_audio: bool = True,
+        progress: bool = True,
+    ) -> dict:
+        output = Path(output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        total = self.total_frames
+        silent = output.with_name(output.stem + "-picture.mp4") if with_audio else output
+
+        with Encoder(silent, self.width, self.height, self.fps, crf=crf,
+                     project_dir=self.project_dir) as encoder:
+            for index in range(total):
+                encoder.write(self.render_frame(index).astype(np.float32) / 255.0)
+                if progress and (index + 1) % 180 == 0:
+                    print(f"  帧 {index + 1}/{total}", flush=True)
+
+        result = {
+            "output": output,
+            "picture": silent,
+            "frames": total,
+            "seconds": self.total_seconds,
+            "beats": len(self.script.beats),
+            "width": self.width,
+            "height": self.height,
+            "audio": False,
+        }
+
+        if with_audio and any(beat.voice_path for beat in self.script.beats):
+            wav = output.with_name(output.stem + "-mix.wav")
+            self.render_audio(wav)
+            from .encoder import find_ffmpeg
+
+            subprocess.run(
+                [find_ffmpeg(), "-hide_banner", "-loglevel", "error", "-y",
+                 "-i", str(silent), "-i", str(wav),
+                 "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+                 "-shortest", "-movflags", "+faststart", str(output)],
+                check=True,
+            )
+            result["audio"] = True
+        return result

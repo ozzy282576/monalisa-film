@@ -1,0 +1,18 @@
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 运行时产物：由流水线重新生成
+renders/*
+!renders/.gitkeep
+!renders/demo-*.mp4
+!renders/noire-1080x1920.mp4
+!renders/noire-1080x1920.mp4
+public/assets/generated/
+.story-video/
+storyboard.json
+*.log
+.DS_Store
+tmp/

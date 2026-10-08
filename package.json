@@ -1,0 +1,22 @@
+{
+  "name": "monalisa-film",
+  "version": "1.0.0",
+  "private": true,
+  "description": "中文故事 → 3:4 竖屏手绘故事动画（文字 → 线稿 → 彩色 三层揭示 / 翻书转场）",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "python3 tests/test_pipeline.py",
+    "styles": "python3 scripts/run_story_video.py --list-styles",
+    "styles:all": "python3 scripts/run_story_video.py --list-styles --all-styles",
+    "plan": "python3 scripts/run_story_video.py --mode plan",
+    "preview": "python3 scripts/run_story_video.py --mode preview",
+    "render": "python3 scripts/run_story_video.py --mode render"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2"
+  }
+}
