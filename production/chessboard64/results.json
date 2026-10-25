@@ -13,7 +13,7 @@
     }
   },
   "workflow_policy": "cogvideox-flash-receipt-v2-refprobe",
-  "phase": "generating_sources",
+  "phase": "selected_sources_ready",
   "required_generated_shots": [
     "S01",
     "S02",
