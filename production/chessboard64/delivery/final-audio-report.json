@@ -1,0 +1,58 @@
+{
+  "file": "六十四格_国际象棋盘杀手_三分钟_带声音.mp4",
+  "duration_seconds": 180.011,
+  "sample_rate": 48000,
+  "channels": 1,
+  "rms_dbfs": -26.17,
+  "peak_dbfs": -1.67,
+  "window_seconds": 1.0,
+  "silent_windows": 1,
+  "window_count": 181,
+  "silent_fraction": 0.0055,
+  "quietest_window_dbfs": -120.0,
+  "chapters": [
+    {
+      "id": "N01",
+      "start": 0.6,
+      "end": 29.148,
+      "rms_dbfs": -26.3,
+      "peak_dbfs": -2.01
+    },
+    {
+      "id": "N02",
+      "start": 30.228,
+      "end": 62.996,
+      "rms_dbfs": -25.97,
+      "peak_dbfs": -1.67
+    },
+    {
+      "id": "N03",
+      "start": 64.076,
+      "end": 91.194,
+      "rms_dbfs": -25.82,
+      "peak_dbfs": -2.9
+    },
+    {
+      "id": "N04",
+      "start": 92.274,
+      "end": 119.707,
+      "rms_dbfs": -25.71,
+      "peak_dbfs": -3.0
+    },
+    {
+      "id": "N05",
+      "start": 120.787,
+      "end": 148.118,
+      "rms_dbfs": -25.37,
+      "peak_dbfs": -2.29
+    },
+    {
+      "id": "N06",
+      "start": 149.198,
+      "end": 174.0,
+      "rms_dbfs": -26.37,
+      "peak_dbfs": -2.75
+    }
+  ],
+  "measured_on": "delivered mp4"
+}
