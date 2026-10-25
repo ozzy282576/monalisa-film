@@ -557,27 +557,10 @@
     },
     "S28": {
       "id": "S28",
-      "status": "completed",
-      "request_hash": "fcd0a6ef70c030a13aa58523b6990b9c71afcaf133af594b8766f906fade6d6d",
+      "status": "submitting",
+      "request_hash": "9c91df31a4825b6c12cdaa35fbd6105b611527c31a000ee86a81fa954e26d487",
       "error": null,
-      "updated_at": "2026-10-25T11:06:35Z",
-      "task_id": "202610251905054d564da27e184f54",
-      "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025190620accd8d18c7ca4dab_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=HNBGl9Td%2F2X14H0XF1OuvkQ%2Bdk8%3D&Expires=1793012781",
-      "sha256": "e76584a9450218c64c0be454adefdd857a1f5198aed50e749c758736d86bd62a",
-      "bytes": 803857,
-      "media": {
-        "duration": 5.108108,
-        "bytes": 803857,
-        "width": 1792,
-        "height": 1024,
-        "fps": 37.0,
-        "video_codec": "h264",
-        "frames": 189,
-        "decoded_ok": true,
-        "contact_sheet": "production/chessboard64/qa/S28.jpg",
-        "contact_sampling_fps": 2,
-        "visual_review": "pending"
-      }
+      "updated_at": "2026-10-25T11:52:41Z"
     },
     "S29": {
       "id": "S29",
@@ -958,7 +941,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T11:52:40Z",
+  "updated_at": "2026-10-25T11:52:41Z",
   "previous_results": {
     "S06": [
       {
@@ -1104,6 +1087,30 @@
         "media": {
           "duration": 5.108108,
           "bytes": 1648780,
+          "width": 1792,
+          "height": 1024,
+          "fps": 37.0,
+          "video_codec": "h264",
+          "frames": 189,
+          "decoded_ok": true,
+          "contact_sheet": "production/chessboard64/qa/S28.jpg",
+          "contact_sampling_fps": 2,
+          "visual_review": "pending"
+        }
+      },
+      {
+        "id": "S28",
+        "status": "completed",
+        "request_hash": "fcd0a6ef70c030a13aa58523b6990b9c71afcaf133af594b8766f906fade6d6d",
+        "error": null,
+        "updated_at": "2026-10-25T11:06:35Z",
+        "task_id": "202610251905054d564da27e184f54",
+        "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025190620accd8d18c7ca4dab_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=HNBGl9Td%2F2X14H0XF1OuvkQ%2Bdk8%3D&Expires=1793012781",
+        "sha256": "e76584a9450218c64c0be454adefdd857a1f5198aed50e749c758736d86bd62a",
+        "bytes": 803857,
+        "media": {
+          "duration": 5.108108,
+          "bytes": 803857,
           "width": 1792,
           "height": 1024,
           "fps": 37.0,
