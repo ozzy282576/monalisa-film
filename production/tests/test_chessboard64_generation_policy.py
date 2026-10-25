@@ -28,6 +28,11 @@ class GenerationPolicyTests(unittest.TestCase):
         self.assertTrue(gen.transient_fail("temporary connection timeout 503"))
         self.assertFalse(gen.transient_fail("1301 sensitive content"))
 
+    def test_submit_rate_limit_retries_until_workflow_deadline(self):
+        source = Path(gen.__file__).read_text(encoding="utf-8")
+        self.assertIn("while not task_id and time.monotonic() < deadline", source)
+        self.assertNotIn("attempt < 20", source)
+
 
 if __name__ == "__main__":
     unittest.main()

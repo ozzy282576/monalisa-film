@@ -455,8 +455,8 @@ def main():
         last_error = None
         outcome = 'timeout'
         failure_recorded = False
-        # 瞬时限流/拒绝按 20、25、30、35…秒递增重试；每镜最多3个生成任务。
-        # 1301 是提示词审核拦截，不重复提交同一条；记收据并继续其余镜头，修订提示词后再补。
+        # 瞬时限流/拒绝按 20、25、30、35…秒递增重试，直到获得任务 ID 或触及本轮工作流时限。
+        # 任务本身 transient FAIL 时最多新建3个任务；1301 审核拦截不重投，修订提示词后再补。
         for submission in range(1, 4):
             task_id = PROBE_TASKS.pop(sid, None) \
                 if (submission == 1 and payload.get('image_url')) else None
@@ -465,9 +465,9 @@ def main():
             checkpoint(doc, sid + ' submitting', sid, publish=args.publish,
                        status='submitting', request_hash=wanted, error=None)
             outcome = 'timeout'
-            for attempt in range(1, 21):
-                if task_id:
-                    break
+            attempt = 0
+            while not task_id and time.monotonic() < deadline:
+                attempt += 1
                 try:
                     response = client.videos.generations(**payload)
                     task_id = obj_get(response, 'id')
@@ -485,15 +485,18 @@ def main():
                         failures.append(sid)
                         failure_recorded = True
                         break
-                    if retryable(exc) and attempt < 20:
+                    if retryable(exc):
                         wait = retry_delay(attempt)
-                        print('%s: submit rejected attempt %d, wait %ds: %s'
-                              % (sid, attempt, wait, last_error[:180]), flush=True)
-                        time.sleep(wait)
-                        continue
+                        if time.monotonic() + wait < deadline:
+                            print('%s: submit rejected attempt %d, wait %ds: %s'
+                                  % (sid, attempt, wait, last_error[:180]), flush=True)
+                            time.sleep(wait)
+                            continue
+                        blocker = 'workflow deadline reached during transient provider rejection'
+                    else:
+                        blocker = 'non-transient provider rejection'
                     outcome = 'submit_failed'
-                    blocker = 'retry budget exhausted' if retryable(exc) else 'non-transient provider rejection'
-                    print('%s: %s; skip this shot and preserve receipt' % (sid, blocker), flush=True)
+                    print('%s: %s; preserve the failure receipt' % (sid, blocker), flush=True)
                     checkpoint(doc, sid + ' failed (' + blocker + ')', sid, publish=args.publish,
                                status='failed', request_hash=wanted, error=last_error)
                     failures.append(sid)
