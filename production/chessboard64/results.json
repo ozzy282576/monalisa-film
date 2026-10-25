@@ -341,10 +341,11 @@
     },
     "S17": {
       "id": "S17",
-      "status": "submitting",
+      "status": "queued",
       "request_hash": "b3aba06ea626a2bca6909b6e08e0188474d0f52348eb291a7c9b7ec70fe727f6",
       "error": null,
-      "updated_at": "2026-10-25T06:58:51Z"
+      "updated_at": "2026-10-25T06:58:53Z",
+      "task_id": "202610251458533c850ff93c8446c7"
     }
   },
   "workflow_policy": "cogvideox-flash-receipt-v2-refprobe",
@@ -389,6 +390,6 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T06:58:51Z",
+  "updated_at": "2026-10-25T06:58:53Z",
   "previous_results": {}
 }
