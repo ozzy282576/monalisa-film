@@ -1,13 +1,38 @@
+import json
 import os
 import sys
 import time
 import requests
 import traceback
+from pathlib import Path
 
 print("=== 视频生成自动化脚本启动 ===", flush=True)
 
 api_key = os.getenv("ZHIPUAI_API_KEY")
 prompt = os.getenv("INPUT_PROMPT")
+
+# Backward-compatible dispatch shim: the generic workflow is registered on the
+# default branch, while project-specific workflows may exist only on a production
+# branch. A structured prompt can route that registered workflow to this branch's
+# full Chessboard64 pipeline; ordinary natural-language prompts still use the
+# original one-shot generator below.
+try:
+    dispatch = json.loads(prompt) if prompt else None
+except (json.JSONDecodeError, TypeError):
+    dispatch = None
+if isinstance(dispatch, dict) and dispatch.get("project") == "chessboard64":
+    if dispatch.get("probe") is True:
+        print("CHESSBOARD64_DISPATCH_PROBE_OK", flush=True)
+        sys.exit(0)
+    payload = dispatch.get("payload", {})
+    if not isinstance(payload, dict):
+        print("❌ chessboard64 payload must be a JSON object", flush=True)
+        sys.exit(2)
+    generator = Path(__file__).resolve().parents[1] / "production/chessboard64/generate_cogvideox.py"
+    child_argv = [sys.executable, str(generator), "--publish", "--payload",
+                  json.dumps(payload, ensure_ascii=False, separators=(",", ":"))]
+    print("Routing to production/chessboard64/generate_cogvideox.py", flush=True)
+    os.execv(sys.executable, child_argv)
 
 if not prompt:
     if os.path.exists("trigger_video.txt"):
