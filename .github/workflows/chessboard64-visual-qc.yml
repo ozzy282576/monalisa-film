@@ -153,6 +153,32 @@ jobs:
           git commit -m "chessboard64: publish text-only visual-QC receipts" || true
           git push origin "HEAD:arena/56672981-monalisa-film"
 
+      - name: Enforce strict all-frame machine QC
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, math
+          from pathlib import Path
+          path = Path('work/chessboard64/visual-qc/frame-distortion-audit.json')
+          if not path.is_file():
+              raise SystemExit('Strict visual QC failed: no full-frame audit was produced')
+          audit = json.loads(path.read_text(encoding='utf-8'))
+          video, checks = audit['video'], audit['checks']
+          expected = 180 * 30
+          assert audit['status'] == 'PASS', f"frame audit status is {audit['status']}"
+          assert video['all_decoded_frames_scanned'] and video['decoded_frames'] == expected and video['expected_frames'] == expected, f"incomplete scan: {video}"
+          assert (video['width'], video['height']) == (1920, 1080), f"wrong frame size: {video['width']}x{video['height']}"
+          assert math.isclose(float(video['fps']), 30.0, abs_tol=0.01), f"wrong FPS: {video['fps']}"
+          assert not checks['pts_issues'], f"PTS issues: {len(checks['pts_issues'])}"
+          assert checks['unplanned_black_frame_count'] == 0, 'unplanned black frames detected'
+          assert not checks['non_graphic_freeze_runs'], 'non-graphic frozen sections detected'
+          assert not checks['temporal_outlier_windows'], 'temporal/cut-transition anomalies need review'
+          assert not checks['face_review_candidates'], 'face/silhouette anomalies need review'
+          assert not checks['hand_landmark_extreme_events'], 'hand distortion candidates need review'
+          print(f"STRICT_FRAME_QC_PASS: {expected}/{expected} frames at 1920x1080/30; no machine-detected anomalies")
+          PY
+
       - name: Upload visual-review package (images remain outside Git)
         if: always()
         uses: actions/upload-artifact@v4

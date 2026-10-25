@@ -9,6 +9,7 @@ numpy>=1.26,<3           # 混音（build_audio.py）与电平测量
 av>=12,<19               # PyAV：production/review_film.py 审片时解码成片
 pyyaml>=6,<7             # 工作流完整解析；不装也能跑，只是少跑 1 个用例
 pytest>=7,<10            # 只用于跑 production/tests
+edge-tts>=7,<8           # GitHub 托管 runner 上的旁白备用生成；主音源仍为用户试听选定的 voice-00
 zhconv>=1.4,<2           # 逐字听检：把 whisper 吐出的繁体折叠成简体再比对（纯 Python，可选但建议装）
 
 # 可选：mediapipe>=0.10,<1 —— 露脸模式（production/face_cast.py 的画面闸门）人脸检测用；

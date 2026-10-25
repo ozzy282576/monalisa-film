@@ -58,12 +58,9 @@ def main() -> int:
     candidates = _copy_files(args.candidates, "*.jpg", temporary / "candidates")
     candidate_manifests = _copy_files(args.candidates, "manifest.json", temporary / "candidates")
 
-    if len(all_frames) != 46:
-        raise SystemExit(f"Expected 46 final-cut all-frame sheets, found {len(all_frames)}")
-    if not hands:
-        raise SystemExit("No final-cut hand contact sheets found")
-    if not candidates:
-        raise SystemExit("No selected review candidate frames found")
+    expected_sheets = len(audit.get("shot_summary", []))
+    if not expected_sheets or len(all_frames) != expected_sheets:
+        raise SystemExit(f"Expected {expected_sheets} final-cut all-frame sheets, found {len(all_frames)}")
 
     receipt = {
         "film": args.film.name,

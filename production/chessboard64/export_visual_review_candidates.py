@@ -71,14 +71,25 @@ def main() -> int:
 
     audit = json.loads(args.audit.read_text(encoding="utf-8"))
     selected = _collect(audit)
-    if not selected:
-        raise SystemExit("No review candidates in audit; refusing to create an empty evidence pack")
     if not args.film.is_file():
         raise SystemExit(f"Missing film: {args.film}")
 
     if args.out.exists():
         shutil.rmtree(args.out)
     args.out.mkdir(parents=True)
+    if not selected:
+        manifest = {
+            "film_sha256": audit.get("sha256"),
+            "source_audit": str(args.audit),
+            "selection_policy": "start/middle/end of each temporal window; each face candidate; median hand-geometry event per affected shot",
+            "max_width": MAX_WIDTH,
+            "frames": [],
+        }
+        (args.out / "manifest.json").write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+        print("NO_REVIEW_CANDIDATES; strict machine gates have no flagged frames")
+        return 0
 
     expected = set(selected)
     saved: list[dict] = []

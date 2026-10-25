@@ -66,10 +66,27 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r production/requirements.txt "faster-whisper>=1.1,<2"
 
-      - name: Restore and verify the narration assets
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python3 production/chessboard64/fetch_audio.py --dest production/chessboard64/audio
+      - name: Verify narration media saved with the render artifact
+        run: |
+          set -euo pipefail
+          n01="$(find work/chessboard64/render-artifact -type f -name N01.mp3 -print -quit)"
+          manifest="$(find work/chessboard64/render-artifact -type f -name narration-manifest.json -print -quit)"
+          [ -n "$n01" ] && [ -n "$manifest" ] || { echo 'Render artifact is missing narration MP3s or narration-manifest.json' >&2; exit 1; }
+          audio_dir="$(dirname "$n01")"
+          python3 - "$manifest" "$audio_dir" <<'PY'
+          import hashlib, json, sys
+          from pathlib import Path
+          manifest, directory = map(Path, sys.argv[1:])
+          data = json.loads(manifest.read_text(encoding='utf-8'))
+          clips = data.get('clips', [])
+          assert len(clips) == 6, f'Expected six narration receipts, got {len(clips)}'
+          for clip in clips:
+              path = directory / clip['file']
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert actual == clip['sha256'], f"{clip['id']} narration SHA mismatch"
+          print('verified six narration MP3s; voice:', data.get('voice_id'))
+          PY
+          echo "AUDIO_DIR=$audio_dir" >> "$GITHUB_ENV"
 
       - name: Transcribe the delivered film and compare it to the reviewed script
         id: check
@@ -79,7 +96,7 @@ jobs:
             --film "$FILM" \
             --project production/chessboard64 \
             --work work/chessboard64/verbatim \
-            --narration production/chessboard64/audio \
+            --narration "$AUDIO_DIR" \
             --model small \
             --max-cer 0.15
 

@@ -56,8 +56,8 @@ jobs:
       - name: Install render dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16" || \
-          python -m pip install --break-system-packages "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16"
+          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16" "edge-tts>=7,<8" || \
+          python -m pip install --break-system-packages "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16" "edge-tts>=7,<8"
 
       - name: Resolve the deliverable name
         env:
@@ -106,6 +106,9 @@ jobs:
             work/chessboard64/render/*.srt
             work/chessboard64/render/*.jpg
             production/chessboard64/delivery/render-manifest.json
+            production/chessboard64/delivery/narration-manifest.json
+            production/chessboard64/audio/*.mp3
+            production/chessboard64/audio/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 30

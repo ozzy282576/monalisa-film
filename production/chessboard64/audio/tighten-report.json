@@ -13,25 +13,25 @@
   "clips": [
     {
       "id": "N01",
-      "source_seconds": 22.718,
-      "paced_seconds": 28.378,
-      "tight_seconds": 27.358,
-      "pauses_tightened": 8,
-      "seconds_removed": 1.02,
+      "source_seconds": 23.343,
+      "paced_seconds": 29.158,
+      "tight_seconds": 28.833,
+      "pauses_tightened": 5,
+      "seconds_removed": 0.325,
       "special_pause_after": null,
       "special_pause": []
     },
     {
       "id": "N02",
-      "source_seconds": 26.099,
-      "paced_seconds": 32.603,
-      "tight_seconds": 31.983,
+      "source_seconds": 25.414,
+      "paced_seconds": 31.743,
+      "tight_seconds": 31.073,
       "pauses_tightened": 10,
-      "seconds_removed": 0.62,
+      "seconds_removed": 0.67,
       "special_pause_after": "几乎被填满",
       "special_pause": [
         {
-          "start": 32.603,
+          "start": 31.743,
           "source_seconds": 0.0,
           "kept_seconds": 0.5,
           "inserted_seconds": 0.5,
@@ -41,56 +41,56 @@
     },
     {
       "id": "N03",
-      "source_seconds": 22.094,
-      "paced_seconds": 27.6,
-      "tight_seconds": 26.875,
+      "source_seconds": 21.885,
+      "paced_seconds": 27.343,
+      "tight_seconds": 26.755,
       "pauses_tightened": 7,
-      "seconds_removed": 0.725,
+      "seconds_removed": 0.588,
       "special_pause_after": "一张纸条",
       "special_pause": [
         {
-          "start": 19.83,
-          "source_seconds": 0.37,
+          "start": 19.49,
+          "source_seconds": 0.33,
           "kept_seconds": 0.5,
-          "inserted_seconds": 0.13
+          "inserted_seconds": 0.17
         }
       ]
     },
     {
       "id": "N04",
-      "source_seconds": 21.745,
-      "paced_seconds": 27.156,
-      "tight_seconds": 26.345,
+      "source_seconds": 22.047,
+      "paced_seconds": 27.534,
+      "tight_seconds": 26.535,
       "pauses_tightened": 9,
-      "seconds_removed": 0.811,
+      "seconds_removed": 0.999,
       "special_pause_after": null,
       "special_pause": []
     },
     {
       "id": "N05",
-      "source_seconds": 22.21,
-      "paced_seconds": 27.744,
-      "tight_seconds": 27.13,
-      "pauses_tightened": 8,
-      "seconds_removed": 0.614,
+      "source_seconds": 22.349,
+      "paced_seconds": 27.92,
+      "tight_seconds": 27.465,
+      "pauses_tightened": 7,
+      "seconds_removed": 0.455,
       "special_pause_after": null,
       "special_pause": []
     },
     {
       "id": "N06",
-      "source_seconds": 19.911,
-      "paced_seconds": 24.873,
-      "tight_seconds": 24.3,
+      "source_seconds": 20.213,
+      "paced_seconds": 25.248,
+      "tight_seconds": 24.61,
       "pauses_tightened": 8,
-      "seconds_removed": 0.573,
+      "seconds_removed": 0.638,
       "special_pause_after": null,
       "special_pause": []
     }
   ],
   "warnings": [],
-  "total_source_seconds": 134.777,
-  "total_paced_seconds": 168.355,
-  "total_tight_seconds": 163.991,
-  "effective_chinese_chars_per_second": 3.8173,
-  "tempo_after": 0.9761
+  "total_source_seconds": 135.252,
+  "total_paced_seconds": 168.945,
+  "total_tight_seconds": 165.271,
+  "effective_chinese_chars_per_second": 3.7877,
+  "tempo_after": 0.9838
 }
