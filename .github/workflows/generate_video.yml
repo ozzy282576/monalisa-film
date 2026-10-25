@@ -8,7 +8,8 @@ on:
       - '**'
     paths:
       - 'trigger_video.txt'
-      - 'production/chessboard64/COGVIDEOX_GEN_REQUEST'
+      # Chessboard64 generation is handled by the dedicated CogVideoX workflow.
+      # Keep its marker out of this generic prompt workflow to prevent duplicate jobs.
   workflow_dispatch:
     inputs:
       prompt:
@@ -27,6 +28,7 @@ jobs:
       github.ref == 'refs/heads/arena/56672981-monalisa-film' ||
       contains(toJSON(github.event.commits), 'trigger_video.txt')
     runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 350
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -51,10 +53,7 @@ jobs:
           python scripts/run_cogvideox.py 2>&1 | tee run_output.log
 
       - name: 将结果发到 GitHub Issue
-        if: >-
-          always() &&
-          !contains(toJSON(github.event.commits), 'COGVIDEOX_GEN_REQUEST') &&
-          !contains(github.event.inputs.prompt, '"project":"chessboard64"')
+        if: always() && github.ref != 'refs/heads/arena/56672981-monalisa-film'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -70,5 +69,8 @@ jobs:
           path: |
             run_output.log
             output_video.mp4
+            production/chessboard64/results.json
+            production/chessboard64/delivery/ref-image-probe.json
+            production/chessboard64/qa/
           if-no-files-found: warn
-          retention-days: 7
+          retention-days: 14

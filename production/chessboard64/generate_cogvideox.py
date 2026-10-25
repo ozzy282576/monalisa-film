@@ -416,12 +416,33 @@ def main():
         sid = shot['id']
         wanted = request_hash(project, shot)
         disposition = reuse_receipt(doc, sid, wanted)
-        if disposition == 'current':
-            print('%s: verified receipt already exists; no new generation' % sid, flush=True)
-            continue
-        if disposition == 'history':
-            print('%s: stored receipt restored from previous_results (no new generation)'
-                  % sid, flush=True)
+        if disposition in ('current', 'history'):
+            row = doc['shots'][sid]
+            print('%s: verified receipt restored (%s); no new generation'
+                  % (sid, disposition), flush=True)
+            # A prior Actions run may have ended before its ignored contact sheet could
+            # be uploaded. Re-fetch completed media on demand and rebuild missing QA,
+            # without ever adding MP4/JPG binaries to Git.
+            qa_json = qa / ('%s.json' % sid)
+            qa_jpg = qa / ('%s.jpg' % sid)
+            if not qa_json.is_file() or not qa_jpg.is_file():
+                dest = sources / ('%s.mp4' % sid)
+                try:
+                    download(row['video_url'], dest)
+                    actual = digest(dest)
+                    if actual != row['sha256']:
+                        raise RuntimeError('restored source SHA-256 mismatch: %s != %s'
+                                           % (actual, row['sha256']))
+                    info = inspect_clip(dest, qa, sid)
+                    checkpoint(doc, sid + ' QA restored', sid, files=[qa_json], publish=args.publish,
+                               status='completed', request_hash=wanted, video_url=row['video_url'],
+                               sha256=actual, bytes=dest.stat().st_size, media=info, error=None)
+                except Exception as exc:
+                    # An expired URL or damaged cached receipt must not abort the other 37 shots.
+                    message = 'Unable to restore prior source for QA: %s' % str(exc)[:500]
+                    checkpoint(doc, sid + ' QA restore failed', sid, publish=args.publish,
+                               status='failed', request_hash=wanted, error=message)
+                    failures.append(sid)
             continue
         old = doc.get('shots', {}).get(sid, {})
         if old and old.get('request_hash') != wanted:
