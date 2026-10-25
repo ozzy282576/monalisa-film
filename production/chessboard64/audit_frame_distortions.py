@@ -34,6 +34,7 @@ import cv2
 import mediapipe as mp
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
+from frame_audit_policy import selectable_frame_indices
 
 FPS_FALLBACK = 30.0
 ANALYSIS_W, ANALYSIS_H = 320, 180
@@ -196,15 +197,10 @@ def _select_outliers(rows: list[dict[str, Any]], segments: list[dict[str, Any]],
         # Cards are still scanned for PTS, black frames, typography, and decoding.
         if seg.get("kind") == "graphic":
             continue
-        # Ignore the ordinary two-frame cut guard plus the renderer's deliberate
-        # 0.25s opening fade and 0.18s closing fade. Those are known edit decisions.
-        usable = indices[2:-2] if len(indices) > 8 else indices
-        if int(seg.get("start_frame", -1)) == 0:
-            opening_end = round(fps * 0.25)
-            usable = [i for i in usable if i >= opening_end]
-        if seg_i == len(segments) - 1 and int(seg.get("end_frame", -1)) >= len(rows):
-            closing_start = len(rows) - round(fps * 0.18)
-            usable = [i for i in usable if i < closing_start]
+        # Ignore planned cut guards and fade endpoints; see the pure policy helper
+        # for the frame-exact boundary rules and the opening fade's final transition.
+        usable = selectable_frame_indices(
+            indices, seg, seg_i, len(segments), len(rows), fps)
         for metric, (floor, flag) in metric_cfg.items():
             vals = [float(rows[i][metric]) for i in usable if rows[i].get(metric) is not None]
             threshold, med, mad = _robust_threshold(vals, floor)

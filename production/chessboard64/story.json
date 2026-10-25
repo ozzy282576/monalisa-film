@@ -708,7 +708,7 @@
       "start": 108,
       "duration": 4,
       "narration_id": "N04",
-      "prompt": "In a quiet evidence room, a plain coat lies open on a table beside a blank folded note. A small metro ticket slides slowly from the coat pocket onto the table, then settles beside the note as a dark gloved forearm passes at the extreme edge of frame; fingers are never shown in close-up. The camera follows the objects with a smooth, constant macro slider move under a steady desk lamp. Keep the ticket and coat correctly formed, with no rapid hand movement, morphing, flicker, or sudden camera jerk. No readable text.",
+      "prompt": "A restrained, clearly fictional 3D reenactment in a quiet 2000s evidence room, framed at table height. An open dark coat lies beside a folded blank note. The shot begins with a charcoal-gloved hand already moving: in one uninterrupted action it draws a small unprinted metro ticket from the coat pocket, carries it across the tabletop, and continuously slides it toward the note; the ticket is still moving in the final frame. The coat fabric shifts naturally, and the camera tracks left to right at the same steady pace, with parallax and desk-lamp reflections moving across the wood. Keep the hand at medium distance with natural anatomy, preserve the shape of the ticket and coat, and maintain visible motion from first to last frame. No pause, held still pose, morphing, flicker, jerk, or readable text; this is an illustrative reconstruction, not original evidence.",
       "purpose": "探员展开外套检查口袋里的车票",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
@@ -720,7 +720,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "大特写慢动作，手部真实移动",
+      "camera": "桌面高度的中近景横向跟拍，车票全程连续运动",
       "sfx_note": "paper"
     },
     {
