@@ -1,0 +1,96 @@
+{
+  "parameters": {
+    "rate": 48000,
+    "hop": 480,
+    "threshold_rms": 0.01,
+    "lead": 0.15,
+    "trail": 0.25,
+    "cap": 0.35,
+    "special_pause_seconds": 0.5,
+    "pace_factor": 0.8,
+    "crossfade_samples": 240
+  },
+  "clips": [
+    {
+      "id": "N01",
+      "source_seconds": 22.718,
+      "paced_seconds": 28.378,
+      "tight_seconds": 27.358,
+      "pauses_tightened": 8,
+      "seconds_removed": 1.02,
+      "special_pause_after": null,
+      "special_pause": []
+    },
+    {
+      "id": "N02",
+      "source_seconds": 26.099,
+      "paced_seconds": 32.603,
+      "tight_seconds": 31.983,
+      "pauses_tightened": 10,
+      "seconds_removed": 0.62,
+      "special_pause_after": "几乎被填满",
+      "special_pause": [
+        {
+          "start": 32.603,
+          "source_seconds": 0.0,
+          "kept_seconds": 0.5,
+          "inserted_seconds": 0.5,
+          "appended_after_clip": true
+        }
+      ]
+    },
+    {
+      "id": "N03",
+      "source_seconds": 22.094,
+      "paced_seconds": 27.6,
+      "tight_seconds": 26.875,
+      "pauses_tightened": 7,
+      "seconds_removed": 0.725,
+      "special_pause_after": "一张纸条",
+      "special_pause": [
+        {
+          "start": 19.83,
+          "source_seconds": 0.37,
+          "kept_seconds": 0.5,
+          "inserted_seconds": 0.13
+        }
+      ]
+    },
+    {
+      "id": "N04",
+      "source_seconds": 21.745,
+      "paced_seconds": 27.156,
+      "tight_seconds": 26.345,
+      "pauses_tightened": 9,
+      "seconds_removed": 0.811,
+      "special_pause_after": null,
+      "special_pause": []
+    },
+    {
+      "id": "N05",
+      "source_seconds": 22.21,
+      "paced_seconds": 27.744,
+      "tight_seconds": 27.13,
+      "pauses_tightened": 8,
+      "seconds_removed": 0.614,
+      "special_pause_after": null,
+      "special_pause": []
+    },
+    {
+      "id": "N06",
+      "source_seconds": 19.911,
+      "paced_seconds": 24.873,
+      "tight_seconds": 24.3,
+      "pauses_tightened": 8,
+      "seconds_removed": 0.573,
+      "special_pause_after": null,
+      "special_pause": []
+    }
+  ],
+  "warnings": [],
+  "total_source_seconds": 134.777,
+  "total_paced_seconds": 168.355,
+  "total_tight_seconds": 163.991,
+  "effective_chinese_chars_per_second": 3.8173,
+  "tempo_after": 0.9761
+}

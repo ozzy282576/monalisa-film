@@ -1,0 +1,164 @@
+# 全帧视觉QC读取 render run artifact；照片、接触表和 MP4 仅留在 Actions artifact，不进入 Git。
+name: 六十四格：国际象棋盘杀手 · 成片全帧视觉QC
+run-name: 全帧视觉QC · 六十四格 · ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      render_run_id:
+        description: '生成成片的 GitHub Actions run ID（artifact 名为 chessboard64-film-<run_id>）'
+        type: string
+        required: true
+  push:
+    branches:
+      - arena/56672981-monalisa-film
+    paths:
+      - production/chessboard64/VISUAL_QC_REQUEST
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: chessboard64-visual-qc-arena-56672981-monalisa-film
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/arena/56672981-monalisa-film'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 150
+    steps:
+      - name: Check out the production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/56672981-monalisa-film
+          fetch-depth: 0
+
+      - name: Resolve render run ID
+        env:
+          INPUT_RUN_ID: ${{ inputs.render_run_id }}
+        run: |
+          set -euo pipefail
+          run_id="${INPUT_RUN_ID:-}"
+          if [ -z "$run_id" ]; then
+            run_id="$(tr -d '\n' < production/chessboard64/VISUAL_QC_REQUEST)"
+          fi
+          [[ "$run_id" =~ ^[0-9]+$ ]] || { echo "Invalid render run ID: $run_id" >&2; exit 1; }
+          echo "RENDER_RUN_ID=$run_id" >> "$GITHUB_ENV"
+
+      - name: Download the selected render artifact (on demand)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          mkdir -p work/chessboard64/render-artifact
+          gh run download "$RENDER_RUN_ID" --repo "$GITHUB_REPOSITORY" \
+            --name "chessboard64-film-$RENDER_RUN_ID" --dir work/chessboard64/render-artifact
+          film="$(find work/chessboard64/render-artifact -type f -name '*.mp4' -print -quit)"
+          manifest="$(find work/chessboard64/render-artifact -type f -name 'render-manifest.json' -print -quit)"
+          [ -n "$film" ] && [ -n "$manifest" ] || { echo 'Render artifact needs MP4 and render-manifest.json' >&2; exit 1; }
+          echo "FILM=$film" >> "$GITHUB_ENV"
+          echo "RENDER_MANIFEST=$manifest" >> "$GITHUB_ENV"
+
+      - name: Install deterministic visual-QC runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install "numpy==1.26.4" "pillow>=10,<13" "av>=12,<16" \
+            "opencv-python-headless==4.10.0.84" "matplotlib>=3.8,<4" \
+            "absl-py>=2,<3" "attrs>=19.1" "flatbuffers>=2" "protobuf>=4.25.3,<5"
+          python -m pip install --no-deps "mediapipe==0.10.21"
+          python - <<'PY'
+          import av, cv2, mediapipe as mp, numpy as np
+          assert cv2.__version__ == '4.10.0'
+          assert mp.__version__ == '0.10.21'
+          print('frame-QC runtime ready', av.__version__, cv2.__version__, mp.__version__, np.__version__)
+          PY
+
+      - name: Verify the selected film against its own receipt
+        run: |
+          python - "$FILM" "$RENDER_MANIFEST" <<'PY'
+          import hashlib, json, sys
+          from pathlib import Path
+          film, receipt = map(Path, sys.argv[1:])
+          data = json.loads(receipt.read_text())
+          got = hashlib.sha256(film.read_bytes()).hexdigest()
+          assert got == data['sha256'], f'film SHA mismatch: {got} != {data["sha256"]}'
+          print('verified SHA-256', got)
+          PY
+
+      - name: Run optional anonymous-stand-in face review
+        continue-on-error: true
+        run: |
+          python3 production/face_cast.py check-frames --project production/chessboard64 \
+            --film "$FILM" --out work/chessboard64/visual-qc/face-review
+
+      - name: Decode and scan every output frame
+        run: |
+          set -euo pipefail
+          mkdir -p work/chessboard64/visual-qc
+          python3 production/chessboard64/audit_frame_distortions.py \
+            --film "$FILM" --project production/chessboard64 \
+            --out work/chessboard64/visual-qc/frame-distortion-audit.json \
+            --work work/chessboard64/visual-qc/frame-audit
+          python3 production/chessboard64/compose_all_frame_sheets.py \
+            --film "$FILM" --project production/chessboard64 \
+            --out work/chessboard64/visual-qc/all-frames
+          python3 production/chessboard64/export_visual_review_candidates.py \
+            --film "$FILM" \
+            --audit work/chessboard64/visual-qc/frame-distortion-audit.json \
+            --out work/chessboard64/visual-qc/review-candidates
+          python3 production/chessboard64/publish_visual_review_bundle.py \
+            --film "$FILM" \
+            --audit work/chessboard64/visual-qc/frame-distortion-audit.json \
+            --all-frames work/chessboard64/visual-qc/all-frames \
+            --contacts work/chessboard64/visual-qc/frame-audit/contacts \
+            --candidates work/chessboard64/visual-qc/review-candidates \
+            --out work/chessboard64/visual-qc/review-bundle
+
+      - name: Publish machine-readable QC only; leave human review pending
+        run: |
+          python - "$FILM" work/chessboard64/visual-qc/frame-distortion-audit.json <<'PY'
+          import hashlib, json, os, sys
+          from pathlib import Path
+          film, audit_path = map(Path, sys.argv[1:])
+          audit = json.loads(audit_path.read_text())
+          checks = audit['checks']
+          summary = {
+              'film_name': film.name,
+              'sha256': hashlib.sha256(film.read_bytes()).hexdigest(),
+              'render_run_id': os.environ['RENDER_RUN_ID'],
+              'automated_status': audit['status'],
+              'all_decoded_frames_scanned': audit['video']['all_decoded_frames_scanned'],
+              'decoded_frames': audit['video']['decoded_frames'],
+              'expected_frames': audit['video']['expected_frames'],
+              'unplanned_black_frames': checks['unplanned_black_frame_count'],
+              'non_graphic_freeze_runs': len(checks['non_graphic_freeze_runs']),
+              'temporal_outlier_windows': len(checks['temporal_outlier_windows']),
+              'face_review_candidates': len(checks['face_review_candidates']),
+              'hand_landmark_extreme_events': len(checks['hand_landmark_extreme_events']),
+              'human_semantic_visual_review': 'pending',
+          }
+          delivery = Path('production/chessboard64/delivery')
+          delivery.mkdir(parents=True, exist_ok=True)
+          (delivery / 'frame-distortion-audit.json').write_text(json.dumps(audit, ensure_ascii=False, indent=2) + '\n')
+          (delivery / 'visual-qc-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f production/chessboard64/delivery/frame-distortion-audit.json \
+            production/chessboard64/delivery/visual-qc-summary.json
+          git commit -m "chessboard64: publish text-only visual-QC receipts" || true
+          git push origin "HEAD:arena/56672981-monalisa-film"
+
+      - name: Upload visual-review package (images remain outside Git)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chessboard64-visual-review-${{ github.run_id }}
+          path: work/chessboard64/visual-qc/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 30
