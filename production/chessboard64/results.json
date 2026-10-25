@@ -2,15 +2,7 @@
   "project": "六十四格：国际象棋盘杀手",
   "model": "cogvideox-flash",
   "provider": "Zhipu AI",
-  "shots": {
-    "S01": {
-      "id": "S01",
-      "status": "submitting",
-      "request_hash": "2dbe4002dfb850f466b1a33b657469c70354775b8284f3a7ff575e1b6b44cc50",
-      "error": null,
-      "updated_at": "2026-10-25T05:13:53Z"
-    }
-  },
+  "shots": {},
   "workflow_policy": "cogvideox-flash-receipt-v2-refprobe",
   "phase": "generating_sources",
   "required_generated_shots": [
@@ -53,6 +45,5 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T05:13:53Z",
-  "previous_results": {}
+  "updated_at": "2026-10-25T05:15:00Z"
 }
