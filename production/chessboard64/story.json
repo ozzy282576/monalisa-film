@@ -708,7 +708,7 @@
       "start": 108,
       "duration": 4,
       "narration_id": "N04",
-      "prompt": "A restrained, clearly fictional 3D reenactment in a quiet 2000s evidence room, framed at table height. An open dark coat lies beside a folded blank note. The shot begins with a charcoal-gloved hand already moving: in one uninterrupted action it draws a small unprinted metro ticket from the coat pocket, carries it across the tabletop, and continuously slides it toward the note; the ticket is still moving in the final frame. The coat fabric shifts naturally, and the camera tracks left to right at the same steady pace, with parallax and desk-lamp reflections moving across the wood. Keep the hand at medium distance with natural anatomy, preserve the shape of the ticket and coat, and maintain visible motion from first to last frame. No pause, held still pose, morphing, flicker, jerk, or readable text; this is an illustrative reconstruction, not original evidence.",
+      "prompt": "A restrained, clearly fictional cinematic 3D reenactment in a quiet early-2000s evidence room. At table height, a dark coat lies open beside a folded blank note; a small unprinted metro ticket is partly visible inside the coat pocket. From the first frame, one charcoal-gloved forearm gently draws the coat lapel open and keeps the fabric moving with a soft natural ripple; the ticket remains in the pocket and keeps its shape. The camera makes one uninterrupted physical lateral dolly from left to right around the table, revealing clear parallax between the coat, note, ticket, and a small black chess piece. Keep this smooth camera move and subtle cloth movement continuous from first to last frame; do not zoom digitally or hold a still pose. Hands remain at medium distance with natural anatomy. No ticket sliding, morphing, flicker, jitter, sudden exposure jump, or readable text; this is an illustrative reconstruction, not original evidence.",
       "purpose": "探员展开外套检查口袋里的车票",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
@@ -720,7 +720,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "桌面高度的中近景横向跟拍，车票全程连续运动",
+      "camera": "桌面高度的横向物理跟拍，衣料与桌面视差持续可见",
       "sfx_note": "paper"
     },
     {
