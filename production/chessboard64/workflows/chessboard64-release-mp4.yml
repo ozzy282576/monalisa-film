@@ -1,0 +1,121 @@
+name: 六十四格：发布 MP4 直链
+run-name: 发布 MP4 直链 · 六十四格 · ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      render_run_id:
+        description: '成功出片的 Actions run ID'
+        type: string
+        required: true
+      sha256:
+        description: 'render-manifest.json 中的 MP4 SHA-256'
+        type: string
+        required: true
+  push:
+    branches:
+      - arena/56672981-monalisa-film
+    paths:
+      - production/chessboard64/MP4_RELEASE_REQUEST
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: chessboard64-release-mp4-arena-56672981-monalisa-film
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/arena/56672981-monalisa-film'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 30
+    steps:
+      - name: Check out the production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/56672981-monalisa-film
+          fetch-depth: 0
+
+      - name: Resolve render receipt
+        env:
+          INPUT_RUN_ID: ${{ inputs.render_run_id }}
+          INPUT_SHA256: ${{ inputs.sha256 }}
+        run: |
+          set -euo pipefail
+          python3 - "$INPUT_RUN_ID" "$INPUT_SHA256" <<'PY'
+          import json, re, sys
+          from pathlib import Path
+          run_id, expected = sys.argv[1:]
+          if not run_id or not expected:
+              request = json.loads(Path('production/chessboard64/MP4_RELEASE_REQUEST').read_text())
+              run_id = run_id or str(request['render_run_id'])
+              expected = expected or str(request['sha256'])
+          if not re.fullmatch(r'[0-9]+', run_id):
+              raise SystemExit('Invalid render run ID')
+          if not re.fullmatch(r'[0-9a-f]{64}', expected):
+              raise SystemExit('Invalid expected SHA-256')
+          with open(__import__('os').environ['GITHUB_ENV'], 'a') as env:
+              env.write(f'RENDER_RUN_ID={run_id}\nEXPECTED_SHA256={expected}\n')
+          print(f'Render run selected: {run_id}; SHA-256 receipt validated')
+          PY
+
+      - name: Download the verified render artifact on the runner
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p work/chessboard64/release-source
+          gh run download "$RENDER_RUN_ID" --repo "$GITHUB_REPOSITORY" \
+            --name "chessboard64-film-$RENDER_RUN_ID" \
+            --dir work/chessboard64/release-source
+          film="$(find work/chessboard64/release-source -type f -name '*.mp4' -print -quit)"
+          manifest="$(find work/chessboard64/release-source -type f -name 'render-manifest.json' -print -quit)"
+          [ -n "$film" ] && [ -n "$manifest" ] || { echo 'Artifact needs MP4 and render receipt' >&2; exit 1; }
+          python3 - "$film" "$manifest" "$EXPECTED_SHA256" <<'PY'
+          import hashlib, json, sys
+          from pathlib import Path
+          film = Path(sys.argv[1])
+          receipt = Path(sys.argv[2])
+          expected = sys.argv[3]
+          data = json.loads(receipt.read_text(encoding='utf-8'))
+          actual = hashlib.sha256(film.read_bytes()).hexdigest()
+          if actual != expected or data.get('sha256') != actual:
+              raise SystemExit(f'Film SHA-256 mismatch: {actual}')
+          print('Verified exact MP4 SHA-256:', actual)
+          PY
+          asset="work/chessboard64/chessboard64-film-${RENDER_RUN_ID}.mp4"
+          mkdir -p "$(dirname "$asset")"
+          cp "$film" "$asset"
+          echo "MP4_ASSET=$asset" >> "$GITHUB_ENV"
+          echo "MP4_ASSET_NAME=$(basename "$asset")" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=chessboard64-film-$RENDER_RUN_ID" >> "$GITHUB_ENV"
+
+      - name: Publish one-file MP4 release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "$MP4_ASSET" \
+              --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$RELEASE_TAG" "$MP4_ASSET" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title '六十四格：国际象棋盘杀手 · MP4 成片' \
+              --notes "直接下载版 MP4。来源 render run $RENDER_RUN_ID；SHA-256 $EXPECTED_SHA256。媒体作为 Release asset 保存，不提交到 Git。" \
+              --target "$GITHUB_SHA"
+          fi
+          url="https://github.com/$GITHUB_REPOSITORY/releases/download/$RELEASE_TAG/$MP4_ASSET_NAME"
+          echo "DIRECT_MP4_URL=$url" >> "$GITHUB_OUTPUT"
+          {
+            echo '## MP4 direct download'
+            echo
+            echo "[$MP4_ASSET_NAME]($url)"
+            echo
+            echo "SHA-256: $EXPECTED_SHA256"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "Direct MP4 URL: $url"

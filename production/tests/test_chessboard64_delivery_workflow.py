@@ -57,6 +57,20 @@ class Chessboard64DeliveryWorkflowTests(unittest.TestCase):
             self.assertIn(condition, text)
         self.assertIn("if: always()", text, "failed QC must still upload its evidence package")
 
+    def test_direct_mp4_release_verifies_the_render_before_upload(self):
+        text, _ = self._paired("chessboard64-release-mp4.yml")
+        for requirement in (
+            "gh run download",
+            "render-manifest.json",
+            "hashlib.sha256",
+            "gh release create",
+            "gh release upload",
+            "releases/download/$RELEASE_TAG/$MP4_ASSET_NAME",
+        ):
+            self.assertIn(requirement, text)
+        self.assertIn("MP4_RELEASE_REQUEST", text)
+        self.assertNotIn("git add", text, "the MP4 must remain outside Git")
+
 
 if __name__ == "__main__":
     unittest.main()
