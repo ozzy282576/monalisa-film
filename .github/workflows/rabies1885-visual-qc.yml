@@ -1,0 +1,158 @@
+name: 狂犬病疫苗：一百四十年前那场赌局 · 成片全帧视觉QC
+run-name: 成片全帧视觉QC · 狂犬病疫苗：一百四十年前那场赌局 · ${{ github.ref_name }}
+
+# 触发方式：在当前制作分支写/改 production/rabies1885/VISUAL_QC_REQUEST 后 push。
+# 此任务只检查已经交付的 MP4；不会重新生成素材，也不会把自动结果伪装成人工签收。
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/cb25986c-desktop-tutorial
+    paths:
+      - production/rabies1885/VISUAL_QC_REQUEST
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rabies1885-visual-qc-arena-cb25986c-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/arena/cb25986c-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 120
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/cb25986c-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deterministic full-frame QC runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy==1.26.4" "pillow>=10,<13" "av>=12,<16" \
+            "opencv-python-headless==4.10.0.84" "matplotlib>=3.8,<4" \
+            "absl-py>=2,<3" "attrs>=19.1" "flatbuffers>=2" "protobuf>=4.25.3,<5"
+          python -m pip install --no-deps "mediapipe==0.10.21"
+          python - <<'PY'
+          import av, cv2, mediapipe as mp, numpy as np
+          assert cv2.__version__ == '4.10.0'
+          assert mp.__version__ == '0.10.21'
+          print('frame-QC runtime ready', av.__version__, cv2.__version__, mp.__version__, np.__version__)
+          PY
+
+      - name: Verify the delivered file against the render receipt
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          film = Path('交付/狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4')
+          report = json.loads(Path('production/rabies1885/delivery/technical-report.json').read_text())
+          got = hashlib.sha256(film.read_bytes()).hexdigest()
+          assert got == report['sha256'], f'delivered-file SHA mismatch: {got} != {report["sha256"]}'
+          print('verified delivered SHA-256', got)
+          PY
+
+      - name: Decode and scan every output frame
+        run: |
+          set -euo pipefail
+          film='交付/狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4'
+          python3 production/rabies1885/audit_frame_distortions.py \
+            --film "$film" --project production/rabies1885 \
+            --out production/rabies1885/delivery/frame-distortion-audit.json \
+            --work work/rabies1885/final-frame-audit
+          python3 production/rabies1885/compose_all_frame_sheets.py \
+            --film "$film" --project production/rabies1885 \
+            --out work/rabies1885/final-frame-audit/all-frames
+          python3 production/rabies1885/export_visual_review_candidates.py \
+            --film "$film" \
+            --audit production/rabies1885/delivery/frame-distortion-audit.json \
+            --out work/rabies1885/final-frame-audit/review-candidates
+
+      - name: Publish compact final-cut review evidence into the repository
+        run: |
+          set -euo pipefail
+          film='交付/狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4'
+          python3 production/rabies1885/publish_visual_review_bundle.py \
+            --film "$film" \
+            --audit production/rabies1885/delivery/frame-distortion-audit.json \
+            --all-frames work/rabies1885/final-frame-audit/all-frames \
+            --contacts work/rabies1885/final-frame-audit/contacts \
+            --candidates work/rabies1885/final-frame-audit/review-candidates \
+            --out production/rabies1885/qa/final-frame-review
+
+      - name: Record automation evidence without claiming human approval
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          film = Path('交付/狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4')
+          audit = json.loads(Path('production/rabies1885/delivery/frame-distortion-audit.json').read_text())
+          checks = audit['checks']
+          midpoint = Path('work/rabies1885/final-frame-audit/contacts/shot-midpoints.jpg')
+          assert midpoint.is_file(), 'missing visual midpoint contact sheet'
+          published_midpoint = Path('production/rabies1885/delivery/visual-qc-shot-midpoints.jpg')
+          published_midpoint.write_bytes(midpoint.read_bytes())
+          summary = {
+              'film': film.name,
+              'sha256': hashlib.sha256(film.read_bytes()).hexdigest(),
+              'workflow_run': os.environ['GITHUB_SERVER_URL'] + '/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID'],
+              'all_decoded_frames_scanned': audit['video']['all_decoded_frames_scanned'],
+              'decoded_frames': audit['video']['decoded_frames'],
+              'expected_frames': audit['video']['expected_frames'],
+              'automated_status': audit['status'],
+              'unplanned_black_frames': checks['unplanned_black_frame_count'],
+              'non_graphic_freeze_runs': len(checks['non_graphic_freeze_runs']),
+              'temporal_outlier_windows': len(checks['temporal_outlier_windows']),
+              'face_review_candidates': len(checks['face_review_candidates']),
+              'hand_landmark_extreme_events': len(checks['hand_landmark_extreme_events']),
+              'human_semantic_visual_review': 'pending',
+              'midpoint_contact_sheet': str(published_midpoint),
+              'note': 'Automation is triage. Review the uploaded all-frame, midpoint, hand, and suspect-frame artifacts before final sign-off.'
+          }
+          Path('production/rabies1885/delivery/visual-qc-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+          print(json.dumps(summary, ensure_ascii=False))
+          PY
+
+      - name: Commit compact audit receipts back to the production branch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add production/rabies1885/delivery/frame-distortion-audit.json \
+            production/rabies1885/delivery/frame-distortion-audit.md \
+            production/rabies1885/delivery/visual-qc-summary.json \
+            production/rabies1885/delivery/visual-qc-shot-midpoints.jpg \
+            production/rabies1885/qa/final-frame-review
+          if ! git diff --cached --quiet; then
+            git commit -m 'rabies1885: audit every frame of delivered cut'
+            pushed=0
+            for attempt in 1 2 3 4 5; do
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then pushed=1; break; fi
+              git fetch origin "${GITHUB_REF_NAME}" && git rebase FETCH_HEAD || break
+              sleep 5
+            done
+            test "$pushed" = 1
+          fi
+
+      - name: Upload full visual-review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rabies1885-final-frame-qc-${{ github.run_number }}
+          path: |
+            work/rabies1885/final-frame-audit/
+            production/rabies1885/delivery/frame-distortion-audit.*
+            production/rabies1885/delivery/visual-qc-summary.json
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 30

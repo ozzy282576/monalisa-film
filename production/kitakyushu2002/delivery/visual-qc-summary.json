@@ -1,0 +1,17 @@
+{
+  "film": "北九州监禁案_逃出魔窟的少女，七条人命背后的秘密_三分钟_带声音.mp4",
+  "sha256": "435ff39b05aad74d5bae55f030e0a1c4bbf58732b745c589d548cff3ecf66005",
+  "workflow_run": "https://github.com/32r4e2q-hub/desktop-tutorial/actions/runs/39005472765",
+  "all_decoded_frames_scanned": true,
+  "decoded_frames": 5400,
+  "expected_frames": 5400,
+  "automated_status": "REVIEW",
+  "unplanned_black_frames": 0,
+  "non_graphic_freeze_runs": 6,
+  "temporal_outlier_windows": 14,
+  "face_review_candidates": 687,
+  "hand_landmark_extreme_events": 121,
+  "human_semantic_visual_review": "pending",
+  "midpoint_contact_sheet": "production/kitakyushu2002/delivery/visual-qc-shot-midpoints.jpg",
+  "note": "Automation is triage. Review the uploaded all-frame, midpoint, hand, and suspect-frame artifacts before final sign-off."
+}

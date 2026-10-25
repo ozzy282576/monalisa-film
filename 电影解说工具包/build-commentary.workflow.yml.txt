@@ -1,0 +1,74 @@
+name: Build movie commentary
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SOURCE_URL: "https://1drv.ms/v/c/1d2d728940a35022/IQDhj1V2OM02RJIEaKl91jA0AQSOAwiA-FtPObwhc1p3xkQ?e=GJtV2e"
+    steps:
+      - name: Check out production scripts
+        uses: actions/checkout@v4
+        with:
+          ref: arena/01a03c8f-desktop-tutorial
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install media tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          python -m pip install --upgrade pip
+          python -m pip install edge-tts playwright scenedetect opencv-python-headless
+          python -m playwright install --with-deps chromium
+
+      - name: Download movie from OneDrive
+        run: |
+          mkdir -p work/scenes output
+          python production/download_onedrive.py "$SOURCE_URL" work/source.mp4
+          test "$(stat -c%s work/source.mp4)" -gt 100000000
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 work/source.mp4
+
+      - name: Detect source shots
+        run: |
+          scenedetect -q -i work/source.mp4 -o work/scenes detect-content -t 27 list-scenes -f scenes.csv
+          test -s work/scenes/scenes.csv
+
+      - name: Generate Yunjian narration and render 720p video
+        run: |
+          python production/render_commentary.py \
+            --source work/source.mp4 \
+            --scenes work/scenes/scenes.csv \
+            --narration production/narration.json \
+            --work work/production \
+            --output "output/恶缘_10分钟电影解说_720p.mp4"
+
+      - name: Upload final MP4
+        uses: actions/upload-artifact@v4
+        with:
+          name: 恶缘-10分钟电影解说-720p
+          path: output/恶缘_10分钟电影解说_720p.mp4
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload download diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onedrive-download-diagnostics
+          path: |
+            onedrive-debug.png
+            onedrive-debug.html
+          if-no-files-found: ignore
+          retention-days: 2

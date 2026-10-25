@@ -1,0 +1,13 @@
+{
+  "duration": 991.6333333333333,
+  "fps": 30.0,
+  "frames": 29749,
+  "width": 1920,
+  "height": 1080,
+  "bytes": 340326523,
+  "cut_detection_threshold": 0.24,
+  "estimated_cuts": 293,
+  "estimated_median_shot_seconds": 3.2166665000000307,
+  "estimated_mean_shot_seconds": 3.3729024943310657,
+  "sampled_frames": 30
+}

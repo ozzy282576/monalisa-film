@@ -1,0 +1,68 @@
+{
+  "duration": 180.0,
+  "bytes": 50453618,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30.0,
+  "video_codec": "h264",
+  "frames": 5400,
+  "audio_codec": "aac",
+  "sample_rate": 48000,
+  "audio_channels": 2,
+  "sha256": "3db13e179e1e60e694e123a21b266bb9728be79c0b0c2acf7f26ca41b4e3f7a1",
+  "decoded_ok": true,
+  "status": "audio_verified_cut",
+  "visual_review": "pending",
+  "caption_alignment": [
+    {
+      "id": "N01",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.9891304347826086
+    },
+    {
+      "id": "N02",
+      "method": "pause-aware estimate",
+      "character_match_coverage": 0.47413793103448276
+    },
+    {
+      "id": "N03",
+      "method": "pause-aware estimate",
+      "character_match_coverage": 0.11363636363636363
+    },
+    {
+      "id": "N04",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.967741935483871
+    },
+    {
+      "id": "N05",
+      "method": "ASR-assisted",
+      "character_match_coverage": 1.0
+    },
+    {
+      "id": "N06",
+      "method": "pause-aware estimate",
+      "character_match_coverage": 0.125
+    }
+  ],
+  "narration_voice_id": "voice-00",
+  "narration_tempo": 0.93,
+  "editorial_segments": 35,
+  "source_clips": 23,
+  "archival_portrait": true,
+  "output": "黑色大丽花：消失的六天.mp4",
+  "soundtrack_mix": {
+    "rms_dbfs": -21.07,
+    "peak_dbfs": -1.51,
+    "silent_fraction": 0.0056,
+    "target_rms_dbfs": -20.0
+  },
+  "delivered_audio": {
+    "rms_dbfs": -21.08,
+    "peak_dbfs": -1.5,
+    "silent_fraction": 0.011,
+    "quietest_window_dbfs": -120.0
+  },
+  "audio_listening_review": "measured (level + per-chapter + silence gate); not a substitute for human word-level listening",
+  "note": "Audio is measured as audible on the delivered file; visual and word-level review are still pending, so this is not a final sign-off."
+}

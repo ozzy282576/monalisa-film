@@ -1,0 +1,182 @@
+# 模板：production/new_topic.py 会把 raincoat2004 / arena/ef74e893-desktop-tutorial / ef74e893-desktop-tutorial / 韩国雨衣杀手柳永哲：十个月，二十条人命 / 韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4 换成新项目的值，
+# 生成 production/<slug>/workflows/<slug>-visual-qc.yml；复制到 .github/workflows/ 后即可用 marker 文件 push 触发。
+#
+# 这一步解码成片的**每一帧**（参考实现的片子是 5400/5400），查黑帧 / 冻结 / 时序突变 /
+# 人脸 / 手部几何，并把审片证据（全帧接触表、手部表、原始分辨率候选帧）写回仓库。
+# 自动结果只是分诊：片尾卡/信息卡有没有字被画面裁掉这类缺陷，逐帧差异与检测器都量不到
+# （参考实现那部的片尾卡就是这样被裁了两端、而三道自动闸门全绿）。签收必须是人做的。
+name: 韩国雨衣杀手柳永哲：十个月，二十条人命 · 成片全帧视觉QC
+run-name: 成片全帧视觉QC · 韩国雨衣杀手柳永哲：十个月，二十条人命 · ${{ github.ref_name }}
+
+# 触发方式：在当前制作分支写/改 production/raincoat2004/VISUAL_QC_REQUEST 后 push。
+# 此任务只检查已经交付的 MP4；不会重新生成素材，也不会把自动结果伪装成人工签收。
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/ef74e893-desktop-tutorial
+    paths:
+      - production/raincoat2004/VISUAL_QC_REQUEST
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raincoat2004-visual-qc-arena-ef74e893-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/arena/ef74e893-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 120
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/ef74e893-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deterministic full-frame QC runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy==1.26.4" "pillow>=10,<13" "av>=12,<16" \
+            "opencv-python-headless==4.10.0.84" "matplotlib>=3.8,<4" \
+            "absl-py>=2,<3" "attrs>=19.1" "flatbuffers>=2" "protobuf>=4.25.3,<5"
+          python -m pip install --no-deps "mediapipe==0.10.21"
+          python - <<'PY'
+          import av, cv2, mediapipe as mp, numpy as np
+          assert cv2.__version__ == '4.10.0'
+          assert mp.__version__ == '0.10.21'
+          print('frame-QC runtime ready', av.__version__, cv2.__version__, mp.__version__, np.__version__)
+          PY
+
+      - name: Verify the delivered file against the render receipt
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          film = Path('交付/韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4')
+          report = json.loads(Path('production/raincoat2004/delivery/technical-report.json').read_text())
+          got = hashlib.sha256(film.read_bytes()).hexdigest()
+          assert got == report['sha256'], f'delivered-file SHA mismatch: {got} != {report["sha256"]}'
+          print('verified delivered SHA-256', got)
+          PY
+
+      - name: 角色脸画面闸门（露脸模式：逐镜检脸 + 每人一张人脸接触表 + 相似度分诊）
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          python -m pip install -q "opencv-python-headless==4.10.0.84" || true
+          python3 production/face_cast.py check-frames --project production/raincoat2004 \
+            --film "交付/韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4" \
+            --out production/raincoat2004/delivery
+
+      - name: Decode and scan every output frame
+        run: |
+          set -euo pipefail
+          film='交付/韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4'
+          python3 production/raincoat2004/audit_frame_distortions.py \
+            --film "$film" --project production/raincoat2004 \
+            --out production/raincoat2004/delivery/frame-distortion-audit.json \
+            --work work/raincoat2004/final-frame-audit
+          python3 production/raincoat2004/compose_all_frame_sheets.py \
+            --film "$film" --project production/raincoat2004 \
+            --out work/raincoat2004/final-frame-audit/all-frames
+          python3 production/raincoat2004/export_visual_review_candidates.py \
+            --film "$film" \
+            --audit production/raincoat2004/delivery/frame-distortion-audit.json \
+            --out work/raincoat2004/final-frame-audit/review-candidates
+
+      - name: Publish compact final-cut review evidence into the repository
+        run: |
+          set -euo pipefail
+          film='交付/韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4'
+          python3 production/raincoat2004/publish_visual_review_bundle.py \
+            --film "$film" \
+            --audit production/raincoat2004/delivery/frame-distortion-audit.json \
+            --all-frames work/raincoat2004/final-frame-audit/all-frames \
+            --contacts work/raincoat2004/final-frame-audit/contacts \
+            --candidates work/raincoat2004/final-frame-audit/review-candidates \
+            --out production/raincoat2004/qa/final-frame-review
+
+      - name: Record automation evidence without claiming human approval
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          film = Path('交付/韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4')
+          audit = json.loads(Path('production/raincoat2004/delivery/frame-distortion-audit.json').read_text())
+          checks = audit['checks']
+          midpoint = Path('work/raincoat2004/final-frame-audit/contacts/shot-midpoints.jpg')
+          assert midpoint.is_file(), 'missing visual midpoint contact sheet'
+          published_midpoint = Path('production/raincoat2004/delivery/visual-qc-shot-midpoints.jpg')
+          published_midpoint.write_bytes(midpoint.read_bytes())
+          summary = {
+              'film': film.name,
+              'sha256': hashlib.sha256(film.read_bytes()).hexdigest(),
+              'workflow_run': os.environ['GITHUB_SERVER_URL'] + '/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID'],
+              'all_decoded_frames_scanned': audit['video']['all_decoded_frames_scanned'],
+              'decoded_frames': audit['video']['decoded_frames'],
+              'expected_frames': audit['video']['expected_frames'],
+              'automated_status': audit['status'],
+              'unplanned_black_frames': checks['unplanned_black_frame_count'],
+              'non_graphic_freeze_runs': len(checks['non_graphic_freeze_runs']),
+              'temporal_outlier_windows': len(checks['temporal_outlier_windows']),
+              'face_review_candidates': len(checks['face_review_candidates']),
+              'hand_landmark_extreme_events': len(checks['hand_landmark_extreme_events']),
+              'human_semantic_visual_review': 'pending',
+              'midpoint_contact_sheet': str(published_midpoint),
+              'note': 'Automation is triage. Review the uploaded all-frame, midpoint, hand, and suspect-frame artifacts before final sign-off.'
+          }
+          Path('production/raincoat2004/delivery/visual-qc-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+          print(json.dumps(summary, ensure_ascii=False))
+          PY
+
+      - name: Commit compact audit receipts back to the production branch
+        continue-on-error: true      # 收据另有 artifacts 整包 + 制作端口本地提交；这一步不再阻塞整轮审计
+        run: |
+          set -uo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # 按目录整体 add：某一次审计可能没有产出 face-cast/ 或 midpoints 图（例如没检出人脸），
+          # 逐条列 pathspec 时只要缺一个文件，这条步骤就会以「pathspec did not match」失败，
+          # 把整轮审计结果全丢掉（2026-10-07 本片连续两轮都栽在这里）。
+          git add -A -- production/raincoat2004/delivery production/raincoat2004/qa
+          if git diff --cached --quiet; then
+            echo "没有新的审计收据需要提交"
+            exit 0
+          fi
+          git status --short | head -20
+          echo "shallow=$(git rev-parse --is-shallow-repository) head=$(git log -1 --oneline)"
+          git commit -m 'raincoat2004: audit every frame of delivered cut'
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then pushed=1; break; fi
+            git fetch origin "${GITHUB_REF_NAME}" && git rebase FETCH_HEAD || break
+            sleep 5
+          done
+          # 2026-10-07：这一步连续三轮把整轮审计拖红（触发 push 与制作端口并发推送撞车，
+          # 浅克隆下 rebase 重试也救不回来）。审计收据本来就随 artifacts 整包上传，分支侧的
+          # 同名收据由制作端口在本地复现后提交，因此这里改为「尽力而为」：推不上去只报错，
+          # 不判整轮审计失败——第 5–9 步的量测结果才是这轮运行的证据。
+          [ "$pushed" = "1" ] || echo "::error::审计收据未能推回分支（artifacts 已上传；分支侧收据由制作端口提交）"
+
+      - name: Upload full visual-review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raincoat2004-final-frame-qc-${{ github.run_number }}
+          path: |
+            work/raincoat2004/final-frame-audit/
+            production/raincoat2004/delivery/frame-distortion-audit.*
+            production/raincoat2004/delivery/visual-qc-summary.json
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 30

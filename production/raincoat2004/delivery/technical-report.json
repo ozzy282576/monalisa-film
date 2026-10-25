@@ -1,0 +1,69 @@
+{
+  "duration": 180.0,
+  "bytes": 66380956,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30.0,
+  "video_codec": "h264",
+  "frames": 5400,
+  "audio_codec": "aac",
+  "sample_rate": 48000,
+  "audio_channels": 2,
+  "sha256": "5bd4a3de7fe074581a0dd2bcba359ccc7a896c289620537888bfdc479cae0efa",
+  "decoded_ok": true,
+  "status": "audio_verified_cut",
+  "visual_review": "pending",
+  "caption_alignment": [
+    {
+      "id": "N01",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.9782608695652174
+    },
+    {
+      "id": "N02",
+      "method": "clause-times DP",
+      "character_match_coverage": 0.9263157894736842
+    },
+    {
+      "id": "N03",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.944
+    },
+    {
+      "id": "N04",
+      "method": "ASR-assisted",
+      "character_match_coverage": 1.0
+    },
+    {
+      "id": "N05",
+      "method": "ASR-assisted",
+      "character_match_coverage": 1.0
+    },
+    {
+      "id": "N06",
+      "method": "clause-times DP",
+      "character_match_coverage": 0.2967741935483871
+    }
+  ],
+  "narration_voice_id": "voice-01",
+  "narration_tempo": 0.952644469246032,
+  "editorial_segments": 46,
+  "source_clips": 38,
+  "archival_portrait": false,
+  "unique_shots_no_reuse": true,
+  "output": "韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4",
+  "soundtrack_mix": {
+    "rms_dbfs": -20.3,
+    "peak_dbfs": -1.52,
+    "silent_fraction": 0.0,
+    "target_rms_dbfs": -20.0
+  },
+  "delivered_audio": {
+    "rms_dbfs": -20.32,
+    "peak_dbfs": -1.7,
+    "silent_fraction": 0.0055,
+    "quietest_window_dbfs": -120.0
+  },
+  "audio_listening_review": "measured (level + per-chapter + silence gate); not a substitute for human word-level listening",
+  "note": "Audio is measured as audible on the delivered file; visual and word-level review are still pending, so this is not a final sign-off."
+}

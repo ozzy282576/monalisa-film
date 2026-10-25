@@ -1,0 +1,89 @@
+name: Black Dahlia · 有声成片
+run-name: Black Dahlia · 有声成片（含音量实测）
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_asr:
+        description: '跳过 ASR 对轨（离线时用停顿估算字幕时间）'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dahlia-audio-arena-01a085be
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/arena/01a085be-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 90
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/01a085be-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Install media tools and CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2"
+
+      - name: Validate the plan and narration provenance
+        run: python3 production/dahlia/generate.py --validate
+
+      - name: Restore the verified Agnes footage (no regeneration)
+        run: python3 -u production/dahlia/fetch_sources.py --dest work/dahlia/clips
+
+      - name: Render the three-minute cut with measured audio
+        run: |
+          python3 -u production/dahlia/render.py \
+            --sources work/dahlia/clips \
+            --work work/dahlia \
+            --output "work/dahlia/黑色大丽花_三分钟_带声音.mp4" \
+            ${{ inputs.skip_asr && '--skip-asr' || '' }}
+
+      - name: Publish the measured delivery reports back to the branch
+        env:
+          BRANCH: arena/01a085be-desktop-tutorial
+        run: |
+          mkdir -p production/dahlia/delivery
+          for f in technical-report.json audio-report.json final-audio-report.json \
+                   alignment-report.json caption-timing.json narration-timing.json \
+                   edit-decision-list.json final-contact.jpg captions.srt; do
+            [ -f "work/dahlia/$f" ] && cp "work/dahlia/$f" production/dahlia/delivery/ || echo "skip $f"
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add production/dahlia/delivery
+          if git diff --cached --quiet; then
+            echo "No report changes to publish"
+          else
+            git commit -m "Publish measured audio delivery reports"
+            git push origin "HEAD:$BRANCH"
+          fi
+
+      - name: Upload the finished film
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 黑色大丽花-三分钟-带声音
+          path: work/dahlia/黑色大丽花_三分钟_带声音.mp4
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 1

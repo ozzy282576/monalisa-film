@@ -1,0 +1,459 @@
+{
+  "film": "韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4",
+  "film_sha256": "5bd4a3de7fe074581a0dd2bcba359ccc7a896c289620537888bfdc479cae0efa",
+  "film_bytes": 66380956,
+  "project": "production/raincoat2004",
+  "method": "faster-whisper small，无 initial_prompt；转写对象为最终成片按章节切出的音频",
+  "max_cer_allowed": 0.15,
+  "film_pass": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 23.242,
+        "script_chars": 92,
+        "heard_chars": 92,
+        "character_error_rate": 0.0543,
+        "match_coverage": 0.9457,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 42,
+            "kind": "replace",
+            "script": "值钱",
+            "heard": "之前"
+          },
+          {
+            "at": 61,
+            "kind": "replace",
+            "script": "起",
+            "heard": "期"
+          },
+          {
+            "at": 67,
+            "kind": "replace",
+            "script": "揪",
+            "heard": "交"
+          },
+          {
+            "at": 84,
+            "kind": "replace",
+            "script": "记",
+            "heard": "寄"
+          }
+        ],
+        "transcript": "2003年9月首爾江南區新沙洞一對老夫婦在自己家裡遇害房子隨後被點著兇手沒有拿走任何之前的東西十個月後警方才確認那只是第一期而最後把他交出來的不是指紋也不是監控是一部被寄下來的電話號碼"
+      },
+      {
+        "id": "N02",
+        "start": 24.322,
+        "end": 49.83,
+        "script_chars": 95,
+        "heard_chars": 95,
+        "character_error_rate": 0.0526,
+        "match_coverage": 0.9474,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 2,
+            "kind": "replace",
+            "script": "柳",
+            "heard": "刘"
+          },
+          {
+            "at": 18,
+            "kind": "replace",
+            "script": "敞郡",
+            "heard": "厂军"
+          },
+          {
+            "at": 54,
+            "kind": "replace",
+            "script": "服刑",
+            "heard": "复兴"
+          }
+        ],
+        "transcript": "他叫刘永哲1970年出生在全罗北道高厂军家里很穷从高中时代起他就在监狱里进进出出盗窃 诈骗和暴力前后十四次累计复兴十一年2003年9月11日他最后一次走出监狱妻子已经带着儿子离开那年他33岁"
+      },
+      {
+        "id": "N03",
+        "start": 50.91,
+        "end": 77.41,
+        "script_chars": 125,
+        "heard_chars": 125,
+        "character_error_rate": 0.056,
+        "match_coverage": 0.944,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 0,
+            "kind": "replace",
+            "script": "出狱",
+            "heard": "初遇"
+          },
+          {
+            "at": 17,
+            "kind": "replace",
+            "script": "专",
+            "heard": "转"
+          },
+          {
+            "at": 74,
+            "kind": "replace",
+            "script": "伪",
+            "heard": "围"
+          },
+          {
+            "at": 87,
+            "kind": "replace",
+            "script": "按摩",
+            "heard": "暗魔"
+          },
+          {
+            "at": 105,
+            "kind": "replace",
+            "script": "网",
+            "heard": "往"
+          }
+        ],
+        "transcript": "初遇13天后第一起案子发生了此后他转挑富人区的独栋住宅在白天老人独自在家的时候闯进去为了不留目击者连屋里的帮傭也不放过2004年春天他突然换了目标用围造的警察证件和一部电话把暗魔女约到自己住的写字楼公寓到七月落往前有11名女性走进了那栋楼再也没有出来"
+      },
+      {
+        "id": "N04",
+        "start": 78.49,
+        "end": 102.04,
+        "script_chars": 108,
+        "heard_chars": 108,
+        "character_error_rate": 0.0278,
+        "match_coverage": 0.9722,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 44,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 91,
+            "kind": "replace",
+            "script": "记",
+            "heard": "寄"
+          },
+          {
+            "at": 98,
+            "kind": "replace",
+            "script": "它",
+            "heard": "她"
+          }
+        ],
+        "transcript": "一开始这些失踪并没有被当成连环案件按摩女的去向本来就少有人追问警方最初的判断是可能有人把他们拐卖到了乡下真正的转机出现在一部电话上店里好几个姑娘都是接到同一个号码之后消失的老板把号码寄了下来又看见她出现就带着人报了警"
+      },
+      {
+        "id": "N05",
+        "start": 103.12,
+        "end": 137.576,
+        "script_chars": 131,
+        "heard_chars": 131,
+        "character_error_rate": 0.0534,
+        "match_coverage": 0.9466,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 15,
+            "kind": "replace",
+            "script": "麻浦",
+            "heard": "马普"
+          },
+          {
+            "at": 35,
+            "kind": "replace",
+            "script": "癫痫",
+            "heard": "颠弦"
+          },
+          {
+            "at": 41,
+            "kind": "replace",
+            "script": "铐",
+            "heard": "靠"
+          },
+          {
+            "at": 59,
+            "kind": "replace",
+            "script": "浦",
+            "heard": "普"
+          },
+          {
+            "at": 101,
+            "kind": "replace",
+            "script": "奉",
+            "heard": "凤"
+          }
+        ],
+        "transcript": "2004年7月15日凌晨警方在马普区的一条巷子里抓住了他审讯中途他假装颠弦发作趁手靠松开逃出警局12个小时后警察在永登普站附近把他重新抓住面对警方的问话他承认自己和这些失踪案有关7月18日他带着警察上了凤元寺的后山雨天里警方在那片山坡上找到了11名失踪女性的下落"
+      },
+      {
+        "id": "N06",
+        "start": 138.656,
+        "end": 174.0,
+        "script_chars": 155,
+        "heard_chars": 155,
+        "character_error_rate": 0.0323,
+        "match_coverage": 0.9677,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 88,
+            "kind": "replace",
+            "script": "是",
+            "heard": "事"
+          },
+          {
+            "at": 120,
+            "kind": "replace",
+            "script": "拍",
+            "heard": "排"
+          },
+          {
+            "at": 132,
+            "kind": "replace",
+            "script": "它",
+            "heard": "他"
+          },
+          {
+            "at": 135,
+            "kind": "replace",
+            "script": "拍",
+            "heard": "排"
+          },
+          {
+            "at": 148,
+            "kind": "replace",
+            "script": "它",
+            "heard": "他"
+          }
+        ],
+        "transcript": "2004年12月13日首爾中央地方法院認定他對二十人的死亡負有責任判處死刑2005年6月最高法院終審維持原判韓國從1997年起就沒有再執行過死刑他至今仍然在監獄裡真正讓人不安的事他被捕之後韓國的網站上出現了他的粉絲俱樂部2008年這起案子被排成電影追擊者2021年他又被排成紀錄片危險從不寫在臉上他就走在人群裡"
+      }
+    ],
+    "max_cer": 0.056,
+    "failing": []
+  },
+  "narration_control": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 23.242,
+        "script_chars": 92,
+        "heard_chars": 92,
+        "character_error_rate": 0.0217,
+        "match_coverage": 0.9783,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 66,
+            "kind": "replace",
+            "script": "他揪",
+            "heard": "它交"
+          }
+        ],
+        "transcript": "2003年9月首尔江南区新沙洞一对老夫妇在自己家里遇害房子随后被点着凶手没有拿走任何值钱的东西十个月后警方才确认那只是第一起而最后把它交出来的不是指纹也不是监控是一部被记下来的电话号码"
+      },
+      {
+        "id": "N02",
+        "start": 24.322,
+        "end": 49.83,
+        "script_chars": 95,
+        "heard_chars": 95,
+        "character_error_rate": 0.0526,
+        "match_coverage": 0.9474,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 2,
+            "kind": "replace",
+            "script": "柳",
+            "heard": "刘"
+          },
+          {
+            "at": 18,
+            "kind": "replace",
+            "script": "敞郡",
+            "heard": "厂军"
+          },
+          {
+            "at": 54,
+            "kind": "replace",
+            "script": "服刑",
+            "heard": "复兴"
+          }
+        ],
+        "transcript": "他叫刘永哲1970年出生在全罗北道高厂军家里很穷从高中时代起他就在监狱里进进出出盗窃 诈骗和暴力前后十四次累计复兴十一年2003年9月11日他最后一次走出监狱妻子已经带着儿子离开那年他33岁"
+      },
+      {
+        "id": "N03",
+        "start": 50.91,
+        "end": 77.41,
+        "script_chars": 125,
+        "heard_chars": 125,
+        "character_error_rate": 0.048,
+        "match_coverage": 0.952,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 0,
+            "kind": "replace",
+            "script": "出狱",
+            "heard": "初遇"
+          },
+          {
+            "at": 16,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 66,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 74,
+            "kind": "replace",
+            "script": "伪",
+            "heard": "围"
+          },
+          {
+            "at": 105,
+            "kind": "replace",
+            "script": "网",
+            "heard": "往"
+          }
+        ],
+        "transcript": "初遇13天后第一起案子发生了此后她专挑富人区的独栋住宅在白天老人独自在家的时候闯进去为了不留目击者连屋里的帮傭也不放过2004年春天她突然换了目标用围造的警察证件和一部电话把按摩女约到自己住的写字楼公寓到七月落往前有11名女性走进了那栋楼再也没有出来"
+      },
+      {
+        "id": "N04",
+        "start": 78.49,
+        "end": 102.04,
+        "script_chars": 108,
+        "heard_chars": 108,
+        "character_error_rate": 0.037,
+        "match_coverage": 0.963,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 26,
+            "kind": "replace",
+            "script": "少",
+            "heard": "熟"
+          },
+          {
+            "at": 44,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 91,
+            "kind": "replace",
+            "script": "记",
+            "heard": "寄"
+          },
+          {
+            "at": 98,
+            "kind": "replace",
+            "script": "它",
+            "heard": "她"
+          }
+        ],
+        "transcript": "一开始,这些失踪并没有被当成连环案件按摩女的去向本来就熟有人追问警方最初的判断是可能有人把他们拐卖到了乡下真正的转机出现在一部电话上店里好几个姑娘都是接到同一个号码之后消失的老板把号码寄了下来又看见她出现就带着人报了警"
+      },
+      {
+        "id": "N05",
+        "start": 103.12,
+        "end": 137.576,
+        "script_chars": 131,
+        "heard_chars": 131,
+        "character_error_rate": 0.0611,
+        "match_coverage": 0.9389,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 15,
+            "kind": "replace",
+            "script": "麻浦",
+            "heard": "马普"
+          },
+          {
+            "at": 35,
+            "kind": "replace",
+            "script": "癫痫",
+            "heard": "颠鲜"
+          },
+          {
+            "at": 41,
+            "kind": "replace",
+            "script": "铐",
+            "heard": "靠"
+          },
+          {
+            "at": 59,
+            "kind": "replace",
+            "script": "浦站",
+            "heard": "埔寨"
+          },
+          {
+            "at": 101,
+            "kind": "replace",
+            "script": "奉",
+            "heard": "凤"
+          }
+        ],
+        "transcript": "2004年7月15日凌晨警方在马普区的一条巷子里抓住了他审讯中途他假装颠鲜发作趁手靠松开逃出警局12个小时后警察在永登埔寨附近把他重新抓住面对警方的问话他承认自己和这些失踪案有关7月18日他带着警察上了凤元寺的后山雨天里警方在那片山坡上找到了11名失踪女性的下落"
+      },
+      {
+        "id": "N06",
+        "start": 138.656,
+        "end": 174.0,
+        "script_chars": 155,
+        "heard_chars": 155,
+        "character_error_rate": 0.0258,
+        "match_coverage": 0.9742,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 120,
+            "kind": "replace",
+            "script": "拍",
+            "heard": "排"
+          },
+          {
+            "at": 132,
+            "kind": "replace",
+            "script": "它",
+            "heard": "他"
+          },
+          {
+            "at": 135,
+            "kind": "replace",
+            "script": "拍",
+            "heard": "排"
+          },
+          {
+            "at": 148,
+            "kind": "replace",
+            "script": "它",
+            "heard": "他"
+          }
+        ],
+        "transcript": "2004年12月13日首尔中央地方法院认定他对20人的死亡负有责任判处死刑2005年6月最高法院终审维持原判韩国从1997年起就没有再执行过死刑他至今仍然在监狱里真正让人不安的是他被捕之后韩国的网站上出现了他的粉丝俱乐部2008年这起案子被排成电影追击者2021年他又被排成纪录片危险从不写在脸上他就走在人群里"
+      }
+    ],
+    "max_cer": 0.0611,
+    "failing": []
+  },
+  "note": "CER = 编辑距离 / 剧本字数。ASR 本身也会错，所以 'needs_human_listen' 的意思是\"这一段的差异需要人耳裁决\"，不等于\"配音一定错了\"；对照组（干净配音）字错率明显低于成片时，差异多半来自音乐干扰 ASR。"
+}

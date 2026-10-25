@@ -1,0 +1,425 @@
+{
+  "flags": [
+    "14 帧接近全黑",
+    "35 处画面 1 秒内几乎无变化：13 处复核为真静止（信息卡/档案照/片尾卡，设计如此），22 处复核有微动（16x16 阈值过严，不是冻结帧）"
+  ],
+  "video": {
+    "file": "黑色大丽花_三分钟_带声音.mp4",
+    "video_codec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "decoded_frames": 5400,
+    "duration_seconds": 180.0,
+    "black_frame_luma_threshold": 12.0,
+    "black_frames": [
+      {
+        "second": 0.0,
+        "luma": 0.07
+      },
+      {
+        "second": 0.03,
+        "luma": 6.78
+      },
+      {
+        "second": 176.17,
+        "luma": 10.74
+      },
+      {
+        "second": 176.2,
+        "luma": 0.0
+      },
+      {
+        "second": 176.23,
+        "luma": 4.91
+      },
+      {
+        "second": 176.27,
+        "luma": 11.12
+      },
+      {
+        "second": 179.73,
+        "luma": 11.23
+      },
+      {
+        "second": 179.77,
+        "luma": 9.94
+      },
+      {
+        "second": 179.8,
+        "luma": 8.62
+      },
+      {
+        "second": 179.83,
+        "luma": 6.58
+      },
+      {
+        "second": 179.87,
+        "luma": 5.17
+      },
+      {
+        "second": 179.9,
+        "luma": 3.86
+      },
+      {
+        "second": 179.93,
+        "luma": 2.57
+      },
+      {
+        "second": 179.97,
+        "luma": 1.06
+      }
+    ],
+    "frozen_tolerance": 0.6,
+    "frozen_runs_over_one_second": [
+      {
+        "start_second": 0.27,
+        "end_second": 1.27,
+        "max_frame_delta": 0.383,
+        "triage_median_delta": 0.43,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 4.9,
+        "end_second": 5.9,
+        "max_frame_delta": 0.395,
+        "triage_median_delta": 0.223,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 7.57,
+        "end_second": 8.57,
+        "max_frame_delta": 0.598,
+        "triage_median_delta": 1.474,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 11.23,
+        "end_second": 12.23,
+        "max_frame_delta": 0.258,
+        "triage_median_delta": 0.049,
+        "verdict": "static"
+      },
+      {
+        "start_second": 27.57,
+        "end_second": 28.57,
+        "max_frame_delta": 0.598,
+        "triage_median_delta": 0.885,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 29.33,
+        "end_second": 30.33,
+        "max_frame_delta": 0.309,
+        "triage_median_delta": 0.24,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 34.23,
+        "end_second": 35.23,
+        "max_frame_delta": 0.309,
+        "triage_median_delta": 0.056,
+        "verdict": "static"
+      },
+      {
+        "start_second": 37.4,
+        "end_second": 38.4,
+        "max_frame_delta": 0.32,
+        "triage_median_delta": 0.049,
+        "verdict": "static"
+      },
+      {
+        "start_second": 41.33,
+        "end_second": 42.33,
+        "max_frame_delta": 0.461,
+        "triage_median_delta": 0.485,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 44.33,
+        "end_second": 45.33,
+        "max_frame_delta": 0.293,
+        "triage_median_delta": 0.06,
+        "verdict": "static"
+      },
+      {
+        "start_second": 48.0,
+        "end_second": 49.0,
+        "max_frame_delta": 0.312,
+        "triage_median_delta": 0.548,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 50.43,
+        "end_second": 51.43,
+        "max_frame_delta": 0.535,
+        "triage_median_delta": 1.064,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 52.93,
+        "end_second": 53.93,
+        "max_frame_delta": 0.293,
+        "triage_median_delta": 0.045,
+        "verdict": "static"
+      },
+      {
+        "start_second": 57.23,
+        "end_second": 58.23,
+        "max_frame_delta": 0.477,
+        "triage_median_delta": 0.065,
+        "verdict": "static"
+      },
+      {
+        "start_second": 68.67,
+        "end_second": 69.67,
+        "max_frame_delta": 0.59,
+        "triage_median_delta": 0.217,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 74.0,
+        "end_second": 75.0,
+        "max_frame_delta": 0.262,
+        "triage_median_delta": 0.058,
+        "verdict": "static"
+      },
+      {
+        "start_second": 75.13,
+        "end_second": 76.13,
+        "max_frame_delta": 0.277,
+        "triage_median_delta": 0.057,
+        "verdict": "static"
+      },
+      {
+        "start_second": 80.3,
+        "end_second": 81.3,
+        "max_frame_delta": 0.289,
+        "triage_median_delta": 0.222,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 82.5,
+        "end_second": 83.5,
+        "max_frame_delta": 0.562,
+        "triage_median_delta": 1.008,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 88.3,
+        "end_second": 89.3,
+        "max_frame_delta": 0.328,
+        "triage_median_delta": 0.391,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 97.03,
+        "end_second": 98.03,
+        "max_frame_delta": 0.27,
+        "triage_median_delta": 0.051,
+        "verdict": "static"
+      },
+      {
+        "start_second": 102.77,
+        "end_second": 103.77,
+        "max_frame_delta": 0.266,
+        "triage_median_delta": 0.08,
+        "verdict": "static"
+      },
+      {
+        "start_second": 104.53,
+        "end_second": 105.53,
+        "max_frame_delta": 0.555,
+        "triage_median_delta": 0.691,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 118.87,
+        "end_second": 119.87,
+        "max_frame_delta": 0.426,
+        "triage_median_delta": 0.229,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 121.43,
+        "end_second": 122.43,
+        "max_frame_delta": 0.344,
+        "triage_median_delta": 0.048,
+        "verdict": "static"
+      },
+      {
+        "start_second": 129.9,
+        "end_second": 130.9,
+        "max_frame_delta": 0.555,
+        "triage_median_delta": 0.716,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 134.37,
+        "end_second": 135.37,
+        "max_frame_delta": 0.594,
+        "triage_median_delta": 0.574,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 137.1,
+        "end_second": 138.1,
+        "max_frame_delta": 0.324,
+        "triage_median_delta": 0.054,
+        "verdict": "static"
+      },
+      {
+        "start_second": 144.97,
+        "end_second": 145.97,
+        "max_frame_delta": 0.57,
+        "triage_median_delta": 0.552,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 152.3,
+        "end_second": 153.3,
+        "max_frame_delta": 0.188,
+        "triage_median_delta": 0.248,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 155.67,
+        "end_second": 156.67,
+        "max_frame_delta": 0.555,
+        "triage_median_delta": 0.608,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 158.53,
+        "end_second": 159.53,
+        "max_frame_delta": 0.32,
+        "triage_median_delta": 0.556,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 167.6,
+        "end_second": 168.6,
+        "max_frame_delta": 0.566,
+        "triage_median_delta": 0.971,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 169.6,
+        "end_second": 170.6,
+        "max_frame_delta": 0.27,
+        "triage_median_delta": 0.21,
+        "verdict": "micro_motion"
+      },
+      {
+        "start_second": 176.4,
+        "end_second": 177.4,
+        "max_frame_delta": 0.07,
+        "triage_median_delta": 0.017,
+        "verdict": "static"
+      }
+    ],
+    "mean_luma": 74.84,
+    "min_luma": 0.07,
+    "max_luma": 143.88,
+    "sampled_frames": [
+      "t0000.00s.jpg",
+      "t0005.00s.jpg",
+      "t0010.00s.jpg",
+      "t0015.00s.jpg",
+      "t0020.00s.jpg",
+      "t0025.00s.jpg",
+      "t0030.00s.jpg",
+      "t0035.00s.jpg",
+      "t0040.00s.jpg",
+      "t0045.00s.jpg",
+      "t0050.00s.jpg",
+      "t0055.00s.jpg",
+      "t0060.00s.jpg",
+      "t0065.00s.jpg",
+      "t0070.00s.jpg",
+      "t0075.00s.jpg",
+      "t0080.00s.jpg",
+      "t0085.00s.jpg",
+      "t0090.00s.jpg",
+      "t0095.00s.jpg",
+      "t0100.00s.jpg",
+      "t0105.00s.jpg",
+      "t0110.00s.jpg",
+      "t0115.00s.jpg",
+      "t0120.00s.jpg",
+      "t0125.00s.jpg",
+      "t0130.00s.jpg",
+      "t0135.00s.jpg",
+      "t0140.00s.jpg",
+      "t0145.00s.jpg",
+      "t0150.00s.jpg",
+      "t0155.00s.jpg",
+      "t0160.00s.jpg",
+      "t0165.00s.jpg",
+      "t0170.00s.jpg",
+      "t0175.00s.jpg"
+    ],
+    "contact_sheets": [
+      "contact-sheet-01.png",
+      "contact-sheet-02.png"
+    ]
+  },
+  "audio": {
+    "file": "黑色大丽花_三分钟_带声音.mp4",
+    "duration_seconds": 180.011,
+    "sample_rate": 48000,
+    "channels": 1,
+    "rms_dbfs": -21.09,
+    "peak_dbfs": -1.52,
+    "window_seconds": 1.0,
+    "window_count": 181,
+    "silent_windows": 2,
+    "silent_fraction": 0.011,
+    "quietest_window_dbfs": -120.0,
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 28.213,
+        "rms_dbfs": -21.12,
+        "peak_dbfs": -1.89
+      },
+      {
+        "id": "N02",
+        "start": 29.293,
+        "end": 61.035,
+        "rms_dbfs": -21.17,
+        "peak_dbfs": -2.85
+      },
+      {
+        "id": "N03",
+        "start": 62.115,
+        "end": 87.233,
+        "rms_dbfs": -20.91,
+        "peak_dbfs": -2.71
+      },
+      {
+        "id": "N04",
+        "start": 88.313,
+        "end": 114.722,
+        "rms_dbfs": -20.61,
+        "peak_dbfs": -3.09
+      },
+      {
+        "id": "N05",
+        "start": 115.802,
+        "end": 142.985,
+        "rms_dbfs": -20.19,
+        "peak_dbfs": -3.9
+      },
+      {
+        "id": "N06",
+        "start": 144.065,
+        "end": 174.0,
+        "rms_dbfs": -20.85,
+        "peak_dbfs": -1.52
+      }
+    ]
+  },
+  "note": "自动判定只覆盖黑帧/冻结帧/静音/电平；构图、字幕错字、AI 画面畸变需人工看抽样帧。冻结帧报警都带 verdict：static=真静止（多为信息卡），micro_motion=复核有微动。"
+}

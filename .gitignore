@@ -1,0 +1,41 @@
+# =====================================================================
+# 运行时上传与缓存：临时产物，不属于仓库内容（沿用上游规则）
+# =====================================================================
+.cache/
+incoming_uploads/
+__pycache__/
+*.py[cod]
+.venv/
+work/
+production/dahlia/media/
+
+# =====================================================================
+# 媒体素材按需下载，不进 git（来源见 scripts/upstream-media-manifest.json，
+# 恢复命令：python3 scripts/fetch_upstream_media.py）
+# 包括：成片 mp4、抽帧/接触表 jpg、配音 mp3、角色定妆 png 等生成物
+# =====================================================================
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aac
+*.m4a
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.bmp
+
+# 下载的上游快照压缩包
+*.tar.gz
+upstream-snapshot/
+
+# 系统/编辑器杂项
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,104 @@
+name: 清理旧 artifact（释放存储配额）
+
+# 为什么需要它：转私有后 artifact 存储只有 500 MB，而出片会不断上传成片（48~105 MB）
+# 与审片图。2026-09-18 仓库里积了 3.1 GB 老 artifact，出片最后一步报
+# "Failed to CreateArtifact: Artifact storage quota has been hit"。
+#
+# 注意两件事（实测/官方文档）：
+#   1. 把 Settings → Actions 的保留期改短，**只影响新上传的**，不会清理已有的；
+#   2. 配额重算要 6~12 小时（有人等到 24~72 小时），所以删完不会立刻见效。
+#
+# 用它：Actions → 本工作流 → Run workflow。
+#   第一次清理填 days=0、keep_newest=1（每个名字只留最新的一个，其余全删）；
+#   之后可以定期跑，用 days=7 只删一周前的。
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: '删除多少天以前的 artifact（0 = 全部，只受 keep_newest 保护）'
+        required: false
+        default: '7'
+      keep_newest:
+        description: '每个名字至少保留最新的几个（1 = 保留最新的一个）'
+        required: false
+        default: '1'
+
+permissions:
+  actions: write     # 删 artifact 需要它；工作流自己的 GITHUB_TOKEN 有这个能力
+  contents: read
+
+concurrency:
+  group: cleanup-artifacts
+  cancel-in-progress: false
+
+jobs:
+  clean:
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 15
+    steps:
+      - name: 列出并删除旧 artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          DAYS: ${{ inputs.days }}
+          KEEP: ${{ inputs.keep_newest }}
+        run: |
+          python3 - <<'PY'
+          import datetime, json, os, urllib.error, urllib.request
+
+          token = os.environ["GH_TOKEN"]
+          repo = os.environ["REPO"]
+          days = int(os.environ["DAYS"] or "0")
+          keep = int(os.environ["KEEP"] or "0")
+          api = "https://api.github.com/repos/%s/actions/artifacts" % repo
+
+          def call(url, method="GET"):
+              request = urllib.request.Request(url, method=method, headers={
+                  "Authorization": "Bearer %s" % token,
+                  "Accept": "application/vnd.github+json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              })
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  body = response.read()
+                  return response.status, (json.loads(body) if body else {})
+
+          collected, page = [], 1
+          while True:
+              _, data = call("%s?per_page=100&page=%d" % (api, page))
+              batch = data.get("artifacts", [])
+              collected += batch
+              if len(batch) < 100:
+                  break
+              page += 1
+
+          total_mb = sum(a["size_in_bytes"] for a in collected) / 1048576
+          print("当前 %d 个 artifact，合计约 %d MB（免费额度 500 MB）" % (len(collected), total_mb))
+          if not collected:
+              print("没有 artifact，配额应该已经是干净的（重算最多要 6~12 小时）")
+              raise SystemExit(0)
+
+          newest_first = sorted(collected, key=lambda a: a["created_at"], reverse=True)
+          seen, doomed = {}, []
+          cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=days)
+          for item in newest_first:
+              seen[item["name"]] = seen.get(item["name"], 0) + 1
+              created = datetime.datetime.fromisoformat(item["created_at"].replace("Z", "+00:00"))
+              if seen[item["name"]] <= keep:
+                  continue                      # 每个名字最新的 N 个永远留着
+              if created < cutoff:
+                  doomed.append(item)
+
+          print("准备删除 %d 个（= 每个名字保留最新 %d 个，且早于 %d 天前）"
+                % (len(doomed), keep, days))
+          freed = 0
+          for item in doomed:
+              try:
+                  call("%s/%d" % (api, item["id"]), method="DELETE")
+                  freed += item["size_in_bytes"]
+                  print("  已删 %.0f MB  %s" % (item["size_in_bytes"] / 1048576, item["name"]))
+              except urllib.error.HTTPError as error:
+                  print("  跳过 %s：HTTP %s" % (item["name"], error.code))
+          print("本次释放约 %d MB。注意：GitHub 重算存储用量要 6~12 小时，"
+                "期间上传可能仍然报 quota has been hit。" % (freed / 1048576))
+          PY

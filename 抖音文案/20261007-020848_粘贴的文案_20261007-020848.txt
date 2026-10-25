@@ -1,0 +1,490 @@
+{
+  "project": {
+    "title": "韩国雨衣杀手柳永哲案",
+    "type": "true_crime_documentary",
+    "language": "zh-CN",
+    "duration_seconds": 190,
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "style": "Korean crime documentary cinematic reenactment",
+    "content_rule": {
+      "no_fiction": true,
+      "no_fake_dialogue": true,
+      "no_gore": true,
+      "historical_accuracy": true
+    }
+  },
+
+  "global_style": {
+    "visual": [
+      "early 2000s South Korea",
+      "crime documentary style",
+      "cinematic realism",
+      "dark rainy atmosphere",
+      "35mm film grain",
+      "natural lighting",
+      "historically accurate vehicles",
+      "Korean urban environment"
+    ],
+    "camera": [
+      "wide cinematic shot",
+      "slow push in",
+      "documentary handheld camera",
+      "slow tracking shot"
+    ],
+    "negative_prompt": [
+      "blood",
+      "gore",
+      "graphic violence",
+      "modern cars",
+      "modern smartphones",
+      "cartoon",
+      "anime",
+      "watermark",
+      "subtitles"
+    ]
+  },
+
+  "shots": [
+
+    {
+      "id": 1,
+      "time": "00:00-00:05",
+      "voiceover": "2004年的韩国首尔，一个看似普通的男人隐藏在人群之中。没人知道，他即将成为韩国犯罪史上最令人恐惧的名字之一。",
+      "visual_prompt": "2004 Seoul Korea rainy night street, neon lights reflecting on wet road, Korean taxi passing, lonely male silhouette walking through crowd, crime documentary style",
+      "camera": "wide shot slowly pushing forward",
+      "sound": [
+        "rain",
+        "city ambience",
+        "low suspense music"
+      ]
+    },
+
+
+    {
+      "id": 2,
+      "time": "00:05-00:09",
+      "voiceover": "他的名字叫——柳永哲。",
+      "visual_prompt": "Korean police investigation files, old newspapers, suspect documents on desk, dark archive room",
+      "camera": "slow zoom into case file",
+      "sound": [
+        "low impact sound"
+      ]
+    },
+
+
+    {
+      "id": 3,
+      "time": "00:09-00:13",
+      "voiceover": "最可怕的是，他看起来和普通人没有区别。",
+      "visual_prompt": "ordinary Korean man walking among people in Seoul street, nobody notices him, realistic documentary style",
+      "camera": "static long lens shot",
+      "sound": [
+        "street ambience"
+      ]
+    },
+
+
+    {
+      "id": 4,
+      "time": "00:13-00:18",
+      "voiceover": "但在警方调查中，一个恐怖事实逐渐浮现。",
+      "visual_prompt": "South Korean police office, investigation board, maps, timeline, detectives analyzing cases",
+      "camera": "horizontal camera movement across investigation wall"
+    },
+
+
+    {
+      "id": 5,
+      "time": "00:18-00:23",
+      "voiceover": "故事，要从2003年的韩国开始。",
+      "visual_prompt": "2003 Seoul old neighborhood rainy night, dark alley, old Korean buildings, street lamps",
+      "camera": "slow movement into alley"
+    },
+
+
+    {
+      "id": 6,
+      "time": "00:23-00:28",
+      "voiceover": "2003年9月，韩国警方接到一起住宅杀人案件。",
+      "visual_prompt": "Korean residential area, police cars, investigation scene, officers behind security line",
+      "camera": "wide establishing shot"
+    },
+
+
+    {
+      "id": 7,
+      "time": "00:28-00:33",
+      "voiceover": "受害者来自首尔一些富裕家庭。",
+      "visual_prompt": "wealthy Seoul neighborhood, large houses, police vehicles outside",
+      "camera": "slow pan"
+    },
+
+
+    {
+      "id": 8,
+      "time": "00:33-00:38",
+      "voiceover": "警方发现，凶手进入住宅后制造犯罪现场。",
+      "visual_prompt": "Korean detectives collecting evidence, gloves, evidence bags, fingerprint investigation, no bodies",
+      "camera": "close up documentary shot"
+    },
+
+
+    {
+      "id": 9,
+      "time": "00:38-00:43",
+      "voiceover": "可是最开始，警方没有找到凶手身份。",
+      "visual_prompt": "detectives reviewing unsolved case documents in office",
+      "camera": "handheld documentary style"
+    },
+
+
+    {
+      "id": 10,
+      "time": "00:43-00:48",
+      "voiceover": "因为这个人，没有留下明显线索。",
+      "visual_prompt": "empty apartment hallway, CCTV monitor showing unclear shadow figure",
+      "camera": "slow zoom into monitor"
+    },
+
+
+    {
+      "id": 11,
+      "time": "00:48-00:55",
+      "voiceover": "随着案件增加，韩国社会开始陷入恐慌。",
+      "visual_prompt": "Korean TV news broadcast, newspapers, citizens watching news reports",
+      "camera": "montage style"
+    },
+
+
+    {
+      "id": 12,
+      "time": "00:55-01:00",
+      "voiceover": "随后，柳永哲改变了犯罪目标。",
+      "visual_prompt": "police crime board showing changing victim patterns",
+      "camera": "slow push in"
+    },
+
+
+    {
+      "id": 13,
+      "time": "01:00-01:05",
+      "voiceover": "他的目标开始转向女性。",
+      "visual_prompt": "Seoul night street, woman silhouette walking under neon lights, cinematic documentary",
+      "camera": "long distance tracking"
+    },
+
+
+    {
+      "id": 14,
+      "time": "01:05-01:10",
+      "voiceover": "警方调查发现，他通过各种方式寻找目标。",
+      "visual_prompt": "early 2000s Korean computer room, CRT monitor, investigators checking digital evidence",
+      "camera": "close shot"
+    },
+
+
+    {
+      "id": 15,
+      "time": "01:10-01:15",
+      "voiceover": "他的犯罪持续了一段时间。",
+      "visual_prompt": "South Korea map with multiple investigation points",
+      "camera": "top view"
+    },
+
+
+    {
+      "id": 16,
+      "time": "01:15-01:20",
+      "voiceover": "警方开始怀疑，这些案件可能来自同一个人。",
+      "visual_prompt": "detectives connecting evidence photos and maps",
+      "camera": "slow circular movement"
+    },
+
+
+    {
+      "id": 17,
+      "time": "01:20-01:25",
+      "voiceover": "真正的抓捕行动即将开始。",
+      "visual_prompt": "Korean undercover police preparing operation at night",
+      "camera": "cinematic wide shot"
+    },
+
+
+    {
+      "id": 18,
+      "time": "01:25-01:30",
+      "voiceover": "2004年7月，警方锁定柳永哲。",
+      "visual_prompt": "police suspect file with Korean investigation documents",
+      "camera": "slow zoom"
+    },
+
+
+    {
+      "id": 19,
+      "time": "01:30-01:35",
+      "voiceover": "但抓捕过程出现意外。",
+      "visual_prompt": "police operation scene in Seoul street",
+      "camera": "handheld action documentary"
+    },
+
+
+    {
+      "id": 20,
+      "time": "01:35-01:40",
+      "voiceover": "在一次行动中，他曾短暂逃脱。",
+      "visual_prompt": "night street pursuit, police chasing suspect, no violence",
+      "camera": "dynamic tracking"
+    }
+
+  ]
+}
+[
+    {
+      "id": 21,
+      "time": "01:40-01:45",
+      "voiceover": "随后警方再次控制住他。",
+      "visual_prompt": "early 2000s South Korea police officers escorting a suspect into a police vehicle, reporters in distance, realistic crime documentary style",
+      "camera": "wide shot, slow tracking movement",
+      "sound": [
+        "camera shutter",
+        "police radio"
+      ]
+    },
+
+
+    {
+      "id": 22,
+      "time": "01:45-01:50",
+      "voiceover": "案件最大的秘密，开始被揭开。",
+      "visual_prompt": "South Korean police interrogation room, detective sitting across from suspect, documents and recorder on table, dark realistic atmosphere",
+      "camera": "shot through glass window, slow push in",
+      "sound": [
+        "room ambience",
+        "low suspense music"
+      ]
+    },
+
+
+    {
+      "id": 23,
+      "time": "01:50-01:55",
+      "voiceover": "韩国警方随后公布调查结果。",
+      "visual_prompt": "South Korean police press conference, reporters holding cameras, investigators presenting information, early 2000s news style",
+      "camera": "wide newsroom documentary shot",
+      "sound": [
+        "camera flashes",
+        "crowd noise"
+      ]
+    },
+
+
+    {
+      "id": 24,
+      "time": "01:55-02:00",
+      "voiceover": "调查人员发现，他承认了多起案件。",
+      "visual_prompt": "police investigation desk, handwritten notes, evidence files, audio recorder, Korean detectives reviewing documents",
+      "camera": "close up on documents and hands",
+      "sound": [
+        "paper movement",
+        "pen writing"
+      ]
+    },
+
+
+    {
+      "id": 25,
+      "time": "02:00-02:05",
+      "voiceover": "警方最终确认，他杀害人数超过20人。",
+      "visual_prompt": "Korean police investigation board showing case statistics, timeline, evidence connections, no graphic content",
+      "camera": "slow zoom toward numbers on board",
+      "sound": [
+        "deep impact sound"
+      ]
+    },
+
+
+    {
+      "id": 26,
+      "time": "02:05-02:10",
+      "voiceover": "受害者包括老人和女性。",
+      "visual_prompt": "crime archive room, victim case folders, police files arranged on shelves, respectful documentary style",
+      "camera": "slow horizontal pan",
+      "sound": [
+        "quiet documentary music"
+      ]
+    },
+
+
+    {
+      "id": 27,
+      "time": "02:10-02:15",
+      "voiceover": "韩国社会开始讨论，这样的犯罪者为何出现。",
+      "visual_prompt": "South Korean criminal psychology experts analyzing reports, books, research documents, television discussions",
+      "camera": "slow cinematic movement across desk",
+      "sound": [
+        "soft tension music"
+      ]
+    },
+
+
+    {
+      "id": 28,
+      "time": "02:15-02:20",
+      "voiceover": "但解释原因，并不意味着可以原谅犯罪。",
+      "visual_prompt": "court documents, legal books, psychological evaluation reports on table, serious atmosphere",
+      "camera": "close up, slow focus shift",
+      "sound": [
+        "paper turning"
+      ]
+    },
+
+
+    {
+      "id": 29,
+      "time": "02:20-02:25",
+      "voiceover": "2004年，案件进入审判阶段。",
+      "visual_prompt": "South Korea courthouse exterior in 2004, reporters waiting outside, police presence, realistic documentary style",
+      "camera": "wide establishing shot",
+      "sound": [
+        "news reporters",
+        "camera shutters"
+      ]
+    },
+
+
+    {
+      "id": 30,
+      "time": "02:25-02:30",
+      "voiceover": "韩国社会等待最终判决。",
+      "visual_prompt": "Korean families watching television news broadcast about court decision, early 2000s home interior",
+      "camera": "slow push toward television screen",
+      "sound": [
+        "television news ambience"
+      ]
+    },
+
+
+    {
+      "id": 31,
+      "time": "02:30-02:35",
+      "voiceover": "法院最终判处柳永哲死刑。",
+      "visual_prompt": "South Korean courtroom, judge documents, legal papers, wooden gavel, serious atmosphere",
+      "camera": "slow close up on judgment document",
+      "sound": [
+        "gavel sound"
+      ]
+    },
+
+
+    {
+      "id": 32,
+      "time": "02:35-02:40",
+      "voiceover": "但韩国长期没有执行死刑。",
+      "visual_prompt": "South Korean prison exterior, iron gates closing, long empty corridor, cold lighting",
+      "camera": "slow backward movement",
+      "sound": [
+        "metal door closing"
+      ]
+    },
+
+
+    {
+      "id": 33,
+      "time": "02:40-02:45",
+      "voiceover": "他一直被关押在监狱中。",
+      "visual_prompt": "prison hallway in South Korea, guards walking, iron bars, quiet atmosphere",
+      "camera": "static wide shot",
+      "sound": [
+        "footsteps echo"
+      ]
+    },
+
+
+    {
+      "id": 34,
+      "time": "02:45-02:50",
+      "voiceover": "这起案件成为韩国犯罪史的重要案件。",
+      "visual_prompt": "Korean crime documentary archive, old newspapers, police records, television reports stacked together",
+      "camera": "montage style transition",
+      "sound": [
+        "documentary music"
+      ]
+    },
+
+
+    {
+      "id": 35,
+      "time": "02:50-02:55",
+      "voiceover": "它也推动韩国警方加强犯罪分析。",
+      "visual_prompt": "modern South Korean police analysis room, digital crime mapping screens, investigators studying data",
+      "camera": "slow panoramic movement",
+      "sound": [
+        "computer ambience"
+      ]
+    },
+
+
+    {
+      "id": 36,
+      "time": "02:55-03:00",
+      "voiceover": "因为真正可怕的，不只是犯罪本身。",
+      "visual_prompt": "Seoul night street, crowds walking under city lights, ordinary people passing by",
+      "camera": "wide cinematic city shot",
+      "sound": [
+        "city ambience",
+        "slow piano"
+      ]
+    },
+
+
+    {
+      "id": 37,
+      "time": "03:00-03:05",
+      "voiceover": "而是危险可能隐藏在普通生活之中。",
+      "visual_prompt": "crowded Seoul street, one person walking alone among thousands, psychological thriller documentary style",
+      "camera": "high angle shot slowly pulling away",
+      "sound": [
+        "ambient city sound"
+      ]
+    },
+
+
+    {
+      "id": 38,
+      "time": "03:05-03:10",
+      "voiceover": "柳永哲案件，成为韩国无法忘记的一页。",
+      "visual_prompt": "old Korean newspapers, police archives, rainy Seoul skyline, historical documentary ending style",
+      "camera": "slow cross dissolve",
+      "sound": [
+        "rain",
+        "emotional documentary music"
+      ]
+    },
+
+
+    {
+      "id": 39,
+      "time": "03:10-03:15",
+      "voiceover": "警方最终揭开了隐藏多年的真相。",
+      "visual_prompt": "police archive box closing, investigation files stored away, quiet office atmosphere",
+      "camera": "slow zoom out",
+      "sound": [
+        "archive box closing"
+      ]
+    },
+
+
+    {
+      "id": 40,
+      "time": "03:15-03:20",
+      "voiceover": "这就是韩国雨衣杀手柳永哲案件。",
+      "visual_prompt": "South Korea rainy night city, a dark raincoat hanging in an empty room, city lights outside window, cinematic crime documentary ending",
+      "camera": "slow pull back into darkness",
+      "sound": [
+        "rain fading away",
+        "film reel sound"
+      ],
+      "end_caption": "根据公开案件资料整理，画面为情境再现"
+    }
+]

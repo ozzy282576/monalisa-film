@@ -1,0 +1,58 @@
+{
+  "parameters": {
+    "rate": 48000,
+    "hop": 480,
+    "threshold_rms": 0.01,
+    "lead": 0.15,
+    "trail": 0.25,
+    "cap": 0.35,
+    "crossfade_samples": 240
+  },
+  "clips": [
+    {
+      "id": "N01",
+      "raw_seconds": 40.758,
+      "tight_seconds": 37.63,
+      "pauses_tightened": 22,
+      "seconds_removed": 3.128
+    },
+    {
+      "id": "N02",
+      "raw_seconds": 29.93,
+      "tight_seconds": 28.29,
+      "pauses_tightened": 8,
+      "seconds_removed": 1.64
+    },
+    {
+      "id": "N03",
+      "raw_seconds": 26.954,
+      "tight_seconds": 25.69,
+      "pauses_tightened": 8,
+      "seconds_removed": 1.264
+    },
+    {
+      "id": "N04",
+      "raw_seconds": 29.613,
+      "tight_seconds": 27.585,
+      "pauses_tightened": 11,
+      "seconds_removed": 2.028
+    },
+    {
+      "id": "N05",
+      "raw_seconds": 28.591,
+      "tight_seconds": 26.85,
+      "pauses_tightened": 12,
+      "seconds_removed": 1.741
+    },
+    {
+      "id": "N06",
+      "raw_seconds": 34.517,
+      "tight_seconds": 32.08,
+      "pauses_tightened": 16,
+      "seconds_removed": 2.437
+    }
+  ],
+  "total_raw_seconds": 190.362,
+  "total_tight_seconds": 178.125,
+  "tempo_after": 1.0603
+}

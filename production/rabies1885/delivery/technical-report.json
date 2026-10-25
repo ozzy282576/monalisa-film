@@ -1,0 +1,69 @@
+{
+  "duration": 180.0,
+  "bytes": 68697578,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30.0,
+  "video_codec": "h264",
+  "frames": 5400,
+  "audio_codec": "aac",
+  "sample_rate": 48000,
+  "audio_channels": 2,
+  "sha256": "f0b224cd1195f5c87413bf398be7c169311fe325ebf45fb74e3e548cb560042b",
+  "decoded_ok": true,
+  "status": "audio_verified_cut",
+  "visual_review": "pending",
+  "caption_alignment": [
+    {
+      "id": "N01",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.9901960784313726
+    },
+    {
+      "id": "N02",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.984375
+    },
+    {
+      "id": "N03",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.984
+    },
+    {
+      "id": "N04",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.98
+    },
+    {
+      "id": "N05",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.9830508474576272
+    },
+    {
+      "id": "N06",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.9924242424242424
+    }
+  ],
+  "narration_voice_id": "voice-00",
+  "narration_tempo": 0.9545238095238094,
+  "editorial_segments": 46,
+  "source_clips": 38,
+  "archival_portrait": false,
+  "unique_shots_no_reuse": true,
+  "output": "狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4",
+  "soundtrack_mix": {
+    "rms_dbfs": -22.12,
+    "peak_dbfs": -1.51,
+    "silent_fraction": 0.0056,
+    "target_rms_dbfs": -20.0
+  },
+  "delivered_audio": {
+    "rms_dbfs": -22.15,
+    "peak_dbfs": -1.52,
+    "silent_fraction": 0.011,
+    "quietest_window_dbfs": -120.0
+  },
+  "audio_listening_review": "measured (level + per-chapter + silence gate); not a substitute for human word-level listening",
+  "note": "Audio is measured as audible on the delivered file; visual and word-level review are still pending, so this is not a final sign-off."
+}

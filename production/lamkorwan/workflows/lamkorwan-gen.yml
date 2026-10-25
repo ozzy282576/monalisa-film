@@ -1,0 +1,114 @@
+# 模板：production/new_topic.py 会把 lamkorwan / arena/050152c3-desktop-tutorial / 050152c3-desktop-tutorial / 雨夜屠夫林过云：一卷菲林里的四条人命 / 雨夜屠夫林过云_一卷菲林里的四条人命_三分钟_带声音.mp4 换成新项目的值，
+# 生成 production/<slug>/workflows/<slug>-*.yml；复制到 .github/workflows/ 后即可用 marker 文件 push 触发。
+name: 雨夜屠夫林过云：一卷菲林里的四条人命 · Agnes生成
+run-name: 雨夜屠夫林过云：一卷菲林里的四条人命 · Agnes Video V2.0 生成 · ${{ github.ref_name }}
+
+# 触发方式：在分支上写 production/lamkorwan/GEN_REQUEST（内容就是 JSON payload）并 push。
+#   全量：{"workers":2}        补做个别镜头：{"workers":1,"only":"S07,S12"}
+# 沙箱连不上 Agnes API、也读不到 Actions 日志，所以素材与 results.json 由本工作流 commit 回分支。
+# 中途失败可断点续跑：再改一下 GEN_REQUEST 重新 push，已完成的镜头按 SHA-256 复用、不重新生成。
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: 'JSON: {"only":"S01","workers":1}；空则读 GEN_REQUEST'
+        type: string
+        default: '{"workers":2}'
+  push:
+    branches:
+      - arena/050152c3-desktop-tutorial
+    paths:
+      - production/lamkorwan/GEN_REQUEST
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lamkorwan-agnes-arena-050152c3-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.ref == 'refs/heads/arena/050152c3-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 350
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/050152c3-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Resolve the generation payload
+        env:
+          PAYLOAD_INPUT: ${{ inputs.payload }}
+        run: |
+          set -euo pipefail
+          if [ -n "${PAYLOAD_INPUT:-}" ]; then
+            payload="$PAYLOAD_INPUT"
+          elif [ -f production/lamkorwan/GEN_REQUEST ]; then
+            payload="$(tr -d '\n' < production/lamkorwan/GEN_REQUEST)"
+          else
+            payload='{"workers":2}'
+          fi
+          echo "PAYLOAD=$payload" >> "$GITHUB_ENV"
+          echo "Generation payload: $payload"
+
+      - name: Install media tools and CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16" || \
+          python -m pip install --break-system-packages "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16"
+
+      - name: Validate the complete three-minute timeline
+        run: python3 production/lamkorwan/generate.py --validate
+
+      - name: Drop dead provider tasks so a re-run submits fresh ones
+        run: python3 production/lamkorwan/generate.py --prune-failed
+
+      - name: Generate Agnes clips and checkpoint provenance
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          PAYLOAD: ${{ env.PAYLOAD }}
+        run: python3 -u production/lamkorwan/generate.py --publish --payload "$PAYLOAD" 2>&1 | tee /tmp/gen.log; exit ${PIPESTATUS[0]}
+
+      - name: Ship failure log to branch (sandbox cannot read Actions logs)
+        if: failure()
+        run: |
+          tail -c 200000 /tmp/gen.log > production/lamkorwan/gen-diag.log
+          git config user.name "arena-diag"
+          git config user.email "arena@local"
+          git add -f production/lamkorwan/gen-diag.log
+          git commit -m "lamkorwan: Agnes 生成失败诊断 $(date -u +%FT%TZ)"
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then pushed=1; break; fi
+            git fetch origin ${{ github.ref_name }} && git rebase FETCH_HEAD || break
+          done
+          [ "$pushed" = "1" ] || echo "::error::诊断日志推不回分支，看本次运行的 artifact"
+
+      - name: Save video clips as downloadable artifacts
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: lamkorwan-agnes-${{ github.run_number }}
+          path: |
+            work/lamkorwan/clips/
+            production/lamkorwan/results.json
+            production/lamkorwan/qa/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 14

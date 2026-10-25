@@ -1,0 +1,65 @@
+{
+  "file": "mix.wav",
+  "duration_seconds": 180.0,
+  "sample_rate": 48000,
+  "channels": 1,
+  "rms_dbfs": -21.07,
+  "peak_dbfs": -1.51,
+  "window_seconds": 1.0,
+  "silent_windows": 1,
+  "window_count": 180,
+  "silent_fraction": 0.0056,
+  "quietest_window_dbfs": -50.21,
+  "chapters": [
+    {
+      "id": "N01",
+      "start": 0.6,
+      "end": 28.213,
+      "rms_dbfs": -21.1,
+      "peak_dbfs": -1.78
+    },
+    {
+      "id": "N02",
+      "start": 29.293,
+      "end": 61.035,
+      "rms_dbfs": -21.13,
+      "peak_dbfs": -2.85
+    },
+    {
+      "id": "N03",
+      "start": 62.115,
+      "end": 87.233,
+      "rms_dbfs": -20.89,
+      "peak_dbfs": -2.6
+    },
+    {
+      "id": "N04",
+      "start": 88.313,
+      "end": 114.722,
+      "rms_dbfs": -20.6,
+      "peak_dbfs": -3.04
+    },
+    {
+      "id": "N05",
+      "start": 115.802,
+      "end": 142.985,
+      "rms_dbfs": -20.16,
+      "peak_dbfs": -3.9
+    },
+    {
+      "id": "N06",
+      "start": 144.065,
+      "end": 174.0,
+      "rms_dbfs": -20.83,
+      "peak_dbfs": -1.51
+    }
+  ],
+  "target_rms_dbfs": -20.0,
+  "peak_ceiling_dbfs": -1.5,
+  "voice_level": 1.0,
+  "bgm_level": 0.3,
+  "sfx_level": 0.85,
+  "duck_depth": 0.55,
+  "applied_rms_dbfs": -21.07,
+  "output": "mix.wav"
+}

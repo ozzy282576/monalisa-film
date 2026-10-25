@@ -1,0 +1,32 @@
+[
+  {
+    "id": "N01",
+    "method": "clause-times DP",
+    "character_match_coverage": 0.5959595959595959
+  },
+  {
+    "id": "N02",
+    "method": "ASR-assisted",
+    "character_match_coverage": 1.0
+  },
+  {
+    "id": "N03",
+    "method": "pause-aware estimate",
+    "character_match_coverage": 0.9090909090909091
+  },
+  {
+    "id": "N04",
+    "method": "clause-times DP",
+    "character_match_coverage": 0.2796610169491525
+  },
+  {
+    "id": "N05",
+    "method": "clause-times DP",
+    "character_match_coverage": 0.15789473684210525
+  },
+  {
+    "id": "N06",
+    "method": "ASR-assisted",
+    "character_match_coverage": 0.9933774834437086
+  }
+]

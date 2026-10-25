@@ -1,0 +1,51 @@
+name: DB库珀 · Agnes生成
+run-name: DB库珀 · Agnes Video V2.0 生成
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: 'JSON: {"only":"S01","workers":1}; 空则生成全部'
+        type: string
+        default: '{"workers":2}'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dbcooper-agnes-arena-01a08e48-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.ref == 'refs/heads/arena/01a08e48-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 350
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/01a08e48-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Validate the complete three-minute timeline
+        run: python3 production/dbcooper/generate.py --validate
+
+      - name: Generate Agnes clips and checkpoint provenance
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          PAYLOAD: ${{ inputs.payload }}
+        run: python3 -u production/dbcooper/generate.py --publish --payload "$PAYLOAD"
+
+      - name: Save video clips as downloadable artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbcooper-agnes-${{ github.run_number }}
+          path: |
+            work/dbcooper/clips/
+            production/dbcooper/results.json
+            production/dbcooper/qa/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 3

@@ -1,0 +1,58 @@
+{
+  "file": "韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4",
+  "duration_seconds": 180.011,
+  "sample_rate": 48000,
+  "channels": 1,
+  "rms_dbfs": -20.32,
+  "peak_dbfs": -1.7,
+  "window_seconds": 1.0,
+  "silent_windows": 1,
+  "window_count": 181,
+  "silent_fraction": 0.0055,
+  "quietest_window_dbfs": -120.0,
+  "chapters": [
+    {
+      "id": "N01",
+      "start": 0.6,
+      "end": 23.242,
+      "rms_dbfs": -20.06,
+      "peak_dbfs": -2.06
+    },
+    {
+      "id": "N02",
+      "start": 24.322,
+      "end": 49.83,
+      "rms_dbfs": -20.24,
+      "peak_dbfs": -1.96
+    },
+    {
+      "id": "N03",
+      "start": 50.91,
+      "end": 77.41,
+      "rms_dbfs": -19.72,
+      "peak_dbfs": -2.06
+    },
+    {
+      "id": "N04",
+      "start": 78.49,
+      "end": 102.04,
+      "rms_dbfs": -20.05,
+      "peak_dbfs": -2.0
+    },
+    {
+      "id": "N05",
+      "start": 103.12,
+      "end": 137.576,
+      "rms_dbfs": -20.05,
+      "peak_dbfs": -1.7
+    },
+    {
+      "id": "N06",
+      "start": 138.656,
+      "end": 174.0,
+      "rms_dbfs": -20.09,
+      "peak_dbfs": -2.08
+    }
+  ],
+  "measured_on": "delivered mp4"
+}

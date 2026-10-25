@@ -1,0 +1,433 @@
+{
+  "film": "吉尔戈海滩_披萨盒里的凶手_三分钟_带声音.mp4",
+  "project": "production/gilgo",
+  "method": "faster-whisper small，无 initial_prompt；转写对象为最终成片按章节切出的音频",
+  "max_cer_allowed": 0.15,
+  "film_pass": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 25.371,
+        "script_chars": 109,
+        "heard_chars": 109,
+        "character_error_rate": 0.0092,
+        "match_coverage": 0.9908,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 82,
+            "kind": "replace",
+            "script": "戈",
+            "heard": "格"
+          }
+        ],
+        "transcript": "一个曼哈顿的建筑咨询师办公室就在帝国大厦旁边有老婆有孩子邻居眼里的模范爸爸30年没人怀疑过他最后让他暴露的是一个扔进垃圾桶的披萨盒这就是美国近年最离奇的悬案长岛吉尔格海滩连环案今天一口气讲清楚他是怎么隐藏的又是怎么栽的"
+      },
+      {
+        "id": "N02",
+        "start": 26.451,
+        "end": 47.035,
+        "script_chars": 105,
+        "heard_chars": 108,
+        "character_error_rate": 0.0667,
+        "match_coverage": 0.9619,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 2,
+            "kind": "replace",
+            "script": "他",
+            "heard": "它"
+          },
+          {
+            "at": 15,
+            "kind": "insert",
+            "script": "",
+            "heard": "十"
+          },
+          {
+            "at": 20,
+            "kind": "replace",
+            "script": "皮",
+            "heard": "披"
+          },
+          {
+            "at": 89,
+            "kind": "replace",
+            "script": "两千",
+            "heard": "二零零零"
+          }
+        ],
+        "transcript": "先说它是谁雷克斯赫曼身高1米93长岛马萨披夸公园人住的还是他小时候的房子白天他坐火车进曼哈顿给纽约的大楼做建筑合规咨询晚上回家陪妻子和两个孩子可就在这栋房子的地下室里藏着一份写于2000年的文件它是什么我们后面再说"
+      },
+      {
+        "id": "N03",
+        "start": 48.115,
+        "end": 79.139,
+        "script_chars": 142,
+        "heard_chars": 142,
+        "character_error_rate": 0.0704,
+        "match_coverage": 0.9296,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "室里",
+            "heard": "势力"
+          },
+          {
+            "at": 70,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 82,
+            "kind": "replace",
+            "script": "弃置",
+            "heard": "气质"
+          },
+          {
+            "at": 87,
+            "kind": "replace",
+            "script": "戈",
+            "heard": "沟"
+          },
+          {
+            "at": 94,
+            "kind": "replace",
+            "script": "里",
+            "heard": "领"
+          },
+          {
+            "at": 102,
+            "kind": "insert",
+            "script": "",
+            "heard": "十一"
+          }
+        ],
+        "transcript": "他盯上的大多是在网上招揽客人的年轻女性套路极其固定等老婆孩子出门旅行用一次性手机联系对方约到家里地下势力发生了什么只有他知道之后他用粗麻布把他们裹住沿着海洋公园大道气质在吉尔沟海滩的荒草丛领从1993到201017年至少8名受害者更过分的是他还用其中一名受害者的手机打电话挑衅他的家人"
+      },
+      {
+        "id": "N04",
+        "start": 80.219,
+        "end": 106.445,
+        "script_chars": 125,
+        "heard_chars": 125,
+        "character_error_rate": 0.048,
+        "match_coverage": 0.952,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 66,
+            "kind": "replace",
+            "script": "目击证词",
+            "heard": "木机镇磁"
+          },
+          {
+            "at": 80,
+            "kind": "replace",
+            "script": "墨",
+            "heard": "末"
+          },
+          {
+            "at": 85,
+            "kind": "replace",
+            "script": "佛",
+            "heard": "芙"
+          }
+        ],
+        "transcript": "2010年底 四名受害者的遺体被发现 全美震动可十几年过去 警方一无所获转机在2022年 新任局长成立专案组把老卷宗翻了个底朝天一条被忽略的木机镇磁跳了出来嫌疑人开一辆末绿色的雪芙兰雪崩皮卡数据库一查 车主正是赫曼接下来一年半 警察没抓人而是悄悄跟着他 等他扔垃圾"
+      },
+      {
+        "id": "N05",
+        "start": 107.525,
+        "end": 142.321,
+        "script_chars": 164,
+        "heard_chars": 164,
+        "character_error_rate": 0.0732,
+        "match_coverage": 0.939,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 108,
+            "kind": "replace",
+            "script": "拉",
+            "heard": "拿"
+          },
+          {
+            "at": 126,
+            "kind": "replace",
+            "script": "两千",
+            "heard": "二零零零"
+          },
+          {
+            "at": 129,
+            "kind": "replace",
+            "script": "建",
+            "heard": "间"
+          },
+          {
+            "at": 131,
+            "kind": "replace",
+            "script": "word",
+            "heard": "卧的"
+          },
+          {
+            "at": 139,
+            "kind": "replace",
+            "script": "作案",
+            "heard": "左按"
+          }
+        ],
+        "transcript": "2023年1月26日曼哈頓街頭赫曼吃完披薩隨手把盒子扔進垃圾桶跟蹤小組馬上撿走披薩邊上的DNA和當年麻布上留下的一根男性毛髮比對99.96%的北美人都能排除他不能7月13日他在辦公室門口被捕警方搜了他家12天拿走了地下室的硬碟後來在裡面翻出一份2000年間的臥的文檔一份左按清單問題欄寫著毛髮 DNA指紋目標欄寫著小個子好"
+      },
+      {
+        "id": "N06",
+        "start": 143.401,
+        "end": 174.0,
+        "script_chars": 139,
+        "heard_chars": 139,
+        "character_error_rate": 0.0072,
+        "match_coverage": 0.9928,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 48,
+            "kind": "replace",
+            "script": "赫",
+            "heard": "贺"
+          }
+        ],
+        "transcript": "清单里还有一条行动前要睡够太累会出问题写下这句话的人第二天照常去上班2026年4月8日62岁的贺曼当庭认罪承认了八起命案6月被判终身监禁不得假释30年的悬案最后输给了一块没吃完的披萨边所以别再迷信什么完美犯罪你扔掉的每一样东西都在替你说话你觉得是他太蠢还是警察太耐心评论区聊聊"
+      }
+    ],
+    "max_cer": 0.0732,
+    "failing": []
+  },
+  "narration_control": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 25.371,
+        "script_chars": 109,
+        "heard_chars": 109,
+        "character_error_rate": 0.0092,
+        "match_coverage": 0.9908,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 82,
+            "kind": "replace",
+            "script": "戈",
+            "heard": "格"
+          }
+        ],
+        "transcript": "一个曼哈顿的建筑咨询师办公室就在帝国大厦旁边有老婆有孩子邻居眼里的模范爸爸30年没人怀疑过他最后让他暴露的是一个扔进垃圾桶的披萨盒这就是美国近年最离奇的悬案长岛吉尔格海滩连环案今天一口气讲清楚他是怎么隐藏的又是怎么栽的"
+      },
+      {
+        "id": "N02",
+        "start": 26.451,
+        "end": 47.035,
+        "script_chars": 105,
+        "heard_chars": 108,
+        "character_error_rate": 0.0762,
+        "match_coverage": 0.9524,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 2,
+            "kind": "replace",
+            "script": "他",
+            "heard": "它"
+          },
+          {
+            "at": 15,
+            "kind": "insert",
+            "script": "",
+            "heard": "十"
+          },
+          {
+            "at": 20,
+            "kind": "replace",
+            "script": "皮",
+            "heard": "披"
+          },
+          {
+            "at": 43,
+            "kind": "replace",
+            "script": "曼",
+            "heard": "马"
+          },
+          {
+            "at": 89,
+            "kind": "replace",
+            "script": "两千",
+            "heard": "二零零零"
+          }
+        ],
+        "transcript": "先说它是谁雷克斯赫曼身高1米93长岛马萨披夸公园人住的还是他小时候的房子白天他坐火车进马哈顿给纽约的大楼做建筑合规咨询晚上回家陪妻子和两个孩子可就在这栋房子的地下室里藏着一份写于2000年的文件它是什么我们后面再说"
+      },
+      {
+        "id": "N03",
+        "start": 48.115,
+        "end": 79.139,
+        "script_chars": 142,
+        "heard_chars": 142,
+        "character_error_rate": 0.0493,
+        "match_coverage": 0.9507,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 70,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 82,
+            "kind": "replace",
+            "script": "弃置",
+            "heard": "气质"
+          },
+          {
+            "at": 87,
+            "kind": "replace",
+            "script": "戈",
+            "heard": "沟"
+          },
+          {
+            "at": 102,
+            "kind": "insert",
+            "script": "",
+            "heard": "十一"
+          },
+          {
+            "at": 104,
+            "kind": "delete",
+            "script": "零十",
+            "heard": ""
+          },
+          {
+            "at": 138,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          }
+        ],
+        "transcript": "他盯上的大多是在网上招揽客人的年轻女性套路极其固定等老婆孩子出门旅行用一次性手机联系对方约到家里地下室里发生了什么只有他知道之后他用粗麻布把他们裹住沿着海洋公园大道气质在吉尔沟海滩的荒草丛里从1993到201017年至少8名受害者更过分的是他还用其中一名受害者的手机打电话挑衅他的家人"
+      },
+      {
+        "id": "N04",
+        "start": 80.219,
+        "end": 106.445,
+        "script_chars": 125,
+        "heard_chars": 125,
+        "character_error_rate": 0.04,
+        "match_coverage": 0.96,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 68,
+            "kind": "replace",
+            "script": "证词",
+            "heard": "症磁"
+          },
+          {
+            "at": 80,
+            "kind": "replace",
+            "script": "墨",
+            "heard": "末"
+          },
+          {
+            "at": 85,
+            "kind": "replace",
+            "script": "佛",
+            "heard": "芙"
+          },
+          {
+            "at": 100,
+            "kind": "replace",
+            "script": "赫",
+            "heard": "荷"
+          }
+        ],
+        "transcript": "2010年底,四名受害者的遺体被发现,全美震动可十几年过去,警方一无所获转机在2022年,新任局长成立专案组把老卷宗翻了个底朝天一条被忽略的目击症磁跳了出来嫌疑人开一辆末绿色的雪芙兰雪崩皮卡数据库一查,车主正是荷曼接下来一年半,警察没抓人而是悄悄跟着他,等他扔垃圾"
+      },
+      {
+        "id": "N05",
+        "start": 107.525,
+        "end": 142.321,
+        "script_chars": 164,
+        "heard_chars": 164,
+        "character_error_rate": 0.0793,
+        "match_coverage": 0.9329,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 38,
+            "kind": "replace",
+            "script": "捡",
+            "heard": "捷"
+          },
+          {
+            "at": 126,
+            "kind": "replace",
+            "script": "两千",
+            "heard": "二零零零"
+          },
+          {
+            "at": 129,
+            "kind": "replace",
+            "script": "建",
+            "heard": "间"
+          },
+          {
+            "at": 131,
+            "kind": "replace",
+            "script": "word",
+            "heard": "沃德"
+          },
+          {
+            "at": 139,
+            "kind": "replace",
+            "script": "作案",
+            "heard": "左按"
+          },
+          {
+            "at": 163,
+            "kind": "replace",
+            "script": "好",
+            "heard": "号"
+          }
+        ],
+        "transcript": "2023年1月26日,曼哈頓街頭,赫曼吃完披薩隨手把盒子扔進垃圾桶,跟蹤小組馬上捷走披薩邊上的DNA和當年麻布上留下的一根男性毛髮比對99.96%的北美人都能排除,他不能7月13日,他在辦公室門口被捕警方搜了他家12天,拉走了地下室的硬盤後來,在裡面翻出一份2000年間的沃德文檔一份左按清單,問題欄寫著毛髮、DNA、指紋目標欄寫著小個子號"
+      },
+      {
+        "id": "N06",
+        "start": 143.401,
+        "end": 174.0,
+        "script_chars": 139,
+        "heard_chars": 139,
+        "character_error_rate": 0.0072,
+        "match_coverage": 0.9928,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 48,
+            "kind": "replace",
+            "script": "赫",
+            "heard": "贺"
+          }
+        ],
+        "transcript": "清单里还有一条行动前要睡够太累会出问题写下这句话的人第二天照常去上班2026年4月8日62岁的贺曼当庭认罪承认了八起命案6月被判终身监禁不得假释30年的悬案最后输给了一块没吃完的披萨边所以别再迷信什么完美犯罪你扔掉的每一样东西都在替你说话你觉得是他太蠢还是警察太耐心评论区聊聊"
+      }
+    ],
+    "max_cer": 0.0793,
+    "failing": []
+  },
+  "note": "CER = 编辑距离 / 剧本字数。ASR 本身也会错，所以 'needs_human_listen' 的意思是\"这一段的差异需要人耳裁决\"，不等于\"配音一定错了\"；对照组（干净配音）字错率明显低于成片时，差异多半来自音乐干扰 ASR。"
+}

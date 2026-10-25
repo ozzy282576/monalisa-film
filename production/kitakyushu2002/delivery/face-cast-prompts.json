@@ -1,0 +1,106 @@
+{
+  "gate": "check-prompts",
+  "project": "production/kitakyushu2002",
+  "errors": [],
+  "warnings": [],
+  "characters": [
+    {
+      "id": "C1",
+      "name": "四十岁男子（松永太 · 情景重现 · 虚构匿名角色，非本人容貌）",
+      "role": "suspect",
+      "face_token_chars": 434,
+      "portrait": "cast/C1.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C1.png",
+      "seed": 19960401
+    },
+    {
+      "id": "C2",
+      "name": "四十三岁女子（绪方纯子 · 情景重现 · 虚构匿名角色，非本人容貌）",
+      "role": "suspect",
+      "face_token_chars": 373,
+      "portrait": "cast/C2.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C2.png",
+      "seed": 19960402
+    },
+    {
+      "id": "C3",
+      "name": "五十五岁老刑警（福冈县警 · 虚构匿名角色）",
+      "role": "police",
+      "face_token_chars": 412,
+      "portrait": "cast/C3.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C3.png",
+      "seed": 20020306
+    },
+    {
+      "id": "C4",
+      "name": "四十八岁检察官（小仓支部 · 虚构匿名角色）",
+      "role": "other",
+      "face_token_chars": 403,
+      "portrait": "cast/C4.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C4.png",
+      "seed": 20050302
+    },
+    {
+      "id": "C5",
+      "name": "六十岁法官（福冈地裁小仓支部 · 虚构匿名角色）",
+      "role": "other",
+      "face_token_chars": 350,
+      "portrait": "cast/C5.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C5.png",
+      "seed": 20050928
+    }
+  ],
+  "face_shots": [
+    {
+      "shot": "S07",
+      "characters": [
+        "C3"
+      ],
+      "prompt_chars": 1183
+    },
+    {
+      "shot": "S09",
+      "characters": [
+        "C1"
+      ],
+      "prompt_chars": 1207
+    },
+    {
+      "shot": "S27",
+      "characters": [
+        "C3"
+      ],
+      "prompt_chars": 1156
+    },
+    {
+      "shot": "S33",
+      "characters": [
+        "C4"
+      ],
+      "prompt_chars": 1158
+    },
+    {
+      "shot": "S34",
+      "characters": [
+        "C2"
+      ],
+      "prompt_chars": 1114
+    },
+    {
+      "shot": "S35",
+      "characters": [
+        "C1"
+      ],
+      "prompt_chars": 1193
+    },
+    {
+      "shot": "S36",
+      "characters": [
+        "C5"
+      ],
+      "prompt_chars": 1017
+    }
+  ],
+  "mode": "face",
+  "status": "PASS"
+}

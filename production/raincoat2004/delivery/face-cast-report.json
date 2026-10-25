@@ -1,0 +1,275 @@
+{
+  "gate": "check-frames",
+  "project": "production/raincoat2004",
+  "film": "交付/韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4",
+  "errors": [],
+  "warnings": [
+    "角色 C1 跨镜头最低相似度 -0.13（<0.45）：可能出现了换脸，请对照接触表人工确认",
+    "角色 C2 跨镜头最低相似度 0.45（<0.45）：可能出现了换脸，请对照接触表人工确认"
+  ],
+  "characters": {
+    "C1": {
+      "contact_sheet": "delivery/face-cast/C1.jpg",
+      "crops": 9,
+      "shots": [
+        "S05",
+        "S32",
+        "S35"
+      ],
+      "within_min": -0.129,
+      "within_median": 0.101
+    },
+    "C2": {
+      "contact_sheet": "delivery/face-cast/C2.jpg",
+      "crops": 3,
+      "shots": [
+        "S06"
+      ],
+      "within_min": 0.448,
+      "within_median": 0.459
+    },
+    "C3": {
+      "contact_sheet": "delivery/face-cast/C3.jpg",
+      "crops": 3,
+      "shots": [
+        "S27"
+      ],
+      "within_min": 0.671,
+      "within_median": 0.712
+    }
+  },
+  "cross_character": [
+    {
+      "pair": [
+        "C1",
+        "C2"
+      ],
+      "max_similarity": 0.313
+    },
+    {
+      "pair": [
+        "C1",
+        "C3"
+      ],
+      "max_similarity": 0.426
+    },
+    {
+      "pair": [
+        "C2",
+        "C3"
+      ],
+      "max_similarity": 0.387
+    }
+  ],
+  "shots": [
+    {
+      "shot": "S05",
+      "characters": [
+        "C1"
+      ],
+      "frames": [
+        {
+          "seconds": 12.033,
+          "faces": 1,
+          "score": 0.827,
+          "bbox": [
+            725,
+            189,
+            407,
+            407
+          ]
+        },
+        {
+          "seconds": 12.667,
+          "faces": 1,
+          "score": 0.819,
+          "bbox": [
+            727,
+            206,
+            396,
+            396
+          ]
+        },
+        {
+          "seconds": 13.3,
+          "faces": 1,
+          "score": 0.88,
+          "bbox": [
+            716,
+            218,
+            419,
+            419
+          ]
+        }
+      ]
+    },
+    {
+      "shot": "S06",
+      "characters": [
+        "C2"
+      ],
+      "frames": [
+        {
+          "seconds": 14.858,
+          "faces": 1,
+          "score": 0.866,
+          "bbox": [
+            901,
+            189,
+            239,
+            239
+          ]
+        },
+        {
+          "seconds": 15.783,
+          "faces": 1,
+          "score": 0.853,
+          "bbox": [
+            887,
+            206,
+            278,
+            278
+          ]
+        },
+        {
+          "seconds": 16.708,
+          "faces": 1,
+          "score": 0.883,
+          "bbox": [
+            884,
+            215,
+            315,
+            315
+          ]
+        }
+      ]
+    },
+    {
+      "shot": "S27",
+      "characters": [
+        "C3"
+      ],
+      "frames": [
+        {
+          "seconds": 90.4,
+          "faces": 1,
+          "score": 0.874,
+          "bbox": [
+            768,
+            209,
+            271,
+            271
+          ]
+        },
+        {
+          "seconds": 91.167,
+          "faces": 1,
+          "score": 0.917,
+          "bbox": [
+            723,
+            208,
+            289,
+            289
+          ]
+        },
+        {
+          "seconds": 91.933,
+          "faces": 1,
+          "score": 0.922,
+          "bbox": [
+            707,
+            204,
+            296,
+            296
+          ]
+        }
+      ]
+    },
+    {
+      "shot": "S32",
+      "characters": [
+        "C1"
+      ],
+      "frames": [
+        {
+          "seconds": 109.858,
+          "faces": 1,
+          "score": 0.901,
+          "bbox": [
+            776,
+            263,
+            180,
+            180
+          ]
+        },
+        {
+          "seconds": 110.717,
+          "faces": 1,
+          "score": 0.916,
+          "bbox": [
+            772,
+            258,
+            187,
+            187
+          ]
+        },
+        {
+          "seconds": 111.575,
+          "faces": 1,
+          "score": 0.869,
+          "bbox": [
+            762,
+            246,
+            205,
+            205
+          ]
+        }
+      ]
+    },
+    {
+      "shot": "S35",
+      "characters": [
+        "C1"
+      ],
+      "frames": [
+        {
+          "seconds": 121.633,
+          "faces": 2,
+          "score": 0.874,
+          "bbox": [
+            1285,
+            344,
+            156,
+            156
+          ]
+        },
+        {
+          "seconds": 123.033,
+          "faces": 2,
+          "score": 0.846,
+          "bbox": [
+            1286,
+            351,
+            164,
+            164
+          ]
+        },
+        {
+          "seconds": 124.433,
+          "faces": 2,
+          "score": 0.807,
+          "bbox": [
+            366,
+            386,
+            163,
+            163
+          ]
+        }
+      ]
+    }
+  ],
+  "human_review": "pending",
+  "detector": "mediapipe",
+  "status": "REVIEW",
+  "note": "机器只做分诊：相似度对光照/角度很敏感，最终必须人眼看每个角色的接触表，确认「同一个人跨镜头还是他、不同角色一眼能分辨」。"
+}

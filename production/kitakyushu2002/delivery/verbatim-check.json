@@ -1,0 +1,483 @@
+{
+  "film": "北九州监禁案_逃出魔窟的少女，七条人命背后的秘密_三分钟_带声音.mp4",
+  "film_sha256": "435ff39b05aad74d5bae55f030e0a1c4bbf58732b745c589d548cff3ecf66005",
+  "film_bytes": 56042855,
+  "project": "production/kitakyushu2002",
+  "method": "faster-whisper small，无 initial_prompt；转写对象为最终成片按章节切出的音频",
+  "max_cer_allowed": 0.15,
+  "film_pass": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 36.091,
+        "script_chars": 135,
+        "heard_chars": 137,
+        "character_error_rate": 0.0889,
+        "match_coverage": 0.9259,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 11,
+            "kind": "replace",
+            "script": "夜",
+            "heard": "眼"
+          },
+          {
+            "at": 67,
+            "kind": "replace",
+            "script": "警",
+            "heard": "京"
+          },
+          {
+            "at": 78,
+            "kind": "replace",
+            "script": "异常",
+            "heard": "一场"
+          },
+          {
+            "at": 89,
+            "kind": "replace",
+            "script": "太",
+            "heard": "泰"
+          },
+          {
+            "at": 92,
+            "kind": "replace",
+            "script": "缘",
+            "heard": "元"
+          }
+        ],
+        "transcript": "2002年3月日本北九州深眼一名17岁的少女从一间普通公寓逃了出来她之前逃出去过一次又被抓了回去这一次她跑到祖父家求助终于有人信了她第二天京方进入公寓表面看不出一场控制这里的两人松永泰和内元妻子叙方淳子随即被捕调查月深失踪死亡和监禁越连城同一条线这间普通的屋子里藏着七条人命"
+      },
+      {
+        "id": "N02",
+        "start": 37.171,
+        "end": 63.853,
+        "script_chars": 101,
+        "heard_chars": 101,
+        "character_error_rate": 0.0396,
+        "match_coverage": 0.9604,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 21,
+            "kind": "replace",
+            "script": "太",
+            "heard": "泰"
+          },
+          {
+            "at": 76,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 78,
+            "kind": "replace",
+            "script": "纯",
+            "heard": "淳"
+          },
+          {
+            "at": 81,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          }
+        ],
+        "transcript": "要理解这间屋子里发生的事得回到90年代松永泰早年做生意后来卷入诈骗欠下债务四处逃亡他最擅长的是操纵人心用谎言 威胁和经济压力把身边的人一步步变成自己的工具叙方淳子和他的家人就是这样一点一点落进他的控制之中"
+      },
+      {
+        "id": "N03",
+        "start": 64.933,
+        "end": 89.163,
+        "script_chars": 104,
+        "heard_chars": 104,
+        "character_error_rate": 0.0192,
+        "match_coverage": 0.9808,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 7,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 70,
+            "kind": "replace",
+            "script": "视",
+            "heard": "事"
+          }
+        ],
+        "transcript": "从1996年起叙方的家人接连被带进这间公寓1996年到1998年多名受害者在这里遭到监禁、虐待和控制原本应该保护彼此的亲人被恐惧推向绝境不敢对事不敢多问连求救的机会都被一点点剥夺这不是家庭纠纷是持续的恐吓与暴力"
+      },
+      {
+        "id": "N04",
+        "start": 90.243,
+        "end": 116.26,
+        "script_chars": 107,
+        "heard_chars": 107,
+        "character_error_rate": 0.0187,
+        "match_coverage": 0.9813,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 9,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 75,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          }
+        ],
+        "transcript": "这场悲剧最终吞噬了叙方家的多名成员死亡在封闭的屋子里接连发生外界却几乎一无所知直到少女逃出开口陈述警方才把失踪死亡和监禁串成一条线七名死亡受害者大多是叙方的家人其中包括两名孩子六起被认定为谋杀另一起被认定为伤害致死"
+      },
+      {
+        "id": "N05",
+        "start": 117.34,
+        "end": 142.663,
+        "script_chars": 101,
+        "heard_chars": 105,
+        "character_error_rate": 0.0792,
+        "match_coverage": 0.9604,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 35,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 47,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 67,
+            "kind": "replace",
+            "script": "应",
+            "heard": "因"
+          },
+          {
+            "at": 76,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 95,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          }
+        ],
+        "transcript": "2003年10月 审判开始因为案情太多此后每周开庭一次法庭上两人的责任成为焦点叙方承认参与但辩护方强调他长期受到松永的支配和虐待松永则否认自己因为全部罪行负责2005年9月一审双双判处死刑两年后二审改判叙方无期徒刑"
+      },
+      {
+        "id": "N06",
+        "start": 143.743,
+        "end": 174.0,
+        "script_chars": 118,
+        "heard_chars": 119,
+        "character_error_rate": 0.0508,
+        "match_coverage": 0.9576,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零"
+          },
+          {
+            "at": 15,
+            "kind": "replace",
+            "script": "松",
+            "heard": "宋"
+          },
+          {
+            "at": 17,
+            "kind": "replace",
+            "script": "太",
+            "heard": "泰"
+          },
+          {
+            "at": 22,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 91,
+            "kind": "replace",
+            "script": "筑",
+            "heard": "注"
+          },
+          {
+            "at": 99,
+            "kind": "replace",
+            "script": "栏",
+            "heard": "蓝"
+          }
+        ],
+        "transcript": "2011年12月最高法院维持原判宋永泰死刑确定叙方纯子无期徒刑确定回头看这间公寓和普通住宅没有任何区别最可怕的不是某个瞬间的暴行而是六年的恐怖就藏在日常的表象之下恐惧、谎言和被剥夺的选择注成了一座没有铁蓝的牢笼判决确定了刑期却换不回七条生命"
+      }
+    ],
+    "max_cer": 0.0889,
+    "failing": []
+  },
+  "narration_control": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 36.091,
+        "script_chars": 135,
+        "heard_chars": 137,
+        "character_error_rate": 0.0889,
+        "match_coverage": 0.9259,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 67,
+            "kind": "replace",
+            "script": "警",
+            "heard": "京"
+          },
+          {
+            "at": 78,
+            "kind": "replace",
+            "script": "异常",
+            "heard": "一场"
+          },
+          {
+            "at": 89,
+            "kind": "replace",
+            "script": "太",
+            "heard": "泰"
+          },
+          {
+            "at": 92,
+            "kind": "replace",
+            "script": "缘",
+            "heard": "援"
+          },
+          {
+            "at": 95,
+            "kind": "replace",
+            "script": "绪方纯",
+            "heard": "续芳淳"
+          }
+        ],
+        "transcript": "2002年3月 日本北九州深夜一名17岁的少女从一间普通公寓逃了出来她之前逃出去过一次又被抓了回去这一次她跑到祖父家求助终于有人信了她第二天 京方进入公寓表面看不出一场控制这里的两人松永泰和内援妻子 续芳淳子随即被捕调查月深 失踪 死亡和监禁 越连城同一条线这间普通的屋子里藏着七条人命"
+      },
+      {
+        "id": "N02",
+        "start": 37.171,
+        "end": 63.853,
+        "script_chars": 101,
+        "heard_chars": 101,
+        "character_error_rate": 0.0396,
+        "match_coverage": 0.9604,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 21,
+            "kind": "replace",
+            "script": "太",
+            "heard": "泰"
+          },
+          {
+            "at": 76,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 78,
+            "kind": "replace",
+            "script": "纯",
+            "heard": "淳"
+          },
+          {
+            "at": 81,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          }
+        ],
+        "transcript": "要理解这间屋子里发生的事得回到90年代松永泰早年做生意后来卷入诈骗欠下债务四处逃亡他最擅长的是操纵人心用谎言威胁和经济压力把身边的人一步步变成自己的工具叙方淳子和他的家人就是这样一点一点落进他的控制之中"
+      },
+      {
+        "id": "N03",
+        "start": 64.933,
+        "end": 89.163,
+        "script_chars": 104,
+        "heard_chars": 104,
+        "character_error_rate": 0.0192,
+        "match_coverage": 0.9808,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 7,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "续"
+          },
+          {
+            "at": 70,
+            "kind": "replace",
+            "script": "视",
+            "heard": "事"
+          }
+        ],
+        "transcript": "从1996年起续方的家人接连被带进这间公寓1996年到1998年多名受害者在这里遭到监禁 虐待和控制原本应该保护彼此的亲人被恐惧推向绝境不敢对事 不敢多问连求救的机会都被一点点剥夺这不是家庭纠纷是持续的恐吓与暴力"
+      },
+      {
+        "id": "N04",
+        "start": 90.243,
+        "end": 116.26,
+        "script_chars": 107,
+        "heard_chars": 107,
+        "character_error_rate": 0.0187,
+        "match_coverage": 0.9813,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 9,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 75,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          }
+        ],
+        "transcript": "这场悲剧最终吞噬了叙方家的多名成员死亡在封闭的屋子里接连发生外界却几乎一无所知直到少女逃出开口陈述警方才把失踪死亡和监禁串成一条线七名死亡受害者大多是叙方的家人其中包括两名孩子六起被认定为谋杀另一起被认定为伤害致死"
+      },
+      {
+        "id": "N05",
+        "start": 117.34,
+        "end": 142.663,
+        "script_chars": 101,
+        "heard_chars": 105,
+        "character_error_rate": 0.0693,
+        "match_coverage": 0.9703,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 35,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 47,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 76,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 95,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          }
+        ],
+        "transcript": "2003年10月,审判开始,因为案情太多,此后每周开庭一次,法庭上,两人的责任成为焦点,叙方承认参与,但辩护方强调他长期受到松永的支配和虐待,松永则否认自己应为全部罪行负责。2005年9月,一审双双判处死刑,两年后,二审改判叙方,无期徒刑。"
+      },
+      {
+        "id": "N06",
+        "start": 143.743,
+        "end": 174.0,
+        "script_chars": 118,
+        "heard_chars": 119,
+        "character_error_rate": 0.0508,
+        "match_coverage": 0.9576,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零"
+          },
+          {
+            "at": 17,
+            "kind": "replace",
+            "script": "太",
+            "heard": "泰"
+          },
+          {
+            "at": 22,
+            "kind": "replace",
+            "script": "绪",
+            "heard": "叙"
+          },
+          {
+            "at": 24,
+            "kind": "replace",
+            "script": "纯",
+            "heard": "淳"
+          },
+          {
+            "at": 91,
+            "kind": "replace",
+            "script": "筑",
+            "heard": "注"
+          },
+          {
+            "at": 99,
+            "kind": "replace",
+            "script": "栏",
+            "heard": "蓝"
+          }
+        ],
+        "transcript": "2011年12月 最高法院维持原判松永泰 死刑确定叙方淳子 无期徒刑确定回头看 这间公寓和普通住宅没有任何区别最可怕的不是某个瞬间的暴行而是六年的恐怖就藏在日常的表象之下恐惧 谎言和被剥夺的选择注成了一座没有铁蓝的牢笼判决 确定了刑期 却换不回七条生命"
+      }
+    ],
+    "max_cer": 0.0889,
+    "failing": []
+  },
+  "note": "CER = 编辑距离 / 剧本字数。ASR 本身也会错，所以 'needs_human_listen' 的意思是\"这一段的差异需要人耳裁决\"，不等于\"配音一定错了\"；对照组（干净配音）字错率明显低于成片时，差异多半来自音乐干扰 ASR。"
+}

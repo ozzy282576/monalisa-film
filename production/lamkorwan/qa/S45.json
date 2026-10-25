@@ -1,0 +1,16 @@
+{
+  "duration": 7.041667,
+  "bytes": 1430256,
+  "width": 1920,
+  "height": 1088,
+  "fps": 24.0,
+  "video_codec": "h264",
+  "frames": 169,
+  "audio_codec": "aac",
+  "sample_rate": 48000,
+  "audio_channels": 2,
+  "decoded_ok": true,
+  "contact_sheet": "production/lamkorwan/qa/S45.jpg",
+  "contact_sampling_fps": 2,
+  "visual_review": "pending"
+}

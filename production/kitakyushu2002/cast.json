@@ -1,0 +1,85 @@
+{
+  "mode": "face",
+  "_comment": "露脸模式规则：① 每个角色一条不同的 face token（≥60 字，逐字节复用）；② 同一角色的所有镜头都照抄它；③ 不同角色的 token 不许雷同。改完跑：python3 production/face_cast.py check-prompts --project production/kitakyushu2002",
+  "_casting_note": "五个角色都是符合年代的虚构匿名人物（AI 生成），不是任何真实人物的容貌还原——松永太、绪方纯子、受害者、逃脱少女、办案刑警一律不以其真实容貌出现；松永太与绪方纯子在情景重现里由 C1 / C2 两个虚构匿名角色扮演（提示词与片内标签都写明「非本人容貌」），受害者与逃脱少女全程只以背影、剪影、手或物件出现，不给可辨识面容；S12/S13/S14/S19/S24/S32 等家庭与押解镜头一律背影、俯角或过肩，全片每个可辨认的脸只出现在登记过的镜头里。",
+  "characters": [
+    {
+      "id": "C1",
+      "name": "四十岁男子（松永太 · 情景重现 · 虚构匿名角色，非本人容貌）",
+      "role": "suspect",
+      "age": 40,
+      "gender": "male",
+      "face": "an anonymous Japanese man of forty: a lean narrow face with soft regular features and an unnervingly calm composed expression, narrow dark eyes with a level unwavering gaze, thin straight eyebrows, a straight nose with a narrow bridge, a small closed mouth resting in a faint polite smile, black hair cut short and neatly combed with a precise side part, clean pale skin; he wears a plain dark crew-neck sweater over a collared shirt.",
+      "portrait": "cast/C1.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C1.png",
+      "seed": 19960401
+    },
+    {
+      "id": "C2",
+      "name": "四十三岁女子（绪方纯子 · 情景重现 · 虚构匿名角色，非本人容貌）",
+      "role": "suspect",
+      "age": 43,
+      "gender": "female",
+      "face": "an anonymous Japanese woman of forty-three: a thin careworn oval face with hollow cheeks, tired downcast eyes with heavy lids and faint shadows beneath them, straight thin eyebrows, a small straight nose, a narrow mouth with lips pressed together, lank black shoulder-length hair plainly parted in the middle, pale skin; she wears a plain grey cardigan over a white blouse.",
+      "portrait": "cast/C2.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C2.png",
+      "seed": 19960402
+    },
+    {
+      "id": "C3",
+      "name": "五十五岁老刑警（福冈县警 · 虚构匿名角色）",
+      "role": "police",
+      "age": 55,
+      "gender": "male",
+      "face": "an anonymous Japanese man of fifty-five: a broad weather-beaten face with deep nasolabial folds and heavy jowls, small deep-set dark eyes with tired pouches beneath them, thick straight greying eyebrows, a wide flat nose, a firm thin mouth, short iron-grey hair cropped close above the ears, rough sun-damaged skin with grey stubble; he wears a rumpled dark grey suit jacket over a plain white shirt with no tie.",
+      "portrait": "cast/C3.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C3.png",
+      "seed": 20020306
+    },
+    {
+      "id": "C4",
+      "name": "四十八岁检察官（小仓支部 · 虚构匿名角色）",
+      "role": "other",
+      "age": 48,
+      "gender": "male",
+      "face": "an anonymous Japanese man of forty-eight: a long narrow face with high cheekbones and a high forehead, narrow serious eyes behind thin silver-rimmed glasses, straight dark eyebrows, a long straight nose, thin lips pressed flat, black hair cut short and neatly side-parted with grey showing at the temples, pale composed skin; he wears a black prosecution suit jacket, a white shirt and a plain dark tie.",
+      "portrait": "cast/C4.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C4.png",
+      "seed": 20050302
+    },
+    {
+      "id": "C5",
+      "name": "六十岁法官（福冈地裁小仓支部 · 虚构匿名角色）",
+      "role": "other",
+      "age": 60,
+      "gender": "male",
+      "face": "an anonymous Japanese man of sixty: a full dignified face with soft cheeks and a firm chin, mild deep-set eyes with heavy lids, sparse grey eyebrows, a short broad nose, a wide mouth with thin lips, short white hair combed back from a high forehead, weathered pale skin; he wears black judicial robes over a white shirt with a plain dark collar band.",
+      "portrait": "cast/C5.png",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/44a8fff6-desktop-tutorial/production/kitakyushu2002/cast/C5.png",
+      "seed": 20050928
+    }
+  ],
+  "shots": {
+    "S07": [
+      "C3"
+    ],
+    "S09": [
+      "C1"
+    ],
+    "S27": [
+      "C3"
+    ],
+    "S33": [
+      "C4"
+    ],
+    "S34": [
+      "C2"
+    ],
+    "S35": [
+      "C1"
+    ],
+    "S36": [
+      "C5"
+    ]
+  }
+}

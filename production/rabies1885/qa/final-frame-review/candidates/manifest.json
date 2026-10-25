@@ -1,0 +1,351 @@
+{
+  "film_sha256": "f0b224cd1195f5c87413bf398be7c169311fe325ebf45fb74e3e548cb560042b",
+  "source_audit": "production/rabies1885/delivery/frame-distortion-audit.json",
+  "selection_policy": "start/middle/end of each temporal window; each face candidate; median hand-geometry event per affected shot",
+  "max_width": 960,
+  "frames": [
+    {
+      "frame": 29,
+      "seconds": 0.967,
+      "reasons": [
+        "hand-geometry-S01"
+      ],
+      "file": "f00029_hand-geometry-S01.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 152,
+      "seconds": 5.067,
+      "reasons": [
+        "hand-geometry-S02"
+      ],
+      "file": "f00152_hand-geometry-S02.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 178,
+      "seconds": 5.933,
+      "reasons": [
+        "temporal-S03-start"
+      ],
+      "file": "f00178_temporal-S03-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 179,
+      "seconds": 5.967,
+      "reasons": [
+        "temporal-S03-middle"
+      ],
+      "file": "f00179_temporal-S03-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 180,
+      "seconds": 6.0,
+      "reasons": [
+        "temporal-S03-end"
+      ],
+      "file": "f00180_temporal-S03-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 192,
+      "seconds": 6.4,
+      "reasons": [
+        "hand-geometry-S03"
+      ],
+      "file": "f00192_hand-geometry-S03.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 383,
+      "seconds": 12.767,
+      "reasons": [
+        "temporal-S05-middle",
+        "temporal-S05-start"
+      ],
+      "file": "f00383_temporal-S05-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 384,
+      "seconds": 12.8,
+      "reasons": [
+        "temporal-S05-end"
+      ],
+      "file": "f00384_temporal-S05-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 390,
+      "seconds": 13.0,
+      "reasons": [
+        "temporal-S05-start"
+      ],
+      "file": "f00390_temporal-S05-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 392,
+      "seconds": 13.067,
+      "reasons": [
+        "temporal-S05-middle"
+      ],
+      "file": "f00392_temporal-S05-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 395,
+      "seconds": 13.167,
+      "reasons": [
+        "temporal-S05-end"
+      ],
+      "file": "f00395_temporal-S05-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 1828,
+      "seconds": 60.933,
+      "reasons": [
+        "hand-geometry-S17"
+      ],
+      "file": "f01828_hand-geometry-S17.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 1974,
+      "seconds": 65.8,
+      "reasons": [
+        "hand-geometry-S18"
+      ],
+      "file": "f01974_hand-geometry-S18.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 2510,
+      "seconds": 83.667,
+      "reasons": [
+        "hand-geometry-S23"
+      ],
+      "file": "f02510_hand-geometry-S23.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 2832,
+      "seconds": 94.4,
+      "reasons": [
+        "hand-geometry-S27"
+      ],
+      "file": "f02832_hand-geometry-S27.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3094,
+      "seconds": 103.133,
+      "reasons": [
+        "temporal-S30-start"
+      ],
+      "file": "f03094_temporal-S30-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3113,
+      "seconds": 103.767,
+      "reasons": [
+        "temporal-S30-middle"
+      ],
+      "file": "f03113_temporal-S30-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3132,
+      "seconds": 104.4,
+      "reasons": [
+        "temporal-S30-end"
+      ],
+      "file": "f03132_temporal-S30-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3175,
+      "seconds": 105.833,
+      "reasons": [
+        "temporal-S30-start"
+      ],
+      "file": "f03175_temporal-S30-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3182,
+      "seconds": 106.067,
+      "reasons": [
+        "temporal-S30-middle"
+      ],
+      "file": "f03182_temporal-S30-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3190,
+      "seconds": 106.333,
+      "reasons": [
+        "temporal-S30-end"
+      ],
+      "file": "f03190_temporal-S30-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3294,
+      "seconds": 109.8,
+      "reasons": [
+        "temporal-S30-middle",
+        "temporal-S30-start"
+      ],
+      "file": "f03294_temporal-S30-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3295,
+      "seconds": 109.833,
+      "reasons": [
+        "temporal-S30-end"
+      ],
+      "file": "f03295_temporal-S30-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3327,
+      "seconds": 110.9,
+      "reasons": [
+        "hand-geometry-S30"
+      ],
+      "file": "f03327_hand-geometry-S30.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3355,
+      "seconds": 111.833,
+      "reasons": [
+        "temporal-S30-start"
+      ],
+      "file": "f03355_temporal-S30-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3356,
+      "seconds": 111.867,
+      "reasons": [
+        "temporal-S30-middle"
+      ],
+      "file": "f03356_temporal-S30-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3358,
+      "seconds": 111.933,
+      "reasons": [
+        "temporal-S30-end"
+      ],
+      "file": "f03358_temporal-S30-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 4718,
+      "seconds": 157.267,
+      "reasons": [
+        "hand-geometry-S43"
+      ],
+      "file": "f04718_hand-geometry-S43.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 4880,
+      "seconds": 162.667,
+      "reasons": [
+        "hand-geometry-S44"
+      ],
+      "file": "f04880_hand-geometry-S44.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5216,
+      "seconds": 173.867,
+      "reasons": [
+        "temporal-S45-middle",
+        "temporal-S45-start"
+      ],
+      "file": "f05216_temporal-S45-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5217,
+      "seconds": 173.9,
+      "reasons": [
+        "temporal-S45-end"
+      ],
+      "file": "f05217_temporal-S45-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5222,
+      "seconds": 174.067,
+      "reasons": [
+        "temporal-END-start"
+      ],
+      "file": "f05222_temporal-END-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5224,
+      "seconds": 174.133,
+      "reasons": [
+        "temporal-END-middle"
+      ],
+      "file": "f05224_temporal-END-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5226,
+      "seconds": 174.2,
+      "reasons": [
+        "temporal-END-end"
+      ],
+      "file": "f05226_temporal-END-end.jpg",
+      "width": 960,
+      "height": 540
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+name: Generate AI video shots
+
+on:
+  repository_dispatch:
+    types: [ai-shots]
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: '可选 JSON，例如 {"only":"S01,S02","force":true,"providers":"pixazo,agnes"}'
+        type: string
+        default: "{}"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-shots
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 350
+    steps:
+      - name: Check out development branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/01a07943-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Generate shots and commit them back
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          PIXAZO_API_KEY: ${{ secrets.PIXAZO_API_KEY }}
+          PAYLOAD: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload) || inputs.payload }}
+        run: bash production/ai_shots_job.sh
+
+      - name: Upload clips as artifact (backup)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-shots-${{ github.run_number }}
+          path: ripper/clips
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 3

@@ -1,0 +1,51 @@
+{
+  "run_id": "34322385590",
+  "artifact_id": 10093411755,
+  "download_url": "https://github.com/32r4e2q-hub/desktop-tutorial/actions/runs/34322385590/artifacts/10093411755",
+  "video_sha256": "7a657f5090112efb1f7ab094592912a8b0ee3ee3ebac68a206e512860ebd71e1",
+  "stage": "first_cut_delivered",
+  "technical_checks": {
+    "duration_seconds": 180.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 5400,
+    "full_decode_ok": true
+  },
+  "sampled_visual_review": {
+    "source_contact_sheets": 23,
+    "source_sampling_fps": 2,
+    "final_contact_sheet_frames": 30,
+    "scope": "Sampled frames and the actual EDL were checked; not a full-speed or frame-by-frame viewing."
+  },
+  "corrections_verified_in_export": [
+    "S06 uses a labeled fingerprint diagram over obscured generated texture",
+    "S09 uses the sourced archival portrait",
+    "S13 uses footage beginning at 1.4 seconds, after the front-facing opening",
+    "S17 excludes the late incorrect texture",
+    "S25 excludes late invented lettering"
+  ],
+  "audio_listening_review": "not completed",
+  "subtitle_caveats": [
+    {
+      "id": "N03",
+      "method": "pause-aware estimate",
+      "character_match_coverage": 0.5227272727272727
+    },
+    {
+      "id": "N05",
+      "method": "pause-aware estimate",
+      "character_match_coverage": 0.1188118811881188
+    },
+    {
+      "id": "N06",
+      "method": "pause-aware estimate",
+      "character_match_coverage": 0.125
+    }
+  ],
+  "note": "Low ASR matching does not by itself prove a narration error. These sections retained the reviewed script and pause-estimated subtitle timing; listening/word-level checks remain necessary.",
+  "actual_s21_source_in": 0.12,
+  "source_mp4_location": "work/dahlia/clips/黑色大丽花_三分钟_初版.mp4",
+  "local_video_copy_available": false,
+  "local_download_limitation": "The sandbox cannot connect to the artifact media-storage endpoint; delivery is via the authenticated GitHub artifact download."
+}

@@ -1,0 +1,86 @@
+{
+  "_what": "换机器复现实测：同一批输入在另一台机器上重跑，电平是否还是同一组数字",
+  "_why": "制作过程.md 里\"混音从 ffmpeg 滤镜链搬进 numpy\"之后声称换机器也能复现，但当时只有云端那一次测量。这份是第二台机器（Arena 沙箱）的独立复测。",
+  "measured_on": "2026-09-10",
+  "host": {
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "python": "3.11.2",
+    "ffmpeg": "7.0.2-static (imageio-ffmpeg 提供的静态二进制，与云端 runner 的发行版不同)",
+    "numpy": "2.4.6",
+    "pillow": "12.3.0"
+  },
+  "commands": [
+    "python3 production/dahlia/build_audio.py --work work/dahlia --output work/dahlia/soundtrack.wav",
+    "python3 production/review_film.py --film 交付/黑色大丽花_三分钟_带声音.mp4 --project production/dahlia --work work/dahlia/review"
+  ],
+  "mix_stage": {
+    "cloud": {
+      "rms_dbfs": -21.08,
+      "peak_dbfs": -1.51,
+      "silent_fraction": 0.0056
+    },
+    "local": {
+      "rms_dbfs": -21.08,
+      "peak_dbfs": -1.51,
+      "silent_fraction": 0.0056
+    },
+    "max_abs_delta": {
+      "rms_dbfs": 0.0,
+      "peak_dbfs": 0.0,
+      "silent_fraction": 0.0
+    },
+    "chapters_cloud": {
+      "N01": -21.11,
+      "N02": -21.15,
+      "N03": -20.89,
+      "N04": -20.59,
+      "N05": -20.17,
+      "N06": -20.84
+    },
+    "chapters_local": {
+      "N01": -21.11,
+      "N02": -21.15,
+      "N03": -20.89,
+      "N04": -20.59,
+      "N05": -20.17,
+      "N06": -20.84
+    }
+  },
+  "delivered_film": {
+    "cloud": {
+      "rms_dbfs": -21.09,
+      "peak_dbfs": -1.52,
+      "silent_fraction": 0.011,
+      "duration_seconds": 180.011
+    },
+    "local": {
+      "rms_dbfs": -21.09,
+      "peak_dbfs": -1.52,
+      "silent_fraction": 0.011,
+      "duration_seconds": 180.011
+    },
+    "max_abs_delta": {
+      "rms_dbfs": 0.0,
+      "peak_dbfs": 0.0,
+      "silent_fraction": 0.0,
+      "duration_seconds": 0.0
+    },
+    "chapters_cloud": {
+      "N01": -21.12,
+      "N02": -21.17,
+      "N03": -20.91,
+      "N04": -20.61,
+      "N05": -20.19,
+      "N06": -20.85
+    },
+    "chapters_local": {
+      "N01": -21.12,
+      "N02": -21.17,
+      "N03": -20.91,
+      "N04": -20.61,
+      "N05": -20.19,
+      "N06": -20.85
+    }
+  },
+  "verdict": "复现：整体/逐段电平与云端差异 ≤ 0.00 dB，静音占比一致"
+}

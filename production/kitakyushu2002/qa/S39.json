@@ -1,0 +1,13 @@
+{
+  "duration": 5.108108,
+  "bytes": 1486846,
+  "width": 1792,
+  "height": 1024,
+  "fps": 37.0,
+  "video_codec": "h264",
+  "frames": 189,
+  "decoded_ok": true,
+  "contact_sheet": "production/kitakyushu2002/qa/S39.jpg",
+  "contact_sampling_fps": 2,
+  "visual_review": "pending"
+}

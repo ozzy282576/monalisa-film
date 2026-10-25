@@ -1,0 +1,4 @@
+edge-tts==7.2.8
+playwright==1.55.0
+scenedetect==0.7.1
+opencv-python-headless==4.12.0.88

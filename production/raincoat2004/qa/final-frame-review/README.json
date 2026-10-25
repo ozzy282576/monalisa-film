@@ -1,0 +1,15 @@
+{
+  "film": "韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4",
+  "sha256": "5bd4a3de7fe074581a0dd2bcba359ccc7a896c289620537888bfdc479cae0efa",
+  "decoded_frames": 5400,
+  "source_audit": "production/raincoat2004/delivery/frame-distortion-audit.json",
+  "contents": {
+    "all_frame_sheets": 46,
+    "all_frame_manifests": 1,
+    "hand_contact_sheets": 6,
+    "midpoint_contact_sheets": 1,
+    "selected_candidate_frames": 217,
+    "candidate_manifests": 1
+  },
+  "scope": "compact review evidence only; does not equal a human approval and does not replace the delivered MP4"
+}

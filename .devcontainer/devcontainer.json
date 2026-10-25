@@ -1,0 +1,13 @@
+{
+  "name": "agent-lab",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "waitFor": "onCreateCommand",
+  "forwardPorts": [4096],
+  "portsAttributes": {
+    "4096": {
+      "label": "OpenCode Web UI",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh 2>&1 | tee /tmp/agent-lab-setup.log"
+}
