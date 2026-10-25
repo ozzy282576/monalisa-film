@@ -191,8 +191,20 @@ def _select_outliers(rows: list[dict[str, Any]], segments: list[dict[str, Any]],
     }
     for seg_i, indices in by_seg.items():
         seg = segments[seg_i]
-        # Ignore the first/last two frames of a planned cut/fade when fitting the baseline.
+        # Information cards use a deterministic post-render zoompan; optical-flow
+        # outliers there are planned typography motion, not generated-frame defects.
+        # Cards are still scanned for PTS, black frames, typography, and decoding.
+        if seg.get("kind") == "graphic":
+            continue
+        # Ignore the ordinary two-frame cut guard plus the renderer's deliberate
+        # 0.25s opening fade and 0.18s closing fade. Those are known edit decisions.
         usable = indices[2:-2] if len(indices) > 8 else indices
+        if int(seg.get("start_frame", -1)) == 0:
+            opening_end = round(fps * 0.25)
+            usable = [i for i in usable if i >= opening_end]
+        if seg_i == len(segments) - 1 and int(seg.get("end_frame", -1)) >= len(rows):
+            closing_start = len(rows) - round(fps * 0.18)
+            usable = [i for i in usable if i < closing_start]
         for metric, (floor, flag) in metric_cfg.items():
             vals = [float(rows[i][metric]) for i in usable if rows[i].get(metric) is not None]
             threshold, med, mad = _robust_threshold(vals, floor)
@@ -462,8 +474,13 @@ def run_audit(film: Path, project: Path, out_dir: Path, progress_every: int = 30
     freeze_runs = _run_length_events(rows, fps, FREEZE_MIN_SECONDS)
     non_graphic_freezes = [x for x in freeze_runs if x["kind"] == "cogvideo"]
     black_frames = [r for r in rows if r["luma"] < 12.0]
-    unplanned_black = [r for r in black_frames
-                       if not (r["shot"] == "END" or r["seconds"] < 0.10)]
+    final_segment = segments[-1] if segments else {}
+    closing_fade_start = len(rows) - round(fps * 0.18)
+    unplanned_black = [
+        r for r in black_frames
+        if not (r["shot"] == "END" or r["seconds"] < 0.10
+                or (r["shot"] == final_segment.get("id") and r["frame"] >= closing_fade_start))
+    ]
 
     shot_summary = []
     for seg in segments:
@@ -535,6 +552,12 @@ def run_audit(film: Path, project: Path, out_dir: Path, progress_every: int = 30
             "all_decoded_frames_scanned": decoded == expected,
         },
         "status": status,
+        "temporal_policy": {
+            "opening_fade_excluded_seconds": 0.25,
+            "closing_fade_excluded_seconds": 0.18,
+            "graphic_motion_outliers": "excluded because the post-render zoompan is deterministic; all graphic frames remain in the full-frame scan",
+            "note": "Only planned fades and known deterministic card motion are exempt; freezes and machine-detected anatomy/face candidates remain strict gates.",
+        },
         "checks": {
             "pts_issues": pts_issues,
             "black_frame_count_luma_lt12": len(black_frames),
