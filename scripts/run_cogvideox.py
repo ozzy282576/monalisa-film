@@ -16,11 +16,13 @@ prompt = os.getenv("INPUT_PROMPT")
 # branch. A structured prompt can route that registered workflow to this branch's
 # full Chessboard64 pipeline; ordinary natural-language prompts still use the
 # original one-shot generator below.
-try:
-    dispatch = json.loads(prompt) if prompt else None
-except (json.JSONDecodeError, TypeError):
-    dispatch = None
-if isinstance(dispatch, dict) and dispatch.get("project") == "chessboard64":
+def route_chessboard64(raw_prompt):
+    try:
+        dispatch = json.loads(raw_prompt) if raw_prompt else None
+    except (json.JSONDecodeError, TypeError):
+        dispatch = None
+    if not isinstance(dispatch, dict) or dispatch.get("project") != "chessboard64":
+        return False
     if dispatch.get("probe") is True:
         print("CHESSBOARD64_DISPATCH_PROBE_OK", flush=True)
         sys.exit(0)
@@ -33,11 +35,19 @@ if isinstance(dispatch, dict) and dispatch.get("project") == "chessboard64":
                   json.dumps(payload, ensure_ascii=False, separators=(",", ":"))]
     print("Routing to production/chessboard64/generate_cogvideox.py", flush=True)
     os.execv(sys.executable, child_argv)
+    return True
+
+if (not prompt and os.getenv("GITHUB_REF_NAME") == "arena/56672981-monalisa-film"):
+    request_file = Path("production/chessboard64/COGVIDEOX_GEN_REQUEST")
+    if request_file.is_file():
+        prompt = request_file.read_text(encoding="utf-8").strip()
 
 if not prompt:
     if os.path.exists("trigger_video.txt"):
         with open("trigger_video.txt", "r", encoding="utf-8") as f:
             prompt = f.read().strip()
+
+route_chessboard64(prompt)
 
 if not prompt:
     prompt = "一只可爱的小猫咪在阳光下的草地上打滚，高清，真实"

@@ -2,8 +2,13 @@ name: AI 视频生成 (CogVideoX-Flash)
 
 on:
   push:
+    # Branch pushes only. GitHub treats a newly created tag as a push too;
+    # without a branch filter, the generic kitten prompt ran on every new tag.
+    branches:
+      - '**'
     paths:
       - 'trigger_video.txt'
+      - 'production/chessboard64/COGVIDEOX_GEN_REQUEST'
   workflow_dispatch:
     inputs:
       prompt:
@@ -17,6 +22,10 @@ permissions:
 
 jobs:
   generate:
+    if: >-
+      github.event_name != 'push' ||
+      github.ref == 'refs/heads/arena/56672981-monalisa-film' ||
+      contains(toJSON(github.event.commits), 'trigger_video.txt')
     runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     steps:
       - name: 检出代码
@@ -38,10 +47,14 @@ jobs:
           ZHIPUAI_API_KEY: ${{ secrets.ZHIPUAI_API_KEY }}
           INPUT_PROMPT: ${{ github.event.inputs.prompt }}
         run: |
+          set -o pipefail
           python scripts/run_cogvideox.py 2>&1 | tee run_output.log
 
       - name: 将结果发到 GitHub Issue
-        if: always()
+        if: >-
+          always() &&
+          !contains(toJSON(github.event.commits), 'COGVIDEOX_GEN_REQUEST') &&
+          !contains(github.event.inputs.prompt, '"project":"chessboard64"')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
