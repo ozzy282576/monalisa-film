@@ -579,7 +579,7 @@
       "start": 84,
       "duration": 4,
       "narration_id": "N03",
-      "prompt": "A folded blank note remains sharply visible on a low table in the foreground. In the background, an adult woman in a pale coat and a slim man in a dark jacket walk slowly away through an apartment doorway; a teenage boy remains inside, seen only from behind. Their faces are completely outside the frame. The door moves gently toward closing and the curtain stirs while the camera makes one smooth, uninterrupted move from the note toward the doorway. Stable exposure, no flicker, no abrupt movement, no readable writing.",
+      "prompt": "A restrained, clearly fictional 3D reenactment in a modest Moscow apartment, filmed from low behind a table. A folded blank note stays sharp in the foreground. Beyond it, an adult woman in a pale coat and a slim man in a dark jacket walk away from the camera through the doorway; both are shown strictly from behind, and their heads remain turned away for the entire shot. A teenage boy stays inside near the doorway, also facing away, with his head hidden behind the doorframe. The door eases toward closing as a curtain moves in the window breeze. The camera makes one smooth physical dolly from the note toward the doorway without passing or orbiting around anyone. No face, profile, reflection, mirror, head turn, readable writing, flicker, or sudden movement; this is an illustrative reconstruction, not original footage.",
       "purpose": "纸条留在桌上两人走出门",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
@@ -593,7 +593,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "贴近桌面后跟随背影向门口移动",
+      "camera": "桌后低位向门口平稳推进，全程只见背影",
       "sfx_note": "paper"
     },
     {
