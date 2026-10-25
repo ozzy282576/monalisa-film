@@ -509,10 +509,10 @@
     },
     "S25": {
       "id": "S25",
-      "status": "failed",
+      "status": "submitting",
       "request_hash": "918c81a943c6c367cf300d1b65d343229a44a89ee0105e2319d6790763579005",
-      "error": "Error code: 429, with error text {\"error\":{\"code\":\"1305\",\"message\":\"该模型当前访问量过大，请您稍后再试\"}}",
-      "updated_at": "2026-10-25T07:51:41Z"
+      "error": null,
+      "updated_at": "2026-10-25T09:56:24Z"
     },
     "S26": {
       "id": "S26",
@@ -924,6 +924,6 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T09:56:23Z",
+  "updated_at": "2026-10-25T09:56:24Z",
   "previous_results": {}
 }
