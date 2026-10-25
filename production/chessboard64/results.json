@@ -5,10 +5,11 @@
   "shots": {
     "S01": {
       "id": "S01",
-      "status": "submitting",
+      "status": "queued",
       "request_hash": "2dbe4002dfb850f466b1a33b657469c70354775b8284f3a7ff575e1b6b44cc50",
       "error": null,
-      "updated_at": "2026-10-25T05:15:01Z"
+      "updated_at": "2026-10-25T05:22:20Z",
+      "task_id": "202610251322201f61e842238c42ce"
     }
   },
   "workflow_policy": "cogvideox-flash-receipt-v2-refprobe",
@@ -53,6 +54,6 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T05:15:01Z",
+  "updated_at": "2026-10-25T05:22:20Z",
   "previous_results": {}
 }
