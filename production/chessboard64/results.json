@@ -900,7 +900,7 @@
     }
   },
   "workflow_policy": "cogvideox-flash-receipt-v2-refprobe",
-  "phase": "generating_sources",
+  "phase": "generation_incomplete",
   "required_generated_shots": [
     "S01",
     "S02",
@@ -941,7 +941,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T12:39:50Z",
+  "updated_at": "2026-10-25T12:39:51Z",
   "previous_results": {
     "S06": [
       {
