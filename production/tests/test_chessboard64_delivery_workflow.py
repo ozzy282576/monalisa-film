@@ -33,6 +33,16 @@ class Chessboard64DeliveryWorkflowTests(unittest.TestCase):
         self.assertNotIn("fetch_audio.py", text, "verbatim QC must not silently substitute another voice")
         self.assertIn("SHA mismatch", text)
 
+    def test_signed_media_urls_are_redacted_from_runner_diagnostics(self):
+        workflow, _ = self._paired("chessboard64-render.yml")
+        source = (ROOT / "production/chessboard64/fetch_sources.py").read_text(encoding="utf-8")
+        self.assertIn("[SIGNED_QUERY_REDACTED]", workflow)
+        self.assertIn("TOKEN_[REDACTED]", workflow)
+        self.assertIn("def safe_url(url: str)", source)
+        self.assertIn("[signed query redacted]", source)
+        self.assertNotIn('print(f"FETCH {sid} {url}"', source)
+        self.assertNotIn("Download failed for {url}", source)
+
     def test_visual_workflow_fails_closed_on_any_strict_machine_anomaly(self):
         text, _ = self._paired("chessboard64-visual-qc.yml")
         for condition in (

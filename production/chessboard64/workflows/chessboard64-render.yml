@@ -83,7 +83,14 @@ jobs:
       - name: Ship failure log to branch (sandbox cannot read Actions logs)
         if: failure()
         run: |
-          tail -c 200000 /tmp/rend.log > production/chessboard64/render-diag.log
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          text = Path('/tmp/rend.log').read_bytes()[-200000:].decode('utf-8', errors='replace')
+          text = re.sub(r'(https?://[^\s?]+)\?[^\s]+', r'\1?[SIGNED_QUERY_REDACTED]', text)
+          text = re.sub(r'(?i)TOKEN_[A-Za-z0-9_-]+', 'TOKEN_[REDACTED]', text)
+          Path('production/chessboard64/render-diag.log').write_text(text, encoding='utf-8')
+          PY
           git config user.name "arena-diag"
           git config user.email "arena@local"
           git add -f production/chessboard64/render-diag.log

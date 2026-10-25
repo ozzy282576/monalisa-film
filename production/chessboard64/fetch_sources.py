@@ -14,6 +14,7 @@ import sys
 import time
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -48,6 +49,12 @@ def digest(path: Path) -> str:
     return handle.hexdigest()
 
 
+def safe_url(url: str) -> str:
+    """Keep the storage path for diagnostics, but never print its signed query string."""
+    parts = urlsplit(url)
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
+
+
 def download(url: str, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     temporary = destination.with_suffix(destination.suffix + ".part")
@@ -67,9 +74,9 @@ def download(url: str, destination: Path) -> None:
             last_error = error
             temporary.unlink(missing_ok=True)
             if attempt < ATTEMPTS:
-                print(f"  retry {attempt}/{ATTEMPTS - 1} after {type(error).__name__}: {error}", flush=True)
+                print(f"  retry {attempt}/{ATTEMPTS - 1} after {type(error).__name__}", flush=True)
                 time.sleep(attempt * 5)
-    raise RuntimeError(f"Download failed for {url}: {last_error}")
+    raise RuntimeError(f"Download failed for {safe_url(url)}: {type(last_error).__name__}")
 
 
 def main() -> int:
@@ -99,7 +106,7 @@ def main() -> int:
         if destination.exists() and digest(destination) == receipt["sha256"]:
             report["reused"].append(sid)
             continue
-        print(f"FETCH {sid} {url}", flush=True)
+        print(f"FETCH {sid} {safe_url(url)} [signed query redacted]", flush=True)
         download(url, destination)
         found = digest(destination)
         if found != receipt["sha256"]:
