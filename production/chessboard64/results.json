@@ -756,10 +756,10 @@
     },
     "S38": {
       "id": "S38",
-      "status": "submitting",
+      "status": "failed",
       "request_hash": "e5849e58aa53a4704ee0ae596ef96bd5d8ef1eb9327b31f58e8e1b2611b9c7dc",
-      "error": null,
-      "updated_at": "2026-10-25T08:29:00Z"
+      "error": "Error code: 429, with error text {\"error\":{\"code\":\"1305\",\"message\":\"该模型当前访问量过大，请您稍后再试\"}}",
+      "updated_at": "2026-10-25T08:52:02Z"
     }
   },
   "workflow_policy": "cogvideox-flash-receipt-v2-refprobe",
@@ -804,6 +804,6 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T08:29:00Z",
+  "updated_at": "2026-10-25T08:52:02Z",
   "previous_results": {}
 }
