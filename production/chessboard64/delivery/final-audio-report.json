@@ -3,8 +3,8 @@
   "duration_seconds": 180.011,
   "sample_rate": 48000,
   "channels": 1,
-  "rms_dbfs": -26.31,
-  "peak_dbfs": -1.66,
+  "rms_dbfs": -26.2,
+  "peak_dbfs": -1.69,
   "window_seconds": 1.0,
   "silent_windows": 1,
   "window_count": 181,
@@ -14,44 +14,44 @@
     {
       "id": "N01",
       "start": 0.6,
-      "end": 29.136,
-      "rms_dbfs": -26.43,
-      "peak_dbfs": -2.41
+      "end": 29.124,
+      "rms_dbfs": -26.34,
+      "peak_dbfs": -2.12
     },
     {
       "id": "N02",
-      "start": 30.216,
-      "end": 63.054,
-      "rms_dbfs": -26.15,
-      "peak_dbfs": -1.66
+      "start": 30.204,
+      "end": 62.971,
+      "rms_dbfs": -26.0,
+      "peak_dbfs": -1.69
     },
     {
       "id": "N03",
-      "start": 64.134,
-      "end": 91.27,
-      "rms_dbfs": -25.98,
-      "peak_dbfs": -2.95
+      "start": 64.051,
+      "end": 91.139,
+      "rms_dbfs": -25.84,
+      "peak_dbfs": -2.64
     },
     {
       "id": "N04",
-      "start": 92.35,
-      "end": 119.802,
-      "rms_dbfs": -25.86,
-      "peak_dbfs": -2.92
+      "start": 92.219,
+      "end": 119.681,
+      "rms_dbfs": -25.78,
+      "peak_dbfs": -3.1
     },
     {
       "id": "N05",
-      "start": 120.882,
-      "end": 148.221,
-      "rms_dbfs": -25.5,
-      "peak_dbfs": -2.61
+      "start": 120.761,
+      "end": 148.079,
+      "rms_dbfs": -25.37,
+      "peak_dbfs": -2.44
     },
     {
       "id": "N06",
-      "start": 149.301,
+      "start": 149.159,
       "end": 174.0,
-      "rms_dbfs": -26.48,
-      "peak_dbfs": -3.01
+      "rms_dbfs": -26.4,
+      "peak_dbfs": -2.77
     }
   ],
   "measured_on": "delivered mp4"
