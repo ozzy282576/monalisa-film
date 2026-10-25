@@ -571,7 +571,8 @@ def main():
          '-frames:v','1','-q:v','3',preview])
     technical={**info,'sha256':digest(args.output),'decoded_ok':True,'status':'audio_verified_cut',
                'visual_review':'pending','caption_alignment':alignment,
-               'narration_voice_id':audio_manifest['voice_id'],'narration_tempo':narration[0]['tempo'],
+               'narration_voice_id':audio_manifest['voice_id'],'narration_pitch':audio_manifest.get('pitch'),
+               'narration_tempo':narration[0]['tempo'],
                'editorial_segments':len(edl),'source_clips':len(checks),'archival_portrait':False,'unique_shots_no_reuse':True,
                'output':args.output.name,
                'soundtrack_mix':{k:mix_report[k] for k in

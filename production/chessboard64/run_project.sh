@@ -15,15 +15,24 @@ echo "=== 六十四格 / branch=$BRANCH / output=$OUT ==="
 # 只校验完整计划，不调用付费路线；片段与旁白均按收据从外部存储按需恢复。
 python3 "$HERE/generate_cogvideox.py" --validate
 python3 -u "$HERE/fetch_sources.py" --dest "$WORK/clips"
-if python3 -u "$HERE/fetch_audio.py" --dest "$HERE/audio"; then
-  echo "NARRATION_SOURCE verified audio manifest/release"
-else
-  echo "NARRATION_SOURCE release unavailable; generate one consistent runner-side Chinese neural voice"
-  python3 -u "$HERE/generate_edge_audio.py" --voice "${EDGE_TTS_VOICE:-zh-CN-YunyangNeural}"
+generate_edge_narration() {
+  python3 -u "$HERE/generate_edge_audio.py" \
+    --voice "${EDGE_TTS_VOICE:-zh-CN-YunjianNeural}" \
+    --pitch "${EDGE_TTS_PITCH:--8Hz}"
   python3 -u "$HERE/tighten_pauses.py"
   python3 -u "$HERE/clause_times.py"
   python3 -u "$HERE/align_cuts_to_audio.py"
   python3 -u "$HERE/fetch_audio.py" --dest "$HERE/audio"
+}
+
+if [ "${FORCE_EDGE_TTS:-false}" = "true" ]; then
+  echo "NARRATION_SOURCE forced low suspense male Edge-TTS ${EDGE_TTS_VOICE:-zh-CN-YunjianNeural} ${EDGE_TTS_PITCH:--8Hz}"
+  generate_edge_narration
+elif python3 -u "$HERE/fetch_audio.py" --dest "$HERE/audio"; then
+  echo "NARRATION_SOURCE verified audio manifest/release"
+else
+  echo "NARRATION_SOURCE release unavailable; generate one consistent runner-side Chinese neural voice"
+  generate_edge_narration
 fi
 
 # 确保字幕与切点来自当前配音的真实停顿表；切点偏离时 fail closed。
@@ -65,6 +74,7 @@ for clip in audio_manifest.get('clips', []):
     audio_clips.append({'id': clip['id'], 'file': clip['file'], 'sha256': actual,
                         'bytes': path.stat().st_size, 'text': clip['text']})
 narration = {'voice_id': audio_manifest.get('voice_id'),
+             'pitch': audio_manifest.get('pitch'),
              'selection': audio_manifest.get('selection'), 'clips': audio_clips}
 (delivery / 'narration-manifest.json').write_text(json.dumps(narration, ensure_ascii=False, indent=2) + '\n')
 sha = hashlib.sha256(film.read_bytes()).hexdigest()
@@ -78,6 +88,7 @@ manifest = {
     'media_storage': 'GitHub Actions artifact only; never committed to Git',
     'artifact_name': 'chessboard64-film-' + os.environ.get('GITHUB_RUN_ID', 'local'),
     'narration_voice_id': narration['voice_id'],
+    'narration_pitch': narration['pitch'],
     'narration_selection': narration['selection'],
     'narration_clips': audio_clips,
     'technical_report': tech,

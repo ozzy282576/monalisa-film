@@ -19,7 +19,8 @@
     "PARK_VISITORS": "Ordinary anonymous park visitors of varied ages; everyday behavior, faces distant, turned away or indistinct.",
     "JURY": "Anonymous fictional Moscow jurors in modest 2000s clothes; seated quietly, distant indistinct faces.",
     "COURT_OFFICIAL": "Anonymous judge or court clerk in restrained formal clothes; back or distant silhouette, blank insignia, unreadable papers.",
-    "RELATIVES": "Fictional family members, dignified and anonymous; quiet backs or distant silhouettes, never melodramatic."
+    "RELATIVES": "Fictional family members, dignified and anonymous; quiet backs or distant silhouettes, never melodramatic.",
+    "SUPERMARKET_COWORKER": "Fictional anonymous early-2000s Moscow supermarket coworker in plain work clothes; ordinary posture, face indistinct, seen from behind or as a distant silhouette."
   },
   "principles": [
     "38个动态镜头均由智谱 CogVideoX-Flash 生成真实运动的3D动画片段；七张卡片为程序化排版，不以静帧推拉冒充动态镜头。",
@@ -141,17 +142,21 @@
       "start": 0,
       "duration": 4,
       "narration_id": "N01",
-      "prompt": "A bold, clearly visible 3D black-and-white chessboard is already fully exposed in the first frame on a dark soundstage. Fine red pinpoints glide smoothly across several squares while low mist drifts between raised tiles; reflections move naturally on polished stone. The camera continuously descends and tracks sideways for the entire shot. Steady exposure and smooth motion from first to last frame: no fade-in, flash, sudden brightness jump, or freeze. No text.",
-      "purpose": "黑白棋盘由暗到明，红色微光逐格出现",
+      "prompt": "Early-2000s Bitsa Park on a cool autumn afternoon. Two fictional anonymous chess players sit opposite one another at a worn stone table, one slim man in a plain charcoal jacket and one older visitor in a dark cap; show only their backs, shoulders and hands, never faces. The man moves one black chess piece one square, the older player studies the board and gently answers with a white piece. Wind stirs leaves and a distant passer-by crosses the path from left to right with a natural forward heel-to-toe gait. Camera tracks smoothly along the table at board height, continuous real 3D movement, stable exposure, no legible signs or text.",
+      "purpose": "比察公园里两位普通棋友对弈",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [],
+      "characters": [
+        "MAIN_FIGURE",
+        "ELDER",
+        "PARK_VISITORS"
+      ],
       "seed": 6400,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "高位俯拍，缓慢下降并略向右滑行",
+      "camera": "石桌高度横向移动，棋手只见背影",
       "sfx_note": "chess"
     },
     {
@@ -160,12 +165,13 @@
       "start": 4,
       "duration": 4,
       "narration_id": "N01",
-      "prompt": "At ground level, the camera moves between oversized chess squares; their black-and-white stone edges gradually become wet paving stones and windblown orange leaves without a hard cut. The path opens into a broad Moscow forest park in autumn, where a distant anonymous man waits at a stone chess table. Leaves keep moving in the wind throughout the transition, a single continuous 3D animated move.",
-      "purpose": "棋盘格化为莫斯科秋日公园小径",
+      "prompt": "At the same stone chess table, an anonymous slim man and older visitor sit as ordinary park acquaintances. The older visitor makes a small inviting gesture toward the board; the man nods and carefully studies the position, both calm and unremarkable. Frame from behind the older visitor's shoulder with the man's face outside the frame; background walkers move naturally from left to right with a forward heel-to-toe gait, their torsos facing their direction of travel. Wet paving, muted gray-green foliage, camera makes a measured side dolly with clear parallax, no readable text.",
+      "purpose": "看似普通棋友的日常交流",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
         "MAIN_FIGURE",
+        "ELDER",
         "PARK_VISITORS"
       ],
       "seed": 6401,
@@ -173,7 +179,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "贴近棋盘穿行，顺势前推",
+      "camera": "中景过肩轻轻横移，保持双方背影",
       "sfx_note": "leaves"
     },
     {
@@ -201,20 +207,17 @@
       "start": 12,
       "duration": 4,
       "narration_id": "N01",
-      "prompt": "Inside a modest neighborhood supermarket in early-2000s Moscow, an anonymous slim worker in a plain vest lifts a small carton, places it carefully on a shelf, checks the row and walks two steps to straighten another item. A coworker passes and nods; cold fluorescent tubes hum overhead, shoppers move softly in the far background. Smooth side-tracking camera, visible natural movement, no brand labels or readable packaging.",
-      "purpose": "社区超市里整理货品的日常",
+      "prompt": "A fictional early-2000s Moscow newspaper desk: blank, unprinted newspaper sheets and abstract clippings lie beside a small black-and-white chessboard and a vintage press camera. A soft camera flash blooms and fades as loose blank pages shift in a light draft, suggesting a nickname being coined by the media without showing a headline. No people, no legible writing, no portrait, no real newspaper, and no crime imagery. Slow physical lateral camera move across paper fibers and chess squares, restrained gray-green and deep navy lighting, continuous 3D motion.",
+      "purpose": "媒体报道中的绰号以棋盘隐喻呈现",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [
-        "MAIN_FIGURE",
-        "PARK_VISITORS"
-      ],
+      "characters": [],
       "seed": 6403,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "中景侧面跟拍，货架形成纵深",
+      "camera": "沿旧报纸与黑白棋盘横移，避开可读文字",
       "sfx_note": "machine"
     },
     {
@@ -223,21 +226,19 @@
       "start": 16,
       "duration": 4,
       "narration_id": "N01",
-      "prompt": "On a leaf-covered path in Bitsa Park at late afternoon, a small brown-and-white dog trots ahead on a loose leash while an anonymous slim man walks steadily behind it. Golden light filters through moving branches; a pair of elderly chess players sit far away at a stone table. The dog sniffs a leaf, turns, then continues; the camera tracks low beside them with true parallax and continuous motion.",
-      "purpose": "牵着棕白小狗走进秋日公园",
+      "prompt": "Editorial 3D metaphor on a dark desk: the anonymous man's hand points to a blank 8-by-8 chess-grid sketch in a notebook, then turns the notebook toward the camera as a few restrained red marks appear like a personal claim. Keep the marks abstract, show no number or readable writing, and make clear this is a claim rather than a court exhibit. A small file folder remains closed beside it. Overhead camera makes a slow continuous orbit; paper edges and lamp light shift naturally, no face or readable text.",
+      "purpose": "六十四格来自他的自述，而非司法结论",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "MAIN_FIGURE",
-        "DOG",
-        "ELDER"
+        "MAIN_FIGURE"
       ],
       "seed": 6404,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "低机位跟拍，逆光穿过树叶",
+      "camera": "俯拍空白棋盘图，慢速环绕",
       "sfx_note": "leaves"
     },
     {
@@ -246,17 +247,20 @@
       "start": 20,
       "duration": 4,
       "narration_id": "N01",
-      "prompt": "Low three-quarter view across a worn stone chess table in Bitsa park. A black knight and a white pawn stand correctly formed on alternating squares; a single red autumn leaf glides slowly across the board as sunlight shifts and the camera tracks laterally, then gently descends. No people, hands, arms, or faces anywhere in frame. Keep every chess piece stable and correctly shaped. One uninterrupted, smooth 3D camera move and visible environmental motion from first to last frame; no sudden changes.",
-      "purpose": "石桌上的黑白棋子与落子",
+      "prompt": "A restrained fictional 2007 Moscow courtroom reenactment viewed from the back of the gallery. Anonymous jurors seen only at a distance sit quietly while a clerk sets a plain judgment folder beside an unprinted 8-by-8 chess diagram. Two separate slim stacks of blank files suggest distinct judicial findings, but no numbers or readable text appear. Slow lateral dolly from the empty public gallery to the desk; natural window light and subtle page movement, all faces indistinct, no weapons, victim imagery, or real-person likeness.",
+      "purpose": "法院认定四十八起谋杀、三起未遂，区别于六十四格自述",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [],
+      "characters": [
+        "JURY",
+        "COURT_OFFICIAL"
+      ],
       "seed": 6405,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "棋盘高度缓慢横移",
+      "camera": "远景从旁听席缓慢横移至卷宗",
       "sfx_note": "chess"
     },
     {
@@ -265,21 +269,17 @@
       "start": 24,
       "duration": 4,
       "narration_id": "N01",
-      "prompt": "Wide aerial-to-eye-level move over an ordinary Moscow forest park on a cool autumn day: walkers cross the broad frame, a small ice-cream cart rolls slowly along the path with a completely blank canopy, older visitors sit on benches, and chess players move pieces at stone tables. The camera descends smoothly and settles behind one anonymous man among the visitors; no one looks into camera, no signs or text.",
-      "purpose": "平和公园全景中的散步与棋局",
+      "prompt": "An editorial visualization of an 8-by-8 chessboard on a dark walnut desk. Small red marks appear gradually across many squares as if someone is describing a goal; several squares remain clean, so the image never asserts a literal completed count. Camera glides in a smooth overhead arc while faint reflections and dust move. No number, caption, hand, or claim that this is forensic evidence. Restrained gray-green and navy palette, precise squares and stable red marks, continuous true 3D motion.",
+      "purpose": "六十四格目标是本人说法",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [
-        "MAIN_FIGURE",
-        "PARK_VISITORS",
-        "ELDER"
-      ],
+      "characters": [],
       "seed": 6406,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "广角缓慢下降并在人群后方停住",
+      "camera": "俯拍棋盘，红点逐格出现后停在空格",
       "sfx_note": "wind"
     },
     {
@@ -307,19 +307,20 @@
       "start": 32,
       "duration": 4,
       "narration_id": "N02",
-      "prompt": "Night inside a modest early-2000s Moscow apartment, seen over the shoulder of an anonymous seated figure whose face and hands stay entirely outside the frame. A desk lamp reveals an open blank notebook with a precise 8-by-8 chess grid and one small abstract red mark already on the page; a red pencil rolls a short distance and settles beside it, the page corner lifts in a faint draft, and dust moves through the lamp beam. The camera makes a smooth continuous lateral track toward the grid. No letters, numbers, legible text, fingers, or close-up hands; no flicker or freeze.",
-      "purpose": "昏暗书桌上绘制棋盘记号",
+      "prompt": "In an early-2000s neighborhood supermarket in Moscow, an anonymous slim adult worker in a plain unbranded vest organizes cans and cartons on a shelf. He checks one row, steps forward naturally toward the next shelf with his torso facing the direction of travel, and places a carton at waist height; a coworker passes in the background, also walking forward with an ordinary heel-to-toe gait. Keep both figures from behind or in soft silhouette, with no readable packaging, labels, or faces. Cool fluorescent light, smooth side-tracking camera through the aisle, continuous motion.",
+      "purpose": "三十三岁受审的被告成年后在超市理货",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "MAIN_FIGURE"
+        "MAIN_FIGURE",
+        "SUPERMARKET_COWORKER"
       ],
       "seed": 6408,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "缓慢推近手与笔记本",
+      "camera": "超市货架间侧向跟拍，人物只见背影",
       "sfx_note": "paper"
     },
     {
@@ -329,16 +330,16 @@
       "duration": 4,
       "narration_id": "N02",
       "prompt": "",
-      "purpose": "数字卡：六十四格自述与司法认定的区别",
+      "purpose": "地点卡：莫斯科南部比察公园",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
-      "graphic": "FACT CARD — 64格：他的目标说法 / 63：本人曾声称 / 48起谋杀 + 3起未遂：法院认定。明确区分自述与定罪。程序化排字。",
+      "graphic": "FACT CARD — 莫斯科南部 · 比察公园 / 下班后常去的公园 / 石桌、长椅与日常棋局。程序化排字。",
       "characters": [],
       "seed": 6409,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "信息卡；红色标记由虚转实",
+      "camera": "信息卡；红线从公园小径延至棋桌",
       "sfx_note": "chess"
     },
     {
@@ -347,17 +348,20 @@
       "start": 40,
       "duration": 4,
       "narration_id": "N02",
-      "prompt": "A large black-and-white chessboard floats above a dark forest floor. Selected squares brighten as a subtle red line traces an abstract network of park paths between them; drifting mist passes behind the board and branches sway below. The camera circles overhead and slowly lowers, showing real depth and parallax. No numbers, names or claim that the pattern is an actual map.",
-      "purpose": "悬浮棋盘逐渐显出林间路径",
+      "prompt": "Wide establishing view of Bitsa forest park in early-2000s Moscow on an autumn afternoon. Several worn stone chess tables and simple benches stand along the path; anonymous visitors play chess quietly. One adult park visitor walks toward the stone tables with a natural heel-to-toe gait, torso and feet aligned in the direction of travel; figures are distant and faces indistinct. Wet leaves shift in the breeze, branches move gently, camera glides forward and descends toward the stone tables with clear parallax. Muted gray-green and deep navy, no readable signs or text.",
+      "purpose": "比察公园的石桌、长椅与日常棋局",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [],
+      "characters": [
+        "PARK_VISITORS",
+        "ELDER"
+      ],
       "seed": 6410,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "环绕俯拍，缓慢下沉",
+      "camera": "广角沿步道前移，向石桌轻轻下降",
       "sfx_note": "heartbeat"
     },
     {
@@ -388,8 +392,8 @@
       "start": 48,
       "duration": 4,
       "narration_id": "N02",
-      "prompt": "From the park entrance, two distant anonymous figures walk side by side along a leaf-strewn path into the trees. A few leaves cross the foreground and the figures gradually disappear behind trunks while the camera remains still; branches continue to sway. The figures stay separate and distant, with faces hidden; hold the empty path after they pass.",
-      "purpose": "两道背影沿小路走远",
+      "prompt": "At a quiet stone chess table in Bitsa Park, an anonymous slim man sits beside an older visitor, both seen from behind. A simple worn leash and small blank dog tag rest on the bench beside them as the man gestures gently toward the keepsake, then returns his hand to the chessboard; the older visitor gives a quiet nod, treating him like a familiar chess partner. The dog is not shown; no readable tag, no injury or harm. Leaves move in the background, steady lateral camera dolly, restrained and respectful.",
+      "purpose": "悼念小狗是他给出的理由，人们只当他是熟悉棋友",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
@@ -401,7 +405,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "固定机位，树叶前景掠过",
+      "camera": "桌面高度横移，从空狗绳转向棋盘",
       "sfx_note": "leaves"
     },
     {
@@ -410,19 +414,17 @@
       "start": 52,
       "duration": 4,
       "narration_id": "N02",
-      "prompt": "An empty park bench beside a stone chess table after sunset. A single black chess piece rocks gently in the breeze and settles on its side; leaves slide across the paving while distant visitors pass as soft silhouettes. The camera slowly pulls backward, revealing the quiet empty space around the table in a restrained, respectful composition.",
-      "purpose": "空长椅与遗落的棋子",
+      "prompt": "A close overhead 3D editorial shot of a blank 8-by-8 grid and unnumbered notebook on a dark desk. Restrained red pencil marks accumulate one by one across separate squares as a visual metaphor for a personal claim; several squares stay unmarked. The camera advances slowly and arcs slightly while a pencil rolls a short distance and stops. No exact count, no written number or letters, and no suggestion that this is an official evidence record.",
+      "purpose": "六十三个记号是他本人声称留下的",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [
-        "PARK_VISITORS"
-      ],
+      "characters": [],
       "seed": 6413,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "低角度缓慢拉远",
+      "camera": "俯拍棋盘与记号本，慢慢显出空格",
       "sfx_note": "wind"
     },
     {
@@ -431,19 +433,17 @@
       "start": 56,
       "duration": 4,
       "narration_id": "N02",
-      "prompt": "A slow overhead view of a stone chess table in an almost empty park. The checker pattern briefly overlays the paving, then the red markers fade while several empty benches remain in view; a few ordinary visitors walk beyond the trees. The camera descends and settles at table height, changing the metaphor from tally to remembrance; visitors remain ordinary people in the distance.",
-      "purpose": "被填满的不是分数而是空座位",
+      "prompt": "The camera glides low across a symbolic black-and-white 8-by-8 chessboard with many small abstract red markers and a few blank squares; it pauses over the remaining empty squares to suggest the man's own nearly-full claim, not a verified count. A red reflection shimmers softly across the polished tiles while focus shifts from marked squares to clean squares. No people, readable number, text, or forensic-evidence implication; smooth continuous 3D camera movement.",
+      "purpose": "棋盘几乎被填满仍只是他的说法",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [
-        "PARK_VISITORS"
-      ],
+      "characters": [],
       "seed": 6414,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "由高位缓慢下降至棋盘与长椅",
+      "camera": "低位沿未标记空格缓慢推进",
       "sfx_note": "wind"
     },
     {
@@ -452,8 +452,8 @@
       "start": 60,
       "duration": 4,
       "narration_id": "N03",
-      "prompt": "A restrained 2002 hospital-corridor reenactment: an anonymous adult woman witness in a plain coat sits with her back to camera while a tired officer listens and writes in a completely blank notebook. She rises, walks slowly toward a rain-streaked window and exits frame; her face remains outside the frame. The camera follows at a respectful distance, holding a quiet, composed tone.",
-      "purpose": "幸存者在医院向警方报告后离开",
+      "prompt": "A restrained 2002-era Moscow police station corridor, used only as a general reconstruction of the reported setting, not a verified specific location. An adult woman witness walks forward toward a plain reception desk with natural heel-to-toe steps, seen strictly from behind; an anonymous investigator waits in soft silhouette beyond a frosted-glass partition. The camera follows at a respectful distance, steady and slow, while cool window light shifts over old floor tiles. No hospital, no signs, no readable date or text, no face, no incident depiction, no dramatic behavior.",
+      "purpose": "二〇〇二年幸存者报案线索的时代背景",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
@@ -465,7 +465,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "中景跟随背影，留出充足空间",
+      "camera": "从背后跟随进入旧警署接待区，保持面部不可见",
       "sfx_note": "wind"
     },
     {
@@ -474,11 +474,12 @@
       "start": 64,
       "duration": 4,
       "narration_id": "N03",
-      "prompt": "In a cold gray police office, stacks of unmarked case folders slide across a desk as an investigator sorts them. One thin folder is briefly pushed aside, then a red thread is drawn from it to a simple park map; papers lift slightly in the airflow from a fan. Overhead camera descends, all pages blank and unreadable.",
-      "purpose": "档案被推到一旁又被红线连接",
+      "prompt": "A restrained 2002 reenactment at a generic Moscow police reception desk. An adult woman witness sits with her back to camera, face never visible; she calmly speaks to an anonymous investigator who listens and writes only abstract lines in a blank notebook. The woman keeps her hands together on the desk; no physical incident is shown and no readable form or insignia appears. The investigator gives one attentive nod as the camera moves gently from over her shoulder toward the blank notebook; muted cold light, continuous subtle motion, dignified and non-sensational.",
+      "purpose": "女性幸存者在二〇〇二年向警方报告",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
+        "WITNESS",
         "INVESTIGATOR"
       ],
       "seed": 6416,
@@ -486,7 +487,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "俯拍缓慢下压",
+      "camera": "过肩背影缓慢横移，停在倾听的调查员",
       "sfx_note": "paper"
     },
     {
@@ -557,20 +558,20 @@
       "start": 80,
       "duration": 4,
       "narration_id": "N03",
-      "prompt": "Inside a small Moscow apartment at sunset, a folded blank note already rests beside a cup in the foreground. In the background an adult woman in a pale coat and her teenage son are seen strictly from behind, their faces fully outside the camera view; they quietly walk toward the doorway and leave together, while the curtain moves in the evening breeze. The camera smoothly tracks from the note toward their receding silhouettes, with gentle lamp and window light shifting throughout. No visible face, no close-up hands, no readable writing, no stillness or sudden motion.",
-      "purpose": "母亲留下纸条并与儿子告别",
+      "prompt": "Inside a modest Moscow apartment in 2006, a fictional adult woman in a pale coat places a folded blank note beside a corded phone before leaving; a dark coat hangs by the door. Her adult male coworker waits as an out-of-focus silhouette in the hall. Show the woman strictly from behind, her face outside frame; she takes one calm step toward the doorway with a natural forward gait while the note stays clearly visible in the foreground. The camera makes a steady physical dolly from note to doorway; no readable writing, no child, or phone screen.",
+      "purpose": "玛丽娜出门前留下纸条",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
         "WOMAN_COWORKER",
-        "SON"
+        "MAIN_FIGURE"
       ],
       "seed": 6420,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "中景缓慢推向桌面纸条",
+      "camera": "从纸条缓慢移向门口的背影人物",
       "sfx_note": "paper"
     },
     {
@@ -579,21 +580,19 @@
       "start": 84,
       "duration": 4,
       "narration_id": "N03",
-      "prompt": "A restrained, clearly fictional 3D reenactment in a modest Moscow apartment, filmed from low behind a table. A folded blank note stays sharp in the foreground. Beyond it, an adult woman in a pale coat and a slim man in a dark jacket walk away from the camera through the doorway; both are shown strictly from behind, and their heads remain turned away for the entire shot. A teenage boy stays inside near the doorway, also facing away, with his head hidden behind the doorframe. The door eases toward closing as a curtain moves in the window breeze. The camera makes one smooth physical dolly from the note toward the doorway without passing or orbiting around anyone. No face, profile, reflection, mirror, head turn, readable writing, flicker, or sudden movement; this is an illustrative reconstruction, not original footage.",
-      "purpose": "纸条留在桌上两人走出门",
+      "prompt": "Close overhead view of a small paper note on an early-2000s desk beside a simple pen and a corded phone. An adult woman's hand adds two short abstract ink lines and several indistinct strokes to represent a companion's name and telephone number, then folds the note once; every mark remains completely illegible and no actual phone number appears. Her face and body stay outside the frame. The camera tracks gently across the paper and a chessboard-pattern coaster as lamp light shifts. Continuous natural hand motion, realistic fingers, no readable text or extra objects.",
+      "purpose": "纸条上写下同行者姓名与电话",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "WOMAN_COWORKER",
-        "SON",
-        "MAIN_FIGURE"
+        "WOMAN_COWORKER"
       ],
       "seed": 6421,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "桌后低位向门口平稳推进，全程只见背影",
+      "camera": "俯拍笔与纸条，手写不可读的抽象线条",
       "sfx_note": "paper"
     },
     {
@@ -623,20 +622,19 @@
       "start": 92,
       "duration": 4,
       "narration_id": "N04",
-      "prompt": "A supermarket staff corridor in 2006 Moscow. An anonymous woman in a pale coat and a slim male coworker walk toward the exit at an unhurried pace, seen from behind; a staff door swings slowly shut and fluorescent lights hum overhead. Their shadows cross the black-and-white tiled floor, a subtle visual bridge to the chessboard, no signs or brand marks.",
-      "purpose": "玛丽娜与同事离开超市休息室",
+      "prompt": "A restrained illustrative reconstruction in a dim evidence room. A plain woman's coat lies open on a desk; an unprinted old Moscow metro ticket is visible inside its pocket beside a sealed blank note. An anonymous investigator wearing charcoal gloves gently opens the pocket edge and points without removing or deforming the ticket. The camera makes a smooth lateral move from coat fabric to ticket; soft dust motes and subtle cloth movement, no readable print or face, clearly an illustration and not original evidence.",
+      "purpose": "警方发现她衣袋里的地铁票",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "WOMAN_COWORKER",
-        "MAIN_FIGURE"
+        "INVESTIGATOR"
       ],
       "seed": 6423,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "过肩跟随两人穿过走廊",
+      "camera": "桌面微距横移，从外套口袋移向车票",
       "sfx_note": "keys"
     },
     {
@@ -645,19 +643,20 @@
       "start": 96,
       "duration": 4,
       "narration_id": "N04",
-      "prompt": "On a police desk, an old paper metro ticket with no readable print lies beside a folded blank note and a small black chess piece. A gloved investigator's hand aligns the ticket with a red thread leading to one square on a chessboard diagram; dust moves in the desk-lamp beam as the camera tracks across the evidence.",
-      "purpose": "地铁票与棋盘形成匹配剪辑",
+      "prompt": "A stylized early-2000s subway station shown only on a single old CCTV monitor, clearly a reenactment rather than authentic footage. Two anonymous adult silhouettes move side by side toward a far platform exit, torsos and feet aligned with their direction of travel and taking natural continuous heel-to-toe steps. Faces remain indistinct and no station signs, timestamps, or readable text appear. Stable analog scan lines, no flicker or freeze, camera slowly dollies toward the monitor while both figures keep moving continuously.",
+      "purpose": "车站监控显示两人同行",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "INVESTIGATOR"
+        "WOMAN_COWORKER",
+        "MAIN_FIGURE"
       ],
       "seed": 6424,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "微距横移，焦点从票移到棋格",
+      "camera": "从监控屏远景缓慢推近，保持持续播放",
       "sfx_note": "paper"
     },
     {
@@ -666,8 +665,8 @@
       "start": 100,
       "duration": 4,
       "narration_id": "N04",
-      "prompt": "An anonymous investigator studies a wall of old analog monitors and a paper street map. On one screen, two distant silhouettes cross a station platform; the investigator draws a thin red line on the map from the metro area toward a wooded park, then pins the map in place. No legible station names or timestamps; slow forward camera move.",
-      "purpose": "监控室中的红线连接地铁与公园",
+      "prompt": "In a quiet early-2000s evidence room, a single old CRT monitor shows two anonymous adult silhouettes walking side by side through a generic station, both moving forward naturally in the direction they face. The camera tracks from the moving screen image to a blank folded note and an unprinted metro ticket laid beside it on the desk. This is a clearly illustrative reconstruction, not authentic CCTV; no readable text, station signage, timestamps, or faces. A dust mote crosses the desk-lamp beam as the single continuous lateral dolly continues.",
+      "purpose": "监控显示同行后，纸条与地铁票进入证据链",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
@@ -680,7 +679,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "沿桌面缓慢推进",
+      "camera": "从监控画面缓慢横移至纸条和地铁票",
       "sfx_note": "machine"
     },
     {
@@ -729,21 +728,19 @@
       "start": 112,
       "duration": 4,
       "narration_id": "N04",
-      "prompt": "A quiet early-2000s monitoring room with one bulky CRT screen. On the screen two anonymous figures continue walking steadily side by side along a subway platform, seen from behind with indistinct faces; soft scan lines remain stable, not flickering. A dark investigator silhouette stands well behind the monitor without touching the controls. The camera makes a slow, even dolly toward the moving screen image for the entire shot. No readable station signs, no freeze, no flashing, no sudden camera movement; clearly a stylized reenactment, not original CCTV.",
-      "purpose": "老式监控屏幕里两道身影同行",
+      "prompt": "On an investigator's desk, an unprinted metro ticket rests beside a simple paper map with a dark-green wooded area and an unmarked chessboard square. A thin red thread is laid from the ticket toward the park area and stops there, showing the inquiry route back to Bitsa Park. An anonymous gloved hand moves the thread carefully; no exact geographic map, station name, date, or legible writing. Smooth overhead physical camera push with parallax, papers shift slightly in the desk-lamp breeze.",
+      "purpose": "调查从地铁票追到比察公园",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "INVESTIGATOR",
-        "WOMAN_COWORKER",
-        "MAIN_FIGURE"
+        "INVESTIGATOR"
       ],
       "seed": 6428,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "缓慢推近屏幕，画面暂停",
+      "camera": "俯拍车票、红线与公园地图，平稳推进",
       "sfx_note": "machine"
     },
     {
@@ -792,8 +789,8 @@
       "start": 124,
       "duration": 4,
       "narration_id": "N05",
-      "prompt": "In Bitsa Park on an overcast morning, two anonymous plainclothes officers step into view from behind tree trunks at a respectful distance. A slim man in a dark coat stops walking, turns slightly and raises his open hands to shoulder level without resistance; distant vehicle lights glow through mist. The figures remain several steps apart and composed; camera slides laterally in a steady medium-wide shot.",
-      "purpose": "公园中便衣警察出现而男子停步",
+      "prompt": "Overcast Bitsa Park, June 2006 reenactment. A fictional anonymous man in a dark coat is already walking forward along a path, torso and feet facing the same direction with natural heel-to-toe steps; two plainclothes investigators approach from ahead and signal him to stop at a respectful distance. He stops, turns only his shoulders, and raises open hands calmly; no contact, force, weapon, struggle, or running. Frame everyone from behind or at distant silhouette scale with indistinct faces. Camera tracks laterally in one steady medium-wide move; natural forward gait with torso and feet aligned in the direction of travel.",
+      "purpose": "二〇〇六年六月十六日逮捕的克制情景重现",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
@@ -805,7 +802,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "中景缓慢侧移，不接触人物",
+      "camera": "中远景侧移，人物自然向前后停下",
       "sfx_note": "keys"
     },
     {
@@ -815,16 +812,16 @@
       "duration": 4,
       "narration_id": "N05",
       "prompt": "",
-      "purpose": "逮捕日期卡：2006年6月16日",
+      "purpose": "信息卡：住处搜查与棋盘记号相关证物",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
-      "graphic": "FACT CARD — 2006年6月16日 / 皮丘什金被捕 / 纸条、地铁票与监控线索共同推动调查。程序化排字，不冒充警方原始档案。",
+      "graphic": "FACT CARD — 住处搜查 / 公开报道：警方找到与棋盘记号相关的证物 / 示意画面，非警方原始证物。程序化排字。",
       "characters": [],
       "seed": 6432,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "信息卡；棋盘红点由亮转为静止",
+      "camera": "信息卡；案卷与棋盘格隐约显现",
       "sfx_note": "press"
     },
     {
@@ -833,19 +830,20 @@
       "start": 132,
       "duration": 4,
       "narration_id": "N05",
-      "prompt": "Inside an apartment after the arrest, anonymous investigators in plain dark jackets open a desk drawer and carefully examine a small chessboard beside a blank notebook. Geometric paper squares and a single unmarked token suggest the reported chessboard motif without recreating original evidence. A gloved finger pauses over the pattern; dust rises in cold window light. The page stays blank and faces remain indistinct; one continuous overhead tracking shot.",
-      "purpose": "警方搜查中发现与棋盘记号相关的证物",
+      "prompt": "A restrained fictional October 2007 Moscow courtroom viewed from the public gallery. Anonymous jurors sit behind a long wooden bench as a clerk places one plain judgment folder on the desk; the jurors remain quiet apart from natural page turning and a subtle nod. The camera glides slowly sideways from the bench toward the folder. All faces are distant and indistinct; no readable document text, spectacle, weapon, or violence.",
+      "purpose": "二〇〇七年陪审团认定四十八起谋杀",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "INVESTIGATOR"
+        "JURY",
+        "COURT_OFFICIAL"
       ],
       "seed": 6433,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "俯拍缓慢横移，手指停在空格旁",
+      "camera": "从陪审席侧面缓慢横移至判决卷宗",
       "sfx_note": "paper"
     },
     {
@@ -854,12 +852,11 @@
       "start": 136,
       "duration": 4,
       "narration_id": "N05",
-      "prompt": "A restrained 2007 Moscow courtroom reenactment from a distant side angle. Anonymous fictional jurors sit behind a long wooden bench, faces completely indistinct; one juror slowly turns a blank paper folder page while another makes a subtle thoughtful nod. A clerk crosses the far background at an unhurried pace. The camera performs one continuous, steady lateral dolly from the empty folder toward the jury for the full shot. Natural small movements throughout, no freeze, no readable documents, no theatrics, no clear faces.",
-      "purpose": "陪审团阅览空白卷宗后合议",
+      "prompt": "Wide restrained view of a fictional Moscow courtroom after the 2007 verdict. A clerk closes a blank judgment folder beside an empty judge's bench while window light moves across the wood; a quiet institutional corridor is visible beyond the open doorway. The camera descends slowly from the high gallery toward the closed folder, expressing a formal life-sentence conclusion without dramatization. No legible text, faces, defendant close-up, gavel strike, or real-person likeness.",
+      "purpose": "法院认定三起未遂并判处终身监禁",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "JURY",
         "COURT_OFFICIAL"
       ],
       "seed": 6434,
@@ -867,7 +864,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "中景缓慢横移，从卷宗移向陪审席",
+      "camera": "远景缓慢下降至合上的判决卷宗",
       "sfx_note": "paper"
     },
     {
@@ -876,21 +873,17 @@
       "start": 140,
       "duration": 4,
       "narration_id": "N05",
-      "prompt": "A restrained 2007 Moscow courtroom reenactment: an anonymous male silhouette stands behind a reinforced glass defendant enclosure, head lowered, while a judge and jurors remain distant silhouettes. A court clerk turns one page and reflections shift across the glass; camera slowly advances and arcs a few degrees around the enclosure. Documents remain blank and faces indistinct.",
-      "purpose": "2007年莫斯科法庭的匿名被告席",
+      "prompt": "A symbolic judicial desk with two visibly separate blank folders: one contains an abstract hand-drawn chess grid and a few red marks, representing a personal claim; the other is a plain sealed court file representing the court record. A thin neutral line of light separates them as the camera slides smoothly from the grid page to the sealed folder. No readable numbers, labels, names, or human figure; the composition clearly distinguishes personal statement from judicial finding and does not assign an unverified count.",
+      "purpose": "六十三是本人自述，不能与法院认定混同",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [
-        "MAIN_FIGURE",
-        "JURY",
-        "COURT_OFFICIAL"
-      ],
+      "characters": [],
       "seed": 6435,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "缓慢推近，轻微环绕玻璃隔间",
+      "camera": "两份案卷分隔，横向滑动强调自述与判决的区别",
       "sfx_note": "press"
     },
     {
@@ -899,19 +892,19 @@
       "start": 144,
       "duration": 4,
       "narration_id": "N05",
-      "prompt": "A blank court folder closes gently on a wooden table; a black chess piece and a pale square of window light sit beside it. In the background, anonymous relatives leave the courtroom corridor at a slow walking pace, seen only from behind. The camera pulls back to include the folder, the chess square and the empty doorway, no legible text.",
-      "purpose": "判决文件合上，空棋格映出窗光",
+      "prompt": "On a quiet courtroom desk, an anonymous clerk lays three blank evidence sleeves in a row beside a closed judgment folder; their edges align, and the clerk's hand withdraws. A chessboard pattern is visible only as a faint reflection on the table, not as an official exhibit. The camera tracks continuously along the folders to the file, emphasizing that court findings come from evidence rather than a personal claim. No readable text, relatives, faces, weapon, or violent imagery.",
+      "purpose": "法庭结论来自证据，而不是个人自述",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "RELATIVES"
+        "COURT_OFFICIAL"
       ],
       "seed": 6436,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "从纸张特写缓慢拉远",
+      "camera": "沿案卷与线索袋缓慢横移至合上的判决卷宗",
       "sfx_note": "paper"
     },
     {
@@ -920,17 +913,19 @@
       "start": 148,
       "duration": 4,
       "narration_id": "N05",
-      "prompt": "A long institutional corridor with gray walls and evenly spaced ceiling lights. The camera retreats smoothly as the lights dim one by one from far end toward foreground; a heavy door closes slowly at the end of the hall while the camera keeps retreating. A black-and-white floor pattern echoes a chessboard; subdued cool light and deep perspective.",
-      "purpose": "监狱长廊的灯逐盏变暗",
+      "prompt": "A research desk with several anonymous closed source folders arranged beside blank unprinted newspaper clippings and a simple 8-by-8 chess-grid diagram. Small colored tabs organize the files, but every label remains unreadable; the camera slides slowly from one folder to another as pages and lamp shadows shift. An investigator's hands briefly place a plain reference card beside the files, with no text. The scene represents citing each number to public reporting and court records, not presenting a specific source as original evidence.",
+      "purpose": "每个数字都要说明来源",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [],
+      "characters": [
+        "INVESTIGATOR"
+      ],
       "seed": 6437,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "对称构图缓慢后退",
+      "camera": "沿档案、空白剪报与来源标签缓慢横移",
       "sfx_note": "keys"
     },
     {
@@ -940,16 +935,16 @@
       "duration": 4,
       "narration_id": "N06",
       "prompt": "",
-      "purpose": "判决卡：法院认定与自述分栏",
+      "purpose": "信息卡：判决写入案卷，受害者不是数字",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
-      "graphic": "法院认定：48起谋杀、3起未遂 / 个人声称：63人 / 2007年10月：终身监禁。两栏明确区分司法认定与自述；程序化排字。",
+      "graphic": "FACT CARD — 判决写在案卷里 / 受害者不是数字 / 每一格背后，都是一个真实的人。程序化排字。",
       "characters": [],
       "seed": 6438,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "程序化排字；两列数字以金色细线分开",
+      "camera": "信息卡；红线退去后露出白色空格",
       "sfx_note": "press"
     },
     {
@@ -977,20 +972,19 @@
       "start": 160,
       "duration": 4,
       "narration_id": "N06",
-      "prompt": "A final wide view of a stone chessboard in a quiet Moscow park at sunrise. Warm light travels across alternating pale and dark squares while the empty chair beside it remains in frame; branches sway and the small brown-and-white dog crosses the far background with its leash trailing to an unseen walker. Camera glides gently along the table, ending on the bright empty squares.",
-      "purpose": "晨光照亮棋盘与空椅",
+      "prompt": "At sunrise in a quiet Moscow park, an anonymous fictional family stands together beside an empty stone chess table: two adults and one child, seen only from behind or as distant silhouettes, quietly holding hands without showing faces. An empty chair remains beside the table; leaves stir softly and warm light crosses the black-and-white squares. The family stays still and dignified as the camera gently glides from the empty chair to their backs. No victim is shown, no dog or memorial text, no melodrama, no readable signs.",
+      "purpose": "失去亲人的家庭也应被看见",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
-        "DOG",
-        "PARK_VISITORS"
+        "RELATIVES"
       ],
       "seed": 6440,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "缓慢横移，光线逐格经过",
+      "camera": "远景从空棋桌缓慢移向家人的背影",
       "sfx_note": "wind"
     },
     {
@@ -1039,8 +1033,8 @@
       "start": 172,
       "duration": 4,
       "narration_id": "N06",
-      "prompt": "A calm Moscow park path in autumn, seen in a broad 16:9 composition. Ordinary anonymous visitors walk naturally in both directions, leaves drift in the wind, and sunlight moves between branches; the stone chess table remains in the far left third, not dominating the scene. The camera slowly cranes upward to reveal the width of the park and the quiet everyday life continuing.",
-      "purpose": "公园树影中行人继续向前",
+      "prompt": "A quiet autumn morning in Bitsa Park. A worn stone chess table with an unfinished ordinary game sits clearly in the foreground, surrounded by benches and wet leaves. In the far background, a single anonymous visitor walks forward across the path with a natural heel-to-toe gait, torso and feet aligned in the direction of travel; other visitors remain distant silhouettes. The camera slowly cranes upward from the black-and-white board to the surrounding park, continuous real 3D motion, subdued gray-green and deep navy, no text.",
+      "purpose": "棋盘回到公园石桌，普通生活继续",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
       "characters": [
@@ -1051,7 +1045,7 @@
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "广角慢慢升高，保持横向空间",
+      "camera": "从棋桌缓慢升高，保持横向空间",
       "sfx_note": "wind"
     },
     {
@@ -1084,9 +1078,9 @@
         "一宗真实案件 · AI动画情景重现"
       ],
       "S10": [
-        "两个数字，不能混为一谈",
-        "六十四格：他声称的目标",
-        "48起谋杀 + 3起未遂：法院认定"
+        "莫斯科南部 · 比察公园",
+        "下班后常去的公园",
+        "石桌、长椅与日常棋局"
       ],
       "S18": [
         "线索未被及时跟进 · 2002",
@@ -1099,14 +1093,14 @@
         "地铁票 + 车站监控显示两人同行"
       ],
       "S33": [
-        "2006年6月16日",
-        "亚历山大·皮丘什金被捕",
-        "公开报道：纸条、车票与监控相互印证"
+        "住处搜查 · 公开报道",
+        "警方发现与棋盘记号相关的证物",
+        "示意画面 · 非警方原始证物"
       ],
       "S39": [
-        "2007年10月 · 法院判决",
-        "48起谋杀 · 3起未遂",
-        "终身监禁；63人为其本人声称"
+        "判决写在案卷里",
+        "受害者不是数字",
+        "每一格背后，都是一个真实的人"
       ],
       "S45": [
         "棋盘上的每一格，都是一个人",

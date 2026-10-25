@@ -75,6 +75,9 @@ jobs:
       - name: Validate, restore media on demand, render and publish text-only receipts
         env:
           SKIP_ASR: ${{ inputs.skip_asr || 'false' }}
+          FORCE_EDGE_TTS: 'true'
+          EDGE_TTS_VOICE: 'zh-CN-YunjianNeural'
+          EDGE_TTS_PITCH: '-8Hz'
           FILM_NAME: ${{ env.FILM_NAME }}
           BRANCH: arena/56672981-monalisa-film
           GH_TOKEN: ${{ github.token }}
