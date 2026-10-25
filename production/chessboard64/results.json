@@ -557,10 +557,11 @@
     },
     "S28": {
       "id": "S28",
-      "status": "submitting",
+      "status": "queued",
       "request_hash": "fcd0a6ef70c030a13aa58523b6990b9c71afcaf133af594b8766f906fade6d6d",
       "error": null,
-      "updated_at": "2026-10-25T11:04:29Z"
+      "updated_at": "2026-10-25T11:05:05Z",
+      "task_id": "202610251905054d564da27e184f54"
     },
     "S29": {
       "id": "S29",
@@ -941,7 +942,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-25T11:04:29Z",
+  "updated_at": "2026-10-25T11:05:05Z",
   "previous_results": {
     "S06": [
       {
