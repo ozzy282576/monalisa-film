@@ -3,55 +3,55 @@
   "duration_seconds": 180.011,
   "sample_rate": 48000,
   "channels": 1,
-  "rms_dbfs": -26.49,
-  "peak_dbfs": -1.91,
+  "rms_dbfs": -26.31,
+  "peak_dbfs": -1.66,
   "window_seconds": 1.0,
-  "silent_windows": 2,
+  "silent_windows": 1,
   "window_count": 181,
-  "silent_fraction": 0.011,
+  "silent_fraction": 0.0055,
   "quietest_window_dbfs": -120.0,
   "chapters": [
     {
       "id": "N01",
       "start": 0.6,
-      "end": 29.109,
-      "rms_dbfs": -26.61,
-      "peak_dbfs": -2.58
+      "end": 29.136,
+      "rms_dbfs": -26.43,
+      "peak_dbfs": -2.41
     },
     {
       "id": "N02",
-      "start": 30.189,
-      "end": 63.006,
-      "rms_dbfs": -26.32,
-      "peak_dbfs": -1.91
+      "start": 30.216,
+      "end": 63.054,
+      "rms_dbfs": -26.15,
+      "peak_dbfs": -1.66
     },
     {
       "id": "N03",
-      "start": 64.086,
-      "end": 91.207,
-      "rms_dbfs": -26.16,
-      "peak_dbfs": -3.0
+      "start": 64.134,
+      "end": 91.27,
+      "rms_dbfs": -25.98,
+      "peak_dbfs": -2.95
     },
     {
       "id": "N04",
-      "start": 92.287,
-      "end": 119.744,
-      "rms_dbfs": -26.04,
-      "peak_dbfs": -3.52
+      "start": 92.35,
+      "end": 119.802,
+      "rms_dbfs": -25.86,
+      "peak_dbfs": -2.92
     },
     {
       "id": "N05",
-      "start": 120.824,
-      "end": 148.137,
-      "rms_dbfs": -25.68,
-      "peak_dbfs": -3.04
+      "start": 120.882,
+      "end": 148.221,
+      "rms_dbfs": -25.5,
+      "peak_dbfs": -2.61
     },
     {
       "id": "N06",
-      "start": 149.217,
+      "start": 149.301,
       "end": 174.0,
-      "rms_dbfs": -26.68,
-      "peak_dbfs": -3.05
+      "rms_dbfs": -26.48,
+      "peak_dbfs": -3.01
     }
   ],
   "measured_on": "delivered mp4"

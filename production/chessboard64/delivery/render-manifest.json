@@ -1,59 +1,59 @@
 {
   "project": "chessboard64",
   "film_name": "六十四格_国际象棋盘杀手_三分钟_带声音.mp4",
-  "sha256": "9a7f5e6acd6fd70bf47bfccb2e04a00fd0ba97675eeb1ee43b5d676e530172bb",
-  "bytes": 70614081,
+  "sha256": "beddd5432d35fd5c1682b85e380a9e647f912abbd69477bc9d8786b746d5f6cd",
+  "bytes": 70602416,
   "media_storage": "GitHub Actions artifact only; never committed to Git",
-  "artifact_name": "chessboard64-film-40191395380",
+  "artifact_name": "chessboard64-film-40194755218",
   "narration_voice_id": "zh-CN-YunyangNeural",
   "narration_selection": "Runner-side fallback neural narrator zh-CN-YunyangNeural; used only because the selected voice-00 Release assets were unavailable. All chapters use this same voice.",
   "narration_clips": [
     {
       "id": "N01",
       "file": "N01.mp3",
-      "sha256": "3da83ee7150715207279d658867b02b6296d998caa577ff83d1e6bf7f802e383",
+      "sha256": "72ea37698b28ee3e31c71b619255e0bc48a6294d612a6a2f6d0331629b2f8636",
       "bytes": 642260,
       "text": "他常在公园和人下棋，看起来像个普通棋友。可他盯上的是一块六十四格的棋盘。媒体给他起了一个绰号，六十四格的说法来自他的自述，并非司法结论。二〇〇七年法院认定四十八起谋杀和三起未遂。他曾声称目标是填满六十四格。我们只谈证据，也记住格子背后的人。"
     },
     {
       "id": "N02",
       "file": "N02.mp3",
-      "sha256": "3cd3b64c493316d7a43194b5faf23f6fe1f2efb90007661251a07903dbe24b2b",
+      "sha256": "263fde4def81f3cbcd6d227c2aef0cad5695e91a9e83e16c048f752ea7899877",
       "bytes": 739028,
       "text": "亚历山大·皮丘什金，三十三岁时在莫斯科受审。成年后他在超市做理货员。下班后他常去莫斯科南部的比察公园。那里有石桌和长椅，常有人停下来下棋。公开报道说，他会邀陌生人喝酒，理由是悼念死去的小狗。人们只当他是熟悉的棋友。他声称留下六十三个记号，按他的说法，棋盘几乎被填满。"
     },
     {
       "id": "N03",
       "file": "N03.mp3",
-      "sha256": "c8e8ea73b338e7bb477ae88a050fc3c8b8eaa0a7e304a7de79581aae8438b2c9",
-      "bytes": 611156,
+      "sha256": "db9d0d2b44831d70e711b8a64cb714ff4bb2b692135bbae33a5e0d14e2f59ed5",
+      "bytes": 610580,
       "text": "二〇〇二年公开报道记载，一位女性幸存者曾向警方报告遭遇。报道指出这条线索当时没有得到及时跟进。我们不补写她的经历。多年后超市同事玛丽娜与他约好散步。出门前，她留下一张纸条，写下同行者的姓名和电话。离开后儿子等着，电话始终没有响。"
     },
     {
       "id": "N04",
       "file": "N04.mp3",
-      "sha256": "a4dfc69392f4baf7146940a2b9447fee5af2dc1eedcf7c2cf64f8ef3d0d7eedd",
-      "bytes": 618644,
+      "sha256": "24527e567cebfc632e260c63d6ed1471e6c31a3407c9976ed715384448679cc0",
+      "bytes": 618068,
       "text": "警方发现她衣袋里的地铁票。车站监控显示，两人曾经同行。纸条、票据、影像，三条线索彼此核对。这里的画面不是警方原始证物。调查从一张小票开始，回到比察公园。沿着路线，警方逐步锁定熟悉的同事。每一条证据，都需要与下一条相互印证。"
     },
     {
       "id": "N05",
       "file": "N05.mp3",
-      "sha256": "4ed8581553ab2a1cdf148a714d1657ed59e130ca609fc997a7ececf3668c95b9",
+      "sha256": "29462698fb70561172dc8aaeb7edecc2247a625865d374a829d9b689578d6c26",
       "bytes": 615188,
       "text": "二〇〇六年六月十六日，皮丘什金被捕。公开报道说，警方在他住处找到与棋盘记号相关的证物。二〇〇七年十月，陪审团认定四十八起谋杀、三起未遂。法院随后判处终身监禁。六十三，是他的自述，不是法院认定。法庭结论来自证据。每个数字，都要说明来源。"
     },
     {
       "id": "N06",
       "file": "N06.mp3",
-      "sha256": "4d6ef58e651a74832e4bfc02bc15c7e591f6b930f11a2966372ac915a17b535d",
-      "bytes": 558740,
+      "sha256": "77e9067560dd72ba76367bff39decdcb69fe7e21392619283d014d173c1d94c5",
+      "bytes": 555860,
       "text": "法律结论写在案卷里，受害者却不是数字。每一格背后，都是一个真实的人，也是一个失去亲人的家庭。留下的沉默，同样值得被看见。我们不重现伤害，也不把凶手变成传奇。让棋盘回到公园石桌上。树影移动，行人继续生活。记住他们。"
     }
   ],
   "technical_report": {
     "duration": 180.0,
-    "bytes": 70614081,
+    "bytes": 70602416,
     "width": 1920,
     "height": 1080,
     "fps": 30.0,
@@ -62,7 +62,7 @@
     "audio_codec": "aac",
     "sample_rate": 48000,
     "audio_channels": 2,
-    "sha256": "9a7f5e6acd6fd70bf47bfccb2e04a00fd0ba97675eeb1ee43b5d676e530172bb",
+    "sha256": "beddd5432d35fd5c1682b85e380a9e647f912abbd69477bc9d8786b746d5f6cd",
     "decoded_ok": true,
     "status": "audio_verified_cut",
     "visual_review": "pending",
@@ -99,22 +99,22 @@
       }
     ],
     "narration_voice_id": "zh-CN-YunyangNeural",
-    "narration_tempo": 0.9365476190476191,
+    "narration_tempo": 0.9356547619047619,
     "editorial_segments": 45,
     "source_clips": 38,
     "archival_portrait": false,
     "unique_shots_no_reuse": true,
     "output": "六十四格_国际象棋盘杀手_三分钟_带声音.mp4",
     "soundtrack_mix": {
-      "rms_dbfs": -26.43,
+      "rms_dbfs": -26.24,
       "peak_dbfs": -1.51,
-      "silent_fraction": 0.0056,
+      "silent_fraction": 0.0,
       "target_rms_dbfs": -20.0
     },
     "delivered_audio": {
-      "rms_dbfs": -26.49,
-      "peak_dbfs": -1.91,
-      "silent_fraction": 0.011,
+      "rms_dbfs": -26.31,
+      "peak_dbfs": -1.66,
+      "silent_fraction": 0.0055,
       "quietest_window_dbfs": -120.0
     },
     "audio_listening_review": "measured (level + per-chapter + silence gate); not a substitute for human word-level listening",
