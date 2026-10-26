@@ -1,1 +1,1 @@
-render 2026-10-26T00:40:54Z — 38/38 CogVideoX request hashes and media receipts verified; S16 uses moderation-safe archive symbolism; force zh-CN-YunjianNeural pitch -8Hz; align narration/cuts with ASR; deliver 1920x1080 30fps MP4
+render 2026-10-26T00:45:50Z — retry after argparse pitch-token fix; 38/38 current CogVideoX hashes verified; force zh-CN-YunjianNeural -8Hz; ASR align; 1920x1080/30fps direct MP4

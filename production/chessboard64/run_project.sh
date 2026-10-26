@@ -18,7 +18,7 @@ python3 -u "$HERE/fetch_sources.py" --dest "$WORK/clips"
 generate_edge_narration() {
   python3 -u "$HERE/generate_edge_audio.py" \
     --voice "${EDGE_TTS_VOICE:-zh-CN-YunjianNeural}" \
-    --pitch "${EDGE_TTS_PITCH:--8Hz}"
+    --pitch="${EDGE_TTS_PITCH:--8Hz}"
   python3 -u "$HERE/tighten_pauses.py"
   python3 -u "$HERE/clause_times.py"
   python3 -u "$HERE/align_cuts_to_audio.py"

@@ -25,6 +25,8 @@ class Chessboard64DeliveryWorkflowTests(unittest.TestCase):
         runner = (ROOT / "production/chessboard64/run_project.sh").read_text()
         self.assertIn("FORCE_EDGE_TTS", runner)
         self.assertIn("EDGE_TTS_PITCH", runner)
+        self.assertIn('--pitch="${EDGE_TTS_PITCH:--8Hz}"', runner,
+                      "negative Hz pitch must be passed as one argparse token")
         self.assertIn("'narration_pitch': narration['pitch']", runner)
         self.assertIn("narration_pitch", (PROJECT.parent / "render.py").read_text())
         self.assertIn("generate_edge_audio.py", runner)
