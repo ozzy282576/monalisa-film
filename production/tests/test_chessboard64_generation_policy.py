@@ -141,10 +141,23 @@ class GenerationPolicyTests(unittest.TestCase):
         self.assertTrue(gen.transient_fail("temporary connection timeout 503"))
         self.assertFalse(gen.transient_fail("1301 sensitive content"))
 
-    def test_submit_rate_limit_retries_until_workflow_deadline(self):
+    def test_submit_retries_are_bounded_per_shot_and_deferred_to_later_passes(self):
         source = Path(gen.__file__).read_text(encoding="utf-8")
-        self.assertIn("while not task_id and time.monotonic() < deadline", source)
+        # 提交重试有上限的是「这一镜这一轮」，不是整轮工作流：一镜卡住不能饿死其余镜头。
+        self.assertIn("while not task_id and time.monotonic() < submit_deadline", source)
+        self.assertIn("submit_deadline = min(deadline, time.monotonic() + SUBMIT_BUDGET_SECONDS)",
+                      source)
+        self.assertIn("deferred.append(shot)", source)
         self.assertNotIn("attempt < 20", source)
+        self.assertEqual(gen.SUBMIT_BUDGET_SECONDS, 480)
+        self.assertGreaterEqual(gen.MAX_GENERATION_PASSES, 2)
+        self.assertEqual(gen.SUBMIT_PROGRESS_EVERY, 5)
+
+    def test_persisted_errors_never_leak_signed_urls_or_keys(self):
+        self.assertEqual(gen.redact("timeout for https://cdn.invalid/a.mp4?Expires=1&Signature=xyz"),
+                         "timeout for [URL_REDACTED]")
+        self.assertIn("[REDACTED]", gen.redact('api_key="sk-secret-value"'))
+        self.assertNotIn("sk-secret-value", gen.redact('api_key="sk-secret-value"'))
 
 
 if __name__ == "__main__":

@@ -348,6 +348,10 @@ def download(url, dest):
 MIN_REFRESH_URL_TTL_SECONDS = 6 * 60 * 60
 # 提交被限流时每隔几次重试写一个检查点，沙箱才看得到「还在重投」而不是「卡死」。
 SUBMIT_PROGRESS_EVERY = 5
+# 单镜一轮最多花这么久拿任务 ID；超时就先挪到下一轮，别让一镜把整轮工作流耗光
+# （实测 2026-10-26：S19、S07 各自卡在提交阶段数十分钟，后面 20 多镜一个都没轮上）。
+SUBMIT_BUDGET_SECONDS = 8 * 60
+MAX_GENERATION_PASSES = 4
 
 
 def redact(text):
@@ -557,210 +561,252 @@ def main():
                                        if x.get('kind') == 'cogvideo']
     checkpoint(doc, 'CogVideoX cloud generation started', publish=args.publish)
     failures = []
-    for index, shot in enumerate(shots, 1):
-        sid = shot['id']
-        wanted = request_hash(project, shot)
-        if force:
-            prepare_forced_regeneration(doc, sid, wanted)
-            disposition = 'generate'
-            checkpoint(doc, sid + ' prior receipt archived for forced refresh', sid, publish=args.publish)
-            if refresh_forced_source_from_task(client, doc, sid, wanted, sources, qa,
-                                               publish=args.publish):
-                continue
-            if recover_only:
-                error = 'No fresh signed URL was available from a matching completed provider task'
-                checkpoint(doc, sid + ' prior task could not refresh the signed URL', sid,
-                           publish=args.publish, status='failed', request_hash=wanted,
-                           error=error)
-                failures.append(sid)
-                continue
-        else:
-            disposition = reuse_receipt(doc, sid, wanted)
-        if disposition in ('current', 'history'):
-            row = doc['shots'][sid]
-            print('%s: verified receipt restored (%s); no new generation'
-                  % (sid, disposition), flush=True)
-            # A prior Actions run may have ended before its ignored contact sheet could
-            # be uploaded. Re-fetch completed media on demand and rebuild missing QA,
-            # without ever adding MP4/JPG binaries to Git.
-            qa_json = qa / ('%s.json' % sid)
-            qa_jpg = qa / ('%s.jpg' % sid)
-            if not qa_json.is_file() or not qa_jpg.is_file():
-                dest = sources / ('%s.mp4' % sid)
-                try:
-                    download(row['video_url'], dest)
-                    actual = digest(dest)
-                    if actual != row['sha256']:
-                        raise RuntimeError('restored source SHA-256 mismatch: %s != %s'
-                                           % (actual, row['sha256']))
-                    info = inspect_clip(dest, qa, sid)
-                    checkpoint(doc, sid + ' QA restored', sid, files=[qa_json], publish=args.publish,
-                               status='completed', request_hash=wanted, video_url=row['video_url'],
-                               sha256=actual, bytes=dest.stat().st_size, media=info, error=None)
-                except Exception as exc:
-                    # An expired URL or damaged cached receipt must not abort the other 37 shots.
-                    message = 'Unable to restore prior source for QA: %s' % str(exc)[:500]
-                    checkpoint(doc, sid + ' QA restore failed', sid, publish=args.publish,
-                               status='failed', request_hash=wanted, error=message)
+    refreshed = set()
+    pending = list(shots)
+    generation_pass = 0
+    while pending and time.monotonic() < deadline:
+        generation_pass += 1
+        deferred = []
+        print('PASS %d over %d shot(s): %s'
+              % (generation_pass, len(pending), ','.join(x['id'] for x in pending)), flush=True)
+        for index, shot in enumerate(pending, 1):
+            sid = shot['id']
+            wanted = request_hash(project, shot)
+            if force and sid not in refreshed:
+                refreshed.add(sid)
+                prepare_forced_regeneration(doc, sid, wanted)
+                disposition = 'generate'
+                checkpoint(doc, sid + ' prior receipt archived for forced refresh', sid, publish=args.publish)
+                if refresh_forced_source_from_task(client, doc, sid, wanted, sources, qa,
+                                                   publish=args.publish):
+                    continue
+                if recover_only:
+                    error = 'No fresh signed URL was available from a matching completed provider task'
+                    checkpoint(doc, sid + ' prior task could not refresh the signed URL', sid,
+                               publish=args.publish, status='failed', request_hash=wanted,
+                               error=error)
                     failures.append(sid)
-            continue
-        old = doc.get('shots', {}).get(sid, {})
-        if old and old.get('request_hash') != wanted:
-            doc.setdefault('previous_results', {}).setdefault(sid, []).append(old)
-            doc['shots'][sid] = {'id': sid}
-        if time.monotonic() > deadline:
-            raise RuntimeError('Generation deadline reached; rerun resumes from receipts')
-        payload = full_payload(project, shot)
-        result = None
-        last_error = None
-        outcome = 'timeout'
-        failure_recorded = False
-        # 瞬时限流/拒绝按 20、25、30、35…秒递增重试，直到获得任务 ID 或触及本轮工作流时限。
-        # 任务本身 transient FAIL 时最多新建3个任务；1301 审核拦截不重投，修订提示词后再补。
-        for submission in range(1, 4):
-            task_id = PROBE_TASKS.pop(sid, None) \
-                if (submission == 1 and payload.get('image_url')) else None
-            if task_id:
-                print('%s: reusing ref-image probe submission %s' % (sid, task_id), flush=True)
-            checkpoint(doc, sid + ' submitting', sid, publish=args.publish,
-                       status='submitting', request_hash=wanted, error=None)
+                    continue
+            elif force:
+                disposition = 'generate'
+            else:
+                disposition = reuse_receipt(doc, sid, wanted)
+            if disposition in ('current', 'history'):
+                row = doc['shots'][sid]
+                print('%s: verified receipt restored (%s); no new generation'
+                      % (sid, disposition), flush=True)
+                # A prior Actions run may have ended before its ignored contact sheet could
+                # be uploaded. Re-fetch completed media on demand and rebuild missing QA,
+                # without ever adding MP4/JPG binaries to Git.
+                qa_json = qa / ('%s.json' % sid)
+                qa_jpg = qa / ('%s.jpg' % sid)
+                if not qa_json.is_file() or not qa_jpg.is_file():
+                    dest = sources / ('%s.mp4' % sid)
+                    try:
+                        download(row['video_url'], dest)
+                        actual = digest(dest)
+                        if actual != row['sha256']:
+                            raise RuntimeError('restored source SHA-256 mismatch: %s != %s'
+                                               % (actual, row['sha256']))
+                        info = inspect_clip(dest, qa, sid)
+                        checkpoint(doc, sid + ' QA restored', sid, files=[qa_json], publish=args.publish,
+                                   status='completed', request_hash=wanted, video_url=row['video_url'],
+                                   sha256=actual, bytes=dest.stat().st_size, media=info, error=None)
+                    except Exception as exc:
+                        # An expired URL or damaged cached receipt must not abort the other 37 shots.
+                        message = 'Unable to restore prior source for QA: %s' % str(exc)[:500]
+                        checkpoint(doc, sid + ' QA restore failed', sid, publish=args.publish,
+                                   status='failed', request_hash=wanted, error=message)
+                        failures.append(sid)
+                continue
+            old = doc.get('shots', {}).get(sid, {})
+            if old and old.get('request_hash') != wanted:
+                doc.setdefault('previous_results', {}).setdefault(sid, []).append(old)
+                doc['shots'][sid] = {'id': sid}
+            if time.monotonic() > deadline:
+                raise RuntimeError('Generation deadline reached; rerun resumes from receipts')
+            payload = full_payload(project, shot)
+            result = None
+            last_error = None
             outcome = 'timeout'
-            attempt = 0
-            while not task_id and time.monotonic() < deadline:
-                attempt += 1
-                try:
-                    response = client.videos.generations(**payload)
-                    task_id = obj_get(response, 'id')
-                    if not task_id:
-                        raise RuntimeError('No task id: %r' % (response,))
-                    break
-                except Exception as exc:
-                    last_error = str(exc)[:600]
-                    if moderation_block(exc):
-                        outcome = 'blocked'
-                        blocker = 'content moderation (1301)'
-                        print('%s: %s; record and continue after prompt review' % (sid, blocker), flush=True)
-                        checkpoint(doc, sid + ' blocked (' + blocker + ')', sid, publish=args.publish,
+            failure_recorded = False
+            budget_exhausted = False
+            submit_deadline = min(deadline, time.monotonic() + SUBMIT_BUDGET_SECONDS)
+            # 瞬时限流/拒绝按 20、25、30、35…秒递增重试，直到获得任务 ID 或触及本轮工作流时限。
+            # 任务本身 transient FAIL 时最多新建3个任务；1301 审核拦截不重投，修订提示词后再补。
+            for submission in range(1, 4):
+                task_id = PROBE_TASKS.pop(sid, None) \
+                    if (submission == 1 and payload.get('image_url')) else None
+                if task_id:
+                    print('%s: reusing ref-image probe submission %s' % (sid, task_id), flush=True)
+                checkpoint(doc, sid + ' submitting', sid, publish=args.publish,
+                           status='submitting', request_hash=wanted, error=None)
+                outcome = 'timeout'
+                attempt = 0
+                while not task_id and time.monotonic() < submit_deadline:
+                    attempt += 1
+                    try:
+                        response = client.videos.generations(**payload)
+                        task_id = obj_get(response, 'id')
+                        if not task_id:
+                            raise RuntimeError('No task id: %r' % (response,))
+                        break
+                    except Exception as exc:
+                        last_error = str(exc)[:600]
+                        if moderation_block(exc):
+                            outcome = 'blocked'
+                            blocker = 'content moderation (1301)'
+                            print('%s: %s; record and continue after prompt review' % (sid, blocker), flush=True)
+                            checkpoint(doc, sid + ' blocked (' + blocker + ')', sid, publish=args.publish,
+                                       status='failed', request_hash=wanted, error=redact(last_error))
+                            failures.append(sid)
+                            failure_recorded = True
+                            break
+                        if retryable(exc):
+                            wait = retry_delay(attempt)
+                            if time.monotonic() + wait < submit_deadline:
+                                print('%s: submit rejected attempt %d, wait %ds: %s'
+                                      % (sid, attempt, wait, redact(last_error)[:180]), flush=True)
+                                if attempt % SUBMIT_PROGRESS_EVERY == 0:
+                                    # 让分支上的收据显示「仍在重投」，而不是停在首次 submitting。
+                                    checkpoint(doc, '%s still retrying submission (attempt %d)'
+                                               % (sid, attempt), sid, publish=args.publish,
+                                               status='submitting', request_hash=wanted,
+                                               submit_attempts=attempt,
+                                               error=redact(last_error)[:300])
+                                time.sleep(wait)
+                                continue
+                            if time.monotonic() + wait < deadline:
+                                # 本镜这一轮的提交预算用完了，先让后面的镜头开跑，稍后再补投。
+                                budget_exhausted = True
+                                break
+                            blocker = 'workflow deadline reached during transient provider rejection'
+                        else:
+                            blocker = 'non-transient provider rejection'
+                        outcome = 'submit_failed'
+                        print('%s: %s; preserve the failure receipt' % (sid, blocker), flush=True)
+                        checkpoint(doc, sid + ' failed (' + blocker + ')', sid, publish=args.publish,
                                    status='failed', request_hash=wanted, error=redact(last_error))
                         failures.append(sid)
                         failure_recorded = True
                         break
-                    if retryable(exc):
-                        wait = retry_delay(attempt)
-                        if time.monotonic() + wait < deadline:
-                            print('%s: submit rejected attempt %d, wait %ds: %s'
-                                  % (sid, attempt, wait, redact(last_error)[:180]), flush=True)
-                            if attempt % SUBMIT_PROGRESS_EVERY == 0:
-                                # 让分支上的收据显示「仍在重投」，而不是停在首次 submitting。
-                                checkpoint(doc, '%s still retrying submission (attempt %d)'
-                                           % (sid, attempt), sid, publish=args.publish,
-                                           status='submitting', request_hash=wanted,
-                                           submit_attempts=attempt,
-                                           error=redact(last_error)[:300])
-                            time.sleep(wait)
-                            continue
-                        blocker = 'workflow deadline reached during transient provider rejection'
-                    else:
-                        blocker = 'non-transient provider rejection'
+                if budget_exhausted:
+                    break
+                if outcome in ('blocked', 'submit_failed') and not task_id:
+                    break
+                if not task_id and time.monotonic() >= submit_deadline and time.monotonic() < deadline:
+                    budget_exhausted = True
+                    break
+                if not task_id:
+                    last_error = last_error or 'provider returned no task id'
                     outcome = 'submit_failed'
-                    print('%s: %s; preserve the failure receipt' % (sid, blocker), flush=True)
+                    if not failure_recorded:
+                        checkpoint(doc, sid + ' failed to obtain task id', sid, publish=args.publish,
+                                   status='failed', request_hash=wanted, error=redact(last_error))
+                        failures.append(sid)
+                        failure_recorded = True
+                    break
+                checkpoint(doc, sid + ' queued', sid, publish=args.publish,
+                           status='queued', task_id=str(task_id), request_hash=wanted)
+                outcome = 'timeout'
+                for poll in range(1, 121):
+                    try:
+                        polled = client.videos.retrieve_videos_result(id=task_id)
+                        status = str(obj_get(polled, 'task_status', '')).upper()
+                        print('%s [%d/%d] submission %d poll %d: %s'
+                              % (sid, index, len(shots), submission, poll, status), flush=True)
+                        if status == 'SUCCESS':
+                            result = polled
+                            outcome = 'success'
+                            break
+                        if status == 'FAIL':
+                            last_error = str(obj_get(polled, 'error', '') or polled)[:600]
+                            outcome = 'blocked' if moderation_block(last_error) else 'fail'
+                            break
+                        time.sleep(10)
+                    except Exception as exc:
+                        last_error = str(exc)[:600]
+                        if moderation_block(exc):
+                            outcome = 'blocked'
+                            break
+                        if retryable(exc) and poll < 120:
+                            time.sleep(min(60, 10 + poll // 10))
+                            continue
+                        outcome = 'poll_failed'
+                        break
+                if outcome == 'success':
+                    break
+                if outcome == 'blocked':
+                    if not failure_recorded:
+                        blocker = 'content moderation (1301)'
+                        print('%s: %s; record and continue after prompt review' % (sid, blocker), flush=True)
+                        checkpoint(doc, sid + ' blocked (' + blocker + ')', sid, publish=args.publish,
+                                   status='failed', request_hash=wanted, task_id=str(task_id), error=redact(last_error))
+                        failures.append(sid)
+                        failure_recorded = True
+                    break
+                if outcome in ('fail', 'poll_failed') and not transient_fail(last_error):
+                    blocker = 'non-transient provider failure'
                     checkpoint(doc, sid + ' failed (' + blocker + ')', sid, publish=args.publish,
-                               status='failed', request_hash=wanted, error=redact(last_error))
-                    failures.append(sid)
-                    failure_recorded = True
-                    break
-            if outcome in ('blocked', 'submit_failed') and not task_id:
-                break
-            if not task_id:
-                last_error = last_error or 'provider returned no task id'
-                outcome = 'submit_failed'
-                if not failure_recorded:
-                    checkpoint(doc, sid + ' failed to obtain task id', sid, publish=args.publish,
-                               status='failed', request_hash=wanted, error=redact(last_error))
-                    failures.append(sid)
-                    failure_recorded = True
-                break
-            checkpoint(doc, sid + ' queued', sid, publish=args.publish,
-                       status='queued', task_id=str(task_id), request_hash=wanted)
-            outcome = 'timeout'
-            for poll in range(1, 121):
-                try:
-                    polled = client.videos.retrieve_videos_result(id=task_id)
-                    status = str(obj_get(polled, 'task_status', '')).upper()
-                    print('%s [%d/%d] submission %d poll %d: %s'
-                          % (sid, index, len(shots), submission, poll, status), flush=True)
-                    if status == 'SUCCESS':
-                        result = polled
-                        outcome = 'success'
-                        break
-                    if status == 'FAIL':
-                        last_error = str(obj_get(polled, 'error', '') or polled)[:600]
-                        outcome = 'blocked' if moderation_block(last_error) else 'fail'
-                        break
-                    time.sleep(10)
-                except Exception as exc:
-                    last_error = str(exc)[:600]
-                    if moderation_block(exc):
-                        outcome = 'blocked'
-                        break
-                    if retryable(exc) and poll < 120:
-                        time.sleep(min(60, 10 + poll // 10))
-                        continue
-                    outcome = 'poll_failed'
-                    break
-            if outcome == 'success':
-                break
-            if outcome == 'blocked':
-                if not failure_recorded:
-                    blocker = 'content moderation (1301)'
-                    print('%s: %s; record and continue after prompt review' % (sid, blocker), flush=True)
-                    checkpoint(doc, sid + ' blocked (' + blocker + ')', sid, publish=args.publish,
                                status='failed', request_hash=wanted, task_id=str(task_id), error=redact(last_error))
                     failures.append(sid)
                     failure_recorded = True
-                break
-            if outcome in ('fail', 'poll_failed') and not transient_fail(last_error):
-                blocker = 'non-transient provider failure'
-                checkpoint(doc, sid + ' failed (' + blocker + ')', sid, publish=args.publish,
-                           status='failed', request_hash=wanted, task_id=str(task_id), error=redact(last_error))
+                    print('%s: %s; skipping to the next shot' % (sid, blocker), flush=True)
+                    break
+                if submission < 3:
+                    wait = retry_delay(submission)
+                    print('%s: submission %d ended %s; wait %ds before resubmission'
+                          % (sid, submission, outcome, wait), flush=True)
+                    time.sleep(wait)
+            if result is None:
+                if budget_exhausted:
+                    deferred.append(shot)
+                    print('%s: no task id within this pass budget; retry after the other shots'
+                          % sid, flush=True)
+                    checkpoint(doc, sid + ' deferred to a later submission pass', sid,
+                               publish=args.publish, status='submitting', request_hash=wanted,
+                               deferred_passes=generation_pass,
+                               error=redact(last_error or 'submission budget exhausted')[:300])
+                    continue
+                if failure_recorded:
+                    continue
+                checkpoint(doc, sid + ' failed after retry budget', sid, publish=args.publish,
+                           status='failed', request_hash=wanted,
+                           error=redact(last_error or 'polling timeout')[:600])
                 failures.append(sid)
-                failure_recorded = True
-                print('%s: %s; skipping to the next shot' % (sid, blocker), flush=True)
-                break
-            if submission < 3:
-                wait = retry_delay(submission)
-                print('%s: submission %d ended %s; wait %ds before resubmission'
-                      % (sid, submission, outcome, wait), flush=True)
-                time.sleep(wait)
-        if result is None:
-            if failure_recorded:
                 continue
-            checkpoint(doc, sid + ' failed after retry budget', sid, publish=args.publish,
-                       status='failed', request_hash=wanted,
-                       error=(last_error or 'polling timeout')[:600])
-            failures.append(sid)
-            continue
-        video_result = obj_get(result, 'video_result') or []
-        first = video_result[0] if video_result else None
-        url = obj_get(first, 'url') if first else None
-        if not url:
-            raise RuntimeError('%s: SUCCESS without video URL: %r' % (sid, result))
-        dest = sources / ('%s.mp4' % sid)
-        download(url, dest)
-        checksum = digest(dest)
-        try:
-            info = inspect_clip(dest, qa, sid)
-        except Exception as exc:
-            checkpoint(doc, sid + ' failed inspection', sid, publish=args.publish,
-                       status='failed', request_hash=wanted, task_id=str(task_id),
-                       video_url=url, error=str(exc)[:600])
-            failures.append(sid)
-            continue
-        files = [qa / ('%s.jpg' % sid), qa / ('%s.json' % sid)]
-        checkpoint(doc, sid + ' media and QA ready', sid, files=files, publish=args.publish,
-                   status='completed', request_hash=wanted, task_id=str(task_id),
-                   video_url=url, sha256=checksum, bytes=dest.stat().st_size,
-                   media=info, error=None)
+            video_result = obj_get(result, 'video_result') or []
+            first = video_result[0] if video_result else None
+            url = obj_get(first, 'url') if first else None
+            if not url:
+                raise RuntimeError('%s: SUCCESS without video URL: %r' % (sid, result))
+            dest = sources / ('%s.mp4' % sid)
+            download(url, dest)
+            checksum = digest(dest)
+            try:
+                info = inspect_clip(dest, qa, sid)
+            except Exception as exc:
+                checkpoint(doc, sid + ' failed inspection', sid, publish=args.publish,
+                           status='failed', request_hash=wanted, task_id=str(task_id),
+                           video_url=url, error=str(exc)[:600])
+                failures.append(sid)
+                continue
+            files = [qa / ('%s.jpg' % sid), qa / ('%s.json' % sid)]
+            checkpoint(doc, sid + ' media and QA ready', sid, files=files, publish=args.publish,
+                       status='completed', request_hash=wanted, task_id=str(task_id),
+                       video_url=url, sha256=checksum, bytes=dest.stat().st_size,
+                       media=info, error=None)
+        pending = deferred
+        if pending and generation_pass >= MAX_GENERATION_PASSES:
+            for shot in pending:
+                sid = shot['id']
+                checkpoint(doc, sid + ' failed (submission never accepted this run)', sid,
+                           publish=args.publish, status='failed',
+                           request_hash=request_hash(project, shot),
+                           error='Provider did not accept a submission in %d passes'
+                                 % generation_pass)
+                failures.append(sid)
+            pending = []
     complete = [sid for sid, row in doc.get('shots', {}).items() if row.get('status') == 'completed']
     missing = sorted(set(doc['required_generated_shots']) - set(complete))
     doc['phase'] = 'selected_sources_ready' if only and not failures else \
