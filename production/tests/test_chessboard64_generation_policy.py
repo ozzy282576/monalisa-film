@@ -4,6 +4,8 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 PROJECT = Path(__file__).resolve().parents[1] / "chessboard64"
 sys.path.insert(0, str(PROJECT))
@@ -34,6 +36,24 @@ class GenerationPolicyTests(unittest.TestCase):
         self.assertEqual([row["status"] for row in doc["previous_results"]["S08"]],
                          ["expired", "expired"])
         self.assertEqual(gen.reuse_receipt(doc, "S08", wanted), "generate")
+
+    def test_provider_sdk_retries_are_bounded_by_the_generator_loop(self):
+        calls = {}
+
+        class FakeZhipuAI:
+            def __init__(self, **kwargs):
+                calls.update(kwargs)
+
+        with patch.dict(sys.modules, {"zhipuai": SimpleNamespace(ZhipuAI=FakeZhipuAI)}):
+            client = gen.create_client("test-key")
+
+        self.assertIsInstance(client, FakeZhipuAI)
+        self.assertEqual(calls, {
+            "api_key": "test-key",
+            "timeout": gen.PROVIDER_REQUEST_TIMEOUT_SECONDS,
+            "max_retries": 0,
+        })
+        self.assertEqual(gen.PROVIDER_REQUEST_TIMEOUT_SECONDS, 120)
 
     def test_rejected_submission_backoff_is_additive(self):
         self.assertEqual([gen.retry_delay(n) for n in range(1, 5)], [20, 25, 30, 35])

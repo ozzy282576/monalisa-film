@@ -344,6 +344,17 @@ def download(url, dest):
 RETRY_BASE_SECONDS = 20
 RETRY_INCREMENT_SECONDS = 5
 RETRY_MAX_SECONDS = 120
+# 视频创建接口只负责返回异步任务 ID；不要让 SDK 自带多轮长超时重试，
+# 交由下方有检查点的提交循环统一退避，避免单次网络故障卡住数十分钟。
+PROVIDER_REQUEST_TIMEOUT_SECONDS = 120
+PROVIDER_SDK_MAX_RETRIES = 0
+
+
+def create_client(api_key):
+    """把 SDK 的隐藏重试收敛为一个有界请求，由工作流提交循环负责重试。"""
+    from zhipuai import ZhipuAI
+    return ZhipuAI(api_key=api_key, timeout=PROVIDER_REQUEST_TIMEOUT_SECONDS,
+                   max_retries=PROVIDER_SDK_MAX_RETRIES)
 
 
 def retry_delay(attempt):
@@ -441,8 +452,7 @@ def main():
     key = os.getenv('ZHIPUAI_API_KEY', '').strip()
     if not key:
         raise RuntimeError('ZHIPUAI_API_KEY is unavailable to this workflow')
-    from zhipuai import ZhipuAI
-    client = ZhipuAI(api_key=key)
+    client = create_client(key)
     # 先探测定妆照支持性，再进主循环（request_hash 依赖 REF_IMAGE_OK）。
     probe_ref_image(client, project)
     sources = ROOT / 'work/chessboard64/sources'
