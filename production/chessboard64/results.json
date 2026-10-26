@@ -5,10 +5,11 @@
   "shots": {
     "S01": {
       "id": "S01",
-      "status": "submitting",
+      "status": "queued",
       "request_hash": "27450013c92d977523dc76c6553045f48eb7c57e4b466124efd34a3104933ac3",
       "error": null,
-      "updated_at": "2026-10-26T12:10:59Z"
+      "updated_at": "2026-10-26T12:11:01Z",
+      "task_id": "202610262011009bd5b1165c6e4b7d"
     },
     "S02": {
       "id": "S02",
@@ -499,7 +500,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T12:10:59Z",
+  "updated_at": "2026-10-26T12:11:01Z",
   "previous_results": {
     "S06": [
       {
