@@ -550,14 +550,11 @@
       "id": "S42"
     },
     "S43": {
-      "id": "S43",
-      "updated_at": "2026-10-26T14:35:55Z"
+      "id": "S43"
     },
     "S44": {
       "id": "S44",
-      "status": "submitting",
-      "request_hash": "cc8e77dda4921bf08ea2594eea33b963c8e0e18d86c6da9cd7e3789644d12ce9",
-      "updated_at": "2026-10-26T13:32:42Z"
+      "updated_at": "2026-10-26T14:35:56Z"
     },
     "S10": {
       "id": "S10",
@@ -626,7 +623,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T14:35:55Z",
+  "updated_at": "2026-10-26T14:35:56Z",
   "previous_results": {
     "S06": [
       {
@@ -1486,6 +1483,10 @@
       {
         "id": "S43",
         "updated_at": "2026-10-26T13:32:07Z"
+      },
+      {
+        "id": "S43",
+        "updated_at": "2026-10-26T14:35:55Z"
       }
     ],
     "S01": [
