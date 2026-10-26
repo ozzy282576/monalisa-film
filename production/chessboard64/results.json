@@ -418,15 +418,11 @@
       "id": "S40"
     },
     "S41": {
-      "id": "S41",
-      "updated_at": "2026-10-26T13:32:04Z"
+      "id": "S41"
     },
     "S42": {
       "id": "S42",
-      "updated_at": "2026-10-26T12:07:20Z",
-      "status": "failed",
-      "request_hash": "7bd936085a6839da7d53cb23b1d871f9f0c19dccccb820b625ca0f0be7abca65",
-      "error": "No fresh signed URL was available from a matching completed provider task"
+      "updated_at": "2026-10-26T13:32:06Z"
     },
     "S43": {
       "id": "S43",
@@ -509,7 +505,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T13:32:04Z",
+  "updated_at": "2026-10-26T13:32:06Z",
   "previous_results": {
     "S06": [
       {
@@ -2593,6 +2589,10 @@
           "contact_sampling_fps": 2,
           "visual_review": "pending"
         }
+      },
+      {
+        "id": "S41",
+        "updated_at": "2026-10-26T13:32:04Z"
       }
     ],
     "S44": [
