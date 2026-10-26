@@ -221,6 +221,24 @@ def reuse_receipt(doc, sid, wanted):
     return 'history'
 
 
+def prepare_forced_regeneration(doc, sid, wanted):
+    """Archive same-prompt receipts as expired so an explicit refresh cannot revive stale URLs."""
+    shots = doc.setdefault('shots', {})
+    history = doc.setdefault('previous_results', {}).setdefault(sid, [])
+    current = shots.get(sid) or {}
+    if current.get('request_hash') == wanted and current.get('status') == 'completed':
+        archived = dict(current)
+        archived['status'] = 'expired'
+        archived['error'] = 'Archived before explicit source-URL refresh'
+        history.append(archived)
+    for previous in history:
+        if (isinstance(previous, dict) and previous.get('request_hash') == wanted
+                and previous.get('status') == 'completed'):
+            previous['status'] = 'expired'
+            previous['error'] = 'Archived before explicit source-URL refresh'
+    shots[sid] = {'id': sid}
+
+
 def validate(project):
     shots = project.get('shots') or []
     dynamic = [s for s in shots if s.get('kind') == 'cogvideo']
@@ -415,6 +433,11 @@ def main():
         raise ValueError('Unknown/non-dynamic shot: ' + ','.join(sorted(only)))
     if only:
         shots = [x for x in shots if x['id'] in only]
+    force = options.get('force', False)
+    if not isinstance(force, bool):
+        raise ValueError('force must be a boolean')
+    if force and not only:
+        raise ValueError('force regeneration requires an explicit non-empty only list')
     key = os.getenv('ZHIPUAI_API_KEY', '').strip()
     if not key:
         raise RuntimeError('ZHIPUAI_API_KEY is unavailable to this workflow')
@@ -436,7 +459,12 @@ def main():
     for index, shot in enumerate(shots, 1):
         sid = shot['id']
         wanted = request_hash(project, shot)
-        disposition = reuse_receipt(doc, sid, wanted)
+        if force:
+            prepare_forced_regeneration(doc, sid, wanted)
+            disposition = 'generate'
+            checkpoint(doc, sid + ' prior receipt archived for forced refresh', sid, publish=args.publish)
+        else:
+            disposition = reuse_receipt(doc, sid, wanted)
         if disposition in ('current', 'history'):
             row = doc['shots'][sid]
             print('%s: verified receipt restored (%s); no new generation'

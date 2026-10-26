@@ -20,6 +20,21 @@ class GenerationPolicyTests(unittest.TestCase):
         self.assertEqual(gen.archive_inactive_receipts(doc, {"S10"}), [])
         self.assertEqual(doc["previous_results"]["S16"], [legacy])
 
+    def test_forced_refresh_archives_expired_same_prompt_receipts_without_reusing_them(self):
+        wanted = "same-prompt-hash"
+        current = {"id": "S08", "status": "completed", "request_hash": wanted,
+                   "video_url": "expired-current-url", "sha256": "current-sha"}
+        history = {"id": "S08", "status": "completed", "request_hash": wanted,
+                   "video_url": "expired-history-url", "sha256": "history-sha"}
+        doc = {"shots": {"S08": current}, "previous_results": {"S08": [history]}}
+
+        gen.prepare_forced_regeneration(doc, "S08", wanted)
+
+        self.assertEqual(doc["shots"]["S08"], {"id": "S08"})
+        self.assertEqual([row["status"] for row in doc["previous_results"]["S08"]],
+                         ["expired", "expired"])
+        self.assertEqual(gen.reuse_receipt(doc, "S08", wanted), "generate")
+
     def test_rejected_submission_backoff_is_additive(self):
         self.assertEqual([gen.retry_delay(n) for n in range(1, 5)], [20, 25, 30, 35])
         self.assertEqual(gen.retry_delay(21), 120)
