@@ -340,7 +340,10 @@
     },
     "S32": {
       "id": "S32",
-      "updated_at": "2026-10-26T12:06:53Z"
+      "updated_at": "2026-10-26T12:06:55Z",
+      "status": "failed",
+      "request_hash": "400d17a5789fae8d6d853ad6e85dee87acd1f4577c5355834e25314d67155829",
+      "error": "No fresh signed URL was available from a matching completed provider task"
     },
     "S34": {
       "id": "S34",
@@ -649,7 +652,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T12:06:53Z",
+  "updated_at": "2026-10-26T12:06:55Z",
   "previous_results": {
     "S06": [
       {
