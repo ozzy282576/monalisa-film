@@ -47,13 +47,15 @@ jobs:
           echo "PAYLOAD=$payload" >> "$GITHUB_ENV"
           echo "Generation payload: $payload"
 
-      - name: Install media tools and CJK fonts
+      - name: Ensure ffmpeg is available
         run: |
-          # 托管镜像自带 apt 索引缓存；完整 apt-get update 在这台 runner 上实测卡过十几分钟，
-          # 够生成好几镜了。缺什么才装什么。
-          if ! command -v ffmpeg >/dev/null 2>&1 || ! fc-list : family | grep -qi 'Noto Sans CJK'; then
+          # 生成阶段只用 ffmpeg/ffprobe 验片和出接触表，不排任何中文字幕，所以不装 CJK 字体。
+          # 实测 2026-10-26：apt 装字体那步两次各卡 20 分钟以上，够生成十几镜了。
+          if command -v ffmpeg >/dev/null 2>&1 && command -v ffprobe >/dev/null 2>&1; then
+            echo "ffmpeg already present on the runner image"
+          else
             sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=60 \
-              -o Acquire::https::Timeout=60 install -y -qq ffmpeg fontconfig fonts-noto-cjk
+              -o Acquire::https::Timeout=60 install -y -qq ffmpeg
           fi
           ffmpeg -hide_banner -version | head -1
 
