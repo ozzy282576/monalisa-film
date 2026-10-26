@@ -14,6 +14,10 @@ echo "=== 六十四格 / branch=$BRANCH / output=$OUT ==="
 
 # 只校验完整计划，不调用付费路线；片段与旁白均按收据从外部存储按需恢复。
 python3 "$HERE/generate_cogvideox.py" --validate
+# 先用收据做秒级体检：签名链接过期或慢放超限时立刻失败，别等下载完 38 段才报错。
+python3 -u "$HERE/audit_sources.py" \
+  --min-ttl-hours "${MIN_SOURCE_TTL_HOURS:-1.5}" \
+  --json "$HERE/delivery/source-audit.json"
 python3 -u "$HERE/fetch_sources.py" --dest "$WORK/clips"
 generate_edge_narration() {
   python3 -u "$HERE/generate_edge_audio.py" \
@@ -101,8 +105,9 @@ PY
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 REPORTS=()
-for name in render-manifest.json narration-manifest.json technical-report.json audio-report.json final-audio-report.json \
-            alignment-report.json caption-timing.json narration-timing.json edit-decision-list.json captions.srt; do
+for name in render-manifest.json narration-manifest.json source-audit.json technical-report.json audio-report.json \
+            final-audio-report.json alignment-report.json caption-timing.json narration-timing.json \
+            edit-decision-list.json captions.srt; do
   [ -f "$HERE/delivery/$name" ] && REPORTS+=("$HERE/delivery/$name")
 done
 if [ "${#REPORTS[@]}" -gt 0 ]; then git add -f "${REPORTS[@]}"; fi
