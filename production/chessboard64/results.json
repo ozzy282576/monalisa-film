@@ -5,7 +5,10 @@
   "shots": {
     "S01": {
       "id": "S01",
-      "updated_at": "2026-10-26T12:10:57Z"
+      "status": "submitting",
+      "request_hash": "27450013c92d977523dc76c6553045f48eb7c57e4b466124efd34a3104933ac3",
+      "error": null,
+      "updated_at": "2026-10-26T12:10:59Z"
     },
     "S02": {
       "id": "S02",
@@ -496,7 +499,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T12:10:57Z",
+  "updated_at": "2026-10-26T12:10:59Z",
   "previous_results": {
     "S06": [
       {
@@ -1358,6 +1361,10 @@
           "contact_sampling_fps": 2,
           "visual_review": "pending"
         }
+      },
+      {
+        "id": "S01",
+        "updated_at": "2026-10-26T12:10:57Z"
       }
     ],
     "S02": [
