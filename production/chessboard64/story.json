@@ -10,6 +10,7 @@
   "negative_prompt": "【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.",
   "character_settings": {
     "MAIN_FIGURE": "Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.",
+    "SUPERMARKET_COWORKER": "Fictional anonymous early-2000s Moscow supermarket coworker in plain work clothes; ordinary posture, face indistinct, seen from behind or as a distant silhouette.",
     "WOMAN_COWORKER": "Fictional adult woman about 36, shoulder-length chestnut hair, pale coat, gentle everyday posture; face indistinct, shown from behind or in silhouette.",
     "SON": "Fictional teenage boy with dark hair and simple home clothes; seen from behind or as a soft silhouette, face indistinct.",
     "ELDER": "Anonymous older man in a modest dark coat and cap; distant back or soft silhouette, dignified and ordinary.",
@@ -19,8 +20,7 @@
     "PARK_VISITORS": "Ordinary anonymous park visitors of varied ages; everyday behavior, faces distant, turned away or indistinct.",
     "JURY": "Anonymous fictional Moscow jurors in modest 2000s clothes; seated quietly, distant indistinct faces.",
     "COURT_OFFICIAL": "Anonymous judge or court clerk in restrained formal clothes; back or distant silhouette, blank insignia, unreadable papers.",
-    "RELATIVES": "Fictional family members, dignified and anonymous; quiet backs or distant silhouettes, never melodramatic.",
-    "SUPERMARKET_COWORKER": "Fictional anonymous early-2000s Moscow supermarket coworker in plain work clothes; ordinary posture, face indistinct, seen from behind or as a distant silhouette."
+    "RELATIVES": "Fictional family members, dignified and anonymous; quiet backs or distant silhouettes, never melodramatic."
   },
   "principles": [
     "38个动态镜头均由智谱 CogVideoX-Flash 生成真实运动的3D动画片段；七张卡片为程序化排版，不以静帧推拉冒充动态镜头。",
@@ -452,20 +452,17 @@
       "start": 60,
       "duration": 4,
       "narration_id": "N03",
-      "prompt": "A restrained 2002-era Moscow police station corridor, used only as a general reconstruction of the reported setting, not a verified specific location. An adult woman witness walks forward toward a plain reception desk with natural heel-to-toe steps, seen strictly from behind; an anonymous investigator waits in soft silhouette beyond a frosted-glass partition. The camera follows at a respectful distance, steady and slow, while cool window light shifts over old floor tiles. No hospital, no signs, no readable date or text, no face, no incident depiction, no dramatic behavior.",
+      "prompt": "An early-2000s Moscow archive corridor rendered as a quiet, symbolic reconstruction. In the foreground, an unmarked closed folder rests beside a folded sheet on a plain desk. An anonymous clerk's hand calmly slides the folder into an open filing cabinet and closes the drawer; a soft shadow passes behind frosted glass without entering view. A black-and-white chessboard-pattern paperweight casts a faint red reflection that shifts with the desk-lamp light. The camera makes a slow physical lateral dolly from the paper to the closing drawer, with continuous natural hand movement and clear parallax. No visible people, readable writing, logos, signs, dates, or insignia.",
       "purpose": "二〇〇二年幸存者报案线索的时代背景",
       "transition_out": "棋盘格匹配转场；同段硬切或叠化",
       "graphic": "",
-      "characters": [
-        "WITNESS",
-        "INVESTIGATOR"
-      ],
+      "characters": [],
       "seed": 6415,
       "seconds": 5,
       "aspect": "16:9",
       "resolution": "1080p",
       "frame_rate": 24,
-      "camera": "从背后跟随进入旧警署接待区，保持面部不可见",
+      "camera": "桌面横移，从空白卷宗移至缓缓合上的档案抽屉",
       "sfx_note": "wind"
     },
     {

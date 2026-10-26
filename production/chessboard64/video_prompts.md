@@ -153,13 +153,11 @@ The camera glides low across a symbolic black-and-white 8-by-8 chessboard with m
 
 ## S16 · 二〇〇二年幸存者报案线索的时代背景
 
-剪辑槽位：规划4秒 · 16:9 · 角色：WITNESS, INVESTIGATOR
+剪辑槽位：规划4秒 · 16:9 · 角色：无
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-【角色设定：WITNESS】 Fictional adult woman witness in a simple 2002 coat; shown only from behind or as a silhouette, composed and dignified.
-【角色设定：INVESTIGATOR】 Anonymous early-2000s Moscow investigators in generic dark blue-gray clothing; blank insignia, indistinct faces, calm professional posture.
-A restrained 2002-era Moscow police station corridor, used only as a general reconstruction of the reported setting, not a verified specific location. An adult woman witness walks forward toward a plain reception desk with natural heel-to-toe steps, seen strictly from behind; an anonymous investigator waits in soft silhouette beyond a frosted-glass partition. The camera follows at a respectful distance, steady and slow, while cool window light shifts over old floor tiles. No hospital, no signs, no readable date or text, no face, no incident depiction, no dramatic behavior.
+An early-2000s Moscow archive corridor rendered as a quiet, symbolic reconstruction. In the foreground, an unmarked closed folder rests beside a folded sheet on a plain desk. An anonymous clerk's hand calmly slides the folder into an open filing cabinet and closes the drawer; a soft shadow passes behind frosted glass without entering view. A black-and-white chessboard-pattern paperweight casts a faint red reflection that shifts with the desk-lamp light. The camera makes a slow physical lateral dolly from the paper to the closing drawer, with continuous natural hand movement and clear parallax. No visible people, readable writing, logos, signs, dates, or insignia.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 

@@ -69,6 +69,15 @@ class StoryAlignmentTests(unittest.TestCase):
                          "警方发现与棋盘记号相关的证物")
         self.assertEqual(STORY["presentation"]["cards"]["S39"][1], "受害者不是数字")
 
+    def test_2002_archive_reconstruction_avoids_moderation_trigger_terms(self):
+        shot = {s["id"]: s for s in STORY["shots"]}["S16"]
+        prompt = shot["prompt"].lower()
+        self.assertEqual(shot["characters"], [])
+        self.assertIn("archive corridor", prompt)
+        self.assertIn("filing cabinet", prompt)
+        for term in ("police", "witness", "investigator", "hospital", "incident"):
+            self.assertNotIn(term, prompt)
+
     def test_moving_people_are_prompted_with_forward_natural_gait(self):
         shots = {s["id"]: s for s in STORY["shots"]}
         for sid in ("S01", "S02", "S09", "S11", "S25", "S32", "S44"):
