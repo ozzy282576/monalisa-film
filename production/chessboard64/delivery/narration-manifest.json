@@ -1,47 +1,48 @@
 {
-  "voice_id": "zh-CN-YunyangNeural",
-  "selection": "Runner-side fallback neural narrator zh-CN-YunyangNeural; used only because the selected voice-00 Release assets were unavailable. All chapters use this same voice.",
+  "voice_id": "zh-CN-YunjianNeural",
+  "pitch": "-8Hz",
+  "selection": "Explicitly selected low, suspenseful Mandarin male narrator zh-CN-YunjianNeural at -8Hz; all six chapters use this same voice.",
   "clips": [
     {
       "id": "N01",
       "file": "N01.mp3",
-      "sha256": "1dc37506e0edfe0f3f4f586aad4fd1c43d528807f4bab92e5c226b4d348e4c17",
-      "bytes": 642836,
+      "sha256": "da3fd597975a135ddec2744ef39f0fb1b72a84e2051ce7fa6e9cd186ff4de476",
+      "bytes": 680852,
       "text": "他常在公园和人下棋，看起来像个普通棋友。可他盯上的是一块六十四格的棋盘。媒体给他起了一个绰号，六十四格的说法来自他的自述，并非司法结论。二〇〇七年法院认定四十八起谋杀和三起未遂。他曾声称目标是填满六十四格。我们只谈证据，也记住格子背后的人。"
     },
     {
       "id": "N02",
       "file": "N02.mp3",
-      "sha256": "59d431521d272d0b82eedb2d12cb3a27ad5cca0ff26c8eaa0175d0f0d99aa2e7",
-      "bytes": 737876,
+      "sha256": "9e4b1adf18c0bab88a4558606a3fb44acb4206a3f4963f68e048c168ebfb885e",
+      "bytes": 799508,
       "text": "亚历山大·皮丘什金，三十三岁时在莫斯科受审。成年后他在超市做理货员。下班后他常去莫斯科南部的比察公园。那里有石桌和长椅，常有人停下来下棋。公开报道说，他会邀陌生人喝酒，理由是悼念死去的小狗。人们只当他是熟悉的棋友。他声称留下六十三个记号，按他的说法，棋盘几乎被填满。"
     },
     {
       "id": "N03",
       "file": "N03.mp3",
-      "sha256": "ec6b9160b7ebddfde98cb2415f8c3fe0619dc9bbf7dfacf7d23f2eb98951f292",
-      "bytes": 610580,
+      "sha256": "a04871e9de890ae84ec75d6125c109548dd34dc3eaae1435087c49104e9d5e89",
+      "bytes": 676244,
       "text": "二〇〇二年公开报道记载，一位女性幸存者曾向警方报告遭遇。报道指出这条线索当时没有得到及时跟进。我们不补写她的经历。多年后超市同事玛丽娜与他约好散步。出门前，她留下一张纸条，写下同行者的姓名和电话。离开后儿子等着，电话始终没有响。"
     },
     {
       "id": "N04",
       "file": "N04.mp3",
-      "sha256": "71fb5a586bf5a3205c8bb26de4e9fc0b61244e304dbcbb8eef3b00ca7c588ee1",
-      "bytes": 618644,
+      "sha256": "0958ab2d95cb57237e7e35bd2913425c3b40542d6ff3d437cd5c9bbb6faaacff",
+      "bytes": 680276,
       "text": "警方发现她衣袋里的地铁票。车站监控显示，两人曾经同行。纸条、票据、影像，三条线索彼此核对。这里的画面不是警方原始证物。调查从一张小票开始，回到比察公园。沿着路线，警方逐步锁定熟悉的同事。每一条证据，都需要与下一条相互印证。"
     },
     {
       "id": "N05",
       "file": "N05.mp3",
-      "sha256": "786f8dd3859d17a2bb79762ca158195bd90fe70376472a96e8eec72462491f4b",
-      "bytes": 615764,
+      "sha256": "dfcaec0d2ea11c2c6e4db550fa844c1a57df0a6e81e2279f6fbc7e93cd032555",
+      "bytes": 698708,
       "text": "二〇〇六年六月十六日，皮丘什金被捕。公开报道说，警方在他住处找到与棋盘记号相关的证物。二〇〇七年十月，陪审团认定四十八起谋杀、三起未遂。法院随后判处终身监禁。六十三，是他的自述，不是法院认定。法庭结论来自证据。每个数字，都要说明来源。"
     },
     {
       "id": "N06",
       "file": "N06.mp3",
-      "sha256": "ac3568a45cae10db08ae72dcba49a798b76758be68085589c4cbd0cf57da8d4d",
-      "bytes": 559892,
+      "sha256": "cb5be8b115e648e706ef4297aaa427868f49872170eecf00ed7006c626bd4698",
+      "bytes": 616340,
       "text": "法律结论写在案卷里，受害者却不是数字。每一格背后，都是一个真实的人，也是一个失去亲人的家庭。留下的沉默，同样值得被看见。我们不重现伤害，也不把凶手变成传奇。让棋盘回到公园石桌上。树影移动，行人继续生活。记住他们。"
     }
   ]
