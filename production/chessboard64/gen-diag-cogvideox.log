@@ -1,0 +1,126 @@
+REF_IMAGE_MODE=False (payload override)
+REF_IMAGE_PROBE skipped: payload 指定 ref_image=False（纯文生）
+PRODUCTION_STATUS CogVideoX cloud generation started
+PRODUCTION_STATUS S01 prior receipt archived for forced refresh
+S01: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S01 prior task could not refresh the signed URL
+PRODUCTION_STATUS S02 prior receipt archived for forced refresh
+S02: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S02 prior task could not refresh the signed URL
+PRODUCTION_STATUS S04 prior receipt archived for forced refresh
+S04: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S04 prior task could not refresh the signed URL
+PRODUCTION_STATUS S05 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S05 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S05.json', 'production/chessboard64/qa/S05.jpg'])
+PRODUCTION_STATUS S05 signed URL refreshed from completed task
+S05: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S06 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S06 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S06.json', 'production/chessboard64/qa/S06.jpg'])
+PRODUCTION_STATUS S06 signed URL refreshed from completed task
+S06: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S07 prior receipt archived for forced refresh
+S07: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S07 prior task could not refresh the signed URL
+PRODUCTION_STATUS S09 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S09 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S09.json', 'production/chessboard64/qa/S09.jpg'])
+PRODUCTION_STATUS S09 signed URL refreshed from completed task
+S09: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S10 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S10 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S10.json', 'production/chessboard64/qa/S10.jpg'])
+PRODUCTION_STATUS S10 signed URL refreshed from completed task
+S10: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S11 prior receipt archived for forced refresh
+S11: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S11 prior task could not refresh the signed URL
+PRODUCTION_STATUS S12 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S12 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S12.json', 'production/chessboard64/qa/S12.jpg'])
+PRODUCTION_STATUS S12 signed URL refreshed from completed task
+S12: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S13 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S13 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S13.json', 'production/chessboard64/qa/S13.jpg'])
+PRODUCTION_STATUS S13 signed URL refreshed from completed task
+S13: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S14 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S14 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S14.json', 'production/chessboard64/qa/S14.jpg'])
+PRODUCTION_STATUS S14 signed URL refreshed from completed task
+S14: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S15 prior receipt archived for forced refresh
+S15: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S15 prior task could not refresh the signed URL
+PRODUCTION_STATUS S17 prior receipt archived for forced refresh
+S17: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S17 prior task could not refresh the signed URL
+PRODUCTION_STATUS S19 prior receipt archived for forced refresh
+S19: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S19 prior task could not refresh the signed URL
+PRODUCTION_STATUS S20 prior receipt archived for forced refresh
+S20: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S20 prior task could not refresh the signed URL
+PRODUCTION_STATUS S21 prior receipt archived for forced refresh
+S21: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S21 prior task could not refresh the signed URL
+PRODUCTION_STATUS S22 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S22 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S22.json', 'production/chessboard64/qa/S22.jpg'])
+PRODUCTION_STATUS S22 signed URL refreshed from completed task
+S22: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S23 prior receipt archived for forced refresh
+S23: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S23 prior task could not refresh the signed URL
+PRODUCTION_STATUS S24 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S24 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S24.json', 'production/chessboard64/qa/S24.jpg'])
+PRODUCTION_STATUS S24 signed URL refreshed from completed task
+S24: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S25 prior receipt archived for forced refresh
+S25: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S25 prior task could not refresh the signed URL
+PRODUCTION_STATUS S26 prior receipt archived for forced refresh
+S26: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S26 prior task could not refresh the signed URL
+PRODUCTION_STATUS S28 prior receipt archived for forced refresh
+S28: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S28 prior task could not refresh the signed URL
+PRODUCTION_STATUS S29 prior receipt archived for forced refresh
+S29: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S29 prior task could not refresh the signed URL
+PRODUCTION_STATUS S30 prior receipt archived for forced refresh
+S30: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S30 prior task could not refresh the signed URL
+PRODUCTION_STATUS S31 prior receipt archived for forced refresh
+S31: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S31 prior task could not refresh the signed URL
+PRODUCTION_STATUS S32 prior receipt archived for forced refresh
+S32: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S32 prior task could not refresh the signed URL
+PRODUCTION_STATUS S34 prior receipt archived for forced refresh
+S34: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S34 prior task could not refresh the signed URL
+PRODUCTION_STATUS S35 prior receipt archived for forced refresh
+S35: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S35 prior task could not refresh the signed URL
+PRODUCTION_STATUS S36 prior receipt archived for forced refresh
+S36: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S36 prior task could not refresh the signed URL
+PRODUCTION_STATUS S37 prior receipt archived for forced refresh
+CHECKPOINT_GIT_FAILED S37 signed URL refreshed from completed task: CalledProcessError(1, ['git', 'add', '--', 'production/chessboard64/results.json', 'production/chessboard64/qa/S37.json', 'production/chessboard64/qa/S37.jpg'])
+PRODUCTION_STATUS S37 signed URL refreshed from completed task
+S37: recovered the matching completed source from its provider task
+PRODUCTION_STATUS S38 prior receipt archived for forced refresh
+S38: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S38 prior task could not refresh the signed URL
+PRODUCTION_STATUS S40 prior receipt archived for forced refresh
+S40: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S40 prior task could not refresh the signed URL
+PRODUCTION_STATUS S41 prior receipt archived for forced refresh
+S41: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S41 prior task could not refresh the signed URL
+PRODUCTION_STATUS S42 prior receipt archived for forced refresh
+S42: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S42 prior task could not refresh the signed URL
+PRODUCTION_STATUS S43 prior receipt archived for forced refresh
+S43: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S43 prior task could not refresh the signed URL
+PRODUCTION_STATUS S44 prior receipt archived for forced refresh
+S44: prior task returned an expired or near-expiry URL; submit a fresh generation
+PRODUCTION_STATUS S44 prior task could not refresh the signed URL
+PRODUCTION_STATUS CogVideoX generation pass finished (missing=27 failed=27)
+COMPLETE 37 requested clips; model=cogvideox-flash
