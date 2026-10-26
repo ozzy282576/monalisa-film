@@ -5,7 +5,10 @@
   "shots": {
     "S01": {
       "id": "S01",
-      "updated_at": "2026-10-26T12:05:16Z"
+      "updated_at": "2026-10-26T12:05:17Z",
+      "status": "failed",
+      "request_hash": "27450013c92d977523dc76c6553045f48eb7c57e4b466124efd34a3104933ac3",
+      "error": "No fresh signed URL was available from a matching completed provider task"
     },
     "S02": {
       "id": "S02",
@@ -921,7 +924,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T12:05:16Z",
+  "updated_at": "2026-10-26T12:05:17Z",
   "previous_results": {
     "S06": [
       {
