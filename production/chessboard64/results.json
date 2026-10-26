@@ -196,7 +196,10 @@
       "error": null
     },
     "S11": {
-      "id": "S11"
+      "id": "S11",
+      "status": "submitting",
+      "request_hash": "0d5a97d90018ba8a1e0b1d3a7e9b7b70863889d0fe39a75a6662843eda24115e",
+      "updated_at": "2026-10-26T13:32:10Z"
     },
     "S12": {
       "id": "S12",
@@ -427,8 +430,7 @@
       "id": "S43"
     },
     "S44": {
-      "id": "S44",
-      "updated_at": "2026-10-26T13:32:09Z"
+      "id": "S44"
     },
     "S10": {
       "id": "S10",
@@ -497,7 +499,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T13:32:09Z",
+  "updated_at": "2026-10-26T13:32:10Z",
   "previous_results": {
     "S06": [
       {
@@ -2639,6 +2641,10 @@
           "contact_sampling_fps": 2,
           "visual_review": "pending"
         }
+      },
+      {
+        "id": "S44",
+        "updated_at": "2026-10-26T13:32:09Z"
       }
     ],
     "S12": [
