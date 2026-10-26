@@ -6,28 +6,28 @@ FETCH S02 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102522195043ce
   OK S02 2190235 bytes / 5.11s
 FETCH S04 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610252222402e545575dd2946b4_watermark.mp4 [signed query redacted]
   OK S04 1243618 bytes / 5.11s
-FETCH S05 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025222400047c1af1b0604cd4_watermark.mp4 [signed query redacted]
-  OK S05 1583364 bytes / 5.11s
-FETCH S06 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025222650cb99261144124b1b_watermark.mp4 [signed query redacted]
-  OK S06 1665563 bytes / 5.11s
+FETCH S05 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260944005c44111e042e4441_watermark.mp4 [signed query redacted]
+  OK S05 1658299 bytes / 5.11s
+FETCH S06 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026094550f137365438dd49a9_watermark.mp4 [signed query redacted]
+  OK S06 1235746 bytes / 5.11s
 FETCH S07 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102522421026d79ab9d6ca4793_watermark.mp4 [signed query redacted]
   OK S07 1645465 bytes / 5.11s
 FETCH S08 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025141910432f4e7c746e41d0_watermark.mp4 [signed query redacted]
   OK S08 1751651 bytes / 5.11s
-FETCH S09 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025225150172db1e015054a4e_watermark.mp4 [signed query redacted]
-  OK S09 2489706 bytes / 5.11s
+FETCH S09 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026095300f068307fe261437b_watermark.mp4 [signed query redacted]
+  OK S09 964075 bytes / 5.11s
+FETCH S10 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026095810480151eea0554896_watermark.mp4 [signed query redacted]
+  OK S10 2250567 bytes / 5.11s
 FETCH S11 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025225440482063e43f114244_watermark.mp4 [signed query redacted]
   OK S11 2673418 bytes / 5.11s
-FETCH S12 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102514270064f98b8641d84d8c_watermark.mp4 [signed query redacted]
-  OK S12 1998679 bytes / 5.11s
-FETCH S13 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610252255504ae0fc7d912e4ea3_watermark.mp4 [signed query redacted]
-  OK S13 2721575 bytes / 5.11s
-FETCH S14 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025225840f5f31ae447554502_watermark.mp4 [signed query redacted]
-  OK S14 1841702 bytes / 5.11s
+FETCH S12 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610261003309375268938af4e05_watermark.mp4 [signed query redacted]
+  OK S12 2124083 bytes / 5.11s
+FETCH S13 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610261020208b7675e8e70b49d3_watermark.mp4 [signed query redacted]
+  OK S13 2944522 bytes / 5.11s
+FETCH S14 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026102400618afa130c1c42c2_watermark.mp4 [signed query redacted]
+  OK S14 1527181 bytes / 5.11s
 FETCH S15 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025233010464b4cddb1424917_watermark.mp4 [signed query redacted]
   OK S15 1521978 bytes / 5.11s
-FETCH S16 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260838406065ecbfb58c4c23_watermark.mp4 [signed query redacted]
-  OK S16 1269787 bytes / 5.11s
 FETCH S17 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025235600e5463960f5a24539_watermark.mp4 [signed query redacted]
   OK S17 1087981 bytes / 5.11s
 FETCH S19 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610251502004a94b8145ecb42b7_watermark.mp4 [signed query redacted]
@@ -36,12 +36,12 @@ FETCH S20 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025190040aa4d
   OK S20 1413756 bytes / 5.11s
 FETCH S21 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610252357207139ec4d4b324096_watermark.mp4 [signed query redacted]
   OK S21 824864 bytes / 5.11s
-FETCH S22 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102600025035f0dd75d2be4dc8_watermark.mp4 [signed query redacted]
-  OK S22 969582 bytes / 5.11s
+FETCH S22 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026102515e8126e681b054cdc_watermark.mp4 [signed query redacted]
+  OK S22 1298685 bytes / 5.11s
 FETCH S23 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025152620bb235b779ea64133_watermark.mp4 [signed query redacted]
   OK S23 1286015 bytes / 5.11s
-FETCH S24 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260004308269af21317a4f6b_watermark.mp4 [signed query redacted]
-  OK S24 935866 bytes / 5.11s
+FETCH S24 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026103030cce26d04f16c40e2_watermark.mp4 [signed query redacted]
+  OK S24 997392 bytes / 5.11s
 FETCH S25 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260006107e65b88325624e0c_watermark.mp4 [signed query redacted]
   OK S25 1249186 bytes / 5.11s
 FETCH S26 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260008002c90dd671ebe4795_watermark.mp4 [signed query redacted]
@@ -62,8 +62,8 @@ FETCH S35 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102600335072cf
   OK S35 1922644 bytes / 5.11s
 FETCH S36 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102600350021c1dbe427e84917_watermark.mp4 [signed query redacted]
   OK S36 1410168 bytes / 5.11s
-FETCH S37 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102600371037e0d28eacad42f8_watermark.mp4 [signed query redacted]
-  OK S37 1538017 bytes / 5.11s
+FETCH S37 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102610333077af027a92244e66_watermark.mp4 [signed query redacted]
+  OK S37 1148609 bytes / 5.11s
 FETCH S38 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260039305c38060918fc4dad_watermark.mp4 [signed query redacted]
   OK S38 1532645 bytes / 5.11s
 FETCH S40 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025165800395fc0766e6f4b48_watermark.mp4 [signed query redacted]
@@ -78,6 +78,185 @@ FETCH S44 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026010410885d
   OK S44 2234967 bytes / 5.11s
 FETCH_COMPLETE {"downloaded": 38, "reused": 0, "clips": 38}
 NARRATION_SOURCE forced low suspense male Edge-TTS zh-CN-YunjianNeural -8Hz
-usage: generate_edge_audio.py [-h] [--voice VOICE] [--pitch PITCH]
-                              [--attempts ATTEMPTS]
-generate_edge_audio.py: error: argument --pitch: expected one argument
+EDGE_TTS_READY N01 153504 bytes voice=zh-CN-YunjianNeural pitch=-8Hz
+EDGE_TTS_READY N02 177840 bytes voice=zh-CN-YunjianNeural pitch=-8Hz
+EDGE_TTS_READY N03 151632 bytes voice=zh-CN-YunjianNeural pitch=-8Hz
+EDGE_TTS_READY N04 156528 bytes voice=zh-CN-YunjianNeural pitch=-8Hz
+EDGE_TTS_READY N05 160992 bytes voice=zh-CN-YunjianNeural pitch=-8Hz
+EDGE_TTS_READY N06 143424 bytes voice=zh-CN-YunjianNeural pitch=-8Hz
+N01:  25.58s ->  31.95s paced ->  28.33s tightened (8 处停顿收紧；特殊停顿0处)
+N02:  29.64s ->  37.02s paced ->  33.27s tightened (12 处停顿收紧；特殊停顿1处)
+N03:  25.27s ->  31.56s paced ->  28.09s tightened (10 处停顿收紧；特殊停顿1处)
+N04:  26.09s ->  32.58s paced ->  28.28s tightened (14 处停顿收紧；特殊停顿0处)
+N05:  26.83s ->  33.51s paced ->  29.02s tightened (12 处停顿收紧；特殊停顿0处)
+N06:  23.90s ->  29.85s paced ->  25.62s tightened (10 处停顿收紧；特殊停顿0处)
+合计原始 157.32s -> 调速 196.48s -> 收紧 172.61s；有效语速 3.63 汉字/秒；render.py 可用 168.0s，后续变速比 1.027（允许 0.86–1.10）
+audio/manifest.json 已更新 6 条的 SHA-256（记的是收紧后的文件）
+N01 dur 28.33
+    0   0.15-  2.24   4.3/s  他常在公园和人下棋
+    1   2.55-  4.53   4.5/s  看起来像个普通棋友
+    2   4.88-  8.21   4.5/s  可他盯上的是一块六十四格的棋盘
+    3   8.56- 10.49   5.2/s  媒体给他起了一个绰号
+    4  10.81- 13.61   4.6/s  六十四格的说法来自他的自述
+    5  13.95- 15.33   4.3/s  并非司法结论
+    6  15.67- 20.64   4.0/s  二〇〇七年法院认定四十八起谋杀和三起未遂
+    7  20.99- 24.09   4.2/s  他曾声称目标是填满六十四格
+    8  24.44- 25.80   4.4/s  我们只谈证据
+    9  26.15- 28.33   4.1/s  也记住格子背后的人
+N02 dur 33.27
+    0   0.15-  2.34   3.6/s  亚历山大·皮丘什金
+    1   2.69-  5.54   3.9/s  三十三岁时在莫斯科受审
+    2   5.90-  8.82   3.8/s  成年后他在超市做理货员
+    3   9.16- 12.99   4.2/s  下班后他常去莫斯科南部的比察公园
+    4  13.34- 15.09   4.6/s  那里有石桌和长椅
+    5  15.44- 17.31   4.3/s  常有人停下来下棋
+    6  17.66- 18.64   5.1/s  公开报道说
+    7  19.00- 20.76   4.5/s  他会邀陌生人喝酒
+    8  21.11- 23.66   3.9/s  理由是悼念死去的小狗
+    9  24.01- 27.41   3.2/s  人们只当他是熟悉的棋友
+   10  27.58- 30.26   4.1/s  他声称留下六十三个记号
+   11  30.35- 31.61   4.0/s  按他的说法
+   12  31.69- 33.27   4.4/s  棋盘几乎被填满
+N03 dur 28.09
+    0   0.15-  2.48   4.7/s  二〇〇二年公开报道记载
+    1   2.83-  6.80   3.8/s  一位女性幸存者曾向警方报告遭遇
+    2   7.14- 11.37   4.3/s  报道指出这条线索当时没有得到及时跟进
+    3  11.71- 13.56   4.9/s  我们不补写她的经历
+    4  13.90- 17.85   4.0/s  多年后超市同事玛丽娜与他约好散步
+    5  18.20- 18.92   4.2/s  出门前
+    6  19.27- 20.85   4.4/s  她留下一张纸条
+    7  21.35- 23.97   4.2/s  写下同行者的姓名和电话
+    8  24.31- 25.78   4.8/s  离开后儿子等着
+    9  26.12- 28.09   3.5/s  电话始终没有响
+N04 dur 28.28
+    0   0.14-  2.96   4.3/s  警方发现她衣袋里的地铁票
+    1   3.30-  5.03   3.5/s  车站监控显示
+    2   5.36-  6.95   3.8/s  两人曾经同行
+    3   7.29-  7.80   3.9/s  纸条
+    4   8.15-  8.75   3.3/s  票据
+    5   9.10-  9.54   4.5/s  影像
+    6   9.88- 11.78   4.2/s  三条线索彼此核对
+    7  12.12- 15.13   4.3/s  这里的画面不是警方原始证物
+    8  15.48- 17.62   4.2/s  调查从一张小票开始
+    9  17.96- 19.25   4.7/s  回到比察公园
+   10  19.60- 20.48   4.5/s  沿着路线
+   11  20.83- 23.51   4.1/s  警方逐步锁定熟悉的同事
+   12  23.85- 24.97   4.5/s  每一条证据
+   13  25.32- 28.28   3.7/s  都需要与下一条相互印证
+N05 dur 29.02
+    0   0.15-  2.52   4.2/s  二〇〇六年六月十六日
+    1   2.86-  4.41   3.9/s  皮丘什金被捕
+    2   4.76-  5.69   5.4/s  公开报道说
+    3   6.04- 10.40   4.1/s  警方在他住处找到与棋盘记号相关的证物
+    4  10.75- 12.37   4.3/s  二〇〇七年十月
+    5  12.71- 15.41   4.1/s  陪审团认定四十八起谋杀
+    6  15.72- 16.75   3.9/s  三起未遂
+    7  17.10- 19.52   4.1/s  法院随后判处终身监禁
+    8  19.86- 20.53   4.5/s  六十三
+    9  20.87- 22.00   4.4/s  是他的自述
+   10  22.32- 23.67   4.4/s  不是法院认定
+   11  24.01- 25.84   4.4/s  法庭结论来自证据
+   12  26.18- 27.20   3.9/s  每个数字
+   13  27.51- 29.02   4.0/s  都要说明来源
+N06 dur 25.62
+    0   0.15-  2.14   4.5/s  法律结论写在案卷里
+    1   2.47-  4.63   3.7/s  受害者却不是数字
+    2   4.97-  5.99   4.9/s  每一格背后
+    3   6.31-  7.99   4.8/s  都是一个真实的人
+    4   8.31- 10.72   4.6/s  也是一个失去亲人的家庭
+    5  11.07- 12.13   4.7/s  留下的沉默
+    6  12.48- 14.22   4.0/s  同样值得被看见
+    7  14.56- 15.93   5.1/s  我们不重现伤害
+    8  16.26- 18.28   4.5/s  也不把凶手变成传奇
+    9  18.62- 21.01   4.2/s  让棋盘回到公园石桌上
+   10  21.35- 22.26   4.4/s  树影移动
+   11  22.61- 24.10   4.0/s  行人继续生活
+   12  24.45- 25.62   3.4/s  记住他们
+written /home/runner/work/monalisa-film/monalisa-film/production/chessboard64/audio/clause-times.json
+N01 S01=0.00 S02=2.40 S03=4.73 S04=8.41 S05=10.66 S06=15.52 S07=20.84 S08=24.29
+N02 S09=0.00 S10=5.75 S11=9.01 S12=13.19 S13=17.51 S14=20.96 S15=27.49
+N03 S16=0.00 S17=2.68 S18=6.99 S19=11.56 S20=13.75 S21=18.05 S22=21.20 S23=24.16
+N04 S24=0.00 S25=3.15 S26=5.21 S27=8.00 S28=11.97 S29=15.33 S30=19.45 S31=23.70
+N05 S32=0.00 S33=5.89 S34=10.60 S35=15.57 S36=19.71 S37=22.17 S38=26.03
+N06 S39=0.00 S40=4.82 S41=8.16 S42=10.92 S43=14.41 S44=18.47 S45=21.20
+ALIGNED_CUTS_TO_MEASURED_SILENCES
+VERIFIED N01 681428 bytes
+VERIFIED N02 800084 bytes
+VERIFIED N03 675668 bytes
+VERIFIED N04 680276 bytes
+VERIFIED N05 698132 bytes
+VERIFIED N06 616340 bytes
+AUDIO_COMPLETE 6 narration clips
+OK  N01  S01 cut=  0.00  【画面】比察公园里两位普通棋友对弈           【口播】他常在公园和人下棋
+OK  N01  S02 cut=  2.40  分句「看起来像个普通棋友 」起点   2.55 (差 -0.15)  【画面】看似普通棋友的日常交流         【口播】看起来像个普通棋友
+OK  N01  S03 cut=  4.73  分句「可他盯上的是一块六十」起点   4.88 (差 -0.15)  【画面】信息卡['六十四格', '莫斯科 ·  【口播】可他盯上的是一块六十四格的棋盘
+OK  N01  S04 cut=  8.41  分句「媒体给他起了一个绰号」起点   8.56 (差 -0.15)  【画面】媒体报道中的绰号以棋盘隐喻呈现     【口播】媒体给他起了一个绰号
+OK  N01  S05 cut= 10.66  分句「六十四格的说法来自他」起点  10.81 (差 -0.15)  【画面】六十四格来自他的自述，而非司法结论   【口播】六十四格的说法来自他的自述 / 并非司法结论
+OK  N01  S06 cut= 15.52  分句「二〇〇七年法院认定四」起点  15.67 (差 -0.15)  【画面】法院认定四十八起谋杀、三起未遂     【口播】二〇〇七年法院认定四十八起谋杀和三起未遂
+OK  N01  S07 cut= 20.84  分句「他曾声称目标是填满六」起点  20.99 (差 -0.15)  【画面】六十四格目标是本人说法         【口播】他曾声称目标是填满六十四格
+OK  N01  S08 cut= 24.29  分句「我们只谈证据    」起点  24.44 (差 -0.15)  【画面】棋盘上的标记延伸成公园路径隐喻     【口播】我们只谈证据 / 也记住格子背后的人
+OK  N02  S09 cut=  0.00  【画面】亚历山大·皮丘什金三十三岁时在莫斯科受审    【口播】亚历山大·皮丘什金 / 三十三岁时在莫斯科受审
+OK  N02  S10 cut=  5.75  分句「成年后他在超市做理货」起点   5.90 (差 -0.15)  【画面】成年后在超市做理货员          【口播】成年后他在超市做理货员
+OK  N02  S11 cut=  9.01  分句「下班后他常去莫斯科南」起点   9.16 (差 -0.15)  【画面】下班后常去的比察公园与石桌长椅     【口播】下班后他常去莫斯科南部的比察公园
+OK  N02  S12 cut= 13.19  分句「那里有石桌和长椅  」起点  13.34 (差 -0.15)  【画面】比察公园石桌、棋友与日常对弈      【口播】那里有石桌和长椅 / 常有人停下来下棋
+OK  N02  S13 cut= 17.51  分句「公开报道说     」起点  17.66 (差 -0.15)  【画面】公开报道所述的邀约方式与陌生棋友    【口播】公开报道说 / 他会邀陌生人喝酒
+OK  N02  S14 cut= 20.96  分句「理由是悼念死去的小狗」起点  21.11 (差 -0.15)  【画面】悼念死去的小狗是他给出的理由，棋友只  【口播】理由是悼念死去的小狗 / 人们只当他是熟悉的棋友
+OK  N02  S15 cut= 27.49  分句「他声称留下六十三个记」起点  27.58 (差 -0.09)  【画面】六十三个记号和棋盘几乎被填满都只是他  【口播】他声称留下六十三个记号 / 按他的说法 / 棋盘几乎被填满
+OK  N03  S16 cut=  0.00  【画面】信息卡['2002年 · 公开报道', '一  【口播】二〇〇二年公开报道记载
+OK  N03  S17 cut=  2.68  分句「一位女性幸存者曾向警」起点   2.83 (差 -0.15)  【画面】女性幸存者在二〇〇二年向警方报告    【口播】一位女性幸存者曾向警方报告遭遇
+OK  N03  S18 cut=  6.99  分句「报道指出这条线索当时」起点   7.14 (差 -0.15)  【画面】信息卡['线索未被及时跟进 · 20  【口播】报道指出这条线索当时没有得到及时跟进
+OK  N03  S19 cut= 11.56  分句「我们不补写她的经历 」起点  11.71 (差 -0.15)  【画面】空棋桌旁只有落叶与停顿的时钟      【口播】我们不补写她的经历
+OK  N03  S20 cut= 13.75  分句「多年后超市同事玛丽娜」起点  13.90 (差 -0.15)  【画面】超市休息室里同事交谈          【口播】多年后超市同事玛丽娜与他约好散步
+OK  N03  S21 cut= 18.05  分句「出门前       」起点  18.20 (差 -0.15)  【画面】玛丽娜出门前留下纸条          【口播】出门前 / 她留下一张纸条
+OK  N03  S22 cut= 21.20  分句「写下同行者的姓名和电」起点  21.35 (差 -0.15)  【画面】纸条上写下同行者姓名与电话       【口播】写下同行者的姓名和电话
+OK  N03  S23 cut= 24.16  分句「离开后儿子等着   」起点  24.31 (差 -0.15)  【画面】儿子等待而电话没有响          【口播】离开后儿子等着 / 电话始终没有响
+OK  N04  S24 cut=  0.00  【画面】警方发现她衣袋里的地铁票            【口播】警方发现她衣袋里的地铁票
+OK  N04  S25 cut=  3.15  分句「车站监控显示    」起点   3.30 (差 -0.15)  【画面】车站监控显示两人同行          【口播】车站监控显示
+OK  N04  S26 cut=  5.21  分句「两人曾经同行    」起点   5.36 (差 -0.15)  【画面】监控显示同行后，纸条与地铁票进入证据  【口播】两人曾经同行 / 纸条
+OK  N04  S27 cut=  8.00  分句「票据        」起点   8.15 (差 -0.15)  【画面】信息卡['关键证据链 · 2006年  【口播】票据 / 影像 / 三条线索彼此核对
+OK  N04  S28 cut= 11.97  分句「这里的画面不是警方原」起点  12.12 (差 -0.15)  【画面】探员展开外套检查口袋里的车票      【口播】这里的画面不是警方原始证物
+OK  N04  S29 cut= 15.33  分句「调查从一张小票开始 」起点  15.48 (差 -0.15)  【画面】调查从地铁票追到比察公园        【口播】调查从一张小票开始 / 回到比察公园
+OK  N04  S30 cut= 19.45  分句「沿着路线      」起点  19.60 (差 -0.15)  【画面】探员把影像线索与纸条并列        【口播】沿着路线 / 警方逐步锁定熟悉的同事
+OK  N04  S31 cut= 23.70  分句「每一条证据     」起点  23.85 (差 -0.15)  【画面】地铁路线与公园在棋盘上叠合       【口播】每一条证据 / 都需要与下一条相互印证
+OK  N05  S32 cut=  0.00  【画面】二〇〇六年六月十六日逮捕的克制情景重现     【口播】二〇〇六年六月十六日 / 皮丘什金被捕 / 公开报道说
+OK  N05  S33 cut=  5.89  分句「警方在他住处找到与棋」起点   6.04 (差 -0.15)  【画面】信息卡['住处搜查 · 公开报道',  【口播】警方在他住处找到与棋盘记号相关的证物
+OK  N05  S34 cut= 10.60  分句「二〇〇七年十月   」起点  10.75 (差 -0.15)  【画面】二〇〇七年陪审团认定四十八起谋杀    【口播】二〇〇七年十月 / 陪审团认定四十八起谋杀
+OK  N05  S35 cut= 15.57  分句「三起未遂      」起点  15.72 (差 -0.15)  【画面】法院认定三起未遂并判处终身监禁     【口播】三起未遂 / 法院随后判处终身监禁
+OK  N05  S36 cut= 19.71  分句「六十三       」起点  19.86 (差 -0.15)  【画面】六十三是本人自述，不能与法院认定混同  【口播】六十三 / 是他的自述
+OK  N05  S37 cut= 22.17  分句「不是法院认定    」起点  22.32 (差 -0.15)  【画面】法庭结论来自证据，而不是个人自述    【口播】不是法院认定 / 法庭结论来自证据
+OK  N05  S38 cut= 26.03  分句「每个数字      」起点  26.18 (差 -0.15)  【画面】每个数字都要说明来源          【口播】每个数字 / 都要说明来源
+OK  N06  S39 cut=  0.00  【画面】信息卡['判决写在案卷里', '受害者不是数  【口播】法律结论写在案卷里 / 受害者却不是数字
+OK  N06  S40 cut=  4.82  分句「每一格背后     」起点   4.97 (差 -0.15)  【画面】回到秋日公园的空石桌          【口播】每一格背后 / 都是一个真实的人
+OK  N06  S41 cut=  8.16  分句「也是一个失去亲人的家」起点   8.31 (差 -0.15)  【画面】失去亲人的家庭也应被看见        【口播】也是一个失去亲人的家庭
+OK  N06  S42 cut= 10.92  分句「留下的沉默     」起点  11.07 (差 -0.15)  【画面】棋盘格转为普通石板路          【口播】留下的沉默 / 同样值得被看见
+OK  N06  S43 cut= 14.41  分句「我们不重现伤害   」起点  14.56 (差 -0.15)  【画面】红色记号消失，留下白色空格       【口播】我们不重现伤害 / 也不把凶手变成传奇
+OK  N06  S44 cut= 18.47  分句「让棋盘回到公园石桌上」起点  18.62 (差 -0.15)  【画面】棋盘回到公园石桌，普通生活继续     【口播】让棋盘回到公园石桌上
+OK  N06  S45 cut= 21.20  分句「树影移动      」起点  21.35 (差 -0.15)  【画面】信息卡['棋盘上的每一格，都是一个人  【口播】树影移动 / 行人继续生活 / 记住他们
+CUTS 全部落在分句停顿窗内，且语速分布正常
+RENDER_SEGMENT 1/45 S01
+RENDER_SEGMENT 2/45 S02
+RENDER_SEGMENT 3/45 S03
+RENDER_SEGMENT 4/45 S04
+RENDER_SEGMENT 5/45 S05
+RENDER_SEGMENT 6/45 S06
+RENDER_SEGMENT 7/45 S07
+RENDER_SEGMENT 8/45 S08
+RENDER_SEGMENT 9/45 S09
+RENDER_SEGMENT 10/45 S10
+RENDER_SEGMENT 11/45 S11
+RENDER_SEGMENT 12/45 S12
+RENDER_SEGMENT 13/45 S13
+RENDER_SEGMENT 14/45 S14
+Traceback (most recent call last):
+  File "/home/runner/work/monalisa-film/monalisa-film/production/chessboard64/render.py", line 589, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/monalisa-film/monalisa-film/production/chessboard64/render.py", line 527, in main
+    outputs.append(render_segment(entry,i,args.sources,work/'graphics',segments,args.width,args.height,checks,presentation,last_shot))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/monalisa-film/monalisa-film/production/chessboard64/render.py", line 433, in render_segment
+    take,factor=plan_time_stretch(duration,available,sid,variant)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/monalisa-film/monalisa-film/production/chessboard64/render.py", line 408, in plan_time_stretch
+    raise RuntimeError(
+RuntimeError: S15/: slot requires 1.376x slow motion; exceeds the 1.33x limit. Reassign the clause or generate a longer clip; reverse playback and ping-pong loops are prohibited.
