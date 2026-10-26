@@ -376,6 +376,16 @@ def signed_url_expiry(url):
         return None
 
 
+def unharvested_task(doc, sid, wanted):
+    """上一轮交出去却没收回来的同提示词任务 ID（供本轮继续轮询，不重复花额度）。"""
+    for old in reversed(doc.get('previous_results', {}).get(sid, []) or []):
+        if not isinstance(old, dict) or old.get('request_hash') != wanted:
+            continue
+        if old.get('task_id') and not old.get('sha256'):
+            return str(old['task_id'])
+    return None
+
+
 def refresh_forced_source_from_task(client, doc, sid, wanted, sources, qa, publish=False):
     """Re-fetch a completed matching provider task and use only a newly valid signed URL.
 
@@ -627,6 +637,15 @@ def main():
                            'attempts': 0, 'shot': shot}
             checkpoint(doc, sid + ' queued', sid, publish=args.publish,
                        status='queued', task_id=str(probe_task), request_hash=wanted)
+            continue
+        in_flight = unharvested_task(doc, sid, wanted)
+        if in_flight:
+            # 上一轮交出去但没收回来的任务还在服务端跑：接着等它，别浪费额度重投。
+            print('%s: resuming the task submitted by an earlier run' % sid, flush=True)
+            queued[sid] = {'task_id': in_flight, 'request_hash': wanted,
+                           'attempts': 0, 'shot': shot}
+            checkpoint(doc, sid + ' queued', sid, publish=args.publish,
+                       status='queued', task_id=in_flight, request_hash=wanted)
             continue
         needs_generation.append(shot)
 

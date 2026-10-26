@@ -49,6 +49,14 @@ class GenerationPolicyTests(unittest.TestCase):
         self.assertEqual(archived["task_id"], "in-flight-task")
         self.assertEqual(archived["status"], "unharvested")
         self.assertEqual(doc["shots"]["S23"], {"id": "S23"})
+        self.assertEqual(gen.unharvested_task(doc, "S23", wanted), "in-flight-task")
+        self.assertIsNone(gen.unharvested_task(doc, "S23", "other-hash"))
+
+    def test_completed_history_is_not_mistaken_for_an_in_flight_task(self):
+        wanted = "same-prompt-hash"
+        doc = {"previous_results": {"S31": [{"request_hash": wanted, "task_id": "done-task",
+                                             "sha256": "e" * 64, "status": "expired"}]}}
+        self.assertIsNone(gen.unharvested_task(doc, "S31", wanted))
 
     def test_provider_sdk_retries_are_bounded_by_the_generator_loop(self):
         calls = {}
