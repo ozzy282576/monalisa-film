@@ -1,6 +1,6 @@
 {
   "duration": 180.0,
-  "bytes": 66334411,
+  "bytes": 66519545,
   "width": 1920,
   "height": 1080,
   "fps": 30.0,
@@ -9,7 +9,7 @@
   "audio_codec": "aac",
   "sample_rate": 48000,
   "audio_channels": 2,
-  "sha256": "a2ca39fdedba551067b74b2e77b49cab6ee9f1baaaeec87bcdc221d969adb013",
+  "sha256": "3ab59c718d52fb19f03d8d9896e8dc03a84ac4345a4c2e2fc19bb18863f0b1dc",
   "decoded_ok": true,
   "status": "audio_verified_cut",
   "visual_review": "pending",
@@ -47,20 +47,20 @@
   ],
   "narration_voice_id": "zh-CN-YunjianNeural",
   "narration_pitch": "-8Hz",
-  "narration_tempo": 1.0277083333333334,
+  "narration_tempo": 1.0277380952380952,
   "editorial_segments": 45,
   "source_clips": 38,
   "archival_portrait": false,
   "unique_shots_no_reuse": true,
   "output": "六十四格_国际象棋盘杀手_三分钟_带声音.mp4",
   "soundtrack_mix": {
-    "rms_dbfs": -22.22,
-    "peak_dbfs": -1.56,
+    "rms_dbfs": -22.2,
+    "peak_dbfs": -1.55,
     "silent_fraction": 0.0,
     "target_rms_dbfs": -20.0
   },
   "delivered_audio": {
-    "rms_dbfs": -22.26,
+    "rms_dbfs": -22.23,
     "peak_dbfs": -1.68,
     "silent_fraction": 0.0055,
     "quietest_window_dbfs": -120.0

@@ -3,55 +3,55 @@
   "duration_seconds": 180.0,
   "sample_rate": 48000,
   "channels": 1,
-  "rms_dbfs": -22.22,
-  "peak_dbfs": -1.56,
+  "rms_dbfs": -22.2,
+  "peak_dbfs": -1.55,
   "window_seconds": 1.0,
   "silent_windows": 0,
   "window_count": 180,
   "silent_fraction": 0.0,
-  "quietest_window_dbfs": -47.73,
+  "quietest_window_dbfs": -47.69,
   "chapters": [
     {
       "id": "N01",
       "start": 0.6,
-      "end": 28.142,
-      "rms_dbfs": -22.21,
-      "peak_dbfs": -1.75
+      "end": 28.156,
+      "rms_dbfs": -22.19,
+      "peak_dbfs": -1.97
     },
     {
       "id": "N02",
-      "start": 29.222,
-      "end": 61.609,
-      "rms_dbfs": -22.58,
-      "peak_dbfs": -1.83
+      "start": 29.236,
+      "end": 61.593,
+      "rms_dbfs": -22.55,
+      "peak_dbfs": -2.19
     },
     {
       "id": "N03",
-      "start": 62.689,
-      "end": 90.042,
-      "rms_dbfs": -21.31,
-      "peak_dbfs": -1.64
+      "start": 62.673,
+      "end": 90.034,
+      "rms_dbfs": -21.29,
+      "peak_dbfs": -1.97
     },
     {
       "id": "N04",
-      "start": 91.122,
-      "end": 118.639,
-      "rms_dbfs": -21.91,
-      "peak_dbfs": -2.01
+      "start": 91.114,
+      "end": 118.67,
+      "rms_dbfs": -21.9,
+      "peak_dbfs": -1.67
     },
     {
       "id": "N05",
-      "start": 119.719,
-      "end": 147.996,
-      "rms_dbfs": -21.64,
-      "peak_dbfs": -1.56
+      "start": 119.75,
+      "end": 147.977,
+      "rms_dbfs": -21.59,
+      "peak_dbfs": -1.55
     },
     {
       "id": "N06",
-      "start": 149.076,
+      "start": 149.057,
       "end": 174.0,
-      "rms_dbfs": -22.08,
-      "peak_dbfs": -2.57
+      "rms_dbfs": -22.07,
+      "peak_dbfs": -3.06
     }
   ],
   "target_rms_dbfs": -20.0,
@@ -60,6 +60,6 @@
   "bgm_level": 0.3,
   "sfx_level": 0.85,
   "duck_depth": 0.55,
-  "applied_rms_dbfs": -22.22,
+  "applied_rms_dbfs": -22.19,
   "output": "mix.wav"
 }
