@@ -17,6 +17,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -345,6 +346,16 @@ def download(url, dest):
 
 
 MIN_REFRESH_URL_TTL_SECONDS = 6 * 60 * 60
+# 提交被限流时每隔几次重试写一个检查点，沙箱才看得到「还在重投」而不是「卡死」。
+SUBMIT_PROGRESS_EVERY = 5
+
+
+def redact(text):
+    """错误文本可能带签名链接或密钥，落盘前抹掉。"""
+    cleaned = re.sub(r'https?://[^\s\'"]+', '[URL_REDACTED]', str(text))
+    cleaned = re.sub(r'(?i)(api[_-]?key|authorization|signature|token)(["\'\s:=]+)[^\s\'",}]+',
+                     lambda m: m.group(1) + m.group(2) + '[REDACTED]', cleaned)
+    return cleaned
 
 
 def signed_url_expiry(url):
@@ -630,7 +641,7 @@ def main():
                         blocker = 'content moderation (1301)'
                         print('%s: %s; record and continue after prompt review' % (sid, blocker), flush=True)
                         checkpoint(doc, sid + ' blocked (' + blocker + ')', sid, publish=args.publish,
-                                   status='failed', request_hash=wanted, error=last_error)
+                                   status='failed', request_hash=wanted, error=redact(last_error))
                         failures.append(sid)
                         failure_recorded = True
                         break
@@ -638,7 +649,14 @@ def main():
                         wait = retry_delay(attempt)
                         if time.monotonic() + wait < deadline:
                             print('%s: submit rejected attempt %d, wait %ds: %s'
-                                  % (sid, attempt, wait, last_error[:180]), flush=True)
+                                  % (sid, attempt, wait, redact(last_error)[:180]), flush=True)
+                            if attempt % SUBMIT_PROGRESS_EVERY == 0:
+                                # 让分支上的收据显示「仍在重投」，而不是停在首次 submitting。
+                                checkpoint(doc, '%s still retrying submission (attempt %d)'
+                                           % (sid, attempt), sid, publish=args.publish,
+                                           status='submitting', request_hash=wanted,
+                                           submit_attempts=attempt,
+                                           error=redact(last_error)[:300])
                             time.sleep(wait)
                             continue
                         blocker = 'workflow deadline reached during transient provider rejection'
@@ -647,7 +665,7 @@ def main():
                     outcome = 'submit_failed'
                     print('%s: %s; preserve the failure receipt' % (sid, blocker), flush=True)
                     checkpoint(doc, sid + ' failed (' + blocker + ')', sid, publish=args.publish,
-                               status='failed', request_hash=wanted, error=last_error)
+                               status='failed', request_hash=wanted, error=redact(last_error))
                     failures.append(sid)
                     failure_recorded = True
                     break
@@ -658,7 +676,7 @@ def main():
                 outcome = 'submit_failed'
                 if not failure_recorded:
                     checkpoint(doc, sid + ' failed to obtain task id', sid, publish=args.publish,
-                               status='failed', request_hash=wanted, error=last_error)
+                               status='failed', request_hash=wanted, error=redact(last_error))
                     failures.append(sid)
                     failure_recorded = True
                 break
@@ -697,14 +715,14 @@ def main():
                     blocker = 'content moderation (1301)'
                     print('%s: %s; record and continue after prompt review' % (sid, blocker), flush=True)
                     checkpoint(doc, sid + ' blocked (' + blocker + ')', sid, publish=args.publish,
-                               status='failed', request_hash=wanted, task_id=str(task_id), error=last_error)
+                               status='failed', request_hash=wanted, task_id=str(task_id), error=redact(last_error))
                     failures.append(sid)
                     failure_recorded = True
                 break
             if outcome in ('fail', 'poll_failed') and not transient_fail(last_error):
                 blocker = 'non-transient provider failure'
                 checkpoint(doc, sid + ' failed (' + blocker + ')', sid, publish=args.publish,
-                           status='failed', request_hash=wanted, task_id=str(task_id), error=last_error)
+                           status='failed', request_hash=wanted, task_id=str(task_id), error=redact(last_error))
                 failures.append(sid)
                 failure_recorded = True
                 print('%s: %s; skipping to the next shot' % (sid, blocker), flush=True)
