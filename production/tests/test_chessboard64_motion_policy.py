@@ -29,6 +29,12 @@ class Chessboard64MotionPolicyTests(unittest.TestCase):
         self.assertIn("公开报道说", mapping["N02"][3]["clause"])
         self.assertIn("熟悉的棋友", mapping["N02"][4]["clause"])
         self.assertEqual(mapping["N02"][5]["clause"], "按他的说法")
+        self.assertEqual(mapping["N02"][5]["pre_roll"], 0.30)
+        clause_rows = timings["N02"]["clauses"]
+        clause_index = next(i for i, row in enumerate(clause_rows) if row["text"] == "按他的说法")
+        cut = aligned["N02"][-1][0]
+        self.assertGreaterEqual(cut, float(clause_rows[clause_index - 1]["end"]))
+        self.assertAlmostEqual(float(clause_rows[clause_index]["start"]) - cut, 0.30, delta=0.02)
 
     def test_measured_plan_keeps_every_dynamic_slot_under_the_slow_motion_cap(self):
         mapping = json.loads((PROJECT / "audio" / "cut-clauses.json").read_text(encoding="utf-8"))
@@ -61,7 +67,11 @@ class Chessboard64MotionPolicyTests(unittest.TestCase):
                 _, factor = render.plan_time_stretch(duration, source_end - source_start, sid)
                 self.assertLessEqual(factor, render.MAX_SLOW_MOTION_FACTOR, sid)
 
-    def test_excessive_slow_motion_fails_instead_of_reversing_or_ping_ponging(self):
+    def test_moderate_slow_motion_is_allowed_but_excessive_stretch_never_reverses(self):
+        take, factor = render.plan_time_stretch(6.6, 4.868, "S14")
+        self.assertAlmostEqual(take, 4.868)
+        self.assertAlmostEqual(factor, 1.356, places=3)
+        self.assertLessEqual(factor, render.MAX_SLOW_MOTION_FACTOR)
         take, factor = render.plan_time_stretch(5.2, 4.868, "S06")
         self.assertAlmostEqual(take, 4.868)
         self.assertLessEqual(factor, render.MAX_SLOW_MOTION_FACTOR)

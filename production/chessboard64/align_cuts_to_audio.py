@@ -58,10 +58,19 @@ def align(mapping: dict, timings: dict, current_cuts: dict) -> dict:
             if not 0.0 < gap <= 0.70:
                 raise ValueError(f"{chapter}/{shot_id}: unusable pause before clause ({gap:.3f}s)")
             # Stay inside the measured pause and within the approved 350 ms pre-roll.
-            offset = min(0.15, gap / 2.0)
+            # A hand-reviewed per-cut pre_roll may use more of a long silence to balance a
+            # fixed-duration source clip; ordinary cuts keep the conservative midpoint rule.
+            requested_pre_roll = float(target.get("pre_roll", 0.15))
+            if not 0.0 <= requested_pre_roll <= 0.35:
+                raise ValueError(f"{chapter}/{shot_id}: pre_roll must be between 0 and 0.35s")
+            if "pre_roll" in target:
+                offset = min(requested_pre_roll, max(0.0, gap - 0.01))
+            else:
+                offset = min(0.15, gap / 2.0)
             cut = round(next_start - offset, 2)
-            if not next_start - 0.35 - 1e-6 <= cut <= next_start + 1e-6:
-                raise ValueError(f"{chapter}/{shot_id}: rounded cut left the sync window")
+            if (not next_start - 0.35 - 1e-6 <= cut <= next_start + 1e-6
+                    or cut < prior_end - 1e-6):
+                raise ValueError(f"{chapter}/{shot_id}: rounded cut left the measured silence/sync window")
             new_entries.append((cut, shot_id, variant))
             last_clause = clause_index
         if any(new_entries[i][0] >= new_entries[i + 1][0]
