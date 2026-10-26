@@ -369,7 +369,6 @@ def refresh_forced_source_from_task(client, doc, sid, wanted, sources, qa, publi
     history = doc.get('previous_results', {}).get(sid, [])
     dest = Path(sources) / ('%s.mp4' % sid)
     qa_json = Path(qa) / ('%s.json' % sid)
-    qa_jpg = Path(qa) / ('%s.jpg' % sid)
     for old in reversed(history):
         task_id = old.get('task_id') if isinstance(old, dict) else None
         expected = old.get('sha256') if isinstance(old, dict) else None
@@ -399,8 +398,9 @@ def refresh_forced_source_from_task(client, doc, sid, wanted, sources, qa, publi
                 continue
             info = inspect_clip(temp, qa, sid)
             temp.replace(dest)
+            # Contact sheets are intentionally ignored binary artifacts; stage only text QA.
             checkpoint(doc, sid + ' signed URL refreshed from completed task', sid,
-                       files=[qa_json, qa_jpg], publish=publish, status='completed',
+                       files=[qa_json], publish=publish, status='completed',
                        request_hash=wanted, task_id=str(task_id), video_url=url,
                        sha256=actual, bytes=dest.stat().st_size, media=info, error=None)
             print('%s: recovered the matching completed source from its provider task' % sid,
