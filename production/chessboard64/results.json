@@ -659,10 +659,27 @@
     },
     "S38": {
       "id": "S38",
-      "status": "queued",
+      "status": "completed",
       "request_hash": "abfa1eed46b6e062b290a2d0b41a4dd990e67b411b50c6c37937ada8ca61a0cc",
-      "updated_at": "2026-10-26T15:01:53Z",
-      "task_id": "202610262301531c2f82d6727a4e1f"
+      "updated_at": "2026-10-26T15:04:39Z",
+      "task_id": "202610262301531c2f82d6727a4e1f",
+      "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610262302503a3265bce47540de_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=%2BMzO0cFFdi3a5wvAwvkrKcHzlMc%3D&Expires=1793113372",
+      "sha256": "ed3204cf159b8905730b864d08513e66515b89d89eb3c14a14996404a8d62501",
+      "bytes": 1705022,
+      "media": {
+        "duration": 5.108108,
+        "bytes": 1705022,
+        "width": 1792,
+        "height": 1024,
+        "fps": 37.0,
+        "video_codec": "h264",
+        "frames": 189,
+        "decoded_ok": true,
+        "contact_sheet": "production/chessboard64/qa/S38.jpg",
+        "contact_sampling_fps": 2,
+        "visual_review": "pending"
+      },
+      "error": null
     },
     "S40": {
       "id": "S40",
@@ -780,7 +797,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T15:04:22Z",
+  "updated_at": "2026-10-26T15:04:39Z",
   "previous_results": {
     "S06": [
       {
