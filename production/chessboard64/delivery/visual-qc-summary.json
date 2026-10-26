@@ -1,15 +1,15 @@
 {
   "film_name": "六十四格_国际象棋盘杀手_三分钟_带声音.mp4",
-  "sha256": "60c4a2e6cdfdf58d801b5a9d5510867d96caf69a1f8ee91fdf2d83e8708d5b27",
-  "render_run_id": "40196298534",
-  "automated_status": "PASS",
+  "sha256": "a7a966619959fda8456ee5ff39019d21ac8ab04800430b51cdb7f139aeeea6d5",
+  "render_run_id": "40250925632",
+  "automated_status": "REVIEW",
   "all_decoded_frames_scanned": true,
   "decoded_frames": 5400,
   "expected_frames": 5400,
   "unplanned_black_frames": 0,
-  "non_graphic_freeze_runs": 0,
-  "temporal_outlier_windows": 0,
+  "non_graphic_freeze_runs": 1,
+  "temporal_outlier_windows": 16,
   "face_review_candidates": 0,
-  "hand_landmark_extreme_events": 0,
+  "hand_landmark_extreme_events": 28,
   "human_semantic_visual_review": "pending"
 }
