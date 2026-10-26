@@ -323,8 +323,9 @@
       "status": "submitting",
       "request_hash": "94bedca94c63c1843d8a64fcf5124be34021609e52095627eb136c11ba32a065",
       "error": "Error code: 429, with error text {\"error\":{\"code\":\"1305\",\"message\":\"该模型当前访问量过大，请您稍后再试\"}}",
-      "updated_at": "2026-10-26T13:15:42Z",
-      "submit_attempts": 10
+      "updated_at": "2026-10-26T13:16:49Z",
+      "submit_attempts": 10,
+      "deferred_passes": 1
     },
     "S21": {
       "id": "S21",
@@ -591,7 +592,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T13:15:42Z",
+  "updated_at": "2026-10-26T13:16:49Z",
   "previous_results": {
     "S06": [
       {
