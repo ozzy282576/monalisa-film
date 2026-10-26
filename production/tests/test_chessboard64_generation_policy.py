@@ -100,6 +100,35 @@ class GenerationPolicyTests(unittest.TestCase):
             self.assertEqual(saved[-1]["sha256"], row["sha256"])
             self.assertEqual(saved[-1]["video_url"], url)
 
+    def test_forced_refresh_harvests_a_submitted_task_that_was_never_collected(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            sources, qa = root / "sources", root / "qa"
+            sources.mkdir()
+            qa.mkdir()
+            media = root / "fresh.mp4"
+            media.write_bytes(b"freshly harvested provider video")
+            wanted = "same-prompt-hash"
+            # 上一轮被取消时只留下 queued 收据：有 task_id，没有 SHA-256。
+            doc = {"shots": {"S23": {"id": "S23"}},
+                   "previous_results": {"S23": [{"id": "S23", "status": "queued",
+                                                 "request_hash": wanted,
+                                                 "task_id": "cancelled-run-task"}]}}
+            url = "https://example.invalid/v.mp4?Expires=%d" % (
+                int(time.time()) + gen.MIN_REFRESH_URL_TTL_SECONDS + 3600)
+            client = SimpleNamespace(videos=SimpleNamespace(
+                retrieve_videos_result=Mock(return_value={
+                    "task_status": "SUCCESS", "video_result": [{"url": url}]})))
+            saved = []
+            with patch.object(gen, "download", side_effect=lambda _u, dest: shutil.copyfile(media, dest)), \
+                 patch.object(gen, "inspect_clip", return_value={"duration": 5.1}), \
+                 patch.object(gen, "checkpoint", side_effect=lambda *a, **kw: saved.append(kw)):
+                recovered = gen.refresh_forced_source_from_task(
+                    client, doc, "S23", wanted, sources, qa)
+            self.assertTrue(recovered)
+            self.assertEqual(saved[-1]["status"], "completed")
+            self.assertEqual(saved[-1]["sha256"], gen.digest(media))
+
     def test_forced_refresh_never_downloads_an_expired_task_url(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -141,17 +170,16 @@ class GenerationPolicyTests(unittest.TestCase):
         self.assertTrue(gen.transient_fail("temporary connection timeout 503"))
         self.assertFalse(gen.transient_fail("1301 sensitive content"))
 
-    def test_submit_retries_are_bounded_per_shot_and_deferred_to_later_passes(self):
+    def test_submissions_sweep_every_shot_instead_of_blocking_on_one(self):
         source = Path(gen.__file__).read_text(encoding="utf-8")
-        # 提交重试有上限的是「这一镜这一轮」，不是整轮工作流：一镜卡住不能饿死其余镜头。
-        self.assertIn("while not task_id and time.monotonic() < submit_deadline", source)
-        self.assertIn("submit_deadline = min(deadline, time.monotonic() + SUBMIT_BUDGET_SECONDS)",
-                      source)
-        self.assertIn("deferred.append(shot)", source)
+        # 1305 是全模型限流：必须轮流扫所有待生成镜头抢放行窗口，不能卡在某一镜上。
+        self.assertIn("while needs_generation and time.monotonic() < submit_deadline", source)
+        self.assertIn("SUBMIT_SWEEP", source)
+        # 收获与提交分离：任务在服务端并行出片，本地不再「交一条等一条」。
+        self.assertIn("while queued and time.monotonic() < harvest_deadline", source)
         self.assertNotIn("attempt < 20", source)
-        self.assertEqual(gen.SUBMIT_BUDGET_SECONDS, 480)
-        self.assertGreaterEqual(gen.MAX_GENERATION_PASSES, 2)
-        self.assertEqual(gen.SUBMIT_PROGRESS_EVERY, 5)
+        self.assertGreaterEqual(gen.SUBMIT_PHASE_SECONDS, 60 * 60)
+        self.assertLessEqual(gen.HARVEST_SWEEP_SECONDS, 30)
 
     def test_persisted_errors_never_leak_signed_urls_or_keys(self):
         self.assertEqual(gen.redact("timeout for https://cdn.invalid/a.mp4?Expires=1&Signature=xyz"),
