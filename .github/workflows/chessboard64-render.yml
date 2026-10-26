@@ -27,7 +27,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: chessboard64-render-arena-56672981-monalisa-film
+  group: chessboard64-render-arena-56672981-monalisa-film-retry
   # A newer marker is an explicit replacement request; free the render slot from a stuck older run.
   cancel-in-progress: true
 
