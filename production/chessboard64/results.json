@@ -229,7 +229,10 @@
     },
     "S20": {
       "id": "S20",
-      "updated_at": "2026-10-26T12:06:19Z"
+      "updated_at": "2026-10-26T12:06:20Z",
+      "status": "failed",
+      "request_hash": "94bedca94c63c1843d8a64fcf5124be34021609e52095627eb136c11ba32a065",
+      "error": "No fresh signed URL was available from a matching completed provider task"
     },
     "S21": {
       "id": "S21",
@@ -802,7 +805,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T12:06:19Z",
+  "updated_at": "2026-10-26T12:06:20Z",
   "previous_results": {
     "S06": [
       {
