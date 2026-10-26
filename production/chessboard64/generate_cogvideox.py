@@ -22,6 +22,7 @@ import sys
 import time
 import urllib.request
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -337,8 +338,82 @@ def download(url, dest):
         except Exception as exc:
             if attempt == 3:
                 raise
-            print('download retry %d: %s' % (attempt + 1, str(exc)[:120]), flush=True)
+            # HTTP exception text may contain a full signed URL; log only a safe status/type.
+            reason = getattr(exc, 'code', None) or type(exc).__name__
+            print('download retry %d: %s' % (attempt + 1, reason), flush=True)
             time.sleep(10 * (attempt + 1))
+
+
+MIN_REFRESH_URL_TTL_SECONDS = 6 * 60 * 60
+
+
+def signed_url_expiry(url):
+    """Return a signed link's Unix expiry without ever logging its query parameters."""
+    try:
+        query = parse_qs(urlsplit(str(url)).query)
+        values = query.get('Expires') or query.get('expires') or []
+        return int(values[0]) if values else None
+    except (TypeError, ValueError):
+        return None
+
+
+def refresh_forced_source_from_task(client, doc, sid, wanted, sources, qa, publish=False):
+    """Re-fetch a completed matching provider task and use only a newly valid signed URL.
+
+    CogVideoX's result endpoint may re-issue a signed media URL for an old completed task.
+    This is a no-cost recovery path for expired URLs; the old URL is never reused, and the
+    downloaded media must still match the archived SHA-256 before the receipt is restored.
+    If the task endpoint returns the old/expired link or no result, normal generation follows.
+    """
+    attempted = set()
+    history = doc.get('previous_results', {}).get(sid, [])
+    dest = Path(sources) / ('%s.mp4' % sid)
+    qa_json = Path(qa) / ('%s.json' % sid)
+    qa_jpg = Path(qa) / ('%s.jpg' % sid)
+    for old in reversed(history):
+        task_id = old.get('task_id') if isinstance(old, dict) else None
+        expected = old.get('sha256') if isinstance(old, dict) else None
+        if (not task_id or not expected or old.get('request_hash') != wanted
+                or str(task_id) in attempted):
+            continue
+        attempted.add(str(task_id))
+        temp = dest.with_name(dest.stem + '.task-refresh.tmp.mp4')
+        try:
+            result = client.videos.retrieve_videos_result(id=str(task_id))
+            if str(obj_get(result, 'task_status', '')).upper() != 'SUCCESS':
+                continue
+            rows = obj_get(result, 'video_result') or []
+            url = obj_get(rows[0], 'url') if rows else None
+            if not url:
+                continue
+            expiry = signed_url_expiry(url)
+            if expiry is not None and expiry <= time.time() + MIN_REFRESH_URL_TTL_SECONDS:
+                print('%s: prior task returned an expired or near-expiry URL; submit a fresh generation'
+                      % sid, flush=True)
+                continue
+            download(url, temp)
+            actual = digest(temp)
+            if actual != expected:
+                print('%s: prior task checksum mismatch; submit a fresh generation' % sid,
+                      flush=True)
+                continue
+            info = inspect_clip(temp, qa, sid)
+            temp.replace(dest)
+            checkpoint(doc, sid + ' signed URL refreshed from completed task', sid,
+                       files=[qa_json, qa_jpg], publish=publish, status='completed',
+                       request_hash=wanted, task_id=str(task_id), video_url=url,
+                       sha256=actual, bytes=dest.stat().st_size, media=info, error=None)
+            print('%s: recovered the matching completed source from its provider task' % sid,
+                  flush=True)
+            return True
+        except Exception as exc:
+            # Never print the returned URL or exception text; HTTP errors can embed signed URLs.
+            print('%s: prior task URL refresh unavailable (%s); submit a fresh generation'
+                  % (sid, type(exc).__name__), flush=True)
+        finally:
+            if temp.exists():
+                temp.unlink()
+    return False
 
 
 RETRY_BASE_SECONDS = 20
@@ -449,6 +524,11 @@ def main():
         raise ValueError('force must be a boolean')
     if force and not only:
         raise ValueError('force regeneration requires an explicit non-empty only list')
+    recover_only = options.get('recover_only', False)
+    if not isinstance(recover_only, bool):
+        raise ValueError('recover_only must be a boolean')
+    if recover_only and (not force or not only):
+        raise ValueError('recover_only requires force=true and an explicit non-empty only list')
     key = os.getenv('ZHIPUAI_API_KEY', '').strip()
     if not key:
         raise RuntimeError('ZHIPUAI_API_KEY is unavailable to this workflow')
@@ -473,6 +553,16 @@ def main():
             prepare_forced_regeneration(doc, sid, wanted)
             disposition = 'generate'
             checkpoint(doc, sid + ' prior receipt archived for forced refresh', sid, publish=args.publish)
+            if refresh_forced_source_from_task(client, doc, sid, wanted, sources, qa,
+                                               publish=args.publish):
+                continue
+            if recover_only:
+                error = 'No fresh signed URL was available from a matching completed provider task'
+                checkpoint(doc, sid + ' prior task could not refresh the signed URL', sid,
+                           publish=args.publish, status='failed', request_hash=wanted,
+                           error=error)
+                failures.append(sid)
+                continue
         else:
             disposition = reuse_receipt(doc, sid, wanted)
         if disposition in ('current', 'history'):
@@ -660,7 +750,7 @@ def main():
     checkpoint(doc, 'CogVideoX generation pass finished (missing=%d failed=%d)'
                % (len(missing), len(failures)), publish=args.publish)
     print('COMPLETE %d requested clips; model=%s' % (len(shots), MODEL), flush=True)
-    return 0
+    return 1 if recover_only and failures else 0
 
 
 if __name__ == '__main__':

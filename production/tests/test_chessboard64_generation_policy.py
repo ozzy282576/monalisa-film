@@ -1,11 +1,14 @@
 """Retry and moderation regressions for the free CogVideoX-Flash generator."""
 from __future__ import annotations
 
+import shutil
 import sys
+import tempfile
+import time
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 PROJECT = Path(__file__).resolve().parents[1] / "chessboard64"
 sys.path.insert(0, str(PROJECT))
@@ -54,6 +57,72 @@ class GenerationPolicyTests(unittest.TestCase):
             "max_retries": 0,
         })
         self.assertEqual(gen.PROVIDER_REQUEST_TIMEOUT_SECONDS, 120)
+
+    def test_forced_refresh_reissues_only_a_fresh_url_with_matching_source_hash(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            sources, qa = root / "sources", root / "qa"
+            sources.mkdir()
+            qa.mkdir()
+            original = root / "original.mp4"
+            original.write_bytes(b"verified provider video bytes")
+            wanted = "same-prompt-hash"
+            row = {
+                "id": "S19", "status": "expired", "request_hash": wanted,
+                "task_id": "prior-task", "sha256": gen.digest(original),
+                "bytes": original.stat().st_size,
+            }
+            doc = {"shots": {"S19": {"id": "S19"}},
+                   "previous_results": {"S19": [row]}}
+            expiry = int(time.time()) + gen.MIN_REFRESH_URL_TTL_SECONDS + 7200
+            url = "https://example.invalid/video.mp4?Expires=%d" % expiry
+            videos = SimpleNamespace(retrieve_videos_result=Mock(return_value={
+                "task_status": "SUCCESS", "video_result": [{"url": url}],
+            }))
+            client = SimpleNamespace(videos=videos)
+            saved = []
+
+            def fake_download(_url, dest):
+                shutil.copyfile(original, dest)
+
+            with patch.object(gen, "download", side_effect=fake_download), \
+                 patch.object(gen, "inspect_clip", return_value={"duration": 5.0}), \
+                 patch.object(gen, "checkpoint", side_effect=lambda *a, **kw: saved.append(kw)):
+                recovered = gen.refresh_forced_source_from_task(
+                    client, doc, "S19", wanted, sources, qa, publish=True
+                )
+
+            self.assertTrue(recovered)
+            self.assertEqual(videos.retrieve_videos_result.call_args.kwargs, {"id": "prior-task"})
+            self.assertEqual((sources / "S19.mp4").read_bytes(), original.read_bytes())
+            self.assertEqual(saved[-1]["status"], "completed")
+            self.assertEqual(saved[-1]["request_hash"], wanted)
+            self.assertEqual(saved[-1]["sha256"], row["sha256"])
+            self.assertEqual(saved[-1]["video_url"], url)
+
+    def test_forced_refresh_never_downloads_an_expired_task_url(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            sources, qa = root / "sources", root / "qa"
+            sources.mkdir()
+            qa.mkdir()
+            wanted = "same-prompt-hash"
+            row = {"request_hash": wanted, "task_id": "prior-task", "sha256": "abc"}
+            doc = {"shots": {"S19": {"id": "S19"}},
+                   "previous_results": {"S19": [row]}}
+            expired_url = "https://example.invalid/video.mp4?Expires=%d" % (int(time.time()) - 1)
+            client = SimpleNamespace(videos=SimpleNamespace(
+                retrieve_videos_result=Mock(return_value={
+                    "task_status": "SUCCESS", "video_result": [{"url": expired_url}],
+                })
+            ))
+            download = Mock()
+            with patch.object(gen, "download", download):
+                recovered = gen.refresh_forced_source_from_task(
+                    client, doc, "S19", wanted, sources, qa
+                )
+            self.assertFalse(recovered)
+            download.assert_not_called()
 
     def test_rejected_submission_backoff_is_additive(self):
         self.assertEqual([gen.retry_delay(n) for n in range(1, 5)], [20, 25, 30, 35])
