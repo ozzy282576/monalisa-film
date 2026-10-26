@@ -356,6 +356,8 @@ SUBMIT_PROGRESS_EVERY = 5
 # （实测 2026-10-26：串行模式下 S19、S07 各自卡在提交阶段几十分钟，后面 20 多镜一个没轮上）。
 SUBMIT_PHASE_SECONDS = 240 * 60
 HARVEST_SWEEP_SECONDS = 15
+# 扫描时两次提交之间留点间隔：连发 20 多个请求只会让 429 更凶，也拿不到更多放行窗口。
+SUBMIT_SPACING_SECONDS = 4
 
 
 def redact(text):
@@ -737,6 +739,8 @@ def main():
             if sweep == 1:
                 checkpoint(doc, sid + ' submitting', sid, publish=args.publish,
                            status='submitting', request_hash=wanted)
+            else:
+                time.sleep(SUBMIT_SPACING_SECONDS)
             try:
                 response = client.videos.generations(**payload)
                 task_id = obj_get(response, 'id')
