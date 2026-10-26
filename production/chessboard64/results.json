@@ -53,7 +53,10 @@
     },
     "S04": {
       "id": "S04",
-      "updated_at": "2026-10-26T12:16:41Z"
+      "status": "submitting",
+      "request_hash": "81d6cb059910790fc32ed74e8645b0c01f58822041daa1f99b27afc5d0bd057c",
+      "error": null,
+      "updated_at": "2026-10-26T12:16:42Z"
     },
     "S05": {
       "id": "S05",
@@ -530,7 +533,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T12:16:41Z",
+  "updated_at": "2026-10-26T12:16:42Z",
   "previous_results": {
     "S06": [
       {
@@ -1500,6 +1503,10 @@
           "contact_sampling_fps": 2,
           "visual_review": "pending"
         }
+      },
+      {
+        "id": "S04",
+        "updated_at": "2026-10-26T12:16:41Z"
       }
     ],
     "S05": [
