@@ -49,8 +49,14 @@ class StoryAlignmentTests(unittest.TestCase):
             "S04": "媒体报道中的绰号",
             "S05": "六十四格来自他的自述",
             "S06": "法院认定四十八起谋杀",
-            "S09": "超市理货",
-            "S11": "比察公园的石桌、长椅",
+            "S09": "在莫斯科受审",
+            "S10": "成年后在超市做理货员",
+            "S11": "下班后常去的比察公园",
+            "S12": "石桌、棋友与日常对弈",
+            "S13": "公开报道所述的邀约方式",
+            "S14": "悼念死去的小狗",
+            "S15": "六十三个记号",
+            "S16": "2002年公开报道记载",
             "S17": "幸存者在二〇〇二年向警方报告",
             "S24": "衣袋里的地铁票",
             "S25": "车站监控显示两人同行",
@@ -63,24 +69,25 @@ class StoryAlignmentTests(unittest.TestCase):
         shots = {s["id"]: s for s in STORY["shots"]}
         for sid, phrase in expectations.items():
             self.assertIn(phrase, shots[sid]["purpose"], sid)
-        self.assertEqual(STORY["presentation"]["cards"]["S10"],
-                         ["莫斯科南部 · 比察公园", "下班后常去的公园", "石桌、长椅与日常棋局"])
+        self.assertEqual(shots["S10"]["kind"], "cogvideo")
+        self.assertEqual(shots["S16"]["kind"], "graphic")
+        self.assertEqual(STORY["presentation"]["cards"]["S16"],
+                         ["2002年 · 公开报道", "一位女性幸存者曾向警方报告", "不呈现她的具体经历"])
         self.assertEqual(STORY["presentation"]["cards"]["S33"][1],
                          "警方发现与棋盘记号相关的证物")
         self.assertEqual(STORY["presentation"]["cards"]["S39"][1], "受害者不是数字")
 
-    def test_2002_archive_reconstruction_avoids_moderation_trigger_terms(self):
+    def test_2002_source_card_is_explicit_and_non_sensational(self):
         shot = {s["id"]: s for s in STORY["shots"]}["S16"]
-        prompt = shot["prompt"].lower()
+        self.assertEqual(shot["kind"], "graphic")
+        self.assertIn("2002年", shot["graphic"])
+        self.assertIn("公开报道", shot["graphic"])
+        self.assertIn("不呈现她的具体经历", shot["graphic"])
         self.assertEqual(shot["characters"], [])
-        self.assertIn("archive corridor", prompt)
-        self.assertIn("filing cabinet", prompt)
-        for term in ("police", "witness", "investigator", "hospital", "incident"):
-            self.assertNotIn(term, prompt)
 
     def test_moving_people_are_prompted_with_forward_natural_gait(self):
         shots = {s["id"]: s for s in STORY["shots"]}
-        for sid in ("S01", "S02", "S09", "S11", "S25", "S32", "S44"):
+        for sid in ("S01", "S02", "S10", "S11", "S25", "S32", "S44"):
             prompt = shots[sid]["prompt"].lower()
             self.assertTrue("forward" in prompt or "toward" in prompt, sid)
             self.assertTrue("heel-to-toe" in prompt or "direction of travel" in prompt, sid)

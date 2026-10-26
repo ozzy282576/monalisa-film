@@ -11,6 +11,15 @@ import generate_cogvideox as gen  # noqa: E402
 
 
 class GenerationPolicyTests(unittest.TestCase):
+    def test_receipts_for_graphic_slots_are_archived_not_left_as_active_video(self):
+        legacy = {"id": "S16", "status": "completed", "request_hash": "old-hash"}
+        doc = {"shots": {"S10": {"id": "S10", "status": "completed"}, "S16": legacy}}
+        self.assertEqual(gen.archive_inactive_receipts(doc, {"S10"}), ["S16"])
+        self.assertNotIn("S16", doc["shots"])
+        self.assertEqual(doc["previous_results"]["S16"], [legacy])
+        self.assertEqual(gen.archive_inactive_receipts(doc, {"S10"}), [])
+        self.assertEqual(doc["previous_results"]["S16"], [legacy])
+
     def test_rejected_submission_backoff_is_additive(self):
         self.assertEqual([gen.retry_delay(n) for n in range(1, 5)], [20, 25, 30, 35])
         self.assertEqual(gen.retry_delay(21), 120)

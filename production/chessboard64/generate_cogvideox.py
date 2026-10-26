@@ -180,6 +180,23 @@ def usable_receipt(row, wanted):
                 and row.get('sha256'))
 
 
+def archive_inactive_receipts(doc, active_ids):
+    """Move receipts for shots that are no longer dynamic into history, never reuse them as active clips."""
+    shots = doc.setdefault('shots', {})
+    history = doc.setdefault('previous_results', {})
+    archived = []
+    for sid in sorted(set(shots) - set(active_ids)):
+        row = shots.pop(sid)
+        if not isinstance(row, dict) or not row:
+            continue
+        prior = history.setdefault(sid, [])
+        if not any(isinstance(old, dict) and old.get('request_hash') == row.get('request_hash')
+                   and old.get('status') == row.get('status') for old in prior):
+            prior.append(row)
+        archived.append(sid)
+    return archived
+
+
 def reuse_receipt(doc, sid, wanted):
     """这一镜要不要重新生成：``current`` 现收据可用；``history`` 从历史收据恢复；``generate`` 得重投。
 
@@ -369,6 +386,10 @@ def main():
         doc['shots'] = {}
         checkpoint(doc, 'previous-model receipts archived', publish=args.publish)
     doc.update(model=MODEL, provider='Zhipu AI', workflow_policy='cogvideox-flash-receipt-v2-refprobe')
+    active_ids = {shot['id'] for shot in project['shots'] if shot.get('kind') == 'cogvideo'}
+    archived = archive_inactive_receipts(doc, active_ids)
+    if archived:
+        print('ARCHIVED_INACTIVE_RECEIPTS', ','.join(archived), flush=True)
     if args.prune_failed:
         stale = [sid for sid, row in doc.get('shots', {}).items()
                  if row.get('status') == 'failed' and not row.get('video_url')]

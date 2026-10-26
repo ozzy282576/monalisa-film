@@ -42,24 +42,21 @@ A fictional early-2000s Moscow newspaper desk: blank, unprinted newspaper sheets
 
 ## S05 · 六十四格来自他的自述，而非司法结论
 
-剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE
+剪辑槽位：规划4秒 · 16:9 · 角色：无
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-【角色设定：MAIN_FIGURE】 Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
-Editorial 3D metaphor on a dark desk: the anonymous man's hand points to a blank 8-by-8 chess-grid sketch in a notebook, then turns the notebook toward the camera as a few restrained red marks appear like a personal claim. Keep the marks abstract, show no number or readable writing, and make clear this is a claim rather than a court exhibit. A small file folder remains closed beside it. Overhead camera makes a slow continuous orbit; paper edges and lamp light shift naturally, no face or readable text.
+Editorial 3D metaphor on a dark desk: an unmarked 8-by-8 grid notebook and a sealed plain court folder sit side by side. A few restrained red marks appear gradually on separate squares, representing a personal claim rather than an official finding. The camera makes one slow continuous overhead orbit with clear parallax; a page edge shifts in a light draft and desk-lamp reflections move softly. No people, hands, numbers, readable writing, portrait, or evidence claim; continuous real 3D motion.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S06 · 法院认定四十八起谋杀、三起未遂，区别于六十四格自述
+## S06 · 法院认定四十八起谋杀、三起未遂
 
-剪辑槽位：规划4秒 · 16:9 · 角色：JURY, COURT_OFFICIAL
+剪辑槽位：规划4秒 · 16:9 · 角色：无
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-【角色设定：JURY】 Anonymous fictional Moscow jurors in modest 2000s clothes; seated quietly, distant indistinct faces.
-【角色设定：COURT_OFFICIAL】 Anonymous judge or court clerk in restrained formal clothes; back or distant silhouette, blank insignia, unreadable papers.
-A restrained fictional 2007 Moscow courtroom reenactment viewed from the back of the gallery. Anonymous jurors seen only at a distance sit quietly while a clerk sets a plain judgment folder beside an unprinted 8-by-8 chess diagram. Two separate slim stacks of blank files suggest distinct judicial findings, but no numbers or readable text appear. Slow lateral dolly from the empty public gallery to the desk; natural window light and subtle page movement, all faces indistinct, no weapons, victim imagery, or real-person likeness.
+A restrained fictional 2007 Moscow courtroom reenactment viewed from the back of an empty public gallery. An unoccupied jury bench and clerk's desk frame a closed blank judgment folder beside an unprinted 8-by-8 chess diagram; no person or hand is visible. A page corner lifts slightly in a gentle draft and window light shifts across the wood while the camera makes one slow, continuous lateral dolly with clear parallax. No readable numbers or writing, insignia, face, weapon, victim imagery, or real-person likeness.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
@@ -83,19 +80,28 @@ A symbolic 3D chessboard rests on a dark desk; several restrained red markers gl
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S09 · 三十三岁受审的被告成年后在超市理货
+## S09 · 亚历山大·皮丘什金三十三岁时在莫斯科受审
 
-剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE, SUPERMARKET_COWORKER
+剪辑槽位：规划4秒 · 16:9 · 角色：无
+
+```text
+【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
+A restrained fictional early-2000s Moscow courtroom reenactment, with the camera viewing an empty public gallery, a distant plain defendant's chair behind clear glass, and a closed blank judgment folder in the foreground. No person is present and no real courtroom insignia appears. A sheet edge moves faintly in a draft as the camera makes one measured lateral dolly from the gallery toward the folder, maintaining natural parallax and stable exposure. No readable text, faces, hands, weapons, victim imagery, or real-person likeness; continuous real 3D motion.
+【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
+```
+
+## S10 · 成年后在超市做理货员
+
+剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
 【角色设定：MAIN_FIGURE】 Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
-【角色设定：SUPERMARKET_COWORKER】 Fictional anonymous early-2000s Moscow supermarket coworker in plain work clothes; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
-In an early-2000s neighborhood supermarket in Moscow, an anonymous slim adult worker in a plain unbranded vest organizes cans and cartons on a shelf. He checks one row, steps forward naturally toward the next shelf with his torso facing the direction of travel, and places a carton at waist height; a coworker passes in the background, also walking forward with an ordinary heel-to-toe gait. Keep both figures from behind or in soft silhouette, with no readable packaging, labels, or faces. Cool fluorescent light, smooth side-tracking camera through the aisle, continuous motion.
+In an early-2000s neighborhood supermarket in Moscow, an anonymous slim adult worker in a plain unbranded vest walks forward along an aisle, seen only from behind. He takes two measured heel-to-toe steps toward an unlabeled shelf, his torso and feet aligned with the direction of travel, then pauses to check the stock without reaching toward the camera. A small trolley rolls beside him; another coworker remains a distant silhouette. Cool fluorescent light, steady side-tracking camera, clear aisle parallax, continuous natural movement. No readable packaging, labels, signs, faces, close-up hands, or backward steps.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S11 · 比察公园的石桌、长椅与日常棋局
+## S11 · 下班后常去的比察公园与石桌长椅
 
 剪辑槽位：规划4秒 · 16:9 · 角色：PARK_VISITORS, ELDER
 
@@ -107,7 +113,7 @@ Wide establishing view of Bitsa forest park in early-2000s Moscow on an autumn a
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S12 · 黄昏公园入口搭话的剪影
+## S12 · 比察公园石桌、棋友与日常对弈
 
 剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE, ELDER
 
@@ -115,11 +121,11 @@ Wide establishing view of Bitsa forest park in early-2000s Moscow on an autumn a
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
 【角色设定：MAIN_FIGURE】 Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
 【角色设定：ELDER】 Anonymous older man in a modest dark coat and cap; distant back or soft silhouette, dignified and ordinary.
-At a quiet park entrance at dusk, an anonymous slim man in a dark jacket speaks with an older visitor seen only from behind. He gestures gently toward a path and offers a small unbranded paper cup; the older man hesitates, then gives a slight nod. Both figures remain calm and unhurried; the trees and fallen leaves move in a light wind.
+At a worn stone chess table in Bitsa Park, two anonymous adult visitors sit opposite one another as ordinary acquaintances, both seen from behind or at distant silhouette scale. One makes a small welcoming gesture toward the empty seat; the other nods and looks toward the board. Benches, fallen leaves and other quiet park visitors remain in the background. The camera tracks steadily along the table with clear parallax; leaves stir gently. No faces, readable signs, dog, or dramatic behavior; continuous natural 3D movement.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S13 · 悼念小狗是他给出的理由，人们只当他是熟悉棋友
+## S13 · 公开报道所述的邀约方式与陌生棋友
 
 剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE, ELDER
 
@@ -127,37 +133,29 @@ At a quiet park entrance at dusk, an anonymous slim man in a dark jacket speaks 
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
 【角色设定：MAIN_FIGURE】 Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
 【角色设定：ELDER】 Anonymous older man in a modest dark coat and cap; distant back or soft silhouette, dignified and ordinary.
-At a quiet stone chess table in Bitsa Park, an anonymous slim man sits beside an older visitor, both seen from behind. A simple worn leash and small blank dog tag rest on the bench beside them as the man gestures gently toward the keepsake, then returns his hand to the chessboard; the older visitor gives a quiet nod, treating him like a familiar chess partner. The dog is not shown; no readable tag, no injury or harm. Leaves move in the background, steady lateral camera dolly, restrained and respectful.
+A restrained fictional Bitsa Park reenactment at a stone chess table. An anonymous slim adult man seen only from behind politely offers a small unbranded paper cup to an older park visitor; the visitor considers it and gives a mild nod. The action is calm and ordinary, illustrating a reported invitation without asserting that the scene is authentic footage. Keep both people at medium distance, faces indistinct and hands unobtrusive; leaves move in the background as the camera makes a smooth lateral dolly with clear parallax. No readable text, dog, injury, violence, or real-person likeness.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S14 · 六十三个记号是他本人声称留下的
+## S14 · 悼念死去的小狗是他给出的理由，棋友只当他熟悉
 
-剪辑槽位：规划4秒 · 16:9 · 角色：无
+剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE, ELDER
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-A close overhead 3D editorial shot of a blank 8-by-8 grid and unnumbered notebook on a dark desk. Restrained red pencil marks accumulate one by one across separate squares as a visual metaphor for a personal claim; several squares stay unmarked. The camera advances slowly and arcs slightly while a pencil rolls a short distance and stops. No exact count, no written number or letters, and no suggestion that this is an official evidence record.
+【角色设定：MAIN_FIGURE】 Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
+【角色设定：ELDER】 Anonymous older man in a modest dark coat and cap; distant back or soft silhouette, dignified and ordinary.
+At a quiet stone chess table in Bitsa Park, an anonymous slim man and an older visitor sit as familiar chess acquaintances, both seen from behind. A simple worn leash and small blank dog tag rest on the bench beside them; the man makes one small, distant gesture toward the keepsake, then both return their attention to the ordinary chessboard. The dog is not shown. Leaves move softly as the camera tracks laterally along the table, with clear parallax and steady motion. No readable tag, injury, harm, face, or sensational imagery.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S15 · 棋盘几乎被填满仍只是他的说法
+## S15 · 六十三个记号和棋盘几乎被填满都只是他的说法
 
 剪辑槽位：规划4秒 · 16:9 · 角色：无
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
 The camera glides low across a symbolic black-and-white 8-by-8 chessboard with many small abstract red markers and a few blank squares; it pauses over the remaining empty squares to suggest the man's own nearly-full claim, not a verified count. A red reflection shimmers softly across the polished tiles while focus shifts from marked squares to clean squares. No people, readable number, text, or forensic-evidence implication; smooth continuous 3D camera movement.
-【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
-```
-
-## S16 · 二〇〇二年幸存者报案线索的时代背景
-
-剪辑槽位：规划4秒 · 16:9 · 角色：无
-
-```text
-【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-An early-2000s Moscow archive corridor rendered as a quiet, symbolic reconstruction. In the foreground, an unmarked closed folder rests beside a folded sheet on a plain desk. An anonymous clerk's hand calmly slides the folder into an open filing cabinet and closes the drawer; a soft shadow passes behind frosted glass without entering view. A black-and-white chessboard-pattern paperweight casts a faint red reflection that shifts with the desk-lamp light. The camera makes a slow physical lateral dolly from the paper to the closing drawer, with continuous natural hand movement and clear parallax. No visible people, readable writing, logos, signs, dates, or insignia.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
@@ -210,12 +208,11 @@ Inside a modest Moscow apartment in 2006, a fictional adult woman in a pale coat
 
 ## S22 · 纸条上写下同行者姓名与电话
 
-剪辑槽位：规划4秒 · 16:9 · 角色：WOMAN_COWORKER
+剪辑槽位：规划4秒 · 16:9 · 角色：无
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-【角色设定：WOMAN_COWORKER】 Fictional adult woman about 36, shoulder-length chestnut hair, pale coat, gentle everyday posture; face indistinct, shown from behind or in silhouette.
-Close overhead view of a small paper note on an early-2000s desk beside a simple pen and a corded phone. An adult woman's hand adds two short abstract ink lines and several indistinct strokes to represent a companion's name and telephone number, then folds the note once; every mark remains completely illegible and no actual phone number appears. Her face and body stay outside the frame. The camera tracks gently across the paper and a chessboard-pattern coaster as lamp light shifts. Continuous natural hand motion, realistic fingers, no readable text or extra objects.
+A close overhead 3D still life on an early-2000s desk: a folded blank note already bears several completely illegible abstract strokes, beside a simple pen and a corded phone. The note is already written; no person or hand is present. A page edge shifts gently and the lamp reflection moves as the camera tracks smoothly across the paper and chessboard-pattern coaster, creating real parallax. No readable letters, actual number, face, or additional object; restrained illustrative reconstruction.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
@@ -232,12 +229,11 @@ At night in the same small apartment, a teenage boy sits on a sofa with a folded
 
 ## S24 · 警方发现她衣袋里的地铁票
 
-剪辑槽位：规划4秒 · 16:9 · 角色：INVESTIGATOR
+剪辑槽位：规划4秒 · 16:9 · 角色：无
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-【角色设定：INVESTIGATOR】 Anonymous early-2000s Moscow investigators in generic dark blue-gray clothing; blank insignia, indistinct faces, calm professional posture.
-A restrained illustrative reconstruction in a dim evidence room. A plain woman's coat lies open on a desk; an unprinted old Moscow metro ticket is visible inside its pocket beside a sealed blank note. An anonymous investigator wearing charcoal gloves gently opens the pocket edge and points without removing or deforming the ticket. The camera makes a smooth lateral move from coat fabric to ticket; soft dust motes and subtle cloth movement, no readable print or face, clearly an illustration and not original evidence.
+A restrained illustrative reconstruction in a dim evidence room. A plain woman's coat lies open on a desk; an unprinted old Moscow metro ticket is visible inside its pocket beside a sealed blank note. No investigator or hand is visible. A subtle air current lifts the coat edge while the camera makes one slow, uninterrupted lateral dolly from the pocket toward the ticket, showing clear parallax among fabric, note, and tabletop. No readable print, face, finger, or original evidence claim.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
@@ -356,12 +352,11 @@ A symbolic judicial desk with two visibly separate blank folders: one contains a
 
 ## S37 · 法庭结论来自证据，而不是个人自述
 
-剪辑槽位：规划4秒 · 16:9 · 角色：COURT_OFFICIAL
+剪辑槽位：规划4秒 · 16:9 · 角色：无
 
 ```text
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
-【角色设定：COURT_OFFICIAL】 Anonymous judge or court clerk in restrained formal clothes; back or distant silhouette, blank insignia, unreadable papers.
-On a quiet courtroom desk, an anonymous clerk lays three blank evidence sleeves in a row beside a closed judgment folder; their edges align, and the clerk's hand withdraws. A chessboard pattern is visible only as a faint reflection on the table, not as an official exhibit. The camera tracks continuously along the folders to the file, emphasizing that court findings come from evidence rather than a personal claim. No readable text, relatives, faces, weapon, or violent imagery.
+On a quiet courtroom desk, three blank evidence sleeves already lie in a neat row beside a closed judgment folder; no person or hand is visible. The black-and-white chess pattern appears only as a faint reflection on the tabletop, not as an official exhibit. Window light moves softly across the aligned folders and a paper corner stirs in a gentle draft as the camera tracks continuously along them with clear parallax. No readable text, faces, weapons, victims, or real-person likeness; restrained non-sensational 3D reenactment.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 

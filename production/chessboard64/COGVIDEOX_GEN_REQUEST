@@ -1,1 +1,1 @@
-{"only":"S16","ref_image":false,"request_tag":"moderation-safe-retry"}
+{"only":"S05,S06,S09,S10,S12,S13,S14,S22,S24,S37","ref_image":false,"request_tag":"forward-only-visual-review-revision"}

@@ -46,17 +46,16 @@ TOTAL_FRAMES = round(DURATION * FPS)
 # 镜头按成片顺序编号，每个镜头只出现一次（make_edl 有断言守着）。
 # 脚手架给的是 4 秒均匀网格，只是起点；拿到配音后必须按 clause-times 重对。
 CUTS = {
-    'N01': [(0.0,'S01',''), (2.72,'S02',''), (5.09,'S03',''), (8.78,'S04',''), (11.2,'S05',''), (14.42,'S06',''), (21.92,'S07',''), (25.35,'S08','')],
-    'N02': [(0.0,'S09',''), (7.97,'S10',''), (11.98,'S11',''), (16.23,'S12',''), (19.7,'S13',''), (24.95,'S14',''), (28.86,'S15','')],
+    'N01': [(0.0,'S01',''), (2.72,'S02',''), (5.09,'S03',''), (8.78,'S04',''), (11.2,'S05',''), (16.28,'S06',''), (21.92,'S07',''), (25.35,'S08','')],
+    'N02': [(0.0,'S09',''), (4.97,'S10',''), (7.97,'S11',''), (11.98,'S12',''), (16.23,'S13',''), (19.7,'S14',''), (24.95,'S15','')],
     'N03': [(0.0,'S16',''), (2.58,'S17',''), (6.2,'S18',''), (10.33,'S19',''), (12.38,'S20',''), (16.36,'S21',''), (19.54,'S22',''), (22.4,'S23','')],
     'N04': [(0.0,'S24',''), (3,'S25',''), (4.8,'S26',''), (7.45,'S27',''), (11.66,'S28',''), (14.75,'S29',''), (18.7,'S30',''), (22.6,'S31','')],
     'N05': [(0.0,'S32',''), (5.5,'S33',''), (9.74,'S34',''), (14.4,'S35',''), (18.16,'S36',''), (20.66,'S37',''), (24.64,'S38','')],
     'N06': [(0.0,'S39',''), (4.51,'S40',''), (7.77,'S41',''), (10.33,'S42',''), (13.53,'S43',''), (17.74,'S44',''), (20.52,'S45','')],
 }
-# 看片后的镜头修正（2026-10-17 复审 qa/*.jpg 后填写：三镜尾段有溶解换场，收尾避开；
-# S08 原取用到 4.99 s、溶解约在 4.0 s 起；S24 约 3.5 s 起；S42 约 3.0 s 起。收窄后
-# 拉伸倍率分别为 1.27 / 1.17 / 1.05，都在 1.33 乒乓红线以内。）
-WINDOWS = {'S08': (0.0, 4.0), 'S24': (0.0, 3.4), 'S42': (0.0, 3.0)}        # 'S13': (1.0, None) 表示只用 1.0 s 之后的画面；(None→0, 4.5) 表示只用前 4.5 s
+# 看片后的镜头修正：S04 去掉前 1.4 秒近静止开头；S08/S24/S42 避开片段尾部溶解。
+# 所有动态镜头只允许正向连续播放；慢放倍率超过 1.33 时必须重剪或重新生成，绝不倒放补帧。
+WINDOWS = {'S04': (1.4, 3.6), 'S08': (0.0, 4.0), 'S24': (0.0, 3.4), 'S42': (0.0, 3.0)}
 TIGHTER_CROPS = {}  # 'S02': (1.2, 0.5, 0.45) 表示推近 1.2 倍，中心在画面 (50%, 45%)
 
 # 调色：默认略压暗（沿用 raincoat2004 的刻度）；个别过暗的镜头在全帧审计之后
@@ -394,6 +393,26 @@ def write_sfx(path,edl,presentation):
         f.writeframes(np.int16(np.clip(out,-1,1)*32767).tobytes())
 
 
+MAX_SLOW_MOTION_FACTOR = 1.33
+
+
+def plan_time_stretch(duration: float, available: float, sid: str = "shot", variant: str = "") -> tuple[float, float]:
+    """Return (source seconds, positive time-stretch factor); never reverse/loop a clip."""
+    duration = float(duration)
+    available = float(available)
+    if duration <= 0 or available <= 0:
+        raise ValueError(f"{sid}/{variant}: duration and available source time must be positive")
+    take = min(available, duration)
+    factor = duration / take
+    if factor > MAX_SLOW_MOTION_FACTOR:
+        raise RuntimeError(
+            f"{sid}/{variant}: slot requires {factor:.3f}x slow motion; exceeds the "
+            f"{MAX_SLOW_MOTION_FACTOR:.2f}x limit. Reassign the clause or generate a longer clip; "
+            "reverse playback and ping-pong loops are prohibited."
+        )
+    return take, factor
+
+
 def render_segment(entry,index,sources,graphics,segments,width,height,checks,presentation,last_shot):
     target=segments/f'{index:03d}.mp4';frames=entry['end_frame']-entry['start_frame'];duration=frames/FPS
     cmd=['ffmpeg','-y','-v','error','-threads','2'];sid=entry['id'];variant=entry['variant']
@@ -411,8 +430,7 @@ def render_segment(entry,index,sources,graphics,segments,width,height,checks,pre
         if sid in WINDOWS:
             wa,wb=WINDOWS[sid];a=max(a,wa);b=min(b,wb if wb is not None else b)
         available=b-a
-        take=min(available,duration)
-        factor=duration/take
+        take,factor=plan_time_stretch(duration,available,sid,variant)
         cmd+=['-ss',f'{a:.6f}','-t',f'{take:.6f}','-i',str(source)]
         tighter=''
         if sid in TIGHTER_CROPS:
@@ -425,33 +443,12 @@ def render_segment(entry,index,sources,graphics,segments,width,height,checks,pre
         common=(tighter+f'scale={width}:{height}:force_original_aspect_ratio=increase,'
                 f'crop={width}:{height},setsar=1,fps={FPS},{grade},'
                 f'tpad=stop_mode=clone:stop_duration=0.2,trim=end_frame={frames}')
-        fc=None
-        if factor>1.33:
-            # 2026-10-11：CogVideoX-Flash 定长 5.108s 素材，S08 槽 7.67s 要 1.57×
-            # 慢放、超质量红线。改用乒乓循环：正放整段 + 尾段倒放补差——不慢放、
-            # 不定帧，慢节奏情景重现镜头的标准做法（倒放对雾气/光影类画面无感）。
-            need=duration-available
-            if need>available:
-                raise RuntimeError(f'{sid}/{variant}: slot {duration:.2f}s exceeds ping-pong capacity {2*available:.2f}s')
-            # 无需改 -t：duration>available 时 take 本就等于 available（正放整段）。
-            fc=('[0:v]split=2[fwd][rev0];'
-                f'[rev0]reverse,trim=duration={need:.6f},setpts=PTS-STARTPTS[rev];'
-                f'[fwd][rev]concat=n=2:v=1:a=0,setpts=PTS-STARTPTS,'+common+'[vbase]')
-            vf=None
-            entry.update(source_in=a,source_out=a+available,time_stretch=1.0,pingpong=True)
-        else:
-            vf=f'setpts=(PTS-STARTPTS)*{factor:.9f},'+common
-            entry.update(source_in=a,source_out=a+take,time_stretch=factor)
-    if fc is None:
-        if entry['start_frame']==0:vf+=',fade=t=in:st=0:d=0.25'
-        if sid=='END':vf+=f',fade=t=in:st=0:d=0.2,fade=t=out:st={duration-.8:.6f}:d=0.8'
-        if sid==last_shot:vf+=f',fade=t=out:st={duration-.18:.6f}:d=0.18'
-        cmd+=['-vf',vf+',format=yuv420p']
-    else:
-        tail=''
-        if entry['start_frame']==0:tail+=',fade=t=in:st=0:d=0.25'
-        if sid==last_shot:tail+=f',fade=t=out:st={duration-.18:.6f}:d=0.18'
-        cmd+=['-filter_complex',fc.replace('[vbase]',tail+',format=yuv420p[v]'),'-map','[v]']
+        vf=f'setpts=(PTS-STARTPTS)*{factor:.9f},'+common
+        entry.update(source_in=a,source_out=a+take,time_stretch=factor)
+    if entry['start_frame']==0:vf+=',fade=t=in:st=0:d=0.25'
+    if sid=='END':vf+=f',fade=t=in:st=0:d=0.2,fade=t=out:st={duration-.8:.6f}:d=0.8'
+    if sid==last_shot:vf+=f',fade=t=out:st={duration-.18:.6f}:d=0.18'
+    cmd+=['-vf',vf+',format=yuv420p']
     cmd+=['-an','-frames:v',str(frames),'-c:v','libx264','-preset','veryfast',
           '-crf','21','-maxrate','4000k','-bufsize','8000k','-r',str(FPS),'-g','60','-pix_fmt','yuv420p',str(target)]
     run(cmd);return target
