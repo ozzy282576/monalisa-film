@@ -40,6 +40,16 @@ class GenerationPolicyTests(unittest.TestCase):
                          ["expired", "expired"])
         self.assertEqual(gen.reuse_receipt(doc, "S08", wanted), "generate")
 
+    def test_forced_refresh_keeps_the_task_id_of_an_unharvested_submission(self):
+        wanted = "same-prompt-hash"
+        doc = {"shots": {"S23": {"id": "S23", "status": "queued", "request_hash": wanted,
+                                 "task_id": "in-flight-task"}}}
+        gen.prepare_forced_regeneration(doc, "S23", wanted)
+        archived = doc["previous_results"]["S23"][-1]
+        self.assertEqual(archived["task_id"], "in-flight-task")
+        self.assertEqual(archived["status"], "unharvested")
+        self.assertEqual(doc["shots"]["S23"], {"id": "S23"})
+
     def test_provider_sdk_retries_are_bounded_by_the_generator_loop(self):
         calls = {}
 

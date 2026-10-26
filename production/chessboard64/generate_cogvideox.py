@@ -228,9 +228,12 @@ def prepare_forced_regeneration(doc, sid, wanted):
     shots = doc.setdefault('shots', {})
     history = doc.setdefault('previous_results', {}).setdefault(sid, [])
     current = shots.get(sid) or {}
-    if current.get('request_hash') == wanted and current.get('status') == 'completed':
+    if current.get('request_hash') == wanted and (current.get('status') == 'completed'
+                                                  or current.get('task_id')):
+        # 同时保留「已完成」和「交了但没收」的收据：后者的 task_id 是上一轮被取消时
+        # 留下的在跑任务，收获它比重投省一次额度，也绕开了 1305 限流。
         archived = dict(current)
-        archived['status'] = 'expired'
+        archived['status'] = 'expired' if current.get('status') == 'completed' else 'unharvested'
         archived['error'] = 'Archived before explicit source-URL refresh'
         history.append(archived)
     for previous in history:
