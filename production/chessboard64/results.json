@@ -399,27 +399,7 @@
     },
     "S40": {
       "id": "S40",
-      "status": "completed",
-      "request_hash": "7c2578488603e1e6837678fa8fa01bccc568baa48a4ab9125a84dafe7d9a8074",
-      "error": null,
-      "updated_at": "2026-10-25T08:58:10Z",
-      "task_id": "2026102516570198fdb13fb2aa42cd",
-      "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025165800395fc0766e6f4b48_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=gpMQxcdDLp%2B85XYT7oZvjaAx6hg%3D&Expires=1793005082",
-      "sha256": "12b8e8ec1eba480af53ff05b8356f0033ae7ade7443f78e8b0d2499e1e81e531",
-      "bytes": 3032152,
-      "media": {
-        "duration": 5.108108,
-        "bytes": 3032152,
-        "width": 1792,
-        "height": 1024,
-        "fps": 37.0,
-        "video_codec": "h264",
-        "frames": 189,
-        "decoded_ok": true,
-        "contact_sheet": "production/chessboard64/qa/S40.jpg",
-        "contact_sampling_fps": 2,
-        "visual_review": "pending"
-      }
+      "updated_at": "2026-10-26T12:07:13Z"
     },
     "S41": {
       "id": "S41",
@@ -584,7 +564,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T12:07:12Z",
+  "updated_at": "2026-10-26T12:07:13Z",
   "previous_results": {
     "S06": [
       {
@@ -2739,6 +2719,32 @@
           "frames": 189,
           "decoded_ok": true,
           "contact_sheet": "production/chessboard64/qa/S31.jpg",
+          "contact_sampling_fps": 2,
+          "visual_review": "pending"
+        }
+      }
+    ],
+    "S40": [
+      {
+        "id": "S40",
+        "status": "expired",
+        "request_hash": "7c2578488603e1e6837678fa8fa01bccc568baa48a4ab9125a84dafe7d9a8074",
+        "error": "Archived before explicit source-URL refresh",
+        "updated_at": "2026-10-25T08:58:10Z",
+        "task_id": "2026102516570198fdb13fb2aa42cd",
+        "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025165800395fc0766e6f4b48_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=gpMQxcdDLp%2B85XYT7oZvjaAx6hg%3D&Expires=1793005082",
+        "sha256": "12b8e8ec1eba480af53ff05b8356f0033ae7ade7443f78e8b0d2499e1e81e531",
+        "bytes": 3032152,
+        "media": {
+          "duration": 5.108108,
+          "bytes": 3032152,
+          "width": 1792,
+          "height": 1024,
+          "fps": 37.0,
+          "video_codec": "h264",
+          "frames": 189,
+          "decoded_ok": true,
+          "contact_sheet": "production/chessboard64/qa/S40.jpg",
           "contact_sampling_fps": 2,
           "visual_review": "pending"
         }
