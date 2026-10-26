@@ -45,15 +45,28 @@ jobs:
 
       - name: Ensure media tools and CJK fonts are available
         run: |
-          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v fc-list >/dev/null 2>&1 \
-             || ! fc-list : family | grep -qi 'Noto Sans CJK'; then
-            # Hosted Ubuntu images ship cached apt indexes; avoid a full apt-get update here,
-            # which can stall for tens of minutes on the runner's package mirror.
-            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=60 \
-              -o Acquire::https::Timeout=60 install -y -qq ffmpeg fontconfig fonts-noto-cjk
+          set -euo pipefail
+          command -v ffmpeg >/dev/null 2>&1 || sudo apt-get -o Acquire::Retries=2 \
+            -o Acquire::http::Timeout=60 -o Acquire::https::Timeout=60 install -y -qq ffmpeg
+          need_font=1
+          [ -f /usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc ] && need_font=0
+          if [ "$need_font" = "1" ]; then
+            # apt 这一步在本仓库实测会卡住半小时以上（2026-10-26 两轮），所以给它一个硬超时，
+            # 超时就直接取官方 Noto CJK 发行包；渲染只要字体文件在 .cache/fonts 下就能用。
+            if ! sudo timeout 300 apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=60 \
+                 -o Acquire::https::Timeout=60 install -y -qq fontconfig fonts-noto-cjk; then
+              echo 'apt font install stalled; downloading Noto CJK directly'
+              mkdir -p .cache/fonts
+              curl -fsSL --retry 3 -o /tmp/noto-sans-cjk.zip \
+                https://github.com/notofonts/noto-cjk/releases/download/Sans2.004/07_NotoSansCJKsc.zip
+              curl -fsSL --retry 3 -o /tmp/noto-serif-cjk.zip \
+                https://github.com/notofonts/noto-cjk/releases/download/Serif2.003/06_NotoSerifCJKsc.zip
+              unzip -o -j -q /tmp/noto-sans-cjk.zip '*NotoSansCJKsc-Regular.otf' -d .cache/fonts
+              unzip -o -j -q /tmp/noto-serif-cjk.zip '*NotoSerifCJKsc-Regular.otf' -d .cache/fonts
+            fi
           fi
           ffmpeg -hide_banner -version | head -1
-          fc-list : family | grep -i 'Noto Sans CJK' | head -1
+          ls -l .cache/fonts 2>/dev/null || fc-list : family | grep -i 'Noto Sans CJK' | head -1
 
       - name: Set up Python
         uses: actions/setup-python@v5
