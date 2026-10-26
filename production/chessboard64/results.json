@@ -197,10 +197,7 @@
     },
     "S11": {
       "id": "S11",
-      "status": "queued",
-      "request_hash": "0d5a97d90018ba8a1e0b1d3a7e9b7b70863889d0fe39a75a6662843eda24115e",
-      "updated_at": "2026-10-26T13:37:21Z",
-      "task_id": "202610262137219ff042ef15924d96"
+      "updated_at": "2026-10-26T14:34:36Z"
     },
     "S12": {
       "id": "S12",
@@ -568,7 +565,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T14:34:35Z",
+  "updated_at": "2026-10-26T14:34:36Z",
   "previous_results": {
     "S06": [
       {
@@ -1768,6 +1765,14 @@
       {
         "id": "S11",
         "updated_at": "2026-10-26T13:31:37Z"
+      },
+      {
+        "id": "S11",
+        "status": "unharvested",
+        "request_hash": "0d5a97d90018ba8a1e0b1d3a7e9b7b70863889d0fe39a75a6662843eda24115e",
+        "updated_at": "2026-10-26T13:37:21Z",
+        "task_id": "202610262137219ff042ef15924d96",
+        "error": "Archived before explicit source-URL refresh"
       }
     ],
     "S13": [
