@@ -1,16 +1,27 @@
 """Regression checks for narration re-timing and forward-only source playback."""
 from __future__ import annotations
 
+import importlib.util
 import json
-import sys
 import unittest
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1] / "chessboard64"
-sys.path.insert(0, str(PROJECT))
 
-import render  # noqa: E402
-from align_cuts_to_audio import align  # noqa: E402
+
+def load_project_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"cannot load project module {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+# Avoid a generic `render` entry in sys.modules: the full repository test suite
+# also imports production/dahlia/render.py, and both projects use that basename.
+render = load_project_module("chessboard64_render", PROJECT / "render.py")
+align = load_project_module("chessboard64_align_cuts", PROJECT / "align_cuts_to_audio.py").align
 
 
 class Chessboard64MotionPolicyTests(unittest.TestCase):
