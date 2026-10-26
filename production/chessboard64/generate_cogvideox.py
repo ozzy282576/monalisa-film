@@ -627,72 +627,8 @@ def main():
             continue
         needs_generation.append(shot)
 
-    # 提交阶段：免费档的 1305「该模型当前访问量过大」是全模型级限流，和具体镜头无关。
-    # 所以轮流扫一遍所有待生成镜头，谁赶上放行窗口谁先进队列；任务在服务端并行出片，
-    # 本地不再「交一条等一条」，免得等待时间全花在轮询上。
-    submit_deadline = min(deadline, time.monotonic() + SUBMIT_PHASE_SECONDS)
-    sweep = 0
-    while needs_generation and time.monotonic() < submit_deadline:
-        sweep += 1
-        accepted, throttled = [], 0
-        for shot in list(needs_generation):
-            if time.monotonic() >= submit_deadline:
-                break
-            sid = shot['id']
-            wanted = request_hash(project, shot)
-            payload = full_payload(project, shot)
-            if sweep == 1:
-                checkpoint(doc, sid + ' submitting', sid, publish=args.publish,
-                           status='submitting', request_hash=wanted)
-            try:
-                response = client.videos.generations(**payload)
-                task_id = obj_get(response, 'id')
-                if not task_id:
-                    raise RuntimeError('No task id: %r' % (response,))
-            except Exception as exc:
-                last_error = redact(exc)[:600]
-                if moderation_block(exc):
-                    print('%s: content moderation (1301); record and continue after prompt review'
-                          % sid, flush=True)
-                    checkpoint(doc, sid + ' blocked (content moderation (1301))', sid,
-                               publish=args.publish, status='failed', request_hash=wanted,
-                               error=last_error)
-                    failures.append(sid)
-                    needs_generation.remove(shot)
-                elif retryable(exc):
-                    throttled += 1
-                else:
-                    print('%s: non-transient provider rejection; preserve the failure receipt'
-                          % sid, flush=True)
-                    checkpoint(doc, sid + ' failed (non-transient provider rejection)', sid,
-                               publish=args.publish, status='failed', request_hash=wanted,
-                               error=last_error)
-                    failures.append(sid)
-                    needs_generation.remove(shot)
-                continue
-            accepted.append(sid)
-            queued[sid] = {'task_id': str(task_id), 'request_hash': wanted,
-                           'attempts': 0, 'shot': shot}
-            needs_generation.remove(shot)
-            checkpoint(doc, sid + ' queued', sid, publish=args.publish,
-                       status='queued', task_id=str(task_id), request_hash=wanted)
-        print('SUBMIT_SWEEP %d accepted=%d throttled=%d still_waiting=%d'
-              % (sweep, len(accepted), throttled, len(needs_generation)), flush=True)
-        if needs_generation:
-            wait = retry_delay(sweep)
-            if time.monotonic() + wait >= submit_deadline:
-                break
-            time.sleep(wait)
-    for shot in needs_generation:
-        sid = shot['id']
-        checkpoint(doc, sid + ' failed (provider throttled every submission attempt)', sid,
-                   publish=args.publish, status='failed', request_hash=request_hash(project, shot),
-                   error='Provider kept rejecting submissions (1305 throttling) for this run')
-        failures.append(sid)
-
-    # 收获阶段：任务已经在服务端排队出片，这里轮流查询，谁先 SUCCESS 谁先下载校验。
-    harvest_deadline = deadline
-    while queued and time.monotonic() < harvest_deadline:
+    def harvest_sweep(harvest_deadline):
+        """查一轮所有在跑的任务：谁 SUCCESS 就立刻下载校验，别等全部提交完再收。"""
         progressed = False
         for sid, entry in list(queued.items()):
             if time.monotonic() >= harvest_deadline:
@@ -760,6 +696,76 @@ def main():
                        publish=args.publish, status='completed', request_hash=wanted,
                        task_id=task_id, video_url=url, sha256=checksum,
                        bytes=dest.stat().st_size, media=info, error=None)
+        return progressed
+
+    # 提交阶段：免费档的 1305「该模型当前访问量过大」是全模型级限流，和具体镜头无关。
+    # 所以轮流扫一遍所有待生成镜头，谁赶上放行窗口谁先进队列；任务在服务端并行出片，
+    # 本地不再「交一条等一条」，免得等待时间全花在轮询上。
+    submit_deadline = min(deadline, time.monotonic() + SUBMIT_PHASE_SECONDS)
+    sweep = 0
+    while needs_generation and time.monotonic() < submit_deadline:
+        sweep += 1
+        accepted, throttled = [], 0
+        for shot in list(needs_generation):
+            if time.monotonic() >= submit_deadline:
+                break
+            sid = shot['id']
+            wanted = request_hash(project, shot)
+            payload = full_payload(project, shot)
+            if sweep == 1:
+                checkpoint(doc, sid + ' submitting', sid, publish=args.publish,
+                           status='submitting', request_hash=wanted)
+            try:
+                response = client.videos.generations(**payload)
+                task_id = obj_get(response, 'id')
+                if not task_id:
+                    raise RuntimeError('No task id: %r' % (response,))
+            except Exception as exc:
+                last_error = redact(exc)[:600]
+                if moderation_block(exc):
+                    print('%s: content moderation (1301); record and continue after prompt review'
+                          % sid, flush=True)
+                    checkpoint(doc, sid + ' blocked (content moderation (1301))', sid,
+                               publish=args.publish, status='failed', request_hash=wanted,
+                               error=last_error)
+                    failures.append(sid)
+                    needs_generation.remove(shot)
+                elif retryable(exc):
+                    throttled += 1
+                else:
+                    print('%s: non-transient provider rejection; preserve the failure receipt'
+                          % sid, flush=True)
+                    checkpoint(doc, sid + ' failed (non-transient provider rejection)', sid,
+                               publish=args.publish, status='failed', request_hash=wanted,
+                               error=last_error)
+                    failures.append(sid)
+                    needs_generation.remove(shot)
+                continue
+            accepted.append(sid)
+            queued[sid] = {'task_id': str(task_id), 'request_hash': wanted,
+                           'attempts': 0, 'shot': shot}
+            needs_generation.remove(shot)
+            checkpoint(doc, sid + ' queued', sid, publish=args.publish,
+                       status='queued', task_id=str(task_id), request_hash=wanted)
+        print('SUBMIT_SWEEP %d accepted=%d throttled=%d still_waiting=%d queued=%d'
+              % (sweep, len(accepted), throttled, len(needs_generation), len(queued)), flush=True)
+        # 边提交边收获：已出片的任务立刻落地，不必等所有镜头都挤过限流窗口。
+        harvested = harvest_sweep(deadline)
+        if needs_generation:
+            wait = 0 if harvested else retry_delay(sweep)
+            if time.monotonic() + wait >= submit_deadline:
+                break
+            time.sleep(wait)
+    for shot in needs_generation:
+        sid = shot['id']
+        checkpoint(doc, sid + ' failed (provider throttled every submission attempt)', sid,
+                   publish=args.publish, status='failed', request_hash=request_hash(project, shot),
+                   error='Provider kept rejecting submissions (1305 throttling) for this run')
+        failures.append(sid)
+
+    # 收获阶段：任务已经在服务端排队出片，轮流查询，谁先 SUCCESS 谁先下载校验。
+    while queued and time.monotonic() < deadline:
+        progressed = harvest_sweep(deadline)
         if needs_generation and time.monotonic() < submit_deadline:
             # 重投瞬时失败的任务，仍然走同一个限流友好的扫描逻辑。
             for shot in list(needs_generation):

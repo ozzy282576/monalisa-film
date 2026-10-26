@@ -175,8 +175,11 @@ class GenerationPolicyTests(unittest.TestCase):
         # 1305 是全模型限流：必须轮流扫所有待生成镜头抢放行窗口，不能卡在某一镜上。
         self.assertIn("while needs_generation and time.monotonic() < submit_deadline", source)
         self.assertIn("SUBMIT_SWEEP", source)
-        # 收获与提交分离：任务在服务端并行出片，本地不再「交一条等一条」。
-        self.assertIn("while queued and time.monotonic() < harvest_deadline", source)
+        # 收获与提交分离：任务在服务端并行出片，本地不再「交一条等一条」，
+        # 而且每扫一轮提交就顺手收一次，已出片的镜头立刻落地。
+        self.assertIn("def harvest_sweep(harvest_deadline)", source)
+        self.assertIn("harvested = harvest_sweep(deadline)", source)
+        self.assertIn("while queued and time.monotonic() < deadline", source)
         self.assertNotIn("attempt < 20", source)
         self.assertGreaterEqual(gen.SUBMIT_PHASE_SECONDS, 60 * 60)
         self.assertLessEqual(gen.HARVEST_SWEEP_SECONDS, 30)
