@@ -172,7 +172,10 @@
       }
     },
     "S09": {
-      "id": "S09"
+      "id": "S09",
+      "status": "submitting",
+      "request_hash": "62886e1d06560edd50c96e2452a11b95a8280d789ce05971a951282fb7abfba1",
+      "updated_at": "2026-10-26T17:04:22Z"
     },
     "S11": {
       "id": "S11",
@@ -589,8 +592,7 @@
       "error": null
     },
     "S34": {
-      "id": "S34",
-      "updated_at": "2026-10-26T17:04:20Z"
+      "id": "S34"
     },
     "S35": {
       "id": "S35",
@@ -875,7 +877,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T17:04:20Z",
+  "updated_at": "2026-10-26T17:04:22Z",
   "previous_results": {
     "S06": [
       {
@@ -2819,6 +2821,10 @@
         "updated_at": "2026-10-26T13:32:30Z",
         "task_id": "2026102621323072d9c8578cbe4b5c",
         "error": "Archived before explicit source-URL refresh"
+      },
+      {
+        "id": "S34",
+        "updated_at": "2026-10-26T17:04:20Z"
       }
     ],
     "S36": [
