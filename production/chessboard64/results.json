@@ -298,17 +298,11 @@
       "id": "S17"
     },
     "S19": {
-      "id": "S19",
-      "updated_at": "2026-10-26T13:31:41Z"
+      "id": "S19"
     },
     "S20": {
       "id": "S20",
-      "status": "submitting",
-      "request_hash": "94bedca94c63c1843d8a64fcf5124be34021609e52095627eb136c11ba32a065",
-      "error": "Error code: 429, with error text {\"error\":{\"code\":\"1305\",\"message\":\"该模型当前访问量过大，请您稍后再试\"}}",
-      "updated_at": "2026-10-26T13:16:49Z",
-      "submit_attempts": 10,
-      "deferred_passes": 1
+      "updated_at": "2026-10-26T13:31:42Z"
     },
     "S21": {
       "id": "S21",
@@ -578,7 +572,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-26T13:31:41Z",
+  "updated_at": "2026-10-26T13:31:42Z",
   "previous_results": {
     "S06": [
       {
@@ -2782,6 +2776,10 @@
       {
         "id": "S19",
         "updated_at": "2026-10-26T13:02:08Z"
+      },
+      {
+        "id": "S19",
+        "updated_at": "2026-10-26T13:31:41Z"
       }
     ],
     "S10": [
