@@ -125,7 +125,7 @@ At a worn stone chess table in Bitsa Park, two anonymous adult visitors sit oppo
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S13 · 公开报道所述的邀约方式与陌生棋友
+## S13 · 公开报道所述的邀约方式与悼念小狗的理由
 
 剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE, ELDER
 
@@ -133,11 +133,11 @@ At a worn stone chess table in Bitsa Park, two anonymous adult visitors sit oppo
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
 【角色设定：MAIN_FIGURE】 Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
 【角色设定：ELDER】 Anonymous older man in a modest dark coat and cap; distant back or soft silhouette, dignified and ordinary.
-A restrained fictional Bitsa Park reenactment at a stone chess table. An anonymous slim adult man seen only from behind politely offers a small unbranded paper cup to an older park visitor; the visitor considers it and gives a mild nod. The action is calm and ordinary, illustrating a reported invitation without asserting that the scene is authentic footage. Keep both people at medium distance, faces indistinct and hands unobtrusive; leaves move in the background as the camera makes a smooth lateral dolly with clear parallax. No readable text, dog, injury, violence, or real-person likeness.
+A restrained fictional Bitsa Park reenactment at a stone chess table. An anonymous slim adult man seen only from behind politely offers a small unbranded paper cup to an older park visitor; a simple worn leash and small blank dog tag rest quietly on the nearby bench as a visual reference to the reason described in public reports. The visitor considers the invitation and gives a mild nod; the dog is not shown. Keep both people at medium distance, faces indistinct and hands unobtrusive. Leaves stir as the camera makes a smooth lateral dolly with clear parallax. No readable text, injury, violence, or real-person likeness.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S14 · 悼念死去的小狗是他给出的理由，棋友只当他熟悉
+## S14 · 熟悉棋友的印象与六十三个记号的本人自述
 
 剪辑槽位：规划4秒 · 16:9 · 角色：MAIN_FIGURE, ELDER
 
@@ -145,11 +145,11 @@ A restrained fictional Bitsa Park reenactment at a stone chess table. An anonymo
 【STYLE】 High-end cinematic 3D animated documentary reenactment; fictional composite cast; early-2000s Moscow and Bitsa forest park in autumn. Restrained gray-green and deep navy, black-and-white chess squares with subtle red marks as a recurring metaphor; chiaroscuro, volumetric mist, wet leaves, tactile stone, aged wood and cloth, shallow depth of field, fine 35mm grain. Solemn, non-sensational tone. Horizontal 16:9 for 1920x1080 delivery; use the full widescreen frame, place subjects on thirds, keep the bottom 15% subtitle-safe. Every shot must show continuous real 3D subject/environment/camera motion; never a still with a fake zoom. All people are anonymous fictional stand-ins with indistinct faces; witnesses and affected people appear only from behind or as silhouettes. No readable text; add Chinese graphics and captions in post.
 【角色设定：MAIN_FIGURE】 Fictional anonymous slim man in his early 30s, short dark hair, plain charcoal jacket or early-2000s supermarket vest; ordinary posture, face indistinct, seen from behind or as a distant silhouette.
 【角色设定：ELDER】 Anonymous older man in a modest dark coat and cap; distant back or soft silhouette, dignified and ordinary.
-At a quiet stone chess table in Bitsa Park, an anonymous slim man and an older visitor sit as familiar chess acquaintances, both seen from behind. A simple worn leash and small blank dog tag rest on the bench beside them; the man makes one small, distant gesture toward the keepsake, then both return their attention to the ordinary chessboard. The dog is not shown. Leaves move softly as the camera tracks laterally along the table, with clear parallax and steady motion. No readable tag, injury, harm, face, or sensational imagery.
+At a worn stone chess table in Bitsa Park, an anonymous slim adult man and an older visitor sit as familiar chess acquaintances, both shown only from behind. They finish an ordinary game with a slight nod; no face or hand close-up is shown. In the foreground, a separate unnumbered 8-by-8 grid with many small abstract red marks and a few clean squares comes into focus as the camera glides from the visitors toward the board. The marks represent his personal claim, not a verified count or official evidence. Leaves and soft reflections move continuously. No readable writing, injury, violence, or real-person likeness.
 【NEGATIVE】 No legible text, numbers, signs, watermarks, logos or subtitles; no recognizable real-person likeness, distorted faces/fingers/limbs, duplicate figures, nudity, modern devices, low resolution, 2D/comic style, vertical framing or bars, static still/slideshow/fake push-in, flicker, morphing, jitter, jump cuts or whip pans.
 ```
 
-## S15 · 六十三个记号和棋盘几乎被填满都只是他的说法
+## S15 · 按他的说法，棋盘几乎被填满
 
 剪辑槽位：规划4秒 · 16:9 · 角色：无
 
