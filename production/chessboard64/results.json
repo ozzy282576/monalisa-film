@@ -185,10 +185,27 @@
     },
     "S12": {
       "id": "S12",
-      "status": "queued",
+      "status": "completed",
       "request_hash": "aaea816565013d0c210ed26cc6ac7a76d6b459e6eba0804fd3d0b9225453920c",
-      "updated_at": "2026-10-27T07:29:53Z",
-      "task_id": "202610271529533edc75b9f9024121"
+      "updated_at": "2026-10-27T07:31:59Z",
+      "task_id": "202610271529533edc75b9f9024121",
+      "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261027153050b02bc2468655445e_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=%2FGco205cHuafxpr3b%2FJWVBK4MvI%3D&Expires=1793172652",
+      "sha256": "ae48f628c7698990d7e80a6f45a939e276ca8ad6c413c41ddb8cd37c04c93ec8",
+      "bytes": 1744376,
+      "media": {
+        "duration": 5.108108,
+        "bytes": 1744376,
+        "width": 1792,
+        "height": 1024,
+        "fps": 37.0,
+        "video_codec": "h264",
+        "frames": 189,
+        "decoded_ok": true,
+        "contact_sheet": "production/chessboard64/qa/S12.jpg",
+        "contact_sampling_fps": 2,
+        "visual_review": "pending"
+      },
+      "error": null
     },
     "S13": {
       "id": "S13",
@@ -888,7 +905,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-27T07:31:52Z",
+  "updated_at": "2026-10-27T07:31:59Z",
   "previous_results": {
     "S06": [
       {
