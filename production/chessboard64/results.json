@@ -557,7 +557,9 @@
     },
     "S29": {
       "id": "S29",
-      "updated_at": "2026-10-27T06:43:39Z"
+      "status": "submitting",
+      "request_hash": "0ba8371fa606a0fcf0d151c1ead146e220e9d75cab9d8fa4e7430c8dbf7f0b69",
+      "updated_at": "2026-10-27T06:43:40Z"
     },
     "S30": {
       "id": "S30",
@@ -938,7 +940,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-27T06:43:39Z",
+  "updated_at": "2026-10-27T06:43:40Z",
   "previous_results": {
     "S06": [
       {
@@ -1608,6 +1610,10 @@
       {
         "id": "S29",
         "updated_at": "2026-10-26T17:04:19Z"
+      },
+      {
+        "id": "S29",
+        "updated_at": "2026-10-27T06:43:39Z"
       }
     ],
     "S30": [
