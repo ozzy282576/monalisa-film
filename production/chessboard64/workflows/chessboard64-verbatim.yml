@@ -1,0 +1,140 @@
+# 逐字听检只读 render run artifact 与音频 release；不把 MP4/MP3/JPG 写入 Git。
+name: 六十四格：国际象棋盘杀手 · 逐字听检
+run-name: 逐字听检 · 六十四格 · ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      render_run_id:
+        description: '生成成片的 GitHub Actions run ID（artifact 名为 chessboard64-film-<run_id>）'
+        type: string
+        required: true
+  push:
+    branches:
+      - arena/56672981-monalisa-film
+    paths:
+      - production/chessboard64/VERBATIM_REQUEST
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: chessboard64-verbatim-arena-56672981-monalisa-film
+  cancel-in-progress: false
+
+jobs:
+  verbatim:
+    if: github.ref == 'refs/heads/arena/56672981-monalisa-film'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 45
+    steps:
+      - name: Check out the production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/56672981-monalisa-film
+          fetch-depth: 0
+
+      - name: Resolve render run ID
+        env:
+          INPUT_RUN_ID: ${{ inputs.render_run_id }}
+        run: |
+          set -euo pipefail
+          run_id="${INPUT_RUN_ID:-}"
+          if [ -z "$run_id" ]; then
+            run_id="$(tr -d '\n' < production/chessboard64/VERBATIM_REQUEST)"
+          fi
+          [[ "$run_id" =~ ^[0-9]+$ ]] || { echo "Invalid render run ID: $run_id" >&2; exit 1; }
+          echo "RENDER_RUN_ID=$run_id" >> "$GITHUB_ENV"
+
+      - name: Download the selected render artifact (on demand)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          mkdir -p work/chessboard64/render-artifact
+          gh run download "$RENDER_RUN_ID" --repo "$GITHUB_REPOSITORY" \
+            --name "chessboard64-film-$RENDER_RUN_ID" --dir work/chessboard64/render-artifact
+          film="$(find work/chessboard64/render-artifact -type f -name '*.mp4' -print -quit)"
+          [ -n "$film" ] || { echo 'Artifact contains no MP4' >&2; exit 1; }
+          echo "FILM=$film" >> "$GITHUB_ENV"
+
+      - name: Install media tools and Python dependencies
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=60 \
+              -o Acquire::https::Timeout=60 install -y -qq ffmpeg
+          fi
+          ffmpeg -hide_banner -version | head -1
+          python -m pip install --upgrade pip
+          python -m pip install -r production/requirements.txt "faster-whisper>=1.1,<2"
+
+      - name: Verify narration media saved with the render artifact
+        run: |
+          set -euo pipefail
+          n01="$(find work/chessboard64/render-artifact -type f -name N01.mp3 -print -quit)"
+          manifest="$(find work/chessboard64/render-artifact -type f -name narration-manifest.json -print -quit)"
+          [ -n "$n01" ] && [ -n "$manifest" ] || { echo 'Render artifact is missing narration MP3s or narration-manifest.json' >&2; exit 1; }
+          audio_dir="$(dirname "$n01")"
+          python3 - "$manifest" "$audio_dir" <<'PY'
+          import hashlib, json, sys
+          from pathlib import Path
+          manifest, directory = map(Path, sys.argv[1:])
+          data = json.loads(manifest.read_text(encoding='utf-8'))
+          clips = data.get('clips', [])
+          assert len(clips) == 6, f'Expected six narration receipts, got {len(clips)}'
+          for clip in clips:
+              path = directory / clip['file']
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert actual == clip['sha256'], f"{clip['id']} narration SHA mismatch"
+          print('verified six narration MP3s; voice:', data.get('voice_id'))
+          PY
+          echo "AUDIO_DIR=$audio_dir" >> "$GITHUB_ENV"
+
+      - name: Transcribe the delivered film and compare it to the reviewed script
+        id: check
+        continue-on-error: true
+        run: |
+          python3 -u production/verbatim_check.py \
+            --film "$FILM" \
+            --project production/chessboard64 \
+            --work work/chessboard64/verbatim \
+            --narration "$AUDIO_DIR" \
+            --model small \
+            --max-cer 0.15
+
+      - name: Commit the text-only transcript report
+        if: always()
+        run: |
+          if [ -f work/chessboard64/verbatim/verbatim-check.json ]; then
+            mkdir -p production/chessboard64/delivery
+            cp work/chessboard64/verbatim/verbatim-check.json production/chessboard64/delivery/verbatim-check.json
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -f production/chessboard64/delivery/verbatim-check.json
+            git commit -m "chessboard64: publish text-only verbatim report" || true
+            # 听检与视觉QC是同一次 push 并发触发的，谁先推回收据谁赢；输的一方必须变基重试，
+            # 否则会因为 non-fast-forward 把一次成功的听检判成失败。
+            pushed=0
+            for attempt in 1 2 3 4 5; do
+              if git push origin "HEAD:arena/56672981-monalisa-film"; then pushed=1; break; fi
+              git fetch origin arena/56672981-monalisa-film && git rebase FETCH_HEAD || break
+              sleep $(( attempt * 5 ))
+            done
+            [ "$pushed" = "1" ] || { echo "::error::听检收据推不回分支，看本次运行的 artifact"; exit 1; }
+          fi
+
+      - name: Upload the transcript report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chessboard64-verbatim-${{ github.run_id }}
+          path: work/chessboard64/verbatim/verbatim-check.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Fail if the transcript did not match the script
+        if: steps.check.outcome != 'success'
+        run: |
+          echo '::error::逐字听检未通过或未能完成，文本报告已保存。'
+          exit 1

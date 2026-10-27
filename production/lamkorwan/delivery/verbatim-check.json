@@ -1,0 +1,471 @@
+{
+  "film": "雨夜屠夫林过云_一卷菲林里的四条人命_三分钟_带声音.mp4",
+  "film_sha256": "b57ad26f7d520bb1d5066daa9a257d9c87651e3f9c0b99b80fa736fae9d20804",
+  "film_bytes": 70250059,
+  "project": "production/lamkorwan",
+  "method": "faster-whisper small，无 initial_prompt；转写对象为最终成片按章节切出的音频",
+  "max_cer_allowed": 0.15,
+  "film_pass": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 26.247,
+        "script_chars": 99,
+        "heard_chars": 99,
+        "character_error_rate": 0.0202,
+        "match_coverage": 0.9798,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 73,
+            "kind": "replace",
+            "script": "菲林",
+            "heard": "飞铃"
+          }
+        ],
+        "transcript": "1982年2月香港的雨夜有人从沙田城门河里捞起一颗人头和一双女人的手臂这起案子让整个香港慌了但真正钉死凶手的不是目击者不是指纹而是一卷送去冲印店的飞铃今天讲雨夜屠夫林过云一个夜班出租车司机和四条人命"
+      },
+      {
+        "id": "N02",
+        "start": 27.327,
+        "end": 52.647,
+        "script_chars": 111,
+        "heard_chars": 111,
+        "character_error_rate": 0.0811,
+        "match_coverage": 0.9189,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 0,
+            "kind": "replace",
+            "script": "林",
+            "heard": "凌"
+          },
+          {
+            "at": 9,
+            "kind": "replace",
+            "script": "的士",
+            "heard": "低视"
+          },
+          {
+            "at": 21,
+            "kind": "replace",
+            "script": "唐",
+            "heard": "堂"
+          },
+          {
+            "at": 26,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 44,
+            "kind": "replace",
+            "script": "咀",
+            "heard": "局"
+          },
+          {
+            "at": 70,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          }
+        ],
+        "transcript": "凌过云二十七岁夜班低视司机住在土瓜湾一栋旧堂楼里白天她几乎不出现入夜才开车上街凌晨的尖沙局搭车的大多是下班回家的女人从二月到七月四名女子坐上她的车再没有下车二十二岁的陈凤兰三十一岁的陈云杰二十九岁的梁秀云还有十七岁的梁慧心"
+      },
+      {
+        "id": "N03",
+        "start": 53.727,
+        "end": 79.489,
+        "script_chars": 110,
+        "heard_chars": 110,
+        "character_error_rate": 0.0545,
+        "match_coverage": 0.9455,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 0,
+            "kind": "replace",
+            "script": "作案",
+            "heard": "左岸"
+          },
+          {
+            "at": 8,
+            "kind": "replace",
+            "script": "夜",
+            "heard": "叶"
+          },
+          {
+            "at": 14,
+            "kind": "replace",
+            "script": "僻静",
+            "heard": "屁境"
+          },
+          {
+            "at": 49,
+            "kind": "replace",
+            "script": "它",
+            "heard": "他"
+          }
+        ],
+        "transcript": "左岸几乎都挑在雨叶他把车开到屁境处然后在车里勒死对方四个月里香港连着发生四起命案警方一开始并不确定他们出自同一双手因为现场几乎没有留下什么而林过云做了一件他自以为很聪明的事他把整个过程拍了下来照片和录像带整整齐齐收在家里"
+      },
+      {
+        "id": "N04",
+        "start": 80.569,
+        "end": 108.934,
+        "script_chars": 118,
+        "heard_chars": 118,
+        "character_error_rate": 0.0678,
+        "match_coverage": 0.9322,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 10,
+            "kind": "replace",
+            "script": "过",
+            "heard": "郭"
+          },
+          {
+            "at": 21,
+            "kind": "replace",
+            "script": "菲林",
+            "heard": "飞铃"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "咀",
+            "heard": "局"
+          },
+          {
+            "at": 30,
+            "kind": "replace",
+            "script": "相",
+            "heard": "巷"
+          },
+          {
+            "at": 47,
+            "kind": "replace",
+            "script": "相",
+            "heard": "橡"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "巧",
+            "heard": "桥"
+          }
+        ],
+        "transcript": "转折点是一间冲印店林郭云家里没有暗房习惯把飞铃拿到尖沙局一间巷铺冲洗1982年8月他想放大一批橡片偏桥放大机坏了底片被转到分店有人手冲晒店员把照片看清楚的那一刻就知道这不是普通摄影画面里的东西和报纸上正在报道的那宗案子太像了负责人报了警"
+      },
+      {
+        "id": "N05",
+        "start": 110.014,
+        "end": 136.292,
+        "script_chars": 114,
+        "heard_chars": 114,
+        "character_error_rate": 0.0175,
+        "match_coverage": 0.9825,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 24,
+            "kind": "replace",
+            "script": "相",
+            "heard": "向"
+          },
+          {
+            "at": 85,
+            "kind": "replace",
+            "script": "带",
+            "heard": "袋"
+          }
+        ],
+        "transcript": "警方没有立刻上门他们让店员照常打电话通知客人来取向因为底片还在店里来取的人只能是他8月18日林过云走进冲印店埋伏的探员一拥而上同一天警方搜查他在土瓜湾贵州街的住所照片 录像袋手术器材一件一件被翻出来四起互不相干的命案从此串成一条线"
+      },
+      {
+        "id": "N06",
+        "start": 137.372,
+        "end": 174.0,
+        "script_chars": 151,
+        "heard_chars": 151,
+        "character_error_rate": 0.0464,
+        "match_coverage": 0.9536,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 16,
+            "kind": "replace",
+            "script": "争",
+            "heard": "证"
+          },
+          {
+            "at": 64,
+            "kind": "replace",
+            "script": "处",
+            "heard": "除"
+          },
+          {
+            "at": 86,
+            "kind": "replace",
+            "script": "督",
+            "heard": "都"
+          },
+          {
+            "at": 88,
+            "kind": "replace",
+            "script": "同",
+            "heard": "通"
+          },
+          {
+            "at": 126,
+            "kind": "replace",
+            "script": "菲林",
+            "heard": "飞铃"
+          },
+          {
+            "at": 136,
+            "kind": "replace",
+            "script": "大",
+            "heard": "打"
+          }
+        ],
+        "transcript": "1983年3月案件在高等法院开审证的是他到底有没有精神病五名精神科医生评估过他陪审团最终不接受这个说法4月8日四项谋杀罪名成立判除死刑但香港多年没有执行死刑1984年8月港都会通行政局赦免死刑改判终身监禁他想让全世界看见自己的作品把他送上法庭的正是那卷飞铃你觉得如果那台放打机没有坏这个案子还会被揭开吗"
+      }
+    ],
+    "max_cer": 0.0811,
+    "failing": []
+  },
+  "narration_control": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 26.247,
+        "script_chars": 99,
+        "heard_chars": 99,
+        "character_error_rate": 0.0303,
+        "match_coverage": 0.9697,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 73,
+            "kind": "replace",
+            "script": "菲林",
+            "heard": "飞铃"
+          },
+          {
+            "at": 82,
+            "kind": "replace",
+            "script": "林",
+            "heard": "灵"
+          }
+        ],
+        "transcript": "1982年2月 香港的雨夜有人从沙田城门河里捞起一颗人头和一双女人的手臂这起案子让整个香港慌了但真正钉死凶手的不是目击者不是指纹而是一卷送去冲印店的飞铃今天讲 雨夜屠夫 灵过云一个夜班出租车司机和四条人命"
+      },
+      {
+        "id": "N02",
+        "start": 27.327,
+        "end": 52.647,
+        "script_chars": 111,
+        "heard_chars": 111,
+        "character_error_rate": 0.0901,
+        "match_coverage": 0.9099,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 0,
+            "kind": "replace",
+            "script": "林",
+            "heard": "凌"
+          },
+          {
+            "at": 9,
+            "kind": "replace",
+            "script": "的士",
+            "heard": "低视"
+          },
+          {
+            "at": 21,
+            "kind": "replace",
+            "script": "唐",
+            "heard": "堂"
+          },
+          {
+            "at": 26,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 44,
+            "kind": "replace",
+            "script": "咀搭",
+            "heard": "局大"
+          },
+          {
+            "at": 70,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          }
+        ],
+        "transcript": "凌过云二十七岁夜班低视司机住在土瓜湾一栋旧堂楼里白天她几乎不出现入夜才开车上街凌晨的尖沙局大车的大多是下班回家的女人从二月到七月四名女子坐上她的车再没有下车二十二岁的陈凤兰三十一岁的陈云杰二十九岁的梁秀云还有十七岁的梁慧心"
+      },
+      {
+        "id": "N03",
+        "start": 53.727,
+        "end": 79.489,
+        "script_chars": 110,
+        "heard_chars": 110,
+        "character_error_rate": 0.0545,
+        "match_coverage": 0.9455,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 0,
+            "kind": "replace",
+            "script": "作案",
+            "heard": "左岸"
+          },
+          {
+            "at": 8,
+            "kind": "replace",
+            "script": "夜",
+            "heard": "叶"
+          },
+          {
+            "at": 14,
+            "kind": "replace",
+            "script": "僻静",
+            "heard": "屁境"
+          },
+          {
+            "at": 49,
+            "kind": "replace",
+            "script": "它",
+            "heard": "他"
+          }
+        ],
+        "transcript": "左岸几乎都挑在雨叶他把车开到屁境处然后在车里勒死对方四个月里香港连着发生四起命案警方一开始并不确定他们出自同一双手因为现场几乎没有留下什么而林过云做了一件他自以为很聪明的事他把整个过程拍了下来照片和录像带整整齐齐收在家里"
+      },
+      {
+        "id": "N04",
+        "start": 80.569,
+        "end": 108.934,
+        "script_chars": 118,
+        "heard_chars": 118,
+        "character_error_rate": 0.0593,
+        "match_coverage": 0.9407,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 21,
+            "kind": "replace",
+            "script": "菲林",
+            "heard": "飞铃"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "咀",
+            "heard": "局"
+          },
+          {
+            "at": 30,
+            "kind": "replace",
+            "script": "相",
+            "heard": "巷"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "巧",
+            "heard": "桥"
+          },
+          {
+            "at": 63,
+            "kind": "replace",
+            "script": "由",
+            "heard": "有"
+          },
+          {
+            "at": 103,
+            "kind": "replace",
+            "script": "道",
+            "heard": "到"
+          }
+        ],
+        "transcript": "转折点是一间冲印店林过云家里没有暗房习惯把飞铃拿到尖沙局一间巷铺冲洗1982年8月他想放大一批相片偏桥放大机坏了底片被转到分店有人手冲晒店员把照片看清楚的那一刻就知道这不是普通摄影画面里的东西和报纸上正在报到的那宗案子太像了负责人报了警"
+      },
+      {
+        "id": "N05",
+        "start": 110.014,
+        "end": 136.292,
+        "script_chars": 114,
+        "heard_chars": 114,
+        "character_error_rate": 0.0175,
+        "match_coverage": 0.9825,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 24,
+            "kind": "replace",
+            "script": "相",
+            "heard": "向"
+          },
+          {
+            "at": 85,
+            "kind": "replace",
+            "script": "带",
+            "heard": "袋"
+          }
+        ],
+        "transcript": "警方没有立刻上门他们让店员照常打电话通知客人来取向因为底片还在店里来取的人只能是他8月18日林过云走进冲印店埋伏的探员一拥而上同一天警方搜查他在土瓜湾贵州街的住所照片 录像袋手术器材一件一件被翻出来四起互不相干的命案从此串成一条线"
+      },
+      {
+        "id": "N06",
+        "start": 137.372,
+        "end": 174.0,
+        "script_chars": 151,
+        "heard_chars": 151,
+        "character_error_rate": 0.0397,
+        "match_coverage": 0.9603,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 16,
+            "kind": "replace",
+            "script": "争",
+            "heard": "证"
+          },
+          {
+            "at": 123,
+            "kind": "replace",
+            "script": "是那",
+            "heard": "式纳"
+          },
+          {
+            "at": 126,
+            "kind": "replace",
+            "script": "菲林",
+            "heard": "飞铃"
+          },
+          {
+            "at": 136,
+            "kind": "replace",
+            "script": "大",
+            "heard": "打"
+          }
+        ],
+        "transcript": "1983年3月案件在高等法院开审证的是他到底有没有精神病五名精神科医生评估过他陪审团最终不接受这个说法4月8日四项谋杀罪名成立判处死刑但香港多年没有执行死刑1984年8月港督会同行政局赦免死刑改判终身监禁他想让全世界看见自己的作品把他送上法庭的正式纳卷飞铃你觉得如果那台放打机没有坏这个案子还会被揭开吗"
+      }
+    ],
+    "max_cer": 0.0901,
+    "failing": []
+  },
+  "note": "CER = 编辑距离 / 剧本字数。ASR 本身也会错，所以 'needs_human_listen' 的意思是\"这一段的差异需要人耳裁决\"，不等于\"配音一定错了\"；对照组（干净配音）字错率明显低于成片时，差异多半来自音乐干扰 ASR。"
+}

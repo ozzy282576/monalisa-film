@@ -1,0 +1,171 @@
+# 模板：production/new_topic.py 会把 rabies1885 / arena/cb25986c-desktop-tutorial / cb25986c-desktop-tutorial / 狂犬病疫苗：一百四十年前那场赌局 / 狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4 换成新项目的值，
+# 生成 production/<slug>/workflows/<slug>-*.yml；复制到 .github/workflows/ 后即可用 marker 文件 push 触发。
+name: 狂犬病疫苗：一百四十年前那场赌局 · Agnes生成
+run-name: 狂犬病疫苗：一百四十年前那场赌局 · Agnes Video V2.0 生成 · ${{ github.ref_name }}
+
+# 触发方式：在分支上写 production/rabies1885/GEN_REQUEST（内容就是 JSON payload）并 push。
+#   全量：{"workers":2}        补做个别镜头：{"workers":1,"only":"S07,S12"}
+# 沙箱连不上 Agnes API、也读不到 Actions 日志，所以素材与 results.json 由本工作流 commit 回分支。
+# 中途失败可断点续跑：再改一下 GEN_REQUEST 重新 push，已完成的镜头按 SHA-256 复用、不重新生成。
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: 'JSON: {"only":"S01","workers":1}；空则读 GEN_REQUEST'
+        type: string
+        default: '{"workers":2}'
+  push:
+    branches:
+      - arena/cb25986c-desktop-tutorial
+    paths:
+      - production/rabies1885/GEN_REQUEST
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rabies1885-agnes-arena-cb25986c-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.ref == 'refs/heads/arena/cb25986c-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 350
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/cb25986c-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Resolve the generation payload
+        id: resolve
+        env:
+          PAYLOAD_INPUT: ${{ inputs.payload }}
+        run: |
+          set -euo pipefail
+          if [ -n "${PAYLOAD_INPUT:-}" ]; then
+            payload="$PAYLOAD_INPUT"
+          elif [ -f production/rabies1885/GEN_REQUEST ]; then
+            payload="$(tr -d '\n' < production/rabies1885/GEN_REQUEST)"
+          else
+            payload='{"workers":2}'
+          fi
+          only="$(python3 -c 'import json,sys; print("true" if json.loads(sys.argv[1]).get("only") else "false")' "$payload")"
+          echo "PAYLOAD=$payload" >> "$GITHUB_ENV"
+          echo "only=$only" >> "$GITHUB_OUTPUT"
+          echo "Generation payload: $payload (selected-only=$only)"
+
+      - name: Install media tools and CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16" || \
+          python -m pip install --break-system-packages "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16"
+
+      - name: Validate the complete three-minute timeline
+        run: python3 production/rabies1885/generate.py --validate
+
+      - name: Drop dead provider tasks so a re-run submits fresh ones
+        run: python3 production/rabies1885/generate.py --prune-failed
+
+      - name: Generate Agnes clips and checkpoint provenance
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          PAYLOAD: ${{ env.PAYLOAD }}
+        run: python3 -u production/rabies1885/generate.py --publish --payload "$PAYLOAD" 2>&1 | tee /tmp/gen.log; exit ${PIPESTATUS[0]}
+
+      - name: Install full-frame visual-QC dependencies
+        if: ${{ success() && steps.resolve.outputs.only == 'false' }}
+        run: |
+          python -m pip install "numpy==1.26.4" "opencv-python-headless==4.10.0.84" \
+            "matplotlib>=3.8,<4" "absl-py>=2,<3" "attrs>=19.1" "flatbuffers>=2" "protobuf>=4.25.3,<5"
+          python -m pip install --no-deps "mediapipe==0.10.21"
+          python - <<'PY'
+          import av, cv2, mediapipe as mp, numpy as np
+          assert cv2.__version__ == "4.10.0"
+          assert mp.__version__ == "0.10.21"
+          face = mp.solutions.face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.45)
+          hands = mp.solutions.hands.Hands(static_image_mode=False, max_num_hands=4, model_complexity=0,
+                                           min_detection_confidence=0.45, min_tracking_confidence=0.4)
+          face.close()
+          hands.close()
+          print("frame-QC runtime ready", av.__version__, cv2.__version__, mp.__version__, np.__version__)
+          PY
+
+      - name: Scan every rendered frame and make complete contact sheets
+        if: ${{ success() && steps.resolve.outputs.only == 'false' }}
+        run: |
+          set -euo pipefail
+          film="work/rabies1885/clips/狂犬病疫苗：一百四十年前那场赌局_三分钟_初版.mp4"
+          test -s "$film"
+          python3 production/rabies1885/audit_frame_distortions.py \
+            --film "$film" --project production/rabies1885 \
+            --out production/rabies1885/delivery/frame-distortion-audit.json \
+            --work work/rabies1885/frame_distortion_audit
+          python3 production/rabies1885/compose_all_frame_sheets.py \
+            --film "$film" --project production/rabies1885 \
+            --out production/rabies1885/qa/all-frames
+
+      - name: Commit frame-level audit evidence
+        if: ${{ success() && steps.resolve.outputs.only == 'false' }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add production/rabies1885/delivery/frame-distortion-audit.json \
+            production/rabies1885/delivery/frame-distortion-audit.md \
+            production/rabies1885/qa/all-frames
+          if ! git diff --cached --quiet; then
+            git commit -m "rabies1885: scan every rendered frame"
+            pushed=0
+            for attempt in 1 2 3; do
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then pushed=1; break; fi
+              git fetch origin "${GITHUB_REF_NAME}"
+              git rebase FETCH_HEAD
+            done
+            test "$pushed" = 1
+          fi
+
+      - name: Ship failure log to branch (sandbox cannot read Actions logs)
+        if: failure()
+        run: |
+          tail -c 200000 /tmp/gen.log > production/rabies1885/gen-diag.log
+          git config user.name "arena-diag"
+          git config user.email "arena@local"
+          git add -f production/rabies1885/gen-diag.log
+          git commit -m "rabies1885: Agnes 生成失败诊断 $(date -u +%FT%TZ)"
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then pushed=1; break; fi
+            git fetch origin ${{ github.ref_name }} && git rebase FETCH_HEAD || break
+          done
+          [ "$pushed" = "1" ] || echo "::error::诊断日志推不回分支，看本次运行的 artifact"
+
+      - name: Save video clips as downloadable artifacts
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: rabies1885-agnes-${{ github.run_number }}
+          path: |
+            work/rabies1885/clips/
+            work/rabies1885/frame_distortion_audit/
+            production/rabies1885/results.json
+            production/rabies1885/delivery/frame-distortion-audit.*
+            production/rabies1885/qa/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 14

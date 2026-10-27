@@ -1,0 +1,550 @@
+{
+ "N01": {
+  "duration": 28.833,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.13,
+    "end": 2.53,
+    "text": "他常在公园和人下棋",
+    "chars_per_second": 3.75
+   },
+   {
+    "i": 1,
+    "start": 2.87,
+    "end": 4.89,
+    "text": "看起来像个普通棋友",
+    "chars_per_second": 4.46
+   },
+   {
+    "i": 2,
+    "start": 5.24,
+    "end": 8.59,
+    "text": "可他盯上的是一块六十四格的棋盘",
+    "chars_per_second": 4.48
+   },
+   {
+    "i": 3,
+    "start": 8.93,
+    "end": 11.0,
+    "text": "媒体给他起了一个绰号",
+    "chars_per_second": 4.83
+   },
+   {
+    "i": 4,
+    "start": 11.35,
+    "end": 14.22,
+    "text": "六十四格的说法来自他的自述",
+    "chars_per_second": 4.53
+   },
+   {
+    "i": 5,
+    "start": 14.57,
+    "end": 16.09,
+    "text": "并非司法结论",
+    "chars_per_second": 3.95
+   },
+   {
+    "i": 6,
+    "start": 16.43,
+    "end": 21.77,
+    "text": "二〇〇七年法院认定四十八起谋杀和三起未遂",
+    "chars_per_second": 3.75
+   },
+   {
+    "i": 7,
+    "start": 22.07,
+    "end": 25.15,
+    "text": "他曾声称目标是填满六十四格",
+    "chars_per_second": 4.22
+   },
+   {
+    "i": 8,
+    "start": 25.5,
+    "end": 26.68,
+    "text": "我们只谈证据",
+    "chars_per_second": 5.08
+   },
+   {
+    "i": 9,
+    "start": 27.01,
+    "end": 28.83,
+    "text": "也记住格子背后的人",
+    "chars_per_second": 4.94
+   }
+  ]
+ },
+ "N02": {
+  "duration": 31.073,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 2.01,
+    "text": "亚历山大·皮丘什金",
+    "chars_per_second": 4.28
+   },
+   {
+    "i": 1,
+    "start": 2.26,
+    "end": 4.77,
+    "text": "三十三岁时在莫斯科受审",
+    "chars_per_second": 4.38
+   },
+   {
+    "i": 2,
+    "start": 5.12,
+    "end": 7.78,
+    "text": "成年后他在超市做理货员",
+    "chars_per_second": 4.14
+   },
+   {
+    "i": 3,
+    "start": 8.12,
+    "end": 11.79,
+    "text": "下班后他常去莫斯科南部的比察公园",
+    "chars_per_second": 4.36
+   },
+   {
+    "i": 4,
+    "start": 12.13,
+    "end": 13.84,
+    "text": "那里有石桌和长椅",
+    "chars_per_second": 4.68
+   },
+   {
+    "i": 5,
+    "start": 14.18,
+    "end": 16.06,
+    "text": "常有人停下来下棋",
+    "chars_per_second": 4.26
+   },
+   {
+    "i": 6,
+    "start": 16.38,
+    "end": 17.54,
+    "text": "公开报道说",
+    "chars_per_second": 4.31
+   },
+   {
+    "i": 7,
+    "start": 17.85,
+    "end": 19.5,
+    "text": "他会邀陌生人喝酒",
+    "chars_per_second": 4.85
+   },
+   {
+    "i": 8,
+    "start": 19.85,
+    "end": 22.17,
+    "text": "理由是悼念死去的小狗",
+    "chars_per_second": 4.31
+   },
+   {
+    "i": 9,
+    "start": 22.51,
+    "end": 24.76,
+    "text": "人们只当他是熟悉的棋友",
+    "chars_per_second": 4.89
+   },
+   {
+    "i": 10,
+    "start": 25.1,
+    "end": 27.34,
+    "text": "他声称留下六十三个记号",
+    "chars_per_second": 4.91
+   },
+   {
+    "i": 11,
+    "start": 27.69,
+    "end": 28.67,
+    "text": "按他的说法",
+    "chars_per_second": 5.1
+   },
+   {
+    "i": 12,
+    "start": 29.01,
+    "end": 31.07,
+    "text": "棋盘几乎被填满",
+    "chars_per_second": 3.39
+   }
+  ]
+ },
+ "N03": {
+  "duration": 26.755,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 2.48,
+    "text": "二〇〇二年公开报道记载",
+    "chars_per_second": 4.7
+   },
+   {
+    "i": 1,
+    "start": 2.69,
+    "end": 6.01,
+    "text": "一位女性幸存者曾向警方报告遭遇",
+    "chars_per_second": 4.52
+   },
+   {
+    "i": 2,
+    "start": 6.35,
+    "end": 10.13,
+    "text": "报道指出这条线索当时没有得到及时跟进",
+    "chars_per_second": 4.76
+   },
+   {
+    "i": 3,
+    "start": 10.48,
+    "end": 12.19,
+    "text": "我们不补写她的经历",
+    "chars_per_second": 5.26
+   },
+   {
+    "i": 4,
+    "start": 12.53,
+    "end": 16.16,
+    "text": "多年后超市同事玛丽娜与他约好散步",
+    "chars_per_second": 4.41
+   },
+   {
+    "i": 5,
+    "start": 16.51,
+    "end": 17.4,
+    "text": "出门前",
+    "chars_per_second": 3.37
+   },
+   {
+    "i": 6,
+    "start": 17.66,
+    "end": 19.2,
+    "text": "她留下一张纸条",
+    "chars_per_second": 4.55
+   },
+   {
+    "i": 7,
+    "start": 19.69,
+    "end": 22.2,
+    "text": "写下同行者的姓名和电话",
+    "chars_per_second": 4.38
+   },
+   {
+    "i": 8,
+    "start": 22.55,
+    "end": 24.5,
+    "text": "离开后儿子等着",
+    "chars_per_second": 3.59
+   },
+   {
+    "i": 9,
+    "start": 24.84,
+    "end": 26.75,
+    "text": "电话始终没有响",
+    "chars_per_second": 3.66
+   }
+  ]
+ },
+ "N04": {
+  "duration": 26.535,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 2.8,
+    "text": "警方发现她衣袋里的地铁票",
+    "chars_per_second": 4.51
+   },
+   {
+    "i": 1,
+    "start": 3.15,
+    "end": 4.6,
+    "text": "车站监控显示",
+    "chars_per_second": 4.14
+   },
+   {
+    "i": 2,
+    "start": 4.95,
+    "end": 6.33,
+    "text": "两人曾经同行",
+    "chars_per_second": 4.35
+   },
+   {
+    "i": 3,
+    "start": 6.68,
+    "end": 7.3,
+    "text": "纸条",
+    "chars_per_second": 3.23
+   },
+   {
+    "i": 4,
+    "start": 7.6,
+    "end": 8.26,
+    "text": "票据",
+    "chars_per_second": 3.03
+   },
+   {
+    "i": 5,
+    "start": 8.55,
+    "end": 9.15,
+    "text": "影像",
+    "chars_per_second": 3.33
+   },
+   {
+    "i": 6,
+    "start": 9.44,
+    "end": 11.46,
+    "text": "三条线索彼此核对",
+    "chars_per_second": 3.96
+   },
+   {
+    "i": 7,
+    "start": 11.81,
+    "end": 14.56,
+    "text": "这里的画面不是警方原始证物",
+    "chars_per_second": 4.73
+   },
+   {
+    "i": 8,
+    "start": 14.9,
+    "end": 16.92,
+    "text": "调查从一张小票开始",
+    "chars_per_second": 4.46
+   },
+   {
+    "i": 9,
+    "start": 17.26,
+    "end": 18.57,
+    "text": "回到比察公园",
+    "chars_per_second": 4.58
+   },
+   {
+    "i": 10,
+    "start": 18.84,
+    "end": 19.73,
+    "text": "沿着路线",
+    "chars_per_second": 4.49
+   },
+   {
+    "i": 11,
+    "start": 19.99,
+    "end": 22.4,
+    "text": "警方逐步锁定熟悉的同事",
+    "chars_per_second": 4.56
+   },
+   {
+    "i": 12,
+    "start": 22.75,
+    "end": 23.77,
+    "text": "每一条证据",
+    "chars_per_second": 4.9
+   },
+   {
+    "i": 13,
+    "start": 24.04,
+    "end": 26.54,
+    "text": "都需要与下一条相互印证",
+    "chars_per_second": 4.41
+   }
+  ]
+ },
+ "N05": {
+  "duration": 27.465,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.13,
+    "end": 2.36,
+    "text": "二〇〇六年六月十六日",
+    "chars_per_second": 4.48
+   },
+   {
+    "i": 1,
+    "start": 2.63,
+    "end": 3.89,
+    "text": "皮丘什金被捕",
+    "chars_per_second": 4.76
+   },
+   {
+    "i": 2,
+    "start": 4.23,
+    "end": 5.37,
+    "text": "公开报道说",
+    "chars_per_second": 4.39
+   },
+   {
+    "i": 3,
+    "start": 5.63,
+    "end": 9.55,
+    "text": "警方在他住处找到与棋盘记号相关的证物",
+    "chars_per_second": 4.59
+   },
+   {
+    "i": 4,
+    "start": 9.89,
+    "end": 11.4,
+    "text": "二〇〇七年十月",
+    "chars_per_second": 4.64
+   },
+   {
+    "i": 5,
+    "start": 11.75,
+    "end": 14.24,
+    "text": "陪审团认定四十八起谋杀",
+    "chars_per_second": 4.42
+   },
+   {
+    "i": 6,
+    "start": 14.55,
+    "end": 15.53,
+    "text": "三起未遂",
+    "chars_per_second": 4.08
+   },
+   {
+    "i": 7,
+    "start": 15.76,
+    "end": 18.01,
+    "text": "法院随后判处终身监禁",
+    "chars_per_second": 4.44
+   },
+   {
+    "i": 8,
+    "start": 18.31,
+    "end": 19.02,
+    "text": "六十三",
+    "chars_per_second": 4.23
+   },
+   {
+    "i": 9,
+    "start": 19.37,
+    "end": 20.47,
+    "text": "是他的自述",
+    "chars_per_second": 4.55
+   },
+   {
+    "i": 10,
+    "start": 20.81,
+    "end": 22.11,
+    "text": "不是法院认定",
+    "chars_per_second": 4.62
+   },
+   {
+    "i": 11,
+    "start": 22.46,
+    "end": 24.45,
+    "text": "法庭结论来自证据",
+    "chars_per_second": 4.02
+   },
+   {
+    "i": 12,
+    "start": 24.79,
+    "end": 25.62,
+    "text": "每个数字",
+    "chars_per_second": 4.82
+   },
+   {
+    "i": 13,
+    "start": 25.97,
+    "end": 27.47,
+    "text": "都要说明来源",
+    "chars_per_second": 4.01
+   }
+  ]
+ },
+ "N06": {
+  "duration": 24.61,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.13,
+    "end": 2.03,
+    "text": "法律结论写在案卷里",
+    "chars_per_second": 4.74
+   },
+   {
+    "i": 1,
+    "start": 2.36,
+    "end": 4.31,
+    "text": "受害者却不是数字",
+    "chars_per_second": 4.1
+   },
+   {
+    "i": 2,
+    "start": 4.66,
+    "end": 5.73,
+    "text": "每一格背后",
+    "chars_per_second": 4.67
+   },
+   {
+    "i": 3,
+    "start": 5.99,
+    "end": 7.58,
+    "text": "都是一个真实的人",
+    "chars_per_second": 5.03
+   },
+   {
+    "i": 4,
+    "start": 7.92,
+    "end": 10.13,
+    "text": "也是一个失去亲人的家庭",
+    "chars_per_second": 4.98
+   },
+   {
+    "i": 5,
+    "start": 10.48,
+    "end": 11.59,
+    "text": "留下的沉默",
+    "chars_per_second": 4.5
+   },
+   {
+    "i": 6,
+    "start": 11.92,
+    "end": 13.33,
+    "text": "同样值得被看见",
+    "chars_per_second": 4.96
+   },
+   {
+    "i": 7,
+    "start": 13.68,
+    "end": 15.16,
+    "text": "我们不重现伤害",
+    "chars_per_second": 4.73
+   },
+   {
+    "i": 8,
+    "start": 15.51,
+    "end": 17.54,
+    "text": "也不把凶手变成传奇",
+    "chars_per_second": 4.43
+   },
+   {
+    "i": 9,
+    "start": 17.89,
+    "end": 20.39,
+    "text": "让棋盘回到公园石桌上",
+    "chars_per_second": 4.0
+   },
+   {
+    "i": 10,
+    "start": 20.65,
+    "end": 21.59,
+    "text": "树影移动",
+    "chars_per_second": 4.26
+   },
+   {
+    "i": 11,
+    "start": 21.94,
+    "end": 23.4,
+    "text": "行人继续生活",
+    "chars_per_second": 4.11
+   },
+   {
+    "i": 12,
+    "start": 23.69,
+    "end": 24.61,
+    "text": "记住他们",
+    "chars_per_second": 4.35
+   }
+  ]
+ }
+}

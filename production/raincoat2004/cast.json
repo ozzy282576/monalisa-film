@@ -1,0 +1,57 @@
+{
+  "mode": "face",
+  "_comment": "露脸模式规则：① 每个角色一条不同的 face token（≥60 字，逐字节复用）；② 同一角色的所有镜头都照抄它；③ 不同角色的 token 不许雷同。改完跑：python3 production/face_cast.py check-prompts --project production/raincoat2004",
+  "_casting_note": "三个角色都是符合年代的虚构匿名人物（AI 生成），不是任何真实人物的容貌还原；受害者不出现在画面里，也不给可辨识面容。",
+  "characters": [
+    {
+      "id": "C1",
+      "name": "雨衣男（凶手 · 虚构匿名角色）",
+      "role": "suspect",
+      "age": 34,
+      "gender": "male",
+      "face": "an anonymous Korean man of thirty-four: a long oval face with a heavy jaw, narrow hooded eyes whose outer corners turn down, thick straight brows set low, a low-bridged nose with a rounded tip, thin colourless lips, short black hair cropped close above the ears and parted flat, sallow skin, a small pale scar on the left cheekbone; he wears a dark yellow raincoat and a navy baseball cap.",
+      "portrait": "cast/C1.jpg",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/ef74e893-desktop-tutorial/production/raincoat2004/cast/C1.jpg",
+      "seed": 20030924
+    },
+    {
+      "id": "C2",
+      "name": "老刑警（虚构匿名角色）",
+      "role": "police",
+      "age": 52,
+      "gender": "male",
+      "face": "an anonymous Korean man of fifty-two: a broad square head with a heavy jawline, deep horizontal creases across the forehead, pouched eyelids over small shrewd eyes, thick greying eyebrows, a wide flat nose, a straight mouth with downturned ends, iron-grey hair thinning at the temples and combed back, weathered ruddy cheeks; he wears a dark grey overcoat over a rumpled white shirt.",
+      "portrait": "cast/C2.jpg",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/ef74e893-desktop-tutorial/production/raincoat2004/cast/C2.jpg",
+      "seed": 20040715
+    },
+    {
+      "id": "C3",
+      "name": "按摩店老板（虚构匿名角色）",
+      "role": "witness",
+      "age": 45,
+      "gender": "male",
+      "face": "an anonymous Korean man of forty-five: a round fleshy face with full cheeks and a soft chin, quick small eyes set close together, thick level eyebrows, a broad nose, a heavy black moustache covering the upper lip, short wavy black hair thinning on the crown, warm tan complexion; he wears a brown leather jacket over a dark knit sweater.",
+      "portrait": "cast/C3.jpg",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/ef74e893-desktop-tutorial/production/raincoat2004/cast/C3.jpg",
+      "seed": 20040718
+    }
+  ],
+  "shots": {
+    "S05": [
+      "C1"
+    ],
+    "S06": [
+      "C2"
+    ],
+    "S27": [
+      "C3"
+    ],
+    "S32": [
+      "C1"
+    ],
+    "S35": [
+      "C1"
+    ]
+  }
+}

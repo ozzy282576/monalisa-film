@@ -1,0 +1,116 @@
+name: 解说短片出片
+run-name: 出片 · ${{ inputs.project }}
+
+# 通用出片：在**当前分支**上渲染任意 production/<slug> 项目。
+# 换题目不需要再动这个文件——在 Actions 里填 slug 就行。
+# 具体的流水线步骤都在 production/run_project.sh 里，改流程只改脚本。
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: '项目目录名（production/ 下的 slug，例如 dahlia）'
+        required: true
+        default: 'dahlia'
+      skip_asr:
+        description: '跳过 ASR 对轨（离线时用停顿估算字幕时间）'
+        type: boolean
+        default: false
+      film_name:
+        description: '成片文件名（留空则用 story.json 的标题；已交付过的片子请填原名，避免交付目录里出现第二个副本）'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commentary-render-${{ inputs.project }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 90
+    env:
+      # ASR 对轨要下 Hugging Face 模型。自托管 runner 跑在你自己家/公司的网络上，
+      # 连不上 huggingface.co 时把仓库变量 HF_ENDPOINT 设成镜像（如 https://hf-mirror.com）。
+      # 不设变量时就是官方地址，行为与切 runner 之前完全一样。
+      HF_ENDPOINT: ${{ vars.HF_ENDPOINT || 'https://huggingface.co' }}
+      # 必须设成 1（配合镜像用时）：HF 新的 Xet 存储会绕过 HF_ENDPOINT 直连
+      # cas-server.xethub.hf.co，被 401 拒绝 —— 实测报错
+      # "CAS Client Error: ... 401 Unauthorized"。关掉 Xet 才走普通下载路径。
+      HF_HUB_DISABLE_XET: ${{ vars.HF_HUB_DISABLE_XET || '1' }}
+      # 模型缓存目录。不设 = 落在本次运行的 work/ 里（每次都重下）；
+      # 自托管 runner 把它设成常驻目录（如 /home/you/.cache/whisper）就只下一次。
+      WHISPER_CACHE_DIR: ${{ vars.WHISPER_CACHE_DIR }}
+    steps:
+      - name: 先让 git 走 HTTP/1.1（国内网络下 HTTP/2 会静默卡死）
+        # 2026-09-18 实测：HTTP/2 下 git 在 2.4 MB 处停住且不报错、git 进程还消失，
+        # 而 curl（HTTP/1.1）一切正常；把 http.version 设为 HTTP/1.1 后 ls-remote 秒回。
+        # lowSpeedLimit/Time 让以后再卡也会在 30 秒内自己失败并报错，而不是无声挂着。
+        run: |
+          git config --global http.version HTTP/1.1
+          git config --global http.lowSpeedLimit 1000
+          git config --global http.lowSpeedTime 30
+
+      - name: Check out the branch this was run from
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          # 主人网络 59 KiB/s，仓库里那个 48 MB 成片让每次 checkout 又慢又容易断。
+          # 和离线自检（ci-tests.yml）一样用 partial clone + sparse-checkout 跳过 *.mp4：
+          # 55 MB → 约 7 MB。出片要新生成成片，本来就只需要源码与脚本、不需要历史成片。
+          # 依赖 run_project.sh 里「提交成片前先关掉残留 core.sparseCheckout」的兜底
+          # （缺了它，成片会 add 不进索引 —— 这正是 2026-09-20 踩过的坑）。
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !*.mp4
+          sparse-checkout-cone-mode: false
+
+      - name: Install media tools and CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" || \
+          python -m pip install --break-system-packages "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2"
+
+      - name: Validate, restore footage, render with measured audio, publish reports
+        env:
+          PROJECT: ${{ inputs.project }}
+          SKIP_ASR: ${{ inputs.skip_asr }}
+          FILM_NAME: ${{ inputs.film_name }}
+          BRANCH: ${{ github.ref_name }}
+        # 第三个参数留空时 run_project.sh 会用 story.json 的标题（${3:-...}）
+        run: bash production/run_project.sh "$PROJECT" "$SKIP_ASR" "$FILM_NAME"
+
+      - name: Upload the finished film
+        # 成片本来就 commit 回 交付/ 了（见 run_project.sh 第 4/5 步），artifact 只是
+        # 顺手留个下载入口。转私有后 artifact 存储只有 500 MB，配额是**仓库级**的：
+        # 2026-09-18 仓库里积了 3.1 GB 老 artifact，出片跑到这一步报
+        # "Artifact storage quota has been hit"，把一次本来没问题的渲染判成了失败。
+        # 配额跟这次片子好不好毫无关系，所以这里失败不能算失败。
+        # retention-days 因此只留 1 天：仓库里 交付/ 那份才是正主，artifact 只是
+        # 当次运行的下载入口。2026-09-21 实测仓库积了 1756 MB artifact（免费上限
+        # 500 MB），而单部成片 97-135 MB —— 留 7~30 天等于三四部片就把配额顶满，
+        # 后面每一次出片都在这一步报错。
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.project }}-成片-${{ github.run_number }}
+          path: work/${{ inputs.project }}/*.mp4
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 1

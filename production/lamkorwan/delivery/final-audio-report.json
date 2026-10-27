@@ -1,0 +1,58 @@
+{
+  "file": "雨夜屠夫林过云_一卷菲林里的四条人命_三分钟_带声音.mp4",
+  "duration_seconds": 180.011,
+  "sample_rate": 48000,
+  "channels": 1,
+  "rms_dbfs": -20.31,
+  "peak_dbfs": -1.51,
+  "window_seconds": 1.0,
+  "silent_windows": 1,
+  "window_count": 181,
+  "silent_fraction": 0.0055,
+  "quietest_window_dbfs": -120.0,
+  "chapters": [
+    {
+      "id": "N01",
+      "start": 0.6,
+      "end": 26.247,
+      "rms_dbfs": -19.91,
+      "peak_dbfs": -1.8
+    },
+    {
+      "id": "N02",
+      "start": 27.327,
+      "end": 52.647,
+      "rms_dbfs": -19.92,
+      "peak_dbfs": -2.3
+    },
+    {
+      "id": "N03",
+      "start": 53.727,
+      "end": 79.489,
+      "rms_dbfs": -20.0,
+      "peak_dbfs": -1.51
+    },
+    {
+      "id": "N04",
+      "start": 80.569,
+      "end": 108.934,
+      "rms_dbfs": -20.12,
+      "peak_dbfs": -1.8
+    },
+    {
+      "id": "N05",
+      "start": 110.014,
+      "end": 136.292,
+      "rms_dbfs": -20.1,
+      "peak_dbfs": -1.78
+    },
+    {
+      "id": "N06",
+      "start": 137.372,
+      "end": 174.0,
+      "rms_dbfs": -20.08,
+      "peak_dbfs": -2.08
+    }
+  ],
+  "measured_on": "delivered mp4"
+}

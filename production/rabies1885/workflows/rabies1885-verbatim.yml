@@ -1,0 +1,98 @@
+# 模板：production/new_topic.py 会把 rabies1885 / arena/cb25986c-desktop-tutorial / cb25986c-desktop-tutorial / 狂犬病疫苗：一百四十年前那场赌局 / 狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4 换成新项目的值，
+# 生成 production/<slug>/workflows/<slug>-*.yml；复制到 .github/workflows/ 后即可用 marker 文件 push 触发。
+name: 狂犬病疫苗：一百四十年前那场赌局 · 逐字听检
+run-name: 逐字听检 · 狂犬病疫苗：一百四十年前那场赌局 · ${{ github.ref_name }}
+
+# 通用的 verbatim-check.yml 只能 workflow_dispatch，而沙箱里的 token 没有 actions:write
+# （HTTP 403: Resource not accessible by integration，2026-09-21 实测），所以照冷案 DNA 分支的
+# <slug>-verbatim.yml 做成 marker 触发：在分支上写/改 production/rabies1885/VERBATIM_REQUEST 并 push。
+# 结果 production/rabies1885/delivery/verbatim-check.json 由 runner commit 回分支。
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/cb25986c-desktop-tutorial
+    paths:
+      - production/rabies1885/VERBATIM_REQUEST
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rabies1885-verbatim-arena-cb25986c-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  verbatim:
+    if: github.ref == 'refs/heads/arena/cb25986c-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 45
+    env:
+      HF_ENDPOINT: ${{ vars.HF_ENDPOINT || 'https://huggingface.co' }}
+      HF_HUB_DISABLE_XET: ${{ vars.HF_HUB_DISABLE_XET || '1' }}
+      WHISPER_CACHE_DIR: ${{ vars.WHISPER_CACHE_DIR }}
+    steps:
+      - name: 先让 git 走 HTTP/1.1（国内网络下 HTTP/2 会静默卡死）
+        run: |
+          git config --global http.version HTTP/1.1
+          git config --global http.lowSpeedLimit 1000
+          git config --global http.lowSpeedTime 30
+
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/cb25986c-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r production/requirements.txt
+          python -m pip install "faster-whisper>=1.1,<2" || \
+          python -m pip install --break-system-packages "faster-whisper>=1.1,<2"
+
+      - name: Transcribe the delivered film and compare it to the script
+        id: check
+        continue-on-error: true        # 报告一定先落盘，再决定这次运行算不算失败
+        run: |
+          python3 -u production/verbatim_check.py \
+            --film "交付/狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4" \
+            --project production/rabies1885 \
+            --work work/rabies1885/verbatim \
+            --narration production/rabies1885/audio \
+            --model small \
+            --max-cer 0.15
+
+      - name: Commit verbatim-check.json back to the branch
+        run: |
+          git config user.name "arena-verbatim"
+          git config user.email "arena@local"
+          mkdir -p production/rabies1885/delivery
+          cp work/rabies1885/verbatim/verbatim-check.json production/rabies1885/delivery/verbatim-check.json
+          git add -f production/rabies1885/delivery/verbatim-check.json
+          git commit -m "听检: 狂犬病疫苗：一百四十年前那场赌局 逐字听检报告 (faster-whisper small)" || true
+          pushed=0
+          for attempt in 1 2 3 4 5 6; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then pushed=1; break; fi
+            git fetch origin ${{ github.ref_name }} && git rebase FETCH_HEAD || break
+            sleep 10
+          done
+          [ "$pushed" = "1" ] || echo "::error::未能成功推送听检报告"
+
+      - name: Fail the run if the transcript did not match the script
+        if: steps.check.outcome != 'success'
+        run: |
+          echo "::error::逐字听检未通过或未能完成，报告已 commit 到 production/rabies1885/delivery/verbatim-check.json"
+          exit 1

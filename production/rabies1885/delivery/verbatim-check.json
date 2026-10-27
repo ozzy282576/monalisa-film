@@ -1,0 +1,487 @@
+{
+  "film": "狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4",
+  "project": "production/rabies1885",
+  "method": "faster-whisper small，无 initial_prompt；转写对象为最终成片按章节切出的音频",
+  "max_cer_allowed": 0.15,
+  "film_pass": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 25.911,
+        "script_chars": 102,
+        "heard_chars": 102,
+        "character_error_rate": 0.0196,
+        "match_coverage": 0.9804,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 19,
+            "kind": "replace",
+            "script": "恐",
+            "heard": "洪"
+          },
+          {
+            "at": 76,
+            "kind": "replace",
+            "script": "易",
+            "heard": "以"
+          }
+        ],
+        "transcript": "狂犬病可怕在症状一旦出现几乎没有回头路洪水等神经症状之后患者可能走向死亡疫苗出现前人们试过烧灼伤口却没有可靠保护改写这一切的不是一位医生而是一位化学家路以巴斯德可他即将面对的不是一道理论题而是一个九岁男孩"
+      },
+      {
+        "id": "N02",
+        "start": 26.991,
+        "end": 56.833,
+        "script_chars": 128,
+        "heard_chars": 128,
+        "character_error_rate": 0.0781,
+        "match_coverage": 0.9219,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 25,
+            "kind": "replace",
+            "script": "原",
+            "heard": "员"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "兔",
+            "heard": "吐"
+          },
+          {
+            "at": 33,
+            "kind": "replace",
+            "script": "代",
+            "heard": "达"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "潜伏期",
+            "heard": "前夫妻"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "兔",
+            "heard": "吐"
+          },
+          {
+            "at": 93,
+            "kind": "replace",
+            "script": "原",
+            "heard": "员"
+          }
+        ],
+        "transcript": "从1880年起巴斯德团队在巴黎研究狂犬病他们先让病员在吐之间连续传达得到前夫妻稳定的固定病毒再把感染吐的脊髓悬在干燥空气中令毒力下降随后团队按由弱到强的次序给动物接种狗的实验给了希望但病员肉眼看不见巴斯德又不是职业医生把上无人体证据的方法用于人后果无法预料"
+      },
+      {
+        "id": "N03",
+        "start": 57.913,
+        "end": 84.696,
+        "script_chars": 125,
+        "heard_chars": 125,
+        "character_error_rate": 0.088,
+        "match_coverage": 0.912,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 15,
+            "kind": "replace",
+            "script": "瑟",
+            "heard": "斯"
+          },
+          {
+            "at": 17,
+            "kind": "replace",
+            "script": "迈",
+            "heard": "马"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "据报",
+            "heard": "巨爆"
+          },
+          {
+            "at": 49,
+            "kind": "replace",
+            "script": "巴",
+            "heard": "帕"
+          },
+          {
+            "at": 75,
+            "kind": "replace",
+            "script": "作",
+            "heard": "做"
+          }
+        ],
+        "transcript": "1885年7月6日阿爾薩斯的約斯夫·馬斯特被母親帶到巴黎她9歲兩天前被一隻巨爆患狂犬病的狗咬了14處帕斯德寫道孩子的死亡看起來不可避免自己是在極度焦慮中做出決定她沒有親手注射在醫生支持下兒科醫生亞克約斯夫·格朗西執行第一針沒有隨機對照也沒有今天的倫理審查"
+      },
+      {
+        "id": "N04",
+        "start": 85.776,
+        "end": 110.977,
+        "script_chars": 100,
+        "heard_chars": 100,
+        "character_error_rate": 0.1,
+        "match_coverage": 0.9,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 4,
+            "kind": "replace",
+            "script": "迈",
+            "heard": "麦"
+          },
+          {
+            "at": 17,
+            "kind": "replace",
+            "script": "制剂",
+            "heard": "治疾"
+          },
+          {
+            "at": 23,
+            "kind": "replace",
+            "script": "记",
+            "heard": "计"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "针",
+            "heard": "帧"
+          },
+          {
+            "at": 31,
+            "kind": "replace",
+            "script": "剂",
+            "heard": "帧"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "迎向",
+            "heard": "影响"
+          }
+        ],
+        "transcript": "随后十天麦斯特接受十几次由弱到强的治疾不同史料计为13帧或14帧原理简单也冒险先给免疫系统时间再让它影响更强的病毒材料麦斯特最终没有发病但一个成功病例不能替代今天的临床试验他提示暴露之后仍可能追上疾病"
+      },
+      {
+        "id": "N05",
+        "start": 112.057,
+        "end": 138.316,
+        "script_chars": 118,
+        "heard_chars": 118,
+        "character_error_rate": 0.0508,
+        "match_coverage": 0.9576,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 28,
+            "kind": "replace",
+            "script": "两千",
+            "heard": "二"
+          },
+          {
+            "at": 31,
+            "kind": "replace",
+            "script": "百",
+            "heard": "零零"
+          },
+          {
+            "at": 56,
+            "kind": "replace",
+            "script": "两",
+            "heard": "二"
+          },
+          {
+            "at": 116,
+            "kind": "replace",
+            "script": "事",
+            "heard": "实"
+          }
+        ],
+        "transcript": "消息传开 被动物咬伤的人从多国赶到巴黎到1886年11月约2500人接受过这种治疗到巴斯德1895年去世时 人数接近2万需求推动建立专门机构 1887年募款启动1888年11月14日 巴斯德研究所在巴黎正式开放一次紧急救治 变成持续的公共卫生实业"
+      },
+      {
+        "id": "N06",
+        "start": 139.396,
+        "end": 174.0,
+        "script_chars": 132,
+        "heard_chars": 132,
+        "character_error_rate": 0.0379,
+        "match_coverage": 0.9621,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 55,
+            "kind": "replace",
+            "script": "干燥兔脊髓",
+            "heard": "肝躁吐几随"
+          }
+        ],
+        "transcript": "今天 狂犬病仍会夺走数万人的生命儿童承受的负担尤其重但现代暴露后预防已不同细胞培养疫苗免疫球蛋白和规范评估取代了肝躁吐几随遇到动物咬伤或抓伤先用肥皂和流动水彻底清洗再尽快联系当地医生或公共卫生机构由专业人员判断下一步巴斯德留下的是一个原则证据要先于传奇救治要快于病毒"
+      }
+    ],
+    "max_cer": 0.1,
+    "failing": []
+  },
+  "narration_control": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 25.911,
+        "script_chars": 102,
+        "heard_chars": 102,
+        "character_error_rate": 0.0196,
+        "match_coverage": 0.9804,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 19,
+            "kind": "replace",
+            "script": "恐",
+            "heard": "孔"
+          },
+          {
+            "at": 76,
+            "kind": "replace",
+            "script": "易",
+            "heard": "以"
+          }
+        ],
+        "transcript": "狂犬病可怕在症状一旦出现几乎没有回头路孔水等神经症状之后患者可能走向死亡疫苗出现前人们试过烧灼伤口却没有可靠保护改写这一切的不是一位医生而是一位化学家路以巴斯德可他即将面对的不是一道理论题而是一个九岁男孩"
+      },
+      {
+        "id": "N02",
+        "start": 26.991,
+        "end": 56.833,
+        "script_chars": 128,
+        "heard_chars": 128,
+        "character_error_rate": 0.0781,
+        "match_coverage": 0.9219,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 25,
+            "kind": "replace",
+            "script": "原",
+            "heard": "员"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "兔",
+            "heard": "吐"
+          },
+          {
+            "at": 33,
+            "kind": "replace",
+            "script": "代",
+            "heard": "达"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "潜伏期",
+            "heard": "前夫妻"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "兔",
+            "heard": "吐"
+          },
+          {
+            "at": 93,
+            "kind": "replace",
+            "script": "原",
+            "heard": "员"
+          }
+        ],
+        "transcript": "从1880年起巴斯德团队在巴黎研究狂犬病他们先让病员在吐之间连续传达得到前夫妻稳定的固定病毒再把感染吐的脊髓悬在干燥空气中令毒力下降随后团队按由弱到强的次序给动物接种狗的实验给了希望但病员肉眼看不见巴斯德又不是职业医生把上无人体证据的方法用于人后果无法预料"
+      },
+      {
+        "id": "N03",
+        "start": 57.913,
+        "end": 84.696,
+        "script_chars": 125,
+        "heard_chars": 125,
+        "character_error_rate": 0.064,
+        "match_coverage": 0.936,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 17,
+            "kind": "replace",
+            "script": "迈",
+            "heard": "马"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "据报",
+            "heard": "具爆"
+          },
+          {
+            "at": 49,
+            "kind": "replace",
+            "script": "巴",
+            "heard": "帕"
+          },
+          {
+            "at": 75,
+            "kind": "replace",
+            "script": "作",
+            "heard": "做"
+          },
+          {
+            "at": 79,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          }
+        ],
+        "transcript": "1885年7月6日阿爾薩斯的約瑟夫·馬斯特被母親帶到巴黎她9歲兩天前被一隻具爆患狂犬病的狗咬了14處帕斯德寫道孩子的死亡看起來不可避免自己是在極度焦慮中做出決定她沒有親手注射在醫生支持下兒科醫生亞克約瑟夫·格朗謝執行第一針沒有隨機對照也沒有今天的倫理審查"
+      },
+      {
+        "id": "N04",
+        "start": 85.776,
+        "end": 110.977,
+        "script_chars": 100,
+        "heard_chars": 100,
+        "character_error_rate": 0.08,
+        "match_coverage": 0.92,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 17,
+            "kind": "replace",
+            "script": "制剂",
+            "heard": "治疾"
+          },
+          {
+            "at": 21,
+            "kind": "replace",
+            "script": "史",
+            "heard": "食"
+          },
+          {
+            "at": 23,
+            "kind": "replace",
+            "script": "记",
+            "heard": "继"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "针",
+            "heard": "帧"
+          },
+          {
+            "at": 31,
+            "kind": "replace",
+            "script": "剂",
+            "heard": "帧"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "迎向",
+            "heard": "影响"
+          }
+        ],
+        "transcript": "随后10天,迈斯特接受十几次由弱到强的治疾不同食料继为13帧或14帧原理简单也冒险先给免疫系统时间再让它影响更强的病毒材料迈斯特最终没有发病但一个成功病例不能替代今天的临床试验它提示暴露之后仍可能追上疾病"
+      },
+      {
+        "id": "N05",
+        "start": 112.057,
+        "end": 138.316,
+        "script_chars": 118,
+        "heard_chars": 118,
+        "character_error_rate": 0.0678,
+        "match_coverage": 0.9407,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 28,
+            "kind": "replace",
+            "script": "两千",
+            "heard": "二"
+          },
+          {
+            "at": 31,
+            "kind": "replace",
+            "script": "百",
+            "heard": "零零"
+          },
+          {
+            "at": 56,
+            "kind": "replace",
+            "script": "两",
+            "heard": "二"
+          },
+          {
+            "at": 105,
+            "kind": "replace",
+            "script": "救治",
+            "heard": "就职"
+          },
+          {
+            "at": 116,
+            "kind": "replace",
+            "script": "事",
+            "heard": "实"
+          }
+        ],
+        "transcript": "消息传开,被动物咬伤的人从多国赶到巴黎到1886年11月约2500人接受过这种治疗到巴斯德1895年去世时,人数接近2万需求推动建立专门机构,1887年募款启动1888年11月14日,巴斯德研究所在巴黎正式开放一次紧急就职,变成持续的公共卫生实业"
+      },
+      {
+        "id": "N06",
+        "start": 139.396,
+        "end": 174.0,
+        "script_chars": 132,
+        "heard_chars": 132,
+        "character_error_rate": 0.0303,
+        "match_coverage": 0.9697,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 44,
+            "kind": "replace",
+            "script": "球",
+            "heard": "求"
+          },
+          {
+            "at": 55,
+            "kind": "replace",
+            "script": "干燥兔",
+            "heard": "肝脏吐"
+          }
+        ],
+        "transcript": "今天,狂犬病仍會奪走數萬人的生命兒童承受的負擔尤其重但現代暴露後預防已不同細胞培養疫苗、免疫求蛋白和規範評估取代了肝臟吐脊髓遇到動物咬傷或抓傷先用肥皂和流動水徹底清洗再儘快聯繫當地醫生或公共衛生機構由專業人員判斷下一步巴斯德留下的是一個原則證據要先於傳奇救治要快於病毒"
+      }
+    ],
+    "max_cer": 0.08,
+    "failing": []
+  },
+  "note": "CER = 编辑距离 / 剧本字数。ASR 本身也会错，所以 'needs_human_listen' 的意思是\"这一段的差异需要人耳裁决\"，不等于\"配音一定错了\"；对照组（干净配音）字错率明显低于成片时，差异多半来自音乐干扰 ASR。"
+}

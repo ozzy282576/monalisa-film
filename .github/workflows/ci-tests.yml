@@ -1,0 +1,71 @@
+name: 离线自检
+
+# 每次 push / PR 都跑一遍离线测试：流水线闸门、工作流形状、配音哈希。
+# 这里只做离线检查（不需要 ffmpeg、不消耗生成额度），所以可以每次提交都跑。
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline-tests:
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 15
+    steps:
+      - name: 先让 git 走 HTTP/1.1（国内网络下 HTTP/2 会静默卡死）
+        # 2026-09-18 实测：HTTP/2 下 git 在 2.4 MB 处停住且不报错、git 进程还消失，
+        # 而 curl（HTTP/1.1）一切正常；把 http.version 设为 HTTP/1.1 后 ls-remote 秒回。
+        # lowSpeedLimit/Time 让以后再卡也会在 30 秒内自己失败并报错，而不是无声挂着。
+        run: |
+          git config --global http.version HTTP/1.1
+          git config --global http.lowSpeedLimit 1000
+          git config --global http.lowSpeedTime 30
+
+      - name: Check out the branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          # 自托管 runner 上，仓库里那个 48 MB 的成片会让每次 clone 又慢又容易断
+          # （实测：55 MB 的浅克隆在 227 KB/s 的线路上跑了 10 分钟还没完，
+          # 而同一台机器下 215 MB 的 runner 安装包直接卡死在 0 字节）。
+          # 离线自检不需要任何 mp4（测试只读 production/**，没有任何用例打开成片），
+          # 所以用 partial clone + sparse-checkout 跳过 *.mp4：55 MB → 约 7 MB。
+          # 去掉 --no-cone 那个坑也踩过：cone 模式不认通配符，必须显式关掉。
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !*.mp4
+          sparse-checkout-cone-mode: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r production/requirements.txt
+
+      - name: Install ffmpeg and CJK fonts (level-measuring and card-layout tests need them)
+        # 中文字体不是锦上添花：production/tests/test_card_typography.py 守着"卡片一行字不许
+        # 越出画面"（片尾卡问句曾被裁掉两端），拿不到 Noto CJK 时那个用例会整条跳过，
+        # 于是闸门形同虚设。装上它，CI 才会真的画一次片尾卡并量最外侧的安全带。
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          ffmpeg -hide_banner -version | head -1
+          count=$(fc-list | grep -ci 'CJK' || true)
+          echo "CJK 字体条目数：$count"
+          test "$count" -gt 0   # 字体装不上就红，免得排字闸门被静默跳过
+
+      - name: Run the offline gate
+        run: python -m pytest production/tests -q

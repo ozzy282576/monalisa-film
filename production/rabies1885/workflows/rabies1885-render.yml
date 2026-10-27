@@ -1,0 +1,107 @@
+# 模板：production/new_topic.py 会把 rabies1885 / arena/cb25986c-desktop-tutorial / cb25986c-desktop-tutorial / 狂犬病疫苗：一百四十年前那场赌局 / 狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4 换成新项目的值，
+# 生成 production/<slug>/workflows/<slug>-*.yml；复制到 .github/workflows/ 后即可用 marker 文件 push 触发。
+name: 狂犬病疫苗：一百四十年前那场赌局 · 出片
+run-name: 出片 · 狂犬病疫苗：一百四十年前那场赌局 · ${{ github.ref_name }}
+
+# 触发方式：在分支上写 production/rabies1885/RENDER_REQUEST（内容随便，例如 "render 2026-09-21T10:00:00Z"）并 push。
+# 成片、字幕、EDL、音频实测报告由 production/run_project.sh commit 回分支（交付/ 与 production/rabies1885/delivery/）。
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_asr:
+        description: '跳过 ASR 对轨（离线时用停顿估算字幕时间）'
+        type: boolean
+        default: false
+      film_name:
+        description: '成片文件名'
+        required: false
+        default: '狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4'
+  push:
+    branches:
+      - arena/cb25986c-desktop-tutorial
+    paths:
+      - production/rabies1885/RENDER_REQUEST
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rabies1885-render-arena-cb25986c-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  render:
+    if: github.ref == 'refs/heads/arena/cb25986c-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 120
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/cb25986c-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Install media tools and CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16" || \
+          python -m pip install --break-system-packages "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16"
+
+      - name: Resolve the deliverable name
+        env:
+          FILM_INPUT: ${{ inputs.film_name }}
+        run: |
+          set -euo pipefail
+          if [ -n "${FILM_INPUT:-}" ]; then
+            film="$FILM_INPUT"
+          else
+            film='狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4'
+          fi
+          echo "FILM_NAME=$film" >> "$GITHUB_ENV"
+          echo "Deliverable: $film"
+
+      - name: Validate, restore footage, render with measured audio, publish reports
+        env:
+          PROJECT: rabies1885
+          SKIP_ASR: ${{ inputs.skip_asr || 'false' }}
+          FILM_NAME: ${{ env.FILM_NAME }}
+          BRANCH: arena/cb25986c-desktop-tutorial
+        run: bash production/run_project.sh "$PROJECT" "$SKIP_ASR" "$FILM_NAME" 2>&1 | tee /tmp/rend.log production/rabies1885/last-render.log; exit ${PIPESTATUS[0]}
+
+      - name: Ship failure log to branch (sandbox cannot read Actions logs)
+        if: failure()
+        run: |
+          tail -c 200000 /tmp/rend.log > production/rabies1885/render-diag.log
+          git config user.name "arena-diag"
+          git config user.email "arena@local"
+          git add -f production/rabies1885/render-diag.log
+          git commit -m "rabies1885: 出片失败诊断 $(date -u +%FT%TZ)"
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then pushed=1; break; fi
+            git fetch origin ${{ github.ref_name }} && git rebase FETCH_HEAD || break
+          done
+          [ "$pushed" = "1" ] || echo "::error::诊断日志推不回分支，看本次运行的 artifact"
+
+      - name: Upload the finished film
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: rabies1885-成片-${{ github.run_number }}
+          path: work/rabies1885/*.mp4
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 30

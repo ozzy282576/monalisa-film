@@ -1,0 +1,140 @@
+name: 逐字听检
+run-name: 听检 · ${{ inputs.project }}
+
+# 把成片里的解说转写成文字，与剧本逐字比对，回答"配音念的字和剧本一字不差吗"。
+#
+# 为什么必须在这里做：ASR 模型要从 Hugging Face 下载，本地沙箱连不上（网络策略拦截），
+# GitHub Actions 的 runner 可以——参考片出片时 N04/N05 的 ASR 对轨就是在 runner 上跑通的。
+# 所以这个检查做成了手动触发的工作流，结果 commit 回分支供本地读取。
+#
+# 刻意不给 whisper 喂 initial_prompt：把剧本文字先告诉模型、再让模型"复述"出来证明
+# 音频与剧本一致，是循环论证（仓库里的 align_audio.py 那么写是为了对轨，不是为了取证）。
+# 详见 production/verbatim_check.py 的模块说明。
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: '项目目录名（production/ 下的 slug，例如 dahlia）'
+        required: true
+        default: 'dahlia'
+      film:
+        description: '成片路径（仓库内的相对路径）'
+        required: false
+        default: '交付/黑色大丽花_三分钟_带声音.mp4'
+      model:
+        description: 'whisper 模型：tiny / base / small / medium / large-v3（越大越准越慢）'
+        required: false
+        default: 'small'
+      max_cer:
+        description: '字错率上限，超过就要求人工听（0.15 ≈ 每 100 个字允许 15 个字差异）'
+        required: false
+        default: '0.15'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verbatim-check-${{ inputs.project }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  listen:
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 60
+    env:
+      # 转写模型从 Hugging Face 下载。自托管 runner 走的是你自己家/公司的网络，
+      # 连不上 huggingface.co 时把仓库变量 HF_ENDPOINT 设成镜像（如 https://hf-mirror.com）。
+      # 不设变量时就是官方地址，行为与切 runner 之前完全一样。
+      HF_ENDPOINT: ${{ vars.HF_ENDPOINT || 'https://huggingface.co' }}
+      # 必须设成 1（配合镜像用时）：HF 新的 Xet 存储会绕过 HF_ENDPOINT 直连
+      # cas-server.xethub.hf.co，被 401 拒绝 —— 实测报错
+      # "CAS Client Error: ... 401 Unauthorized"。关掉 Xet 才走普通下载路径。
+      HF_HUB_DISABLE_XET: ${{ vars.HF_HUB_DISABLE_XET || '1' }}
+      # 模型缓存目录。不设 = 落在本次运行的 work/ 里（每次都重下）；
+      # 自托管 runner 把它设成常驻目录（如 /home/you/.cache/whisper）就只下一次。
+      WHISPER_CACHE_DIR: ${{ vars.WHISPER_CACHE_DIR }}
+    steps:
+      - name: 先让 git 走 HTTP/1.1（国内网络下 HTTP/2 会静默卡死）
+        # 2026-09-18 实测：HTTP/2 下 git 在 2.4 MB 处停住且不报错、git 进程还消失，
+        # 而 curl（HTTP/1.1）一切正常；把 http.version 设为 HTTP/1.1 后 ls-remote 秒回。
+        # lowSpeedLimit/Time 让以后再卡也会在 30 秒内自己失败并报错，而不是无声挂着。
+        run: |
+          git config --global http.version HTTP/1.1
+          git config --global http.lowSpeedLimit 1000
+          git config --global http.lowSpeedTime 30
+
+      - name: Check out the branch this was run from
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r production/requirements.txt
+          python -m pip install "faster-whisper>=1.1,<2" || \
+          python -m pip install --break-system-packages "faster-whisper>=1.1,<2"
+
+      - name: Transcribe the delivered film and compare it to the script
+        id: check
+        continue-on-error: true        # 报告一定先落盘，再决定这次运行算不算失败
+        env:
+          PROJECT: ${{ inputs.project }}
+          FILM: ${{ inputs.film }}
+          MODEL: ${{ inputs.model }}
+          MAX_CER: ${{ inputs.max_cer }}
+        # --narration 是干净的配音对照组：成片里字错率高、配音文件里很低，
+        # 说明差异来自音乐干扰 ASR，而不是配音真的念错了。
+        run: |
+          python3 -u production/verbatim_check.py \
+            --film "$FILM" \
+            --project "production/$PROJECT" \
+            --work "work/$PROJECT/verbatim" \
+            --narration "production/$PROJECT/audio" \
+            --model "$MODEL" \
+            --max-cer "$MAX_CER"
+
+      - name: Publish the report back to the branch
+        env:
+          PROJECT: ${{ inputs.project }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          mkdir -p "production/$PROJECT/delivery"
+          cp "work/$PROJECT/verbatim/verbatim-check.json" "production/$PROJECT/delivery/"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "production/$PROJECT/delivery/verbatim-check.json"
+          if git diff --cached --quiet; then
+            echo "No changes to publish"
+          else
+            git commit -m "Add the verbatim listening check for $PROJECT"
+            git push origin "HEAD:$BRANCH"
+            echo "PUBLISHED_COMMIT $(git rev-parse HEAD)"
+          fi
+
+      - name: Upload the slices and the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.project }}-逐字听检-${{ github.run_number }}
+          path: work/${{ inputs.project }}/verbatim
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Fail if a chapter needs a human ear
+        if: steps.check.outcome == 'failure'
+        run: |
+          echo "::error::有段落的字错率超过上限，看 production/${{ inputs.project }}/delivery/verbatim-check.json"
+          exit 1

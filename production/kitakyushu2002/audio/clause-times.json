@@ -1,0 +1,648 @@
+{
+ "N01": {
+  "duration": 37.63,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 1.79,
+    "text": "二〇〇二年三月",
+    "chars_per_second": 3.03
+   },
+   {
+    "i": 1,
+    "start": 2.14,
+    "end": 3.21,
+    "text": "日本北九州",
+    "chars_per_second": 4.67
+   },
+   {
+    "i": 2,
+    "start": 3.56,
+    "end": 4.04,
+    "text": "深夜",
+    "chars_per_second": 4.17
+   },
+   {
+    "i": 3,
+    "start": 4.39,
+    "end": 6.18,
+    "text": "一名十七岁的少女",
+    "chars_per_second": 4.47
+   },
+   {
+    "i": 4,
+    "start": 6.47,
+    "end": 8.58,
+    "text": "从一间普通公寓逃了出来",
+    "chars_per_second": 5.21
+   },
+   {
+    "i": 5,
+    "start": 8.95,
+    "end": 10.78,
+    "text": "她之前逃出去过一次",
+    "chars_per_second": 4.92
+   },
+   {
+    "i": 6,
+    "start": 11.13,
+    "end": 12.11,
+    "text": "又被抓了回去",
+    "chars_per_second": 6.12
+   },
+   {
+    "i": 7,
+    "start": 12.46,
+    "end": 13.18,
+    "text": "这一次",
+    "chars_per_second": 4.17
+   },
+   {
+    "i": 8,
+    "start": 13.45,
+    "end": 15.43,
+    "text": "她跑到祖父家求助",
+    "chars_per_second": 4.04
+   },
+   {
+    "i": 9,
+    "start": 15.77,
+    "end": 17.22,
+    "text": "终于有人信了她",
+    "chars_per_second": 4.83
+   },
+   {
+    "i": 10,
+    "start": 17.57,
+    "end": 18.05,
+    "text": "第二天",
+    "chars_per_second": 6.25
+   },
+   {
+    "i": 11,
+    "start": 18.39,
+    "end": 19.46,
+    "text": "警方进入公寓",
+    "chars_per_second": 5.61
+   },
+   {
+    "i": 12,
+    "start": 19.81,
+    "end": 21.19,
+    "text": "表面看不出异常",
+    "chars_per_second": 5.07
+   },
+   {
+    "i": 13,
+    "start": 21.53,
+    "end": 22.8,
+    "text": "控制这里的两人",
+    "chars_per_second": 5.51
+   },
+   {
+    "i": 14,
+    "start": 23.15,
+    "end": 23.86,
+    "text": "松永太",
+    "chars_per_second": 4.23
+   },
+   {
+    "i": 15,
+    "start": 24.21,
+    "end": 26.74,
+    "text": "和内缘妻子绪方纯子",
+    "chars_per_second": 3.56
+   },
+   {
+    "i": 16,
+    "start": 27.09,
+    "end": 27.89,
+    "text": "随即被捕",
+    "chars_per_second": 5.0
+   },
+   {
+    "i": 17,
+    "start": 28.24,
+    "end": 29.26,
+    "text": "调查越深",
+    "chars_per_second": 3.92
+   },
+   {
+    "i": 18,
+    "start": 29.61,
+    "end": 30.17,
+    "text": "失踪",
+    "chars_per_second": 3.57
+   },
+   {
+    "i": 19,
+    "start": 30.52,
+    "end": 32.08,
+    "text": "死亡和监禁",
+    "chars_per_second": 3.21
+   },
+   {
+    "i": 20,
+    "start": 32.42,
+    "end": 33.78,
+    "text": "越连成同一条线",
+    "chars_per_second": 5.15
+   },
+   {
+    "i": 21,
+    "start": 34.12,
+    "end": 35.7,
+    "text": "这间普通的屋子里",
+    "chars_per_second": 5.06
+   },
+   {
+    "i": 22,
+    "start": 36.06,
+    "end": 37.63,
+    "text": "藏着七条人命",
+    "chars_per_second": 3.82
+   }
+  ]
+ },
+ "N02": {
+  "duration": 28.29,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 2.24,
+    "text": "要理解这间屋子里发生的事",
+    "chars_per_second": 5.74
+   },
+   {
+    "i": 1,
+    "start": 2.51,
+    "end": 3.78,
+    "text": "得回到九十年代",
+    "chars_per_second": 5.51
+   },
+   {
+    "i": 2,
+    "start": 4.12,
+    "end": 6.16,
+    "text": "松永太早年做生意",
+    "chars_per_second": 3.92
+   },
+   {
+    "i": 3,
+    "start": 6.5,
+    "end": 7.67,
+    "text": "后来卷入诈骗",
+    "chars_per_second": 5.13
+   },
+   {
+    "i": 4,
+    "start": 8.02,
+    "end": 8.74,
+    "text": "欠下债务",
+    "chars_per_second": 5.56
+   },
+   {
+    "i": 5,
+    "start": 9.08,
+    "end": 10.0,
+    "text": "四处逃亡",
+    "chars_per_second": 4.35
+   },
+   {
+    "i": 6,
+    "start": 10.34,
+    "end": 11.81,
+    "text": "他最擅长的",
+    "chars_per_second": 3.4
+   },
+   {
+    "i": 7,
+    "start": 12.16,
+    "end": 13.7,
+    "text": "是操纵人心",
+    "chars_per_second": 3.25
+   },
+   {
+    "i": 8,
+    "start": 14.05,
+    "end": 15.08,
+    "text": "用谎言",
+    "chars_per_second": 2.91
+   },
+   {
+    "i": 9,
+    "start": 15.31,
+    "end": 17.28,
+    "text": "威胁和经济压力",
+    "chars_per_second": 3.55
+   },
+   {
+    "i": 10,
+    "start": 17.63,
+    "end": 21.92,
+    "text": "把身边的人一步步变成自己的工具",
+    "chars_per_second": 3.5
+   },
+   {
+    "i": 11,
+    "start": 22.26,
+    "end": 24.16,
+    "text": "绪方纯子和她的家人",
+    "chars_per_second": 4.74
+   },
+   {
+    "i": 12,
+    "start": 24.42,
+    "end": 26.19,
+    "text": "就是这样一点一点",
+    "chars_per_second": 4.52
+   },
+   {
+    "i": 13,
+    "start": 26.5,
+    "end": 28.29,
+    "text": "落进他的控制之中",
+    "chars_per_second": 4.47
+   }
+  ]
+ },
+ "N03": {
+  "duration": 25.69,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 1.63,
+    "text": "从一九九六年起",
+    "chars_per_second": 4.73
+   },
+   {
+    "i": 1,
+    "start": 2.01,
+    "end": 4.66,
+    "text": "绪方的家人接连被带进这间公寓",
+    "chars_per_second": 5.28
+   },
+   {
+    "i": 2,
+    "start": 5.0,
+    "end": 7.07,
+    "text": "一九九六年到一九九八年",
+    "chars_per_second": 5.31
+   },
+   {
+    "i": 3,
+    "start": 7.42,
+    "end": 9.61,
+    "text": "多名受害者在这里遭到监禁",
+    "chars_per_second": 5.48
+   },
+   {
+    "i": 4,
+    "start": 9.79,
+    "end": 10.99,
+    "text": "虐待和控制",
+    "chars_per_second": 4.17
+   },
+   {
+    "i": 5,
+    "start": 11.33,
+    "end": 13.45,
+    "text": "原本应该保护彼此的亲人",
+    "chars_per_second": 5.19
+   },
+   {
+    "i": 6,
+    "start": 13.72,
+    "end": 15.53,
+    "text": "被恐惧推向绝境",
+    "chars_per_second": 3.87
+   },
+   {
+    "i": 7,
+    "start": 15.88,
+    "end": 16.62,
+    "text": "不敢对视",
+    "chars_per_second": 5.41
+   },
+   {
+    "i": 8,
+    "start": 16.96,
+    "end": 17.66,
+    "text": "不敢多问",
+    "chars_per_second": 5.71
+   },
+   {
+    "i": 9,
+    "start": 18.0,
+    "end": 20.98,
+    "text": "连求救的机会都被一点点剥夺",
+    "chars_per_second": 4.36
+   },
+   {
+    "i": 10,
+    "start": 21.39,
+    "end": 22.76,
+    "text": "这不是家庭纠纷",
+    "chars_per_second": 5.11
+   },
+   {
+    "i": 11,
+    "start": 23.12,
+    "end": 25.69,
+    "text": "是持续的恐吓与暴力",
+    "chars_per_second": 3.5
+   }
+  ]
+ },
+ "N04": {
+  "duration": 27.585,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 3.71,
+    "text": "这场悲剧最终吞噬了绪方家的多名成员",
+    "chars_per_second": 4.78
+   },
+   {
+    "i": 1,
+    "start": 4.05,
+    "end": 6.73,
+    "text": "死亡在封闭的屋子里接连发生",
+    "chars_per_second": 4.85
+   },
+   {
+    "i": 2,
+    "start": 7.08,
+    "end": 8.89,
+    "text": "外界却几乎一无所知",
+    "chars_per_second": 4.97
+   },
+   {
+    "i": 3,
+    "start": 9.24,
+    "end": 10.7,
+    "text": "直到少女逃出",
+    "chars_per_second": 4.11
+   },
+   {
+    "i": 4,
+    "start": 10.96,
+    "end": 11.87,
+    "text": "开口陈述",
+    "chars_per_second": 4.4
+   },
+   {
+    "i": 5,
+    "start": 12.22,
+    "end": 13.48,
+    "text": "警方才把失踪",
+    "chars_per_second": 4.76
+   },
+   {
+    "i": 6,
+    "start": 13.72,
+    "end": 16.28,
+    "text": "死亡和监禁串成一条线",
+    "chars_per_second": 3.91
+   },
+   {
+    "i": 7,
+    "start": 16.62,
+    "end": 18.13,
+    "text": "七名死亡受害者",
+    "chars_per_second": 4.64
+   },
+   {
+    "i": 8,
+    "start": 18.42,
+    "end": 19.88,
+    "text": "大多是绪方的家人",
+    "chars_per_second": 5.48
+   },
+   {
+    "i": 9,
+    "start": 20.23,
+    "end": 21.69,
+    "text": "其中包括两名孩子",
+    "chars_per_second": 5.48
+   },
+   {
+    "i": 10,
+    "start": 22.03,
+    "end": 24.05,
+    "text": "六起被认定为谋杀",
+    "chars_per_second": 3.96
+   },
+   {
+    "i": 11,
+    "start": 24.4,
+    "end": 27.59,
+    "text": "另一起被认定为伤害致死",
+    "chars_per_second": 3.45
+   }
+  ]
+ },
+ "N05": {
+  "duration": 26.85,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.13,
+    "end": 1.4,
+    "text": "二〇〇三年十月",
+    "chars_per_second": 3.94
+   },
+   {
+    "i": 1,
+    "start": 1.75,
+    "end": 2.74,
+    "text": "审判开始",
+    "chars_per_second": 4.04
+   },
+   {
+    "i": 2,
+    "start": 3.09,
+    "end": 4.16,
+    "text": "因为案情太多",
+    "chars_per_second": 5.61
+   },
+   {
+    "i": 3,
+    "start": 4.51,
+    "end": 6.41,
+    "text": "此后每周开庭一次",
+    "chars_per_second": 4.21
+   },
+   {
+    "i": 4,
+    "start": 6.75,
+    "end": 7.33,
+    "text": "法庭上",
+    "chars_per_second": 5.17
+   },
+   {
+    "i": 5,
+    "start": 7.68,
+    "end": 9.04,
+    "text": "两人的责任成为焦点",
+    "chars_per_second": 6.62
+   },
+   {
+    "i": 6,
+    "start": 9.39,
+    "end": 10.69,
+    "text": "绪方承认参与",
+    "chars_per_second": 4.62
+   },
+   {
+    "i": 7,
+    "start": 11.04,
+    "end": 12.1,
+    "text": "但辩护方强调",
+    "chars_per_second": 5.66
+   },
+   {
+    "i": 8,
+    "start": 12.43,
+    "end": 14.72,
+    "text": "她长期受到松永的支配和虐待",
+    "chars_per_second": 5.68
+   },
+   {
+    "i": 9,
+    "start": 15.07,
+    "end": 18.49,
+    "text": "松永则否认自己应为全部罪行负责",
+    "chars_per_second": 4.39
+   },
+   {
+    "i": 10,
+    "start": 18.84,
+    "end": 20.07,
+    "text": "二〇〇五年九月",
+    "chars_per_second": 4.07
+   },
+   {
+    "i": 11,
+    "start": 20.3,
+    "end": 22.36,
+    "text": "一审双双判处死刑",
+    "chars_per_second": 3.88
+   },
+   {
+    "i": 12,
+    "start": 22.72,
+    "end": 23.3,
+    "text": "两年后",
+    "chars_per_second": 5.17
+   },
+   {
+    "i": 13,
+    "start": 23.64,
+    "end": 26.85,
+    "text": "二审改判绪方无期徒刑",
+    "chars_per_second": 3.12
+   }
+  ]
+ },
+ "N06": {
+  "duration": 32.08,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 1.8,
+    "text": "二〇一一年十二月",
+    "chars_per_second": 4.24
+   },
+   {
+    "i": 1,
+    "start": 2.14,
+    "end": 3.76,
+    "text": "最高法院维持原判",
+    "chars_per_second": 4.94
+   },
+   {
+    "i": 2,
+    "start": 4.11,
+    "end": 6.0,
+    "text": "松永太死刑确定",
+    "chars_per_second": 3.7
+   },
+   {
+    "i": 3,
+    "start": 6.35,
+    "end": 8.98,
+    "text": "绪方纯子无期徒刑确定",
+    "chars_per_second": 3.8
+   },
+   {
+    "i": 4,
+    "start": 9.33,
+    "end": 9.84,
+    "text": "回头看",
+    "chars_per_second": 5.88
+   },
+   {
+    "i": 5,
+    "start": 10.18,
+    "end": 13.67,
+    "text": "这间公寓和普通住宅没有任何区别",
+    "chars_per_second": 4.3
+   },
+   {
+    "i": 6,
+    "start": 14.02,
+    "end": 16.88,
+    "text": "最可怕的不是某个瞬间的暴行",
+    "chars_per_second": 4.55
+   },
+   {
+    "i": 7,
+    "start": 17.23,
+    "end": 21.81,
+    "text": "而是六年的恐怖就藏在日常的表象之下",
+    "chars_per_second": 3.71
+   },
+   {
+    "i": 8,
+    "start": 22.15,
+    "end": 22.68,
+    "text": "恐惧",
+    "chars_per_second": 3.77
+   },
+   {
+    "i": 9,
+    "start": 23.02,
+    "end": 25.28,
+    "text": "谎言和被剥夺的选择",
+    "chars_per_second": 3.98
+   },
+   {
+    "i": 10,
+    "start": 25.56,
+    "end": 27.66,
+    "text": "筑成了一座没有铁栏的牢笼",
+    "chars_per_second": 5.71
+   },
+   {
+    "i": 11,
+    "start": 28.01,
+    "end": 29.98,
+    "text": "判决确定了刑期",
+    "chars_per_second": 3.55
+   },
+   {
+    "i": 12,
+    "start": 30.23,
+    "end": 32.08,
+    "text": "却换不回七条生命",
+    "chars_per_second": 4.32
+   }
+  ]
+ }
+}

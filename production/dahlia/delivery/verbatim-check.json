@@ -1,0 +1,429 @@
+{
+  "film": "黑色大丽花_三分钟_带声音.mp4",
+  "project": "production/dahlia",
+  "method": "faster-whisper small，无 initial_prompt；转写对象为最终成片按章节切出的音频",
+  "max_cer_allowed": 0.15,
+  "film_pass": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 28.213,
+        "script_chars": 92,
+        "heard_chars": 91,
+        "character_error_rate": 0.0217,
+        "match_coverage": 0.9783,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 48,
+            "kind": "replace",
+            "script": "遇",
+            "heard": "预"
+          },
+          {
+            "at": 83,
+            "kind": "delete",
+            "script": "是",
+            "heard": ""
+          }
+        ],
+        "transcript": "1947年1月15日洛杉矶一位母亲带着孩子经过空地最初以为路边躺着一个假人走近后她才发现那是一名预害的年轻女子更反常的是现场没有血迹警方由此判断这里很可能不是第一现场谁把她带到了这里"
+      },
+      {
+        "id": "N02",
+        "start": 29.293,
+        "end": 61.035,
+        "script_chars": 116,
+        "heard_chars": 116,
+        "character_error_rate": 0.1293,
+        "match_coverage": 0.8707,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 4,
+            "kind": "replace",
+            "script": "纹",
+            "heard": "紋"
+          },
+          {
+            "at": 30,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 33,
+            "kind": "replace",
+            "script": "丽",
+            "heard": "利"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "肖",
+            "heard": "孝"
+          },
+          {
+            "at": 42,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 53,
+            "kind": "replace",
+            "script": "纹旧档",
+            "heard": "紋就当"
+          }
+        ],
+        "transcript": "警方把指紋通过照片传真传给联邦调查局56分钟后身份得到确认他叫伊利莎白孝特 22岁他曾因求职等原因留下指紋就当案认出了他 却指不出凶手媒体后来给他起了一个名字 黑色大理化可一个怂动的称呼并不能解释他遭遇了什么调查必须回到他失踪前的生活"
+      },
+      {
+        "id": "N03",
+        "start": 62.115,
+        "end": 87.233,
+        "script_chars": 88,
+        "heard_chars": 88,
+        "character_error_rate": 0.0341,
+        "match_coverage": 0.9659,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 37,
+            "kind": "replace",
+            "script": "莫",
+            "heard": "摩"
+          },
+          {
+            "at": 47,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          }
+        ],
+        "transcript": "警方当年的调查通告把目光锁定在1月9日至15日通告记录他1月9日曾在比尔特摩尔酒店下车此后几天他去了哪里见过谁时间线出现了空白要找到凶手首先要把这段行踪接起来而不是用传闻填满它"
+      },
+      {
+        "id": "N04",
+        "start": 88.313,
+        "end": 114.722,
+        "script_chars": 93,
+        "heard_chars": 93,
+        "character_error_rate": 0.0215,
+        "match_coverage": 0.9785,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 20,
+            "kind": "replace",
+            "script": "凶",
+            "heard": "熏"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "寄",
+            "heard": "记"
+          }
+        ],
+        "transcript": "随后一封匿名信带来了新的希望它会不会来自熏手联邦调查局尝试比对信上的指纹却没有在档案中找到匹配信是谁记的 依然不能确定另一方面警方怀疑作案者可能具有解剖技能于是扩大调查范围但怀疑并不是证据"
+      },
+      {
+        "id": "N05",
+        "start": 115.802,
+        "end": 142.985,
+        "script_chars": 101,
+        "heard_chars": 101,
+        "character_error_rate": 0.0099,
+        "match_coverage": 0.9901,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 4,
+            "kind": "replace",
+            "script": "核",
+            "heard": "和"
+          }
+        ],
+        "transcript": "调查人员和查嫌疑人的记录并在美国多地展开访谈线索不断增加却始终没能把身份、地点和作案过程连成一条可证实的链几十年里各种理论轮番出现有人指向某个嫌疑人有人声称已经破案可一个讲得通的故事不等于一个被证明的事实"
+      },
+      {
+        "id": "N06",
+        "start": 144.065,
+        "end": 174.0,
+        "script_chars": 104,
+        "heard_chars": 104,
+        "character_error_rate": 0.0385,
+        "match_coverage": 0.9615,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 5,
+            "kind": "replace",
+            "script": "认",
+            "heard": "定"
+          },
+          {
+            "at": 8,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "侦",
+            "heard": "真"
+          },
+          {
+            "at": 95,
+            "kind": "replace",
+            "script": "肖",
+            "heard": "小"
+          }
+        ],
+        "transcript": "我们能够确定的是他的身份遗体被发现的日期以及调查留下的缺口按照联邦调查局公布的案件资料这起谋杀案仍未真破悬念没有一个可以负责任写下的凶手名字而在所有传说之前应该被记住的是一个真实的人伊丽莎白小特她只有22岁"
+      }
+    ],
+    "max_cer": 0.1293,
+    "failing": []
+  },
+  "narration_control": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 28.213,
+        "script_chars": 92,
+        "heard_chars": 91,
+        "character_error_rate": 0.0217,
+        "match_coverage": 0.9783,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 48,
+            "kind": "replace",
+            "script": "遇",
+            "heard": "预"
+          },
+          {
+            "at": 83,
+            "kind": "delete",
+            "script": "是",
+            "heard": ""
+          }
+        ],
+        "transcript": "1947年1月15日洛杉矶一位母亲带着孩子经过空地最初以为路边躺着一个假人走近后她才发现那是一名预害的年轻女子更反常的是现场没有血迹警方由此判断这里很可能不是第一现场谁把她带到了这里"
+      },
+      {
+        "id": "N02",
+        "start": 29.293,
+        "end": 61.035,
+        "script_chars": 116,
+        "heard_chars": 116,
+        "character_error_rate": 0.0948,
+        "match_coverage": 0.9052,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 30,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "肖",
+            "heard": "孝"
+          },
+          {
+            "at": 42,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 54,
+            "kind": "replace",
+            "script": "旧档",
+            "heard": "就当"
+          },
+          {
+            "at": 60,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 72,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          }
+        ],
+        "transcript": "警方把指纹通过照片传真传给联邦调查局56分钟后身份得到确认他叫伊丽莎白孝特 22岁他曾因求职等原因留下指纹就当案认出了他 却指不出凶手媒体后来给他起了一个名字黑色大梨花可一个怂动的称呼并不能解释他遭遇了什么调查必须回到他失踪前的生活"
+      },
+      {
+        "id": "N03",
+        "start": 62.115,
+        "end": 87.233,
+        "script_chars": 88,
+        "heard_chars": 88,
+        "character_error_rate": 0.3295,
+        "match_coverage": 0.6705,
+        "verdict": "needs_human_listen",
+        "diff": [
+          {
+            "at": 2,
+            "kind": "replace",
+            "script": "当",
+            "heard": "當"
+          },
+          {
+            "at": 5,
+            "kind": "replace",
+            "script": "调",
+            "heard": "調"
+          },
+          {
+            "at": 12,
+            "kind": "replace",
+            "script": "锁",
+            "heard": "鎖"
+          },
+          {
+            "at": 25,
+            "kind": "replace",
+            "script": "记录她",
+            "heard": "記錄他"
+          },
+          {
+            "at": 35,
+            "kind": "replace",
+            "script": "尔",
+            "heard": "爾"
+          },
+          {
+            "at": 37,
+            "kind": "replace",
+            "script": "莫尔",
+            "heard": "摩爾"
+          }
+        ],
+        "transcript": "警方當年的調查通告,把目光鎖定在1月9日至15日通告記錄,他1月9日曾在比爾特摩爾酒店下車此後幾天,他去了哪裡?見過誰?時間線出現了空白要找到兇手,首先要把這段行蹤接起來,而不是用傳聞填滿他"
+      },
+      {
+        "id": "N04",
+        "start": 88.313,
+        "end": 114.722,
+        "script_chars": 93,
+        "heard_chars": 93,
+        "character_error_rate": 0.0323,
+        "match_coverage": 0.9677,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 20,
+            "kind": "replace",
+            "script": "凶",
+            "heard": "熏"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "寄",
+            "heard": "记"
+          },
+          {
+            "at": 66,
+            "kind": "replace",
+            "script": "作",
+            "heard": "做"
+          }
+        ],
+        "transcript": "随后,一封匿名信带来了新的希望它会不会来自熏手?联邦调查局尝试比对信上的指纹却没有在档案中找到匹配信是谁记的,依然不能确定另一方面,警方怀疑做案者可能具有解剖技能于是扩大调查范围但怀疑并不是证据"
+      },
+      {
+        "id": "N05",
+        "start": 115.802,
+        "end": 142.985,
+        "script_chars": 101,
+        "heard_chars": 101,
+        "character_error_rate": 0.0099,
+        "match_coverage": 0.9901,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 4,
+            "kind": "replace",
+            "script": "核",
+            "heard": "和"
+          }
+        ],
+        "transcript": "调查人员和查嫌疑人的记录,并在美国多地展开访谈,线索不断增加,却始终没能把身份、地点和作案过程连成一条可证实的链。几十年里,各种理论轮番出现,有人指向某个嫌疑人,有人声称已经破案。可一个讲得通的故事不等于一个被证明的事实。"
+      },
+      {
+        "id": "N06",
+        "start": 144.065,
+        "end": 174.0,
+        "script_chars": 104,
+        "heard_chars": 104,
+        "character_error_rate": 0.0769,
+        "match_coverage": 0.9231,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 5,
+            "kind": "replace",
+            "script": "认",
+            "heard": "定"
+          },
+          {
+            "at": 8,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          },
+          {
+            "at": 50,
+            "kind": "replace",
+            "script": "侦破",
+            "heard": "真迫"
+          },
+          {
+            "at": 92,
+            "kind": "replace",
+            "script": "丽莎",
+            "heard": "利沙"
+          },
+          {
+            "at": 95,
+            "kind": "replace",
+            "script": "肖",
+            "heard": "小"
+          },
+          {
+            "at": 97,
+            "kind": "replace",
+            "script": "她",
+            "heard": "他"
+          }
+        ],
+        "transcript": "我们能够确定的是他的身份,遗体被发现的日期,以及调查留下的缺口。按照联邦调查局公布的案件资料,这起谋杀案仍未真迫。悬念没有一个可以负责任写下的凶手名字,而在所有传说之前,应该被记住的是一个真实的人,伊利沙白小特,他只有22岁。"
+      }
+    ],
+    "max_cer": 0.3295,
+    "failing": [
+      "N03"
+    ]
+  },
+  "note": "CER = 编辑距离 / 剧本字数。ASR 本身也会错，所以 'needs_human_listen' 的意思是\"这一段的差异需要人耳裁决\"，不等于\"配音一定错了\"；对照组（干净配音）字错率明显低于成片时，差异多半来自音乐干扰 ASR。"
+}

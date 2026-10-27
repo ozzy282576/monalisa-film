@@ -1,0 +1,145 @@
+=== 项目 rabies1885 / 分支 arena/01a10a48-desktop-tutorial / 成片 work/rabies1885/狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4 ===
+=== 1/5 校验计划与配音来源（闸门一）===
+VALID: 180-second plan; 45 shots; 38 Agnes sources; 7 graphics; 0 archival; narration hashes match
+=== 2/5 按 SHA-256 回填已生成素材（不重新生成、不消耗额度）===
+FETCH S01 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_a9e9daa233194dae93ccc919a1e42da2.mp4
+  OK S01 2769730 bytes / 7.04s
+FETCH S02 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_e8a477072ece4e12bb1644e5ad321467.mp4
+  OK S02 1758940 bytes / 7.04s
+FETCH S03 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_462706a6ceea441582e23f897a88731e.mp4
+  OK S03 2172544 bytes / 7.04s
+FETCH S04 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_f7f8643aab644cfc90f5fc866537b0ff.mp4
+  OK S04 1504763 bytes / 7.04s
+FETCH S05 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_dfe7f2ae985e4044b33f11d206e305ef.mp4
+  OK S05 3314046 bytes / 7.04s
+FETCH S06 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_4ef77073574b497986406006f4a7b3c1.mp4
+  OK S06 2238317 bytes / 7.04s
+FETCH S08 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_e0c91a30eb774ea186269383563c418c.mp4
+  OK S08 2227160 bytes / 7.04s
+FETCH S09 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_d657fecbe915450dbdb89d845dbee229.mp4
+  OK S09 4802804 bytes / 7.04s
+FETCH S10 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_074b3678f2364741b7f85fc2ac98e14e.mp4
+  OK S10 2737121 bytes / 7.04s
+FETCH S11 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_46c0d1bb50d04d1fbc3f204bcd89302f.mp4
+  OK S11 3754983 bytes / 7.04s
+FETCH S12 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_b61e7f3f27f045b6a48e66a7df203c0b.mp4
+  OK S12 2449969 bytes / 7.04s
+FETCH S14 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_dc3179b358cd43289dcfa4e4853cf509.mp4
+  OK S14 2616143 bytes / 7.04s
+FETCH S15 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_a58b94941ca945a082922b3b0072f7b4.mp4
+  OK S15 2653874 bytes / 7.04s
+FETCH S16 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_0a01c88d84f949e8babb7b641477eb38.mp4
+  OK S16 3949636 bytes / 7.04s
+FETCH S17 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_b6f5c4e39d5e43968e3999b9de0091b3.mp4
+  OK S17 4832695 bytes / 7.04s
+FETCH S18 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_032216544f2a4d4fa48fd18e5736ac8a.mp4
+  OK S18 2209293 bytes / 7.04s
+FETCH S19 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_8863973078514d208f53e66b82730696.mp4
+  OK S19 2079590 bytes / 7.04s
+FETCH S20 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_bafbbc72538f46bf89211cf6c910484b.mp4
+  OK S20 1775305 bytes / 7.04s
+FETCH S22 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_0d4dcad15ac4407580c6700066eadae1.mp4
+  OK S22 1332407 bytes / 7.04s
+FETCH S23 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_2640eef8b68a4a86acf128f70629bc00.mp4
+  OK S23 2155024 bytes / 7.04s
+FETCH S24 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_62ea899c36594ef39381a3bf45feeee6.mp4
+  OK S24 1584907 bytes / 7.04s
+FETCH S25 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_156cd859f5a04181aa6a9387a0e801bc.mp4
+  OK S25 2799294 bytes / 7.04s
+FETCH S26 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_0889c4d069984680b2cfd8786d89b439.mp4
+  OK S26 1337536 bytes / 7.04s
+FETCH S27 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_935b378ca9544419b148abd7fd4d919f.mp4
+  OK S27 1918914 bytes / 7.04s
+FETCH S29 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_41fc3592bc38433eb09107fe113c36f1.mp4
+  OK S29 1567697 bytes / 7.04s
+FETCH S30 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_b427876b998344359f842ee7a33f58b9.mp4
+  OK S30 2477371 bytes / 7.04s
+FETCH S31 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_e7381301b9cb4b5b90ed645dd3d2d646.mp4
+  OK S31 3393008 bytes / 7.04s
+FETCH S32 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_6f016174279846c3bfdc9afc70bdf777.mp4
+  OK S32 3541340 bytes / 7.04s
+FETCH S33 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_06c301a32f4c46399b7d4b3fc2b44192.mp4
+  OK S33 2566057 bytes / 7.04s
+FETCH S35 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_e24b79c5911b4696881574c1ba29efd5.mp4
+  OK S35 1706469 bytes / 7.04s
+FETCH S36 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_202ebf0e591643bb8f41cae6efa57ca6.mp4
+  OK S36 3342865 bytes / 7.04s
+FETCH S37 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_0540e1426abd48adb86a53bff0d270c9.mp4
+  OK S37 2295299 bytes / 7.04s
+FETCH S39 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_97461796a3044e17a0fab08b916e474f.mp4
+  OK S39 2554115 bytes / 7.04s
+FETCH S40 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_5b712d88d0264c3b8618e28f6c733390.mp4
+  OK S40 1638321 bytes / 7.04s
+FETCH S41 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_defae45a4b254f16848d715d5c97a647.mp4
+  OK S41 1892849 bytes / 7.04s
+FETCH S43 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_9b1d39f1b62a41c5bd47161e10776c14.mp4
+  OK S43 2028840 bytes / 7.04s
+FETCH S44 https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/video_511387d6e450462593b4afae764810d0.mp4
+  OK S44 3430713 bytes / 7.04s
+FETCH S45 https://cos-platform-outputs.agnes-ai.cn/videos/agnes-video-v2.0/video_26d7dbb3386f42bd845fc0a6eefc6a86.mp4
+  OK S45 1429213 bytes / 7.04s
+FETCH_COMPLETE {"downloaded": 38, "reused": 0, "clips": 38}
+=== 3/5 剪辑 + 混音 + 成品复测（闸门二、三）===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[0;93m2026-10-05 09:35:52.740522984 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+ASR_TIMING_READY N01
+ASR_TIMING_READY N02
+ASR_TIMING_READY N03
+ASR_TIMING_READY N04
+ASR_TIMING_READY N05
+ASR_TIMING_READY N06
+RENDER_SEGMENT 1/46 S01
+RENDER_SEGMENT 2/46 S02
+RENDER_SEGMENT 3/46 S03
+RENDER_SEGMENT 4/46 S04
+RENDER_SEGMENT 5/46 S05
+RENDER_SEGMENT 6/46 S06
+RENDER_SEGMENT 7/46 S07
+RENDER_SEGMENT 8/46 S08
+RENDER_SEGMENT 9/46 S09
+RENDER_SEGMENT 10/46 S10
+RENDER_SEGMENT 11/46 S11
+RENDER_SEGMENT 12/46 S12
+RENDER_SEGMENT 13/46 S13
+RENDER_SEGMENT 14/46 S14
+RENDER_SEGMENT 15/46 S15
+RENDER_SEGMENT 16/46 S16
+RENDER_SEGMENT 17/46 S17
+RENDER_SEGMENT 18/46 S18
+RENDER_SEGMENT 19/46 S19
+RENDER_SEGMENT 20/46 S20
+RENDER_SEGMENT 21/46 S21
+RENDER_SEGMENT 22/46 S22
+RENDER_SEGMENT 23/46 S23
+RENDER_SEGMENT 24/46 S24
+RENDER_SEGMENT 25/46 S25
+RENDER_SEGMENT 26/46 S26
+RENDER_SEGMENT 27/46 S27
+RENDER_SEGMENT 28/46 S28
+RENDER_SEGMENT 29/46 S29
+RENDER_SEGMENT 30/46 S30
+RENDER_SEGMENT 31/46 S31
+RENDER_SEGMENT 32/46 S32
+RENDER_SEGMENT 33/46 S33
+RENDER_SEGMENT 34/46 S34
+RENDER_SEGMENT 35/46 S35
+RENDER_SEGMENT 36/46 S36
+RENDER_SEGMENT 37/46 S37
+RENDER_SEGMENT 38/46 S38
+RENDER_SEGMENT 39/46 S39
+RENDER_SEGMENT 40/46 S40
+RENDER_SEGMENT 41/46 S41
+RENDER_SEGMENT 42/46 S42
+RENDER_SEGMENT 43/46 S43
+RENDER_SEGMENT 44/46 S44
+Traceback (most recent call last):
+  File "/home/runner/work/desktop-tutorial/desktop-tutorial/production/rabies1885/render.py", line 545, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/desktop-tutorial/desktop-tutorial/production/rabies1885/render.py", line 487, in main
+    outputs.append(render_segment(entry,i,args.sources,work/'graphics',segments,args.width,args.height,checks,presentation,last_shot))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/desktop-tutorial/desktop-tutorial/production/rabies1885/render.py", line 406, in render_segment
+    if factor>1.33:raise RuntimeError(f'{sid}/{variant}: requires excessive slow motion ({factor:.2f})')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: S45/: requires excessive slow motion (2.21)

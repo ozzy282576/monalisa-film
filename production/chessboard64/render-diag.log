@@ -1,0 +1,27 @@
+=== 六十四格 / branch=arena/56672981-monalisa-film / output=work/chessboard64/六十四格_国际象棋盘杀手_三分钟_带声音.mp4 ===
+VALID: 180-second plan; 45 shots; 38 CogVideoX-Flash sources; 7 graphics
+FETCH S01 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025221830937b7a44db6a40b0_watermark.mp4 [signed query redacted]
+  OK S01 3530355 bytes / 5.11s
+FETCH S02 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102522195043cea89e6d434af5_watermark.mp4 [signed query redacted]
+  OK S02 2190235 bytes / 5.11s
+FETCH S04 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610252222402e545575dd2946b4_watermark.mp4 [signed query redacted]
+  OK S04 1243618 bytes / 5.11s
+FETCH S05 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260944005c44111e042e4441_watermark.mp4 [signed query redacted]
+  OK S05 1658299 bytes / 5.11s
+FETCH S06 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026094550f137365438dd49a9_watermark.mp4 [signed query redacted]
+  OK S06 1235746 bytes / 5.11s
+FETCH S07 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/2026102522421026d79ab9d6ca4793_watermark.mp4 [signed query redacted]
+  OK S07 1645465 bytes / 5.11s
+FETCH S08 https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025141910432f4e7c746e41d0_watermark.mp4 [signed query redacted]
+  retry 1/3 after HTTPError
+  retry 2/3 after HTTPError
+  retry 3/3 after HTTPError
+Traceback (most recent call last):
+  File "/home/runner/work/monalisa-film/monalisa-film/production/chessboard64/fetch_sources.py", line 135, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/runner/work/monalisa-film/monalisa-film/production/chessboard64/fetch_sources.py", line 110, in main
+    download(url, destination)
+  File "/home/runner/work/monalisa-film/monalisa-film/production/chessboard64/fetch_sources.py", line 79, in download
+    raise RuntimeError(f"Download failed for {safe_url(url)}: {type(last_error).__name__}")
+RuntimeError: Download failed for https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261025141910432f4e7c746e41d0_watermark.mp4: HTTPError

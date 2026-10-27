@@ -1,0 +1,488 @@
+{
+  "film": "六十四格_国际象棋盘杀手_三分钟_带声音.mp4",
+  "film_sha256": "bd594fe6cfde329e064ecd6527baa2fde70b10324c2fcdfe6011374c7a6059d4",
+  "film_bytes": 67297080,
+  "project": "production/chessboard64",
+  "method": "faster-whisper small，无 initial_prompt；转写对象为最终成片按章节切出的音频",
+  "max_cer_allowed": 0.15,
+  "film_pass": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 28.142,
+        "script_chars": 108,
+        "heard_chars": 110,
+        "character_error_rate": 0.0556,
+        "match_coverage": 0.963,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 54,
+            "kind": "replace",
+            "script": "自述",
+            "heard": "字数"
+          },
+          {
+            "at": 63,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 72,
+            "kind": "replace",
+            "script": "起",
+            "heard": "棋"
+          },
+          {
+            "at": 77,
+            "kind": "replace",
+            "script": "起",
+            "heard": "棋"
+          }
+        ],
+        "transcript": "他常在公園和人下棋看起來像個普通棋友可他盯上的是一塊64格的棋盤媒體給他起了一個綽號64格的說法來自他的字數並非司法結論2007年法院認定48棋謀殺和三棋未遂他曾聲稱目標是填滿64格我們只談證據也記住格子背後的人"
+      },
+      {
+        "id": "N02",
+        "start": 29.222,
+        "end": 61.596,
+        "script_chars": 119,
+        "heard_chars": 119,
+        "character_error_rate": 0.0504,
+        "match_coverage": 0.9496,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "replace",
+            "script": "历",
+            "heard": "利"
+          },
+          {
+            "at": 6,
+            "kind": "replace",
+            "script": "什金",
+            "heard": "时今"
+          },
+          {
+            "at": 29,
+            "kind": "replace",
+            "script": "员",
+            "heard": "源"
+          },
+          {
+            "at": 43,
+            "kind": "replace",
+            "script": "察",
+            "heard": "查"
+          },
+          {
+            "at": 69,
+            "kind": "replace",
+            "script": "邀",
+            "heard": "要"
+          }
+        ],
+        "transcript": "亚利山大,皮丘时今,33岁时,在莫斯科受审,成年后,他在超市做理货源。下班后,他常去莫斯科南部的比查公园。那里有石桌和长椅,常有人停下来下棋。公开报道说,他会要陌生人喝酒,理由是悼念死去的小狗。人们只当他是熟悉的棋友。他声称,留下63个记号,按他的说法,棋盘几乎被填满。"
+      },
+      {
+        "id": "N03",
+        "start": 62.676,
+        "end": 90.052,
+        "script_chars": 102,
+        "heard_chars": 103,
+        "character_error_rate": 0.0882,
+        "match_coverage": 0.9314,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 13,
+            "kind": "replace",
+            "script": "幸",
+            "heard": "性"
+          },
+          {
+            "at": 46,
+            "kind": "replace",
+            "script": "写她",
+            "heard": "血他"
+          },
+          {
+            "at": 62,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 91,
+            "kind": "replace",
+            "script": "儿子",
+            "heard": "自"
+          },
+          {
+            "at": 94,
+            "kind": "replace",
+            "script": "着",
+            "heard": "著"
+          }
+        ],
+        "transcript": "2002年公開報道記載一位女性性存者曾向警方報告遭遇報道指出這條線索當時沒有得到及時跟進我們不補血他的經歷多年後超市同事瑪麗娜與她約好散步出門前她留下一張紙條寫下同行者的姓名和電話離開後自等著電話始終沒有響"
+      },
+      {
+        "id": "N04",
+        "start": 91.132,
+        "end": 118.664,
+        "script_chars": 97,
+        "heard_chars": 97,
+        "character_error_rate": 0.1031,
+        "match_coverage": 0.8969,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 4,
+            "kind": "replace",
+            "script": "她衣袋",
+            "heard": "他一代"
+          },
+          {
+            "at": 24,
+            "kind": "replace",
+            "script": "纸",
+            "heard": "指"
+          },
+          {
+            "at": 27,
+            "kind": "replace",
+            "script": "据",
+            "heard": "具"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "核",
+            "heard": "合"
+          },
+          {
+            "at": 49,
+            "kind": "replace",
+            "script": "证物调",
+            "heard": "政务要"
+          },
+          {
+            "at": 63,
+            "kind": "replace",
+            "script": "察",
+            "heard": "查"
+          }
+        ],
+        "transcript": "警方发现,他一代里的地铁票,车站监控显示,两人曾经同行,指条、票具、影像,三条线索彼此合对。这里的画面不是警方原始政务,要查从一张小票开始回到比查公园。沿着路线,警方逐步锁定熟悉的同事,每一条证据都需要与下一条相互印证。"
+      },
+      {
+        "id": "N05",
+        "start": 119.744,
+        "end": 148.016,
+        "script_chars": 99,
+        "heard_chars": 103,
+        "character_error_rate": 0.0808,
+        "match_coverage": 0.9596,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 10,
+            "kind": "replace",
+            "script": "什金",
+            "heard": "时间"
+          },
+          {
+            "at": 28,
+            "kind": "replace",
+            "script": "棋",
+            "heard": "期"
+          },
+          {
+            "at": 30,
+            "kind": "replace",
+            "script": "记",
+            "heard": "计"
+          },
+          {
+            "at": 38,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          }
+        ],
+        "transcript": "2006年6月16日,皮丘时间被捕公开报道说,警方在他住处找到与期盘计号相关的证物2007年10月,陪审团认定48起谋杀,3起未遂法院随后判处终身监禁63,是他的自述,不是法院认定法庭结论来自证据,每个数字都要说明来源"
+      },
+      {
+        "id": "N06",
+        "start": 149.096,
+        "end": 174.0,
+        "script_chars": 93,
+        "heard_chars": 93,
+        "character_error_rate": 0.0108,
+        "match_coverage": 0.9892,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 19,
+            "kind": "replace",
+            "script": "格",
+            "heard": "个"
+          }
+        ],
+        "transcript": "法律结论写在案卷里受害者却不是数字每一个背后都是一个真实的人也是一个失去亲人的家庭留下的沉默同样值得被看见我们不重现伤害也不把凶手变成传奇让棋盘回到公园石桌上树影移动行人继续生活记住他们"
+      }
+    ],
+    "max_cer": 0.1031,
+    "failing": []
+  },
+  "narration_control": {
+    "chapters": [
+      {
+        "id": "N01",
+        "start": 0.6,
+        "end": 28.142,
+        "script_chars": 108,
+        "heard_chars": 110,
+        "character_error_rate": 0.0741,
+        "match_coverage": 0.9444,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 54,
+            "kind": "replace",
+            "script": "自述",
+            "heard": "字数"
+          },
+          {
+            "at": 63,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 72,
+            "kind": "replace",
+            "script": "起",
+            "heard": "棋"
+          },
+          {
+            "at": 77,
+            "kind": "replace",
+            "script": "起未遂",
+            "heard": "棋威碎"
+          }
+        ],
+        "transcript": "他常在公园和人下棋,看起来像个普通棋友。可他盯上的是一块六十四格的棋盘。媒体给他起了一个綽号,六十四格的说法来自他的字数,并非司法结论。2007年法院认定四十八棋谋杀和三棋威碎。他曾声称,目标是填满六十四格。我们只谈证据,也记住格子背后的人。"
+      },
+      {
+        "id": "N02",
+        "start": 29.222,
+        "end": 61.596,
+        "script_chars": 119,
+        "heard_chars": 119,
+        "character_error_rate": 0.042,
+        "match_coverage": 0.958,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "replace",
+            "script": "历",
+            "heard": "利"
+          },
+          {
+            "at": 6,
+            "kind": "replace",
+            "script": "什",
+            "heard": "石"
+          },
+          {
+            "at": 43,
+            "kind": "replace",
+            "script": "察",
+            "heard": "查"
+          },
+          {
+            "at": 54,
+            "kind": "replace",
+            "script": "常",
+            "heard": "长"
+          },
+          {
+            "at": 99,
+            "kind": "replace",
+            "script": "留",
+            "heard": "游"
+          }
+        ],
+        "transcript": "亚利山大,皮丘石金,33岁时在莫斯科受审。成年后,他在超市做理货员。下班后,他常去莫斯科南部的比查公园。那里有石桌和长椅,长有人停下来下棋。公开报道说,他会邀陌生人喝酒,理由是悼念死去的小狗。人们只当他是熟悉的棋友。他声称游下63个记号,按他的说法,棋盘几乎被填满。"
+      },
+      {
+        "id": "N03",
+        "start": 62.676,
+        "end": 90.052,
+        "script_chars": 102,
+        "heard_chars": 103,
+        "character_error_rate": 0.0784,
+        "match_coverage": 0.9412,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 13,
+            "kind": "replace",
+            "script": "幸",
+            "heard": "性"
+          },
+          {
+            "at": 58,
+            "kind": "replace",
+            "script": "玛",
+            "heard": "马"
+          },
+          {
+            "at": 62,
+            "kind": "replace",
+            "script": "他",
+            "heard": "她"
+          },
+          {
+            "at": 66,
+            "kind": "replace",
+            "script": "步",
+            "heard": "布"
+          },
+          {
+            "at": 91,
+            "kind": "replace",
+            "script": "儿子",
+            "heard": "字"
+          }
+        ],
+        "transcript": "2002年公开报道记载,一位女性性存者曾向警方报告遭遇,报道指出,这条线索当时没有得到及时跟进,我们不补写她的经历。多年后,超市同事马丽娜与她约好散布。出门前,她留下一张纸条,写下同行者的姓名和电话,离开后字等着,电话始终没有响。"
+      },
+      {
+        "id": "N04",
+        "start": 91.132,
+        "end": 118.664,
+        "script_chars": 97,
+        "heard_chars": 97,
+        "character_error_rate": 0.0825,
+        "match_coverage": 0.9175,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 4,
+            "kind": "replace",
+            "script": "她衣袋",
+            "heard": "他一代"
+          },
+          {
+            "at": 24,
+            "kind": "replace",
+            "script": "纸",
+            "heard": "指"
+          },
+          {
+            "at": 36,
+            "kind": "replace",
+            "script": "核",
+            "heard": "合"
+          },
+          {
+            "at": 49,
+            "kind": "replace",
+            "script": "证物",
+            "heard": "政务"
+          },
+          {
+            "at": 63,
+            "kind": "replace",
+            "script": "察",
+            "heard": "查"
+          }
+        ],
+        "transcript": "警方发现他一代里的地铁票,车站监控显示,两人曾经同行,指条、票据、影像三条线索彼此合对。这里的画面不是警方原始政务,调查从一张小票开始回到比查公园。沿着路线,警方逐步锁定熟悉的同事,每一条证据都需要与下一条相互印证。"
+      },
+      {
+        "id": "N05",
+        "start": 119.744,
+        "end": 148.016,
+        "script_chars": 99,
+        "heard_chars": 103,
+        "character_error_rate": 0.0808,
+        "match_coverage": 0.9596,
+        "verdict": "ok",
+        "diff": [
+          {
+            "at": 1,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          },
+          {
+            "at": 10,
+            "kind": "replace",
+            "script": "什金",
+            "heard": "时今"
+          },
+          {
+            "at": 28,
+            "kind": "replace",
+            "script": "棋",
+            "heard": "其"
+          },
+          {
+            "at": 30,
+            "kind": "replace",
+            "script": "记",
+            "heard": "计"
+          },
+          {
+            "at": 38,
+            "kind": "insert",
+            "script": "",
+            "heard": "零零"
+          }
+        ],
+        "transcript": "2006年6月16日,皮丘时今被捕。公开报道说,警方在他住处找到与其盘计号相关的证物。2007年10月,陪审团认定48起谋杀,3起未遂。法院随后判处终身监禁。63,是他的自述,不是法院认定。法庭结论来自证据,每个数字都要说明来源。"
+      },
+      {
+        "id": "N06",
+        "start": 149.096,
+        "end": 174.0,
+        "script_chars": 93,
+        "heard_chars": 93,
+        "character_error_rate": 0.0,
+        "match_coverage": 1.0,
+        "verdict": "ok",
+        "diff": [],
+        "transcript": "法律结论写在案卷里,受害者却不是数字,每一格背后都是一个真实的人,也是一个失去亲人的家庭。留下的沉默,同样值得被看见,我们不重现伤害,也不把凶手变成传奇,让棋盘回到公园石桌上,树影移动,行人继续生活,记住他们。"
+      }
+    ],
+    "max_cer": 0.0825,
+    "failing": []
+  },
+  "note": "CER = 编辑距离 / 剧本字数。ASR 本身也会错，所以 'needs_human_listen' 的意思是\"这一段的差异需要人耳裁决\"，不等于\"配音一定错了\"；对照组（干净配音）字错率明显低于成片时，差异多半来自音乐干扰 ASR。"
+}

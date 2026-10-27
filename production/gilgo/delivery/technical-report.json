@@ -1,0 +1,69 @@
+{
+  "duration": 180.0,
+  "bytes": 69866629,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30.0,
+  "video_codec": "h264",
+  "frames": 5400,
+  "audio_codec": "aac",
+  "sample_rate": 48000,
+  "audio_channels": 2,
+  "sha256": "d9f2290473e9ca3beef065018a3640015ca5d5f57fd24738ad9b43614fb86042",
+  "decoded_ok": true,
+  "status": "audio_verified_cut",
+  "visual_review": "pending",
+  "caption_alignment": [
+    {
+      "id": "N01",
+      "method": "clause-times DP",
+      "character_match_coverage": 0.3944954128440367
+    },
+    {
+      "id": "N02",
+      "method": "clause-times DP",
+      "character_match_coverage": 0.0380952380952381
+    },
+    {
+      "id": "N03",
+      "method": "ASR-assisted",
+      "character_match_coverage": 0.9929577464788732
+    },
+    {
+      "id": "N04",
+      "method": "clause-times DP",
+      "character_match_coverage": 0.368
+    },
+    {
+      "id": "N05",
+      "method": "clause-times DP",
+      "character_match_coverage": 0.7439024390243902
+    },
+    {
+      "id": "N06",
+      "method": "clause-times DP",
+      "character_match_coverage": 0.4748201438848921
+    }
+  ],
+  "narration_voice_id": "voice-00",
+  "narration_tempo": 1.0483928571428571,
+  "editorial_segments": 46,
+  "source_clips": 38,
+  "archival_portrait": false,
+  "unique_shots_no_reuse": true,
+  "output": "吉尔戈海滩_披萨盒里的凶手_三分钟_带声音.mp4",
+  "soundtrack_mix": {
+    "rms_dbfs": -20.0,
+    "peak_dbfs": -1.52,
+    "silent_fraction": 0.0,
+    "target_rms_dbfs": -20.0
+  },
+  "delivered_audio": {
+    "rms_dbfs": -20.03,
+    "peak_dbfs": -1.43,
+    "silent_fraction": 0.0055,
+    "quietest_window_dbfs": -120.0
+  },
+  "audio_listening_review": "measured (level + per-chapter + silence gate); not a substitute for human word-level listening",
+  "note": "Audio is measured as audible on the delivered file; visual and word-level review are still pending, so this is not a final sign-off."
+}

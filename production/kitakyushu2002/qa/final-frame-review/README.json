@@ -1,0 +1,15 @@
+{
+  "film": "北九州监禁案_逃出魔窟的少女，七条人命背后的秘密_三分钟_带声音.mp4",
+  "sha256": "435ff39b05aad74d5bae55f030e0a1c4bbf58732b745c589d548cff3ecf66005",
+  "decoded_frames": 5400,
+  "source_audit": "production/kitakyushu2002/delivery/frame-distortion-audit.json",
+  "contents": {
+    "all_frame_sheets": 46,
+    "all_frame_manifests": 1,
+    "hand_contact_sheets": 9,
+    "midpoint_contact_sheets": 1,
+    "selected_candidate_frames": 709,
+    "candidate_manifests": 1
+  },
+  "scope": "compact review evidence only; does not equal a human approval and does not replace the delivered MP4"
+}

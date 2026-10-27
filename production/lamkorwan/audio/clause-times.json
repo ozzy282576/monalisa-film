@@ -1,0 +1,648 @@
+{
+ "N01": {
+  "duration": 26.615,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 1.47,
+    "text": "一九八二年二月",
+    "chars_per_second": 5.3
+   },
+   {
+    "i": 1,
+    "start": 1.8,
+    "end": 2.97,
+    "text": "香港的雨夜",
+    "chars_per_second": 4.27
+   },
+   {
+    "i": 2,
+    "start": 3.31,
+    "end": 5.07,
+    "text": "有人从沙田城门河里",
+    "chars_per_second": 5.11
+   },
+   {
+    "i": 3,
+    "start": 5.42,
+    "end": 8.36,
+    "text": "捞起一颗人头和一双女人的手臂",
+    "chars_per_second": 4.76
+   },
+   {
+    "i": 4,
+    "start": 8.7,
+    "end": 9.47,
+    "text": "这起案子",
+    "chars_per_second": 5.19
+   },
+   {
+    "i": 5,
+    "start": 9.81,
+    "end": 11.19,
+    "text": "让整个香港慌了",
+    "chars_per_second": 5.07
+   },
+   {
+    "i": 6,
+    "start": 11.54,
+    "end": 13.22,
+    "text": "但真正钉死凶手的",
+    "chars_per_second": 4.76
+   },
+   {
+    "i": 7,
+    "start": 13.56,
+    "end": 14.55,
+    "text": "不是目击者",
+    "chars_per_second": 5.05
+   },
+   {
+    "i": 8,
+    "start": 14.9,
+    "end": 15.64,
+    "text": "不是指纹",
+    "chars_per_second": 5.41
+   },
+   {
+    "i": 9,
+    "start": 15.98,
+    "end": 19.12,
+    "text": "而是一卷送去冲印店的菲林",
+    "chars_per_second": 3.82
+   },
+   {
+    "i": 10,
+    "start": 19.46,
+    "end": 21.68,
+    "text": "今天讲雨夜屠夫林过云",
+    "chars_per_second": 4.5
+   },
+   {
+    "i": 11,
+    "start": 22.02,
+    "end": 24.97,
+    "text": "一个夜班出租车司机",
+    "chars_per_second": 3.05
+   },
+   {
+    "i": 12,
+    "start": 25.32,
+    "end": 26.61,
+    "text": "和四条人命",
+    "chars_per_second": 3.86
+   }
+  ]
+ },
+ "N02": {
+  "duration": 26.275,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 0.83,
+    "text": "林过云",
+    "chars_per_second": 4.41
+   },
+   {
+    "i": 1,
+    "start": 1.05,
+    "end": 1.69,
+    "text": "二十七岁",
+    "chars_per_second": 6.25
+   },
+   {
+    "i": 2,
+    "start": 2.05,
+    "end": 3.42,
+    "text": "夜班的士司机",
+    "chars_per_second": 4.38
+   },
+   {
+    "i": 3,
+    "start": 3.77,
+    "end": 5.72,
+    "text": "住在土瓜湾一栋旧唐楼里",
+    "chars_per_second": 5.64
+   },
+   {
+    "i": 4,
+    "start": 6.07,
+    "end": 7.58,
+    "text": "白天他几乎不出现",
+    "chars_per_second": 5.3
+   },
+   {
+    "i": 5,
+    "start": 7.92,
+    "end": 9.37,
+    "text": "入夜才开车上街",
+    "chars_per_second": 4.83
+   },
+   {
+    "i": 6,
+    "start": 9.72,
+    "end": 10.86,
+    "text": "凌晨的尖沙咀",
+    "chars_per_second": 5.26
+   },
+   {
+    "i": 7,
+    "start": 11.1,
+    "end": 13.26,
+    "text": "搭车的大多是下班回家的女人",
+    "chars_per_second": 6.02
+   },
+   {
+    "i": 8,
+    "start": 13.62,
+    "end": 14.96,
+    "text": "从二月到七月",
+    "chars_per_second": 4.48
+   },
+   {
+    "i": 9,
+    "start": 15.31,
+    "end": 17.05,
+    "text": "四名女子坐上他的车",
+    "chars_per_second": 5.17
+   },
+   {
+    "i": 10,
+    "start": 17.4,
+    "end": 18.35,
+    "text": "再没有下车",
+    "chars_per_second": 5.26
+   },
+   {
+    "i": 11,
+    "start": 18.69,
+    "end": 20.26,
+    "text": "二十二岁的陈凤兰",
+    "chars_per_second": 5.1
+   },
+   {
+    "i": 12,
+    "start": 20.6,
+    "end": 22.14,
+    "text": "三十一岁的陈云洁",
+    "chars_per_second": 5.19
+   },
+   {
+    "i": 13,
+    "start": 22.47,
+    "end": 24.04,
+    "text": "二十九岁的梁秀云",
+    "chars_per_second": 5.1
+   },
+   {
+    "i": 14,
+    "start": 24.38,
+    "end": 26.27,
+    "text": "还有十七岁的梁惠心",
+    "chars_per_second": 4.75
+   }
+  ]
+ },
+ "N03": {
+  "duration": 26.735,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.16,
+    "end": 1.9,
+    "text": "作案几乎都挑在雨夜",
+    "chars_per_second": 5.17
+   },
+   {
+    "i": 1,
+    "start": 2.24,
+    "end": 3.95,
+    "text": "他把车开到僻静处",
+    "chars_per_second": 4.68
+   },
+   {
+    "i": 2,
+    "start": 4.3,
+    "end": 6.26,
+    "text": "然后在车里勒死对方",
+    "chars_per_second": 4.59
+   },
+   {
+    "i": 3,
+    "start": 6.61,
+    "end": 7.46,
+    "text": "四个月里",
+    "chars_per_second": 4.71
+   },
+   {
+    "i": 4,
+    "start": 7.81,
+    "end": 9.96,
+    "text": "香港连着发生四起命案",
+    "chars_per_second": 4.65
+   },
+   {
+    "i": 5,
+    "start": 10.31,
+    "end": 13.52,
+    "text": "警方一开始并不确定它们出自同一双手",
+    "chars_per_second": 5.3
+   },
+   {
+    "i": 6,
+    "start": 13.86,
+    "end": 15.82,
+    "text": "因为现场几乎没有留下什么",
+    "chars_per_second": 6.12
+   },
+   {
+    "i": 7,
+    "start": 16.17,
+    "end": 19.9,
+    "text": "而林过云做了一件他自以为很聪明的事",
+    "chars_per_second": 4.56
+   },
+   {
+    "i": 8,
+    "start": 20.24,
+    "end": 22.32,
+    "text": "他把整个过程拍了下来",
+    "chars_per_second": 4.81
+   },
+   {
+    "i": 9,
+    "start": 22.66,
+    "end": 24.22,
+    "text": "照片和录像带",
+    "chars_per_second": 3.85
+   },
+   {
+    "i": 10,
+    "start": 24.56,
+    "end": 26.73,
+    "text": "整整齐齐收在家里",
+    "chars_per_second": 3.68
+   }
+  ]
+ },
+ "N04": {
+  "duration": 29.435,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 2.0,
+    "text": "转折点是一间冲印店",
+    "chars_per_second": 4.84
+   },
+   {
+    "i": 1,
+    "start": 2.35,
+    "end": 3.99,
+    "text": "林过云家里没有暗房",
+    "chars_per_second": 5.49
+   },
+   {
+    "i": 2,
+    "start": 4.33,
+    "end": 7.89,
+    "text": "习惯把菲林拿到尖沙咀一间相铺冲洗",
+    "chars_per_second": 4.49
+   },
+   {
+    "i": 3,
+    "start": 8.25,
+    "end": 9.52,
+    "text": "一九八二年八月",
+    "chars_per_second": 5.51
+   },
+   {
+    "i": 4,
+    "start": 9.86,
+    "end": 11.31,
+    "text": "他想放大一批相片",
+    "chars_per_second": 5.52
+   },
+   {
+    "i": 5,
+    "start": 11.66,
+    "end": 13.64,
+    "text": "偏巧放大机坏了",
+    "chars_per_second": 3.54
+   },
+   {
+    "i": 6,
+    "start": 13.99,
+    "end": 15.51,
+    "text": "底片被转到分店",
+    "chars_per_second": 4.61
+   },
+   {
+    "i": 7,
+    "start": 15.85,
+    "end": 16.73,
+    "text": "由人手冲晒",
+    "chars_per_second": 5.68
+   },
+   {
+    "i": 8,
+    "start": 17.09,
+    "end": 19.62,
+    "text": "店员把照片看清楚的那一刻",
+    "chars_per_second": 4.74
+   },
+   {
+    "i": 9,
+    "start": 19.97,
+    "end": 21.98,
+    "text": "就知道这不是普通摄影",
+    "chars_per_second": 4.98
+   },
+   {
+    "i": 10,
+    "start": 22.33,
+    "end": 23.51,
+    "text": "画面里的东西",
+    "chars_per_second": 5.08
+   },
+   {
+    "i": 11,
+    "start": 23.86,
+    "end": 26.32,
+    "text": "和报纸上正在报道的那宗案子",
+    "chars_per_second": 5.28
+   },
+   {
+    "i": 12,
+    "start": 26.67,
+    "end": 27.41,
+    "text": "太像了",
+    "chars_per_second": 4.05
+   },
+   {
+    "i": 13,
+    "start": 27.76,
+    "end": 29.43,
+    "text": "负责人报了警",
+    "chars_per_second": 3.58
+   }
+  ]
+ },
+ "N05": {
+  "duration": 27.27,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 1.85,
+    "text": "警方没有立刻上门",
+    "chars_per_second": 4.68
+   },
+   {
+    "i": 1,
+    "start": 2.2,
+    "end": 4.18,
+    "text": "他们让店员照常打电话",
+    "chars_per_second": 5.05
+   },
+   {
+    "i": 2,
+    "start": 4.53,
+    "end": 5.88,
+    "text": "通知客人来取相",
+    "chars_per_second": 5.19
+   },
+   {
+    "i": 3,
+    "start": 6.23,
+    "end": 7.77,
+    "text": "因为底片还在店里",
+    "chars_per_second": 5.19
+   },
+   {
+    "i": 4,
+    "start": 8.13,
+    "end": 9.79,
+    "text": "来取的人只能是他",
+    "chars_per_second": 4.82
+   },
+   {
+    "i": 5,
+    "start": 10.13,
+    "end": 10.77,
+    "text": "八月十八日",
+    "chars_per_second": 7.81
+   },
+   {
+    "i": 6,
+    "start": 11.11,
+    "end": 12.34,
+    "text": "林过云走进冲印店",
+    "chars_per_second": 6.5
+   },
+   {
+    "i": 7,
+    "start": 12.67,
+    "end": 13.94,
+    "text": "埋伏的探员一拥而上",
+    "chars_per_second": 7.09
+   },
+   {
+    "i": 8,
+    "start": 14.29,
+    "end": 14.81,
+    "text": "同一天",
+    "chars_per_second": 5.77
+   },
+   {
+    "i": 9,
+    "start": 15.16,
+    "end": 18.43,
+    "text": "警方搜查他在土瓜湾贵州街的住所",
+    "chars_per_second": 4.59
+   },
+   {
+    "i": 10,
+    "start": 18.77,
+    "end": 19.24,
+    "text": "照片",
+    "chars_per_second": 4.26
+   },
+   {
+    "i": 11,
+    "start": 19.52,
+    "end": 20.08,
+    "text": "录像带",
+    "chars_per_second": 5.36
+   },
+   {
+    "i": 12,
+    "start": 20.43,
+    "end": 21.18,
+    "text": "手术器材",
+    "chars_per_second": 5.33
+   },
+   {
+    "i": 13,
+    "start": 21.52,
+    "end": 22.92,
+    "text": "一件一件被翻出来",
+    "chars_per_second": 5.71
+   },
+   {
+    "i": 14,
+    "start": 23.26,
+    "end": 24.95,
+    "text": "四起互不相干的命案",
+    "chars_per_second": 5.33
+   },
+   {
+    "i": 15,
+    "start": 25.3,
+    "end": 27.27,
+    "text": "从此串成一条线",
+    "chars_per_second": 3.55
+   }
+  ]
+ },
+ "N06": {
+  "duration": 38.01,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 1.61,
+    "text": "一九八三年三月",
+    "chars_per_second": 4.79
+   },
+   {
+    "i": 1,
+    "start": 1.95,
+    "end": 4.05,
+    "text": "案件在高等法院开审",
+    "chars_per_second": 4.29
+   },
+   {
+    "i": 2,
+    "start": 4.4,
+    "end": 5.0,
+    "text": "争的是",
+    "chars_per_second": 5.0
+   },
+   {
+    "i": 3,
+    "start": 5.28,
+    "end": 6.91,
+    "text": "他到底有没有精神病",
+    "chars_per_second": 5.52
+   },
+   {
+    "i": 4,
+    "start": 7.27,
+    "end": 9.56,
+    "text": "五名精神科医生评估过他",
+    "chars_per_second": 4.8
+   },
+   {
+    "i": 5,
+    "start": 9.9,
+    "end": 12.12,
+    "text": "陪审团最终不接受这个说法",
+    "chars_per_second": 5.41
+   },
+   {
+    "i": 6,
+    "start": 12.46,
+    "end": 13.34,
+    "text": "四月八日",
+    "chars_per_second": 4.55
+   },
+   {
+    "i": 7,
+    "start": 13.67,
+    "end": 15.31,
+    "text": "四项谋杀罪名成立",
+    "chars_per_second": 4.88
+   },
+   {
+    "i": 8,
+    "start": 15.66,
+    "end": 16.88,
+    "text": "判处死刑",
+    "chars_per_second": 3.28
+   },
+   {
+    "i": 9,
+    "start": 17.23,
+    "end": 19.54,
+    "text": "但香港多年没有执行死刑",
+    "chars_per_second": 4.76
+   },
+   {
+    "i": 10,
+    "start": 19.88,
+    "end": 21.21,
+    "text": "一九八四年八月",
+    "chars_per_second": 5.26
+   },
+   {
+    "i": 11,
+    "start": 21.56,
+    "end": 24.19,
+    "text": "港督会同行政局赦免死刑",
+    "chars_per_second": 4.18
+   },
+   {
+    "i": 12,
+    "start": 24.43,
+    "end": 25.67,
+    "text": "改判终身监禁",
+    "chars_per_second": 4.84
+   },
+   {
+    "i": 13,
+    "start": 26.02,
+    "end": 28.78,
+    "text": "他想让全世界看见自己的作品",
+    "chars_per_second": 4.71
+   },
+   {
+    "i": 14,
+    "start": 29.12,
+    "end": 30.37,
+    "text": "把他送上法庭的",
+    "chars_per_second": 5.6
+   },
+   {
+    "i": 15,
+    "start": 30.68,
+    "end": 31.97,
+    "text": "正是那卷菲林",
+    "chars_per_second": 4.65
+   },
+   {
+    "i": 16,
+    "start": 32.31,
+    "end": 33.03,
+    "text": "你觉得",
+    "chars_per_second": 4.17
+   },
+   {
+    "i": 17,
+    "start": 33.36,
+    "end": 35.34,
+    "text": "如果那台放大机没有坏",
+    "chars_per_second": 5.05
+   },
+   {
+    "i": 18,
+    "start": 35.69,
+    "end": 38.01,
+    "text": "这个案子还会被揭开吗",
+    "chars_per_second": 4.31
+   }
+  ]
+ }
+}

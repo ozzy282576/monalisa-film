@@ -1,0 +1,297 @@
+{
+  "_what": "review_film.py 冻结帧复核阈值（TRIAGE_STATIC_DELTA）的实测标定数据",
+  "_how": "在交付成片跑 python3 production/review_film.py --film 交付/黑色大丽花_三分钟_带声音.mp4 --project production/dahlia --work work/dahlia/review，取 film-review.json 的 frozen_runs_over_one_second，再按 delivery/edit-decision-list.json 的片段类型标注应有结论。期望值来自片段类型本身：graphic/archive 本来就该静止，agnes 素材本来就该有微动。",
+  "_measured_on": "2026-09-10",
+  "film": "交付/黑色大丽花_三分钟_带声音.mp4",
+  "metric": "窗口内逐帧 64x64 灰度平均绝对差的中位数",
+  "threshold": 0.15,
+  "cluster_static_max": 0.08,
+  "cluster_micro_min": 0.21,
+  "counts": {
+    "static": 13,
+    "micro_motion": 22
+  },
+  "misclassified_by_current_threshold": 0,
+  "windows": [
+    {
+      "start_second": 0.27,
+      "shot": "S01",
+      "kind": "agnes",
+      "triage_median_delta": 0.43,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 4.9,
+      "shot": "S02",
+      "kind": "agnes",
+      "triage_median_delta": 0.223,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 7.57,
+      "shot": "S02",
+      "kind": "agnes",
+      "triage_median_delta": 1.474,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 11.23,
+      "shot": "S03",
+      "kind": "graphic",
+      "triage_median_delta": 0.049,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 27.57,
+      "shot": "S05",
+      "kind": "agnes",
+      "triage_median_delta": 0.885,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 29.33,
+      "shot": "S06",
+      "kind": "agnes",
+      "triage_median_delta": 0.24,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 34.23,
+      "shot": "S08",
+      "kind": "graphic",
+      "triage_median_delta": 0.056,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 37.4,
+      "shot": "S09",
+      "kind": "archive",
+      "triage_median_delta": 0.049,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 41.33,
+      "shot": "S06",
+      "kind": "agnes",
+      "triage_median_delta": 0.485,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 44.33,
+      "shot": "S08",
+      "kind": "graphic",
+      "triage_median_delta": 0.06,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 48.0,
+      "shot": "S10",
+      "kind": "agnes",
+      "triage_median_delta": 0.548,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 50.43,
+      "shot": "S10",
+      "kind": "agnes",
+      "triage_median_delta": 1.064,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 52.93,
+      "shot": "S09",
+      "kind": "archive",
+      "triage_median_delta": 0.045,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 57.23,
+      "shot": "S11",
+      "kind": "graphic",
+      "triage_median_delta": 0.065,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 68.67,
+      "shot": "S12",
+      "kind": "agnes",
+      "triage_median_delta": 0.217,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 74.0,
+      "shot": "S14",
+      "kind": "graphic",
+      "triage_median_delta": 0.058,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 75.13,
+      "shot": "S14",
+      "kind": "graphic",
+      "triage_median_delta": 0.057,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 80.3,
+      "shot": "S15",
+      "kind": "agnes",
+      "triage_median_delta": 0.222,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 82.5,
+      "shot": "S15",
+      "kind": "agnes",
+      "triage_median_delta": 1.008,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 88.3,
+      "shot": "S16",
+      "kind": "agnes",
+      "triage_median_delta": 0.391,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 97.03,
+      "shot": "S18",
+      "kind": "graphic",
+      "triage_median_delta": 0.051,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 102.77,
+      "shot": "S18",
+      "kind": "graphic",
+      "triage_median_delta": 0.08,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 104.53,
+      "shot": "S19",
+      "kind": "agnes",
+      "triage_median_delta": 0.691,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 118.87,
+      "shot": "S22",
+      "kind": "agnes",
+      "triage_median_delta": 0.229,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 121.43,
+      "shot": "S23",
+      "kind": "graphic",
+      "triage_median_delta": 0.048,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 129.9,
+      "shot": "S24",
+      "kind": "agnes",
+      "triage_median_delta": 0.716,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 134.37,
+      "shot": "S25",
+      "kind": "agnes",
+      "triage_median_delta": 0.574,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 137.1,
+      "shot": "S23",
+      "kind": "graphic",
+      "triage_median_delta": 0.054,
+      "verdict": "static",
+      "expected": "static"
+    },
+    {
+      "start_second": 144.97,
+      "shot": "S26",
+      "kind": "agnes",
+      "triage_median_delta": 0.552,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 152.3,
+      "shot": "S27",
+      "kind": "agnes",
+      "triage_median_delta": 0.248,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 155.67,
+      "shot": "S27",
+      "kind": "agnes",
+      "triage_median_delta": 0.608,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 158.53,
+      "shot": "S28",
+      "kind": "agnes",
+      "triage_median_delta": 0.556,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 167.6,
+      "shot": "S29",
+      "kind": "agnes",
+      "triage_median_delta": 0.971,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 169.6,
+      "shot": "S30",
+      "kind": "agnes",
+      "triage_median_delta": 0.21,
+      "verdict": "micro_motion",
+      "expected": "micro_motion"
+    },
+    {
+      "start_second": 176.4,
+      "shot": "END",
+      "kind": "graphic",
+      "triage_median_delta": 0.017,
+      "verdict": "static",
+      "expected": "static"
+    }
+  ]
+}

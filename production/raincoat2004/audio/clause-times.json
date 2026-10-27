@@ -1,0 +1,578 @@
+{
+ "N01": {
+  "duration": 21.57,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 1.43,
+    "text": "二零零三年九月",
+    "chars_per_second": 5.47
+   },
+   {
+    "i": 1,
+    "start": 1.78,
+    "end": 3.41,
+    "text": "首尔江南区新沙洞",
+    "chars_per_second": 4.91
+   },
+   {
+    "i": 2,
+    "start": 3.77,
+    "end": 5.82,
+    "text": "一对老夫妇在自己家里遇害",
+    "chars_per_second": 5.85
+   },
+   {
+    "i": 3,
+    "start": 6.17,
+    "end": 7.47,
+    "text": "房子随后被点着",
+    "chars_per_second": 5.38
+   },
+   {
+    "i": 4,
+    "start": 7.81,
+    "end": 10.25,
+    "text": "凶手没有拿走任何值钱的东西",
+    "chars_per_second": 5.33
+   },
+   {
+    "i": 5,
+    "start": 10.44,
+    "end": 12.52,
+    "text": "十个月后警方才确认",
+    "chars_per_second": 4.33
+   },
+   {
+    "i": 6,
+    "start": 12.86,
+    "end": 14.29,
+    "text": "那只是第一起",
+    "chars_per_second": 4.2
+   },
+   {
+    "i": 7,
+    "start": 14.63,
+    "end": 16.07,
+    "text": "而最后把他揪出来的",
+    "chars_per_second": 6.25
+   },
+   {
+    "i": 8,
+    "start": 16.37,
+    "end": 17.1,
+    "text": "不是指纹",
+    "chars_per_second": 5.48
+   },
+   {
+    "i": 9,
+    "start": 17.38,
+    "end": 18.31,
+    "text": "也不是监控",
+    "chars_per_second": 5.38
+   },
+   {
+    "i": 10,
+    "start": 18.65,
+    "end": 21.57,
+    "text": "是一部被记下来的电话号码",
+    "chars_per_second": 4.11
+   }
+  ]
+ },
+ "N02": {
+  "duration": 24.3,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 1.02,
+    "text": "他叫柳永哲",
+    "chars_per_second": 5.68
+   },
+   {
+    "i": 1,
+    "start": 1.36,
+    "end": 4.42,
+    "text": "一九七零年出生在全罗北道高敞郡",
+    "chars_per_second": 4.9
+   },
+   {
+    "i": 2,
+    "start": 4.77,
+    "end": 5.58,
+    "text": "家里很穷",
+    "chars_per_second": 4.94
+   },
+   {
+    "i": 3,
+    "start": 5.92,
+    "end": 7.19,
+    "text": "从高中时代起",
+    "chars_per_second": 4.72
+   },
+   {
+    "i": 4,
+    "start": 7.4,
+    "end": 10.55,
+    "text": "他就在监狱里进进出出",
+    "chars_per_second": 3.17
+   },
+   {
+    "i": 5,
+    "start": 10.75,
+    "end": 11.21,
+    "text": "盗窃",
+    "chars_per_second": 4.35
+   },
+   {
+    "i": 6,
+    "start": 11.56,
+    "end": 12.55,
+    "text": "诈骗和暴力",
+    "chars_per_second": 5.05
+   },
+   {
+    "i": 7,
+    "start": 12.89,
+    "end": 14.05,
+    "text": "前后十四次",
+    "chars_per_second": 4.31
+   },
+   {
+    "i": 8,
+    "start": 14.39,
+    "end": 15.41,
+    "text": "累计服刑十一年",
+    "chars_per_second": 6.86
+   },
+   {
+    "i": 9,
+    "start": 15.72,
+    "end": 17.98,
+    "text": "二零零三年九月十一日",
+    "chars_per_second": 4.42
+   },
+   {
+    "i": 10,
+    "start": 18.34,
+    "end": 20.41,
+    "text": "他最后一次走出监狱",
+    "chars_per_second": 4.35
+   },
+   {
+    "i": 11,
+    "start": 20.59,
+    "end": 22.74,
+    "text": "妻子已经带着儿子离开",
+    "chars_per_second": 4.65
+   },
+   {
+    "i": 12,
+    "start": 23.09,
+    "end": 24.3,
+    "text": "那年他三十三岁",
+    "chars_per_second": 5.79
+   }
+  ]
+ },
+ "N03": {
+  "duration": 25.245,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 1.21,
+    "text": "出狱十三天后",
+    "chars_per_second": 5.66
+   },
+   {
+    "i": 1,
+    "start": 1.55,
+    "end": 2.67,
+    "text": "第一起案子发生了",
+    "chars_per_second": 7.14
+   },
+   {
+    "i": 2,
+    "start": 3.02,
+    "end": 5.65,
+    "text": "此后他专挑富人区的独栋住宅",
+    "chars_per_second": 4.94
+   },
+   {
+    "i": 3,
+    "start": 5.99,
+    "end": 8.4,
+    "text": "在白天老人独自在家的时候闯进去",
+    "chars_per_second": 6.22
+   },
+   {
+    "i": 4,
+    "start": 8.75,
+    "end": 9.77,
+    "text": "为了不留目击者",
+    "chars_per_second": 6.86
+   },
+   {
+    "i": 5,
+    "start": 10.04,
+    "end": 11.7,
+    "text": "连屋里的帮佣也不放过",
+    "chars_per_second": 6.02
+   },
+   {
+    "i": 6,
+    "start": 12.05,
+    "end": 13.22,
+    "text": "二零零四年春天",
+    "chars_per_second": 5.98
+   },
+   {
+    "i": 7,
+    "start": 13.54,
+    "end": 14.68,
+    "text": "他突然换了目标",
+    "chars_per_second": 6.14
+   },
+   {
+    "i": 8,
+    "start": 14.99,
+    "end": 17.11,
+    "text": "用伪造的警察证件和一部电话",
+    "chars_per_second": 6.13
+   },
+   {
+    "i": 9,
+    "start": 17.45,
+    "end": 19.92,
+    "text": "把按摩女约到自己住的写字楼公寓",
+    "chars_per_second": 6.07
+   },
+   {
+    "i": 10,
+    "start": 20.26,
+    "end": 22.71,
+    "text": "到七月落网前",
+    "chars_per_second": 2.45
+   },
+   {
+    "i": 11,
+    "start": 23.0,
+    "end": 23.87,
+    "text": "有十一名女性走进了那栋楼",
+    "chars_per_second": 13.79
+   },
+   {
+    "i": 12,
+    "start": 24.21,
+    "end": 25.25,
+    "text": "再也没有出来",
+    "chars_per_second": 5.8
+   }
+  ]
+ },
+ "N04": {
+  "duration": 22.435,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.14,
+    "end": 0.95,
+    "text": "一开始",
+    "chars_per_second": 3.7
+   },
+   {
+    "i": 1,
+    "start": 1.13,
+    "end": 3.65,
+    "text": "这些失踪并没有被当成连环案件",
+    "chars_per_second": 5.56
+   },
+   {
+    "i": 2,
+    "start": 4.0,
+    "end": 6.68,
+    "text": "按摩女的去向本来就少有人追问",
+    "chars_per_second": 5.22
+   },
+   {
+    "i": 3,
+    "start": 6.88,
+    "end": 8.15,
+    "text": "警方最初的判断是",
+    "chars_per_second": 6.3
+   },
+   {
+    "i": 4,
+    "start": 8.5,
+    "end": 10.41,
+    "text": "可能有人把她们拐卖到了乡下",
+    "chars_per_second": 6.81
+   },
+   {
+    "i": 5,
+    "start": 10.75,
+    "end": 13.35,
+    "text": "真正的转机出现在一部电话上",
+    "chars_per_second": 5.0
+   },
+   {
+    "i": 6,
+    "start": 13.69,
+    "end": 14.93,
+    "text": "店里好几个姑娘",
+    "chars_per_second": 5.65
+   },
+   {
+    "i": 7,
+    "start": 15.28,
+    "end": 17.42,
+    "text": "都是接到同一个号码之后消失的",
+    "chars_per_second": 6.54
+   },
+   {
+    "i": 8,
+    "start": 17.77,
+    "end": 19.26,
+    "text": "老板把号码记了下来",
+    "chars_per_second": 6.04
+   },
+   {
+    "i": 9,
+    "start": 19.56,
+    "end": 20.77,
+    "text": "又看见它出现",
+    "chars_per_second": 4.96
+   },
+   {
+    "i": 10,
+    "start": 21.0,
+    "end": 22.43,
+    "text": "就带着人报了警",
+    "chars_per_second": 4.88
+   }
+  ]
+ },
+ "N05": {
+  "duration": 32.824,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.15,
+    "end": 2.24,
+    "text": "二零零四年七月十五日凌晨",
+    "chars_per_second": 5.74
+   },
+   {
+    "i": 1,
+    "start": 2.58,
+    "end": 5.4,
+    "text": "警方在麻浦区的一条巷子里抓住了他",
+    "chars_per_second": 5.67
+   },
+   {
+    "i": 2,
+    "start": 5.74,
+    "end": 8.68,
+    "text": "审讯中途他假装癫痫发作",
+    "chars_per_second": 3.74
+   },
+   {
+    "i": 3,
+    "start": 9.02,
+    "end": 11.17,
+    "text": "趁手铐松开逃出警局",
+    "chars_per_second": 4.19
+   },
+   {
+    "i": 4,
+    "start": 11.51,
+    "end": 12.54,
+    "text": "十二个小时后",
+    "chars_per_second": 5.83
+   },
+   {
+    "i": 5,
+    "start": 12.89,
+    "end": 16.1,
+    "text": "警察在永登浦站附近把他重新抓住",
+    "chars_per_second": 4.67
+   },
+   {
+    "i": 6,
+    "start": 16.44,
+    "end": 18.04,
+    "text": "面对警方的问话",
+    "chars_per_second": 4.38
+   },
+   {
+    "i": 7,
+    "start": 18.38,
+    "end": 21.44,
+    "text": "他承认自己和这些失踪案有关",
+    "chars_per_second": 4.25
+   },
+   {
+    "i": 8,
+    "start": 21.78,
+    "end": 22.56,
+    "text": "七月十八日",
+    "chars_per_second": 6.41
+   },
+   {
+    "i": 9,
+    "start": 22.91,
+    "end": 25.93,
+    "text": "他带着警察上了奉元寺的后山",
+    "chars_per_second": 4.3
+   },
+   {
+    "i": 10,
+    "start": 26.63,
+    "end": 27.19,
+    "text": "雨天里",
+    "chars_per_second": 5.36
+   },
+   {
+    "i": 11,
+    "start": 27.6,
+    "end": 29.45,
+    "text": "警方在那片山坡上",
+    "chars_per_second": 4.32
+   },
+   {
+    "i": 12,
+    "start": 29.68,
+    "end": 32.82,
+    "text": "找到了十一名失踪女性的下落",
+    "chars_per_second": 4.13
+   }
+  ]
+ },
+ "N06": {
+  "duration": 33.67,
+  "clauses": [
+   {
+    "i": 0,
+    "start": 0.13,
+    "end": 2.12,
+    "text": "二零零四年十二月十三日",
+    "chars_per_second": 5.53
+   },
+   {
+    "i": 1,
+    "start": 2.46,
+    "end": 4.12,
+    "text": "首尔中央地方法院认定",
+    "chars_per_second": 6.02
+   },
+   {
+    "i": 2,
+    "start": 4.47,
+    "end": 6.65,
+    "text": "他对二十人的死亡负有责任",
+    "chars_per_second": 5.5
+   },
+   {
+    "i": 3,
+    "start": 6.88,
+    "end": 7.73,
+    "text": "判处死刑",
+    "chars_per_second": 4.71
+   },
+   {
+    "i": 4,
+    "start": 8.07,
+    "end": 9.23,
+    "text": "二零零五年六月",
+    "chars_per_second": 6.03
+   },
+   {
+    "i": 5,
+    "start": 9.57,
+    "end": 11.81,
+    "text": "最高法院终审维持原判",
+    "chars_per_second": 4.46
+   },
+   {
+    "i": 6,
+    "start": 12.15,
+    "end": 15.45,
+    "text": "韩国从一九九七年起就没有再执行过死刑",
+    "chars_per_second": 5.45
+   },
+   {
+    "i": 7,
+    "start": 15.76,
+    "end": 17.52,
+    "text": "他至今仍然在监狱里",
+    "chars_per_second": 5.11
+   },
+   {
+    "i": 8,
+    "start": 17.86,
+    "end": 19.18,
+    "text": "真正让人不安的是",
+    "chars_per_second": 6.06
+   },
+   {
+    "i": 9,
+    "start": 19.44,
+    "end": 20.23,
+    "text": "他被捕之后",
+    "chars_per_second": 6.33
+   },
+   {
+    "i": 10,
+    "start": 20.59,
+    "end": 23.39,
+    "text": "韩国的网站上出现了他的粉丝俱乐部",
+    "chars_per_second": 5.71
+   },
+   {
+    "i": 11,
+    "start": 23.74,
+    "end": 24.69,
+    "text": "二零零八年",
+    "chars_per_second": 5.26
+   },
+   {
+    "i": 12,
+    "start": 24.93,
+    "end": 27.29,
+    "text": "这起案子被拍成电影《追击者》",
+    "chars_per_second": 5.08
+   },
+   {
+    "i": 13,
+    "start": 27.63,
+    "end": 28.45,
+    "text": "二零二一年",
+    "chars_per_second": 6.1
+   },
+   {
+    "i": 14,
+    "start": 28.65,
+    "end": 29.81,
+    "text": "它又被拍成纪录片",
+    "chars_per_second": 6.9
+   },
+   {
+    "i": 15,
+    "start": 30.16,
+    "end": 32.04,
+    "text": "危险从不写在脸上",
+    "chars_per_second": 4.26
+   },
+   {
+    "i": 16,
+    "start": 32.39,
+    "end": 33.67,
+    "text": "它就走在人群里",
+    "chars_per_second": 5.47
+   }
+  ]
+ }
+}

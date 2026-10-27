@@ -1,0 +1,199 @@
+{
+  "run_id": "34316011433",
+  "scope": "两次运行生成素材的抽帧检查；不代表完整视听终审",
+  "reviews": [
+    {
+      "id": "S01",
+      "video_sha256": "ddfe1ade0a87bfda0c56a15c51367375a476dabe566ce635951e2384eabceb5b",
+      "request_hash": "16f8b8b29514d8016e19031ffdc37e92abcf6dbe879044c82ec59c085e535f21",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "usable_with_caveat",
+      "note": "抽样中房屋与道路几何关系随推进基本连贯；画面较暗、街区衰败感偏重，只作为洛杉矶环境重现，不当作发现地实拍。"
+    },
+    {
+      "id": "S02",
+      "video_sha256": "dd69533b4f2d17eb90fa4797bd6789bb4e669fbe8c3f5c2a51240f11a7ac4b10",
+      "request_hash": "9ace500d1937c6b5ca1b85e93bd612ec16fc0bd6d68a31b09aca40b0e5410ae4",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "use_tighter_crop",
+      "note": "母亲反应与镜头推进可用于叙事；背景商业街不应被当作真实发现地点。裁紧到人物反应，保留场景重现标识。"
+    },
+    {
+      "id": "S09",
+      "video_sha256": "bcc7d9c9e5d4eabc747308af865315b9cc2ce6a19c642f4e5e9cb01bcf598608",
+      "request_hash": "7e14865af440621f6f56dd8680e018a9eaddef4a0fd47be867e8cdc4717fbcca",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "replace_with_archive",
+      "note": "生成人像外观偏成熟，不宜承担22岁受害者的身份肖像；改用警方通告所载档案照片。原始结果仍保留审计。"
+    },
+    {
+      "id": "S12",
+      "video_sha256": "f3e75cecfa98600cc3f71e051740919ffb3d389845035cd108cde5c984868c8b",
+      "request_hash": "aa2a7c60179fd353119c4f023a31c62bc33ed59b6dc8a6e9c4a4ba7a1a5e0753",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "use_early_window",
+      "note": "建筑是生成示意而非比尔特莫尔实拍，并出现模型虚构字样；只取前2.15秒的远景，明确标注AI外景示意。"
+    },
+    {
+      "id": "S17",
+      "video_sha256": "05172f65bf14d8a81f79f202e5d7b58a95611c8c9e4ecc55aad10a633f8f69f4",
+      "request_hash": "e30a46b2c84d9ee2b1bf88e29f672cbc9861b7a14a6a57390057e12e2103205d",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "use_early_window",
+      "note": "后半段信封出现类似叶片的压纹，不能作为指纹演示；只取前2.0秒取信封动作，随后切到准确的后期结果卡。"
+    },
+    {
+      "id": "S19",
+      "video_sha256": "9906552af467781278c323aba2172f3ce959b3c21c2a20965f6483e56cc9f8b9",
+      "request_hash": "38c3301f03f317906ee704488e283999568c870bc309bdfff65c95d7f6fe6775",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "usable_with_caveat",
+      "note": "白大褂人员核查纸质抽屉，适合表达调查方向。柜上生成字样不当作真实姓名或案件证物。"
+    },
+    {
+      "id": "S24",
+      "video_sha256": "a9aa3e652b6d7621d495b14731d1d84de1d6b4006def42bf64863a73d5fad955",
+      "request_hash": "89284809969bead188edf72cb1a583d392ad384b08fb49e94f3a2e8161e23e9c",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "usable",
+      "note": "档案与书籍近景，低饱和木色与绿灯环境一致；不引用生成封面上的字样。"
+    },
+    {
+      "id": "S25",
+      "video_sha256": "ca87659466189772ea733570a3e714193dd3ce6b073ba566652a0f0424b6be3e",
+      "request_hash": "c9f791ed3dc770702f72248e9866f41c138ae360c55a3216b710c0fd088b88af",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "use_early_window",
+      "note": "手部动作更像整理纸张而非敲击键盘，后半段出现伪字；只取前2.7秒，并将音效改为纸声。"
+    },
+    {
+      "id": "S27",
+      "video_sha256": "6cc73b378a12661de5e806b994a7ddedccbfdb3e335258b2c6c352cf026e8c42",
+      "request_hash": "5a8b0045e4a4def394d562493a1ef1694f9affa26ce4e39b1e41541c13362507",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "usable",
+      "note": "抽样中书页/档案保持敞开，没有结案或封存动作。"
+    },
+    {
+      "id": "S28",
+      "video_sha256": "6dc49746b9e4bec0f11a6230a93719a2ce957fb8965a036e110bb67d448eb2e9",
+      "request_hash": "b865c6dea185ed68f2bf52d8e5ac01a838a43b0ebbb67770674284545a676f25",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "usable_with_caveat",
+      "note": "空走廊的移动与光线基本连贯，作为缺席意象；不是历史建筑的测绘还原。"
+    },
+    {
+      "id": "S29",
+      "video_sha256": "dd24e802bd5e05fd5969eb1d59c83d4ec44c2a8528db6b168ed15102b23530ba",
+      "request_hash": "36822d889619bac79cd5d8021a0493dd381f96212c378c5719664e740347a576",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "usable_as_reconstruction",
+      "note": "人物主要为背面及侧面，作为生活意象保留并标AI情景重现，不冒充本人档案影像。"
+    },
+    {
+      "id": "S30",
+      "video_sha256": "77876fc4e31fdac11887a5e4672ca6b5e77dc9ad8d75f04fb3f09b8e233045bc",
+      "request_hash": "b1f4d9c5ae65e9ae51e87f8a321ab4e1ec5f569ce0a04d07a114d368a34792d5",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "usable_as_symbol",
+      "note": "空室与花为象征性收尾；不声称该花或陈设是案件证物。"
+    },
+    {
+      "id": "S04",
+      "video_sha256": "7a0afb58271897eb94a502ae0fd8d12c392efaf87fd389bfc11cdd2490a729cd",
+      "request_hash": "5d13237fe252efa75e19d71fd392c607bc8d6441bd8ca0ad0dda46522b87370c",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "概括性现场调查重现；布料和纸张不作为真实证物解释，未展示血腥伤害。"
+    },
+    {
+      "id": "S05",
+      "video_sha256": "f5753d556efa86ca31f7cef6194b80f1d261633b6b8dc22fa097da94306c45f4",
+      "request_hash": "ccdfd1d09ce9c94022c0cd2d9854909e7c5b2f56d2aeafa11164b218d8367ce0",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "空地/街区环境示意，镜头运动基本连贯；不是实际发现地点的档案影像。"
+    },
+    {
+      "id": "S06",
+      "video_sha256": "93318679c2d71dbea1780bbe12cdf4bbd6a6d72286177f0cf9f1cd536efa61f7",
+      "request_hash": "1e6548cb48940368828a021c8a7efbb15c8b9ce84c0db404461feafe96dd8c03",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "生成纹理不符合指纹形态；已用明确标注的指纹图解遮盖纠错，实际导出EDL确认使用此修正。"
+    },
+    {
+      "id": "S07",
+      "video_sha256": "e5b84a7edd2b78e86b44b8cefd59a8dc7d8317e48a372e869f1c6e2c171a46ab",
+      "request_hash": "fe5239d849badeb84939929ea856277df1dbe8e428821f2d68da71487b8d71f3",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "作为影像传输的概念示意使用，不宣称机械结构是实际设备复原。"
+    },
+    {
+      "id": "S10",
+      "video_sha256": "4c8ff50d7b11ba8cede97ae49cbcf77d6661ad6c7a397c00eac3a7d13218755d",
+      "request_hash": "ccc2e695ba3c23f6d2fda74ada839d85c539d44496114263639e789b6b5e96d5",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "印刷机、纸张与摄影运动适合媒体叙事；不引用生成报纸文字。"
+    },
+    {
+      "id": "S13",
+      "video_sha256": "97bb4ffcaa0fca990b3f23080627a5aedb11ee4044f268595ff99e1e11b895d9",
+      "request_hash": "8066ef1a33d005a296b17b1be80a04c30cc2f26164bc701a0bfd1ac6b0e94c64",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "仅使用1.4秒后的背影片段，避免不合适的正面角色形象。"
+    },
+    {
+      "id": "S15",
+      "video_sha256": "a5c1a2db80c3ad5e5673f8f3e27d7097dd4cc9432c3e913a41d02132ee82f873",
+      "request_hash": "e605819de8ccfc174f19ef867842628534acbee50ab6843f8865de8e8ec5226b",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "资料板和未完成连接的意象可用，没有指认具体嫌疑人。"
+    },
+    {
+      "id": "S16",
+      "video_sha256": "f1fc02d24dba1e4d94e280854f234d504e4f8866381e57d0bb821bc08569aa88",
+      "request_hash": "157f90509d1bc89b474eb7847781001e6473b315052722835d56c0fe8047e373",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "信封外观为重现，不当作原始信件或从中读取案情文字。"
+    },
+    {
+      "id": "S20",
+      "video_sha256": "1333b66ec599a201c489e077fcd9b0670340987a7d053ba8f4a92996cfd18d38",
+      "request_hash": "13103db6a261eb6ef46068d98cddb1f00db764688c04d7af0fccc887ce3c3a98",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "比较资料的概括动作可用，空白卡片不承担真实证物信息。"
+    },
+    {
+      "id": "S21",
+      "video_sha256": "f5ae4626552f5b7e9d1189ed3714c52d89384e24a877c7ec3bf58fdb43c398b3",
+      "request_hash": "4e25438e24284c1b4fe947d057246f44756856b03b7d28c27a6b4d02f26881c3",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "本次导出使用电话与纸张的前段建立镜头，铃声连接访谈；仓库较晚加入的3.8秒抬话筒窗口未进入本次导出。"
+    },
+    {
+      "id": "S22",
+      "video_sha256": "6820307c8f7c1f78f934f9f2e05d448e93a525f2ea555623c4dff01ba10322f6",
+      "request_hash": "34b375d0f18b2f4c069f73bfea6dd53752ec9b6f7479b641916372d6a12d70b7",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "访谈姿态平静，无威胁或定罪暗示。"
+    },
+    {
+      "id": "S26",
+      "video_sha256": "5d0b1408b692cd17c8b01ecbdbd3aff361fe224f68132cf44e267d0a320a520f",
+      "request_hash": "0c9bd0e52f7748a6ffd391e0b4e016988205c1a9aec5663ea348da18b641974d",
+      "method": "visual inspection of 2fps contact sheet; not full-speed or frame-by-frame viewing",
+      "decision": "sampled_review_with_noted_corrections",
+      "note": "档案/书页保持打开，没有封案动作，生成标记不作为真实案件内容。"
+    }
+  ],
+  "additional_run_id": "34322385590"
+}

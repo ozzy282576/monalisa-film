@@ -1,0 +1,376 @@
+{
+  "film": "交付/雨夜屠夫林过云_一卷菲林里的四条人命_三分钟_带声音.mp4",
+  "frames_included": 5400,
+  "sampling": "none; every decoded frame exactly once",
+  "cell_size": "160x90",
+  "sheets": [
+    {
+      "shot": "S01",
+      "kind": "agnes",
+      "start_frame": 0,
+      "end_frame": 109,
+      "frames_in_sheet": 109,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S01-all-frames.jpg"
+    },
+    {
+      "shot": "S02",
+      "kind": "agnes",
+      "start_frame": 109,
+      "end_frame": 170,
+      "frames_in_sheet": 61,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S02-all-frames.jpg"
+    },
+    {
+      "shot": "S03",
+      "kind": "agnes",
+      "start_frame": 170,
+      "end_frame": 297,
+      "frames_in_sheet": 127,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S03-all-frames.jpg"
+    },
+    {
+      "shot": "S04",
+      "kind": "agnes",
+      "start_frame": 297,
+      "end_frame": 406,
+      "frames_in_sheet": 109,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S04-all-frames.jpg"
+    },
+    {
+      "shot": "S05",
+      "kind": "graphic",
+      "start_frame": 406,
+      "end_frame": 476,
+      "frames_in_sheet": 70,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S05-all-frames.jpg"
+    },
+    {
+      "shot": "S06",
+      "kind": "agnes",
+      "start_frame": 476,
+      "end_frame": 576,
+      "frames_in_sheet": 100,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S06-all-frames.jpg"
+    },
+    {
+      "shot": "S07",
+      "kind": "agnes",
+      "start_frame": 576,
+      "end_frame": 650,
+      "frames_in_sheet": 74,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S07-all-frames.jpg"
+    },
+    {
+      "shot": "S08",
+      "kind": "agnes",
+      "start_frame": 650,
+      "end_frame": 820,
+      "frames_in_sheet": 170,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S08-all-frames.jpg"
+    },
+    {
+      "shot": "S09",
+      "kind": "graphic",
+      "start_frame": 820,
+      "end_frame": 924,
+      "frames_in_sheet": 104,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S09-all-frames.jpg"
+    },
+    {
+      "shot": "S10",
+      "kind": "agnes",
+      "start_frame": 924,
+      "end_frame": 1044,
+      "frames_in_sheet": 120,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S10-all-frames.jpg"
+    },
+    {
+      "shot": "S11",
+      "kind": "agnes",
+      "start_frame": 1044,
+      "end_frame": 1136,
+      "frames_in_sheet": 92,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S11-all-frames.jpg"
+    },
+    {
+      "shot": "S12",
+      "kind": "agnes",
+      "start_frame": 1136,
+      "end_frame": 1258,
+      "frames_in_sheet": 122,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S12-all-frames.jpg"
+    },
+    {
+      "shot": "S13",
+      "kind": "agnes",
+      "start_frame": 1258,
+      "end_frame": 1356,
+      "frames_in_sheet": 98,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S13-all-frames.jpg"
+    },
+    {
+      "shot": "S14",
+      "kind": "graphic",
+      "start_frame": 1356,
+      "end_frame": 1465,
+      "frames_in_sheet": 109,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S14-all-frames.jpg"
+    },
+    {
+      "shot": "S15",
+      "kind": "agnes",
+      "start_frame": 1465,
+      "end_frame": 1612,
+      "frames_in_sheet": 147,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S15-all-frames.jpg"
+    },
+    {
+      "shot": "S16",
+      "kind": "agnes",
+      "start_frame": 1612,
+      "end_frame": 1732,
+      "frames_in_sheet": 120,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S16-all-frames.jpg"
+    },
+    {
+      "shot": "S17",
+      "kind": "agnes",
+      "start_frame": 1732,
+      "end_frame": 1799,
+      "frames_in_sheet": 67,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S17-all-frames.jpg"
+    },
+    {
+      "shot": "S18",
+      "kind": "agnes",
+      "start_frame": 1799,
+      "end_frame": 1906,
+      "frames_in_sheet": 107,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S18-all-frames.jpg"
+    },
+    {
+      "shot": "S19",
+      "kind": "agnes",
+      "start_frame": 1906,
+      "end_frame": 2008,
+      "frames_in_sheet": 102,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S19-all-frames.jpg"
+    },
+    {
+      "shot": "S20",
+      "kind": "agnes",
+      "start_frame": 2008,
+      "end_frame": 2075,
+      "frames_in_sheet": 67,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S20-all-frames.jpg"
+    },
+    {
+      "shot": "S21",
+      "kind": "agnes",
+      "start_frame": 2075,
+      "end_frame": 2193,
+      "frames_in_sheet": 118,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S21-all-frames.jpg"
+    },
+    {
+      "shot": "S22",
+      "kind": "agnes",
+      "start_frame": 2193,
+      "end_frame": 2263,
+      "frames_in_sheet": 70,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S22-all-frames.jpg"
+    },
+    {
+      "shot": "S23",
+      "kind": "agnes",
+      "start_frame": 2263,
+      "end_frame": 2417,
+      "frames_in_sheet": 154,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S23-all-frames.jpg"
+    },
+    {
+      "shot": "S24",
+      "kind": "graphic",
+      "start_frame": 2417,
+      "end_frame": 2538,
+      "frames_in_sheet": 121,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S24-all-frames.jpg"
+    },
+    {
+      "shot": "S25",
+      "kind": "agnes",
+      "start_frame": 2538,
+      "end_frame": 2651,
+      "frames_in_sheet": 113,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S25-all-frames.jpg"
+    },
+    {
+      "shot": "S26",
+      "kind": "agnes",
+      "start_frame": 2651,
+      "end_frame": 2750,
+      "frames_in_sheet": 99,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S26-all-frames.jpg"
+    },
+    {
+      "shot": "S27",
+      "kind": "agnes",
+      "start_frame": 2750,
+      "end_frame": 2907,
+      "frames_in_sheet": 157,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S27-all-frames.jpg"
+    },
+    {
+      "shot": "S28",
+      "kind": "agnes",
+      "start_frame": 2907,
+      "end_frame": 2990,
+      "frames_in_sheet": 83,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S28-all-frames.jpg"
+    },
+    {
+      "shot": "S29",
+      "kind": "agnes",
+      "start_frame": 2990,
+      "end_frame": 3103,
+      "frames_in_sheet": 113,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S29-all-frames.jpg"
+    },
+    {
+      "shot": "S30",
+      "kind": "agnes",
+      "start_frame": 3103,
+      "end_frame": 3300,
+      "frames_in_sheet": 197,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S30-all-frames.jpg"
+    },
+    {
+      "shot": "S31",
+      "kind": "graphic",
+      "start_frame": 3300,
+      "end_frame": 3427,
+      "frames_in_sheet": 127,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S31-all-frames.jpg"
+    },
+    {
+      "shot": "S32",
+      "kind": "agnes",
+      "start_frame": 3427,
+      "end_frame": 3476,
+      "frames_in_sheet": 49,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S32-all-frames.jpg"
+    },
+    {
+      "shot": "S33",
+      "kind": "agnes",
+      "start_frame": 3476,
+      "end_frame": 3589,
+      "frames_in_sheet": 113,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S33-all-frames.jpg"
+    },
+    {
+      "shot": "S34",
+      "kind": "agnes",
+      "start_frame": 3589,
+      "end_frame": 3709,
+      "frames_in_sheet": 120,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S34-all-frames.jpg"
+    },
+    {
+      "shot": "S35",
+      "kind": "agnes",
+      "start_frame": 3709,
+      "end_frame": 3839,
+      "frames_in_sheet": 130,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S35-all-frames.jpg"
+    },
+    {
+      "shot": "S36",
+      "kind": "agnes",
+      "start_frame": 3839,
+      "end_frame": 3887,
+      "frames_in_sheet": 48,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S36-all-frames.jpg"
+    },
+    {
+      "shot": "S37",
+      "kind": "agnes",
+      "start_frame": 3887,
+      "end_frame": 3969,
+      "frames_in_sheet": 82,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S37-all-frames.jpg"
+    },
+    {
+      "shot": "S38",
+      "kind": "agnes",
+      "start_frame": 3969,
+      "end_frame": 4121,
+      "frames_in_sheet": 152,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S38-all-frames.jpg"
+    },
+    {
+      "shot": "S39",
+      "kind": "agnes",
+      "start_frame": 4121,
+      "end_frame": 4269,
+      "frames_in_sheet": 148,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S39-all-frames.jpg"
+    },
+    {
+      "shot": "S40",
+      "kind": "agnes",
+      "start_frame": 4269,
+      "end_frame": 4403,
+      "frames_in_sheet": 134,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S40-all-frames.jpg"
+    },
+    {
+      "shot": "S41",
+      "kind": "agnes",
+      "start_frame": 4403,
+      "end_frame": 4570,
+      "frames_in_sheet": 167,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S41-all-frames.jpg"
+    },
+    {
+      "shot": "S42",
+      "kind": "graphic",
+      "start_frame": 4570,
+      "end_frame": 4740,
+      "frames_in_sheet": 170,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S42-all-frames.jpg"
+    },
+    {
+      "shot": "S43",
+      "kind": "agnes",
+      "start_frame": 4740,
+      "end_frame": 4869,
+      "frames_in_sheet": 129,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S43-all-frames.jpg"
+    },
+    {
+      "shot": "S44",
+      "kind": "graphic",
+      "start_frame": 4869,
+      "end_frame": 5051,
+      "frames_in_sheet": 182,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S44-all-frames.jpg"
+    },
+    {
+      "shot": "S45",
+      "kind": "agnes",
+      "start_frame": 5051,
+      "end_frame": 5286,
+      "frames_in_sheet": 235,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/S45-all-frames.jpg"
+    },
+    {
+      "shot": "END",
+      "kind": "graphic",
+      "start_frame": 5286,
+      "end_frame": 5400,
+      "frames_in_sheet": 114,
+      "file": "work/lamkorwan/final-frame-audit/all-frames/END-all-frames.jpg"
+    }
+  ]
+}

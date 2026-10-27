@@ -1,0 +1,376 @@
+{
+  "film": "交付/北九州监禁案_逃出魔窟的少女，七条人命背后的秘密_三分钟_带声音.mp4",
+  "frames_included": 5400,
+  "sampling": "none; every decoded frame exactly once",
+  "cell_size": "160x90",
+  "sheets": [
+    {
+      "shot": "S01",
+      "kind": "agnes",
+      "start_frame": 0,
+      "end_frame": 142,
+      "frames_in_sheet": 142,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S01-all-frames.jpg"
+    },
+    {
+      "shot": "S02",
+      "kind": "graphic",
+      "start_frame": 142,
+      "end_frame": 271,
+      "frames_in_sheet": 129,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S02-all-frames.jpg"
+    },
+    {
+      "shot": "S03",
+      "kind": "agnes",
+      "start_frame": 271,
+      "end_frame": 371,
+      "frames_in_sheet": 100,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S03-all-frames.jpg"
+    },
+    {
+      "shot": "S04",
+      "kind": "agnes",
+      "start_frame": 371,
+      "end_frame": 515,
+      "frames_in_sheet": 144,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S04-all-frames.jpg"
+    },
+    {
+      "shot": "S05",
+      "kind": "agnes",
+      "start_frame": 515,
+      "end_frame": 627,
+      "frames_in_sheet": 112,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S05-all-frames.jpg"
+    },
+    {
+      "shot": "S06",
+      "kind": "agnes",
+      "start_frame": 627,
+      "end_frame": 785,
+      "frames_in_sheet": 158,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S06-all-frames.jpg"
+    },
+    {
+      "shot": "S07",
+      "kind": "agnes",
+      "start_frame": 785,
+      "end_frame": 935,
+      "frames_in_sheet": 150,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S07-all-frames.jpg"
+    },
+    {
+      "shot": "S08",
+      "kind": "agnes",
+      "start_frame": 935,
+      "end_frame": 1115,
+      "frames_in_sheet": 180,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S08-all-frames.jpg"
+    },
+    {
+      "shot": "S09",
+      "kind": "agnes",
+      "start_frame": 1115,
+      "end_frame": 1299,
+      "frames_in_sheet": 184,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S09-all-frames.jpg"
+    },
+    {
+      "shot": "S10",
+      "kind": "graphic",
+      "start_frame": 1299,
+      "end_frame": 1408,
+      "frames_in_sheet": 109,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S10-all-frames.jpg"
+    },
+    {
+      "shot": "S11",
+      "kind": "agnes",
+      "start_frame": 1408,
+      "end_frame": 1513,
+      "frames_in_sheet": 105,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S11-all-frames.jpg"
+    },
+    {
+      "shot": "S12",
+      "kind": "agnes",
+      "start_frame": 1513,
+      "end_frame": 1614,
+      "frames_in_sheet": 101,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S12-all-frames.jpg"
+    },
+    {
+      "shot": "S13",
+      "kind": "agnes",
+      "start_frame": 1614,
+      "end_frame": 1745,
+      "frames_in_sheet": 131,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S13-all-frames.jpg"
+    },
+    {
+      "shot": "S14",
+      "kind": "agnes",
+      "start_frame": 1745,
+      "end_frame": 1806,
+      "frames_in_sheet": 61,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S14-all-frames.jpg"
+    },
+    {
+      "shot": "S15",
+      "kind": "agnes",
+      "start_frame": 1806,
+      "end_frame": 1948,
+      "frames_in_sheet": 142,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S15-all-frames.jpg"
+    },
+    {
+      "shot": "S16",
+      "kind": "agnes",
+      "start_frame": 1948,
+      "end_frame": 2005,
+      "frames_in_sheet": 57,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S16-all-frames.jpg"
+    },
+    {
+      "shot": "S17",
+      "kind": "graphic",
+      "start_frame": 2005,
+      "end_frame": 2089,
+      "frames_in_sheet": 84,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S17-all-frames.jpg"
+    },
+    {
+      "shot": "S18",
+      "kind": "agnes",
+      "start_frame": 2089,
+      "end_frame": 2158,
+      "frames_in_sheet": 69,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S18-all-frames.jpg"
+    },
+    {
+      "shot": "S19",
+      "kind": "agnes",
+      "start_frame": 2158,
+      "end_frame": 2225,
+      "frames_in_sheet": 67,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S19-all-frames.jpg"
+    },
+    {
+      "shot": "S20",
+      "kind": "agnes",
+      "start_frame": 2225,
+      "end_frame": 2336,
+      "frames_in_sheet": 111,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S20-all-frames.jpg"
+    },
+    {
+      "shot": "S21",
+      "kind": "agnes",
+      "start_frame": 2336,
+      "end_frame": 2457,
+      "frames_in_sheet": 121,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S21-all-frames.jpg"
+    },
+    {
+      "shot": "S22",
+      "kind": "agnes",
+      "start_frame": 2457,
+      "end_frame": 2553,
+      "frames_in_sheet": 96,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S22-all-frames.jpg"
+    },
+    {
+      "shot": "S23",
+      "kind": "agnes",
+      "start_frame": 2553,
+      "end_frame": 2707,
+      "frames_in_sheet": 154,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S23-all-frames.jpg"
+    },
+    {
+      "shot": "S24",
+      "kind": "agnes",
+      "start_frame": 2707,
+      "end_frame": 2822,
+      "frames_in_sheet": 115,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S24-all-frames.jpg"
+    },
+    {
+      "shot": "S25",
+      "kind": "agnes",
+      "start_frame": 2822,
+      "end_frame": 2908,
+      "frames_in_sheet": 86,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S25-all-frames.jpg"
+    },
+    {
+      "shot": "S26",
+      "kind": "agnes",
+      "start_frame": 2908,
+      "end_frame": 2969,
+      "frames_in_sheet": 61,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S26-all-frames.jpg"
+    },
+    {
+      "shot": "S27",
+      "kind": "agnes",
+      "start_frame": 2969,
+      "end_frame": 3053,
+      "frames_in_sheet": 84,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S27-all-frames.jpg"
+    },
+    {
+      "shot": "S28",
+      "kind": "agnes",
+      "start_frame": 3053,
+      "end_frame": 3178,
+      "frames_in_sheet": 125,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S28-all-frames.jpg"
+    },
+    {
+      "shot": "S29",
+      "kind": "agnes",
+      "start_frame": 3178,
+      "end_frame": 3331,
+      "frames_in_sheet": 153,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S29-all-frames.jpg"
+    },
+    {
+      "shot": "S30",
+      "kind": "graphic",
+      "start_frame": 3331,
+      "end_frame": 3520,
+      "frames_in_sheet": 189,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S30-all-frames.jpg"
+    },
+    {
+      "shot": "S31",
+      "kind": "agnes",
+      "start_frame": 3520,
+      "end_frame": 3608,
+      "frames_in_sheet": 88,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S31-all-frames.jpg"
+    },
+    {
+      "shot": "S32",
+      "kind": "graphic",
+      "start_frame": 3608,
+      "end_frame": 3711,
+      "frames_in_sheet": 103,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S32-all-frames.jpg"
+    },
+    {
+      "shot": "S33",
+      "kind": "agnes",
+      "start_frame": 3711,
+      "end_frame": 3786,
+      "frames_in_sheet": 75,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S33-all-frames.jpg"
+    },
+    {
+      "shot": "S34",
+      "kind": "agnes",
+      "start_frame": 3786,
+      "end_frame": 3947,
+      "frames_in_sheet": 161,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S34-all-frames.jpg"
+    },
+    {
+      "shot": "S35",
+      "kind": "agnes",
+      "start_frame": 3947,
+      "end_frame": 4053,
+      "frames_in_sheet": 106,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S35-all-frames.jpg"
+    },
+    {
+      "shot": "S36",
+      "kind": "agnes",
+      "start_frame": 4053,
+      "end_frame": 4163,
+      "frames_in_sheet": 110,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S36-all-frames.jpg"
+    },
+    {
+      "shot": "S37",
+      "kind": "agnes",
+      "start_frame": 4163,
+      "end_frame": 4189,
+      "frames_in_sheet": 26,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S37-all-frames.jpg"
+    },
+    {
+      "shot": "S38",
+      "kind": "graphic",
+      "start_frame": 4189,
+      "end_frame": 4312,
+      "frames_in_sheet": 123,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S38-all-frames.jpg"
+    },
+    {
+      "shot": "S39",
+      "kind": "agnes",
+      "start_frame": 4312,
+      "end_frame": 4492,
+      "frames_in_sheet": 180,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S39-all-frames.jpg"
+    },
+    {
+      "shot": "S40",
+      "kind": "graphic",
+      "start_frame": 4492,
+      "end_frame": 4600,
+      "frames_in_sheet": 108,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S40-all-frames.jpg"
+    },
+    {
+      "shot": "S41",
+      "kind": "agnes",
+      "start_frame": 4600,
+      "end_frame": 4709,
+      "frames_in_sheet": 109,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S41-all-frames.jpg"
+    },
+    {
+      "shot": "S42",
+      "kind": "agnes",
+      "start_frame": 4709,
+      "end_frame": 4800,
+      "frames_in_sheet": 91,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S42-all-frames.jpg"
+    },
+    {
+      "shot": "S43",
+      "kind": "agnes",
+      "start_frame": 4800,
+      "end_frame": 4939,
+      "frames_in_sheet": 139,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S43-all-frames.jpg"
+    },
+    {
+      "shot": "S44",
+      "kind": "agnes",
+      "start_frame": 4939,
+      "end_frame": 5105,
+      "frames_in_sheet": 166,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S44-all-frames.jpg"
+    },
+    {
+      "shot": "S45",
+      "kind": "agnes",
+      "start_frame": 5105,
+      "end_frame": 5286,
+      "frames_in_sheet": 181,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/S45-all-frames.jpg"
+    },
+    {
+      "shot": "END",
+      "kind": "graphic",
+      "start_frame": 5286,
+      "end_frame": 5400,
+      "frames_in_sheet": 114,
+      "file": "work/kitakyushu2002/final-frame-audit/all-frames/END-all-frames.jpg"
+    }
+  ]
+}

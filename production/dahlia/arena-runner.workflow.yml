@@ -1,0 +1,12 @@
+name: Arena Runner
+on: workflow_dispatch
+permissions: write-all
+jobs:
+  run:
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/01a085be-desktop-tutorial
+      - run: bash production/dahlia/arena_job.sh

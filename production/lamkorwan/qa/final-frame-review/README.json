@@ -1,0 +1,15 @@
+{
+  "film": "雨夜屠夫林过云_一卷菲林里的四条人命_三分钟_带声音.mp4",
+  "sha256": "b57ad26f7d520bb1d5066daa9a257d9c87651e3f9c0b99b80fa736fae9d20804",
+  "decoded_frames": 5400,
+  "source_audit": "production/lamkorwan/delivery/frame-distortion-audit.json",
+  "contents": {
+    "all_frame_sheets": 46,
+    "all_frame_manifests": 1,
+    "hand_contact_sheets": 2,
+    "midpoint_contact_sheets": 1,
+    "selected_candidate_frames": 10,
+    "candidate_manifests": 1
+  },
+  "scope": "compact review evidence only; does not equal a human approval and does not replace the delivered MP4"
+}

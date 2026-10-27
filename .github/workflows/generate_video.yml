@@ -1,0 +1,76 @@
+name: AI 视频生成 (CogVideoX-Flash)
+
+on:
+  push:
+    # Branch pushes only. GitHub treats a newly created tag as a push too;
+    # without a branch filter, the generic kitten prompt ran on every new tag.
+    branches:
+      - '**'
+    paths:
+      - 'trigger_video.txt'
+      # Chessboard64 generation is handled by the dedicated CogVideoX workflow.
+      # Keep its marker out of this generic prompt workflow to prevent duplicate jobs.
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: '请输入生成视频的提示词 (Prompt)'
+        required: true
+        default: '阳光明媚的森林，一只小松鼠在树枝上吃坚果，高清真实，电影质感'
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  generate:
+    if: >-
+      github.event_name != 'push' ||
+      github.ref == 'refs/heads/arena/56672981-monalisa-film' ||
+      contains(toJSON(github.event.commits), 'trigger_video.txt')
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 350
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python 运行环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 安装 Python 依赖
+        run: |
+          pip install --upgrade pip
+          pip install zhipuai sniffio httpx requests
+
+      - name: 调用 CogVideoX-Flash 生成视频
+        id: run_step
+        env:
+          ZHIPUAI_API_KEY: ${{ secrets.ZHIPUAI_API_KEY }}
+          INPUT_PROMPT: ${{ github.event.inputs.prompt }}
+        run: |
+          set -o pipefail
+          python scripts/run_cogvideox.py 2>&1 | tee run_output.log
+
+      - name: 将结果发到 GitHub Issue
+        if: always() && github.ref != 'refs/heads/arena/56672981-monalisa-film'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f run_output.log ]; then
+            gh issue create --title "视频生成测试报告 [$(date '+%H:%M:%S')]" --body-file run_output.log || true
+          fi
+
+      - name: 上传视频与日志
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-output
+          path: |
+            run_output.log
+            output_video.mp4
+            production/chessboard64/results.json
+            production/chessboard64/delivery/ref-image-probe.json
+            production/chessboard64/qa/
+          if-no-files-found: warn
+          retention-days: 14

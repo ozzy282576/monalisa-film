@@ -1,0 +1,130 @@
+# 模板：production/new_topic.py 会把 raincoat2004 / arena/ef74e893-desktop-tutorial / ef74e893-desktop-tutorial / 韩国雨衣杀手柳永哲：十个月，二十条人命 / 韩国雨衣杀手柳永哲_十个月，二十条人命_三分钟_带声音.mp4 换成新项目的值，
+# 生成 production/<slug>/workflows/<slug>-*.yml；复制到 .github/workflows/ 后即可用 marker 文件 push 触发。
+name: 韩国雨衣杀手柳永哲：十个月，二十条人命 · Agnes生成
+run-name: 韩国雨衣杀手柳永哲：十个月，二十条人命 · Agnes Video V2.0 生成 · ${{ github.ref_name }}
+
+# 触发方式：在分支上写 production/raincoat2004/GEN_REQUEST（内容就是 JSON payload）并 push。
+#   全量：{"workers":2}        补做个别镜头：{"workers":1,"only":"S07,S12"}
+# 沙箱连不上 Agnes API、也读不到 Actions 日志，所以素材与 results.json 由本工作流 commit 回分支。
+# 中途失败可断点续跑：再改一下 GEN_REQUEST 重新 push，已完成的镜头按 SHA-256 复用、不重新生成。
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: 'JSON: {"only":"S01","workers":1}；空则读 GEN_REQUEST'
+        type: string
+        default: '{"workers":2}'
+      skip_validate:
+        description: '跳过 --validate（配音轨还没入库时用；GEN_REQUEST 里的 skip_validate=true 同效）'
+        type: boolean
+        default: false
+  push:
+    branches:
+      - arena/ef74e893-desktop-tutorial
+    paths:
+      - production/raincoat2004/GEN_REQUEST
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raincoat2004-agnes-arena-ef74e893-desktop-tutorial
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.ref == 'refs/heads/arena/ef74e893-desktop-tutorial'
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 350
+    steps:
+      - name: Check out this Arena production branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/ef74e893-desktop-tutorial
+          fetch-depth: 1
+
+      - name: Resolve the generation payload
+        env:
+          PAYLOAD_INPUT: ${{ inputs.payload }}
+        run: |
+          set -euo pipefail
+          if [ -n "${PAYLOAD_INPUT:-}" ]; then
+            payload="$PAYLOAD_INPUT"
+          elif [ -f production/raincoat2004/GEN_REQUEST ]; then
+            payload="$(tr -d '\n' < production/raincoat2004/GEN_REQUEST)"
+          else
+            payload='{"workers":2}'
+          fi
+          echo "PAYLOAD=$payload" >> "$GITHUB_ENV"
+          echo "Generation payload: $payload"
+
+      - name: Install media tools and CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          ffmpeg -hide_banner -version | head -1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16" || \
+          python -m pip install --break-system-packages "pillow>=10,<13" "numpy>=1.26,<3" "faster-whisper>=1.1,<2" "av>=12,<16"
+
+      - name: 角色脸一致性（露脸模式静态闸门）
+        run: python3 production/face_cast.py check-prompts --project production/raincoat2004
+
+      - name: Validate the complete three-minute timeline
+        env:
+          SKIP_VALIDATE: ${{ inputs.skip_validate || 'false' }}
+        run: |
+          set -euo pipefail
+          payload="$(tr -d '\n' < production/raincoat2004/GEN_REQUEST 2>/dev/null || echo '{}')"
+          if [ "${SKIP_VALIDATE}" = "true" ] || printf '%s' "$payload" | grep -q '"skip_validate"[[:space:]]*:[[:space:]]*true'; then
+            echo "跳过 --validate：配音轨尚未入库，先出画面镜头（提示词 / 时间轴 / 角色谱已在本机闸门验过）"
+          else
+            python3 production/raincoat2004/generate.py --validate
+          fi
+
+      - name: Drop dead provider tasks so a re-run submits fresh ones
+        run: python3 production/raincoat2004/generate.py --prune-failed
+
+      - name: Generate Agnes clips and checkpoint provenance
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          PAYLOAD: ${{ env.PAYLOAD }}
+        run: python3 -u production/raincoat2004/generate.py --publish --payload "$PAYLOAD" 2>&1 | tee /tmp/gen.log; exit ${PIPESTATUS[0]}
+
+      - name: Ship failure log to branch (sandbox cannot read Actions logs)
+        if: failure()
+        run: |
+          tail -c 200000 /tmp/gen.log > production/raincoat2004/gen-diag.log
+          git config user.name "arena-diag"
+          git config user.email "arena@local"
+          git add -f production/raincoat2004/gen-diag.log
+          git commit -m "raincoat2004: Agnes 生成失败诊断 $(date -u +%FT%TZ)"
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then pushed=1; break; fi
+            git fetch origin ${{ github.ref_name }} && git rebase FETCH_HEAD || break
+          done
+          [ "$pushed" = "1" ] || echo "::error::诊断日志推不回分支，看本次运行的 artifact"
+
+      - name: Save video clips as downloadable artifacts
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: raincoat2004-agnes-${{ github.run_number }}
+          path: |
+            work/raincoat2004/clips/
+            production/raincoat2004/results.json
+            production/raincoat2004/qa/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 14

@@ -1,0 +1,111 @@
+{
+  "film_sha256": "b57ad26f7d520bb1d5066daa9a257d9c87651e3f9c0b99b80fa736fae9d20804",
+  "source_audit": "production/lamkorwan/delivery/frame-distortion-audit.json",
+  "selection_policy": "start/middle/end of each temporal window; each face candidate; median hand-geometry event per affected shot",
+  "max_width": 960,
+  "frames": [
+    {
+      "frame": 2,
+      "seconds": 0.067,
+      "reasons": [
+        "temporal-S01-start"
+      ],
+      "file": "f00002_temporal-S01-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5,
+      "seconds": 0.167,
+      "reasons": [
+        "temporal-S01-middle"
+      ],
+      "file": "f00005_temporal-S01-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 8,
+      "seconds": 0.267,
+      "reasons": [
+        "temporal-S01-end"
+      ],
+      "file": "f00008_temporal-S01-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 1457,
+      "seconds": 48.567,
+      "reasons": [
+        "temporal-S14-end",
+        "temporal-S14-middle",
+        "temporal-S14-start"
+      ],
+      "file": "f01457_temporal-S14-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 3703,
+      "seconds": 123.433,
+      "reasons": [
+        "hand-geometry-S34"
+      ],
+      "file": "f03703_hand-geometry-S34.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5282,
+      "seconds": 176.067,
+      "reasons": [
+        "temporal-S45-middle",
+        "temporal-S45-start"
+      ],
+      "file": "f05282_temporal-S45-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5283,
+      "seconds": 176.1,
+      "reasons": [
+        "temporal-S45-end"
+      ],
+      "file": "f05283_temporal-S45-end.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5288,
+      "seconds": 176.267,
+      "reasons": [
+        "temporal-END-start"
+      ],
+      "file": "f05288_temporal-END-start.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5290,
+      "seconds": 176.333,
+      "reasons": [
+        "temporal-END-middle"
+      ],
+      "file": "f05290_temporal-END-middle.jpg",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "frame": 5292,
+      "seconds": 176.4,
+      "reasons": [
+        "temporal-END-end"
+      ],
+      "file": "f05292_temporal-END-end.jpg",
+      "width": 960,
+      "height": 540
+    }
+  ]
+}

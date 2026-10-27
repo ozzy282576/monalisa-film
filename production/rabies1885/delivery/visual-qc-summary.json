@@ -1,0 +1,17 @@
+{
+  "film": "狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4",
+  "sha256": "f0b224cd1195f5c87413bf398be7c169311fe325ebf45fb74e3e548cb560042b",
+  "workflow_run": "https://github.com/32r4e2q-hub/desktop-tutorial/actions/runs/37394459344",
+  "all_decoded_frames_scanned": true,
+  "decoded_frames": 5400,
+  "expected_frames": 5400,
+  "automated_status": "REVIEW",
+  "unplanned_black_frames": 0,
+  "non_graphic_freeze_runs": 0,
+  "temporal_outlier_windows": 9,
+  "face_review_candidates": 0,
+  "hand_landmark_extreme_events": 265,
+  "human_semantic_visual_review": "pending",
+  "midpoint_contact_sheet": "production/rabies1885/delivery/visual-qc-shot-midpoints.jpg",
+  "note": "Automation is triage. Review the uploaded all-frame, midpoint, hand, and suspect-frame artifacts before final sign-off."
+}

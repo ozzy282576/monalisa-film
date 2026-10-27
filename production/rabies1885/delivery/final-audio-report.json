@@ -1,0 +1,58 @@
+{
+  "file": "狂犬病疫苗_一百四十年前那场赌局_三分钟_带声音.mp4",
+  "duration_seconds": 180.011,
+  "sample_rate": 48000,
+  "channels": 1,
+  "rms_dbfs": -22.15,
+  "peak_dbfs": -1.52,
+  "window_seconds": 1.0,
+  "silent_windows": 2,
+  "window_count": 181,
+  "silent_fraction": 0.011,
+  "quietest_window_dbfs": -120.0,
+  "chapters": [
+    {
+      "id": "N01",
+      "start": 0.6,
+      "end": 25.911,
+      "rms_dbfs": -22.28,
+      "peak_dbfs": -1.52
+    },
+    {
+      "id": "N02",
+      "start": 26.991,
+      "end": 56.833,
+      "rms_dbfs": -21.4,
+      "peak_dbfs": -2.68
+    },
+    {
+      "id": "N03",
+      "start": 57.913,
+      "end": 84.696,
+      "rms_dbfs": -22.37,
+      "peak_dbfs": -2.66
+    },
+    {
+      "id": "N04",
+      "start": 85.776,
+      "end": 110.977,
+      "rms_dbfs": -21.61,
+      "peak_dbfs": -2.44
+    },
+    {
+      "id": "N05",
+      "start": 112.057,
+      "end": 138.316,
+      "rms_dbfs": -22.09,
+      "peak_dbfs": -3.22
+    },
+    {
+      "id": "N06",
+      "start": 139.396,
+      "end": 174.0,
+      "rms_dbfs": -21.65,
+      "peak_dbfs": -1.75
+    }
+  ],
+  "measured_on": "delivered mp4"
+}

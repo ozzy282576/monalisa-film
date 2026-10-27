@@ -1,0 +1,74 @@
+{
+  "gate": "check-prompts",
+  "project": "production/raincoat2004",
+  "errors": [],
+  "warnings": [],
+  "characters": [
+    {
+      "id": "C1",
+      "name": "雨衣男（凶手 · 虚构匿名角色）",
+      "role": "suspect",
+      "face_token_chars": 389,
+      "portrait": "cast/C1.jpg",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/ef74e893-desktop-tutorial/production/raincoat2004/cast/C1.jpg",
+      "seed": 20030924
+    },
+    {
+      "id": "C2",
+      "name": "老刑警（虚构匿名角色）",
+      "role": "police",
+      "face_token_chars": 383,
+      "portrait": "cast/C2.jpg",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/ef74e893-desktop-tutorial/production/raincoat2004/cast/C2.jpg",
+      "seed": 20040715
+    },
+    {
+      "id": "C3",
+      "name": "按摩店老板（虚构匿名角色）",
+      "role": "witness",
+      "face_token_chars": 337,
+      "portrait": "cast/C3.jpg",
+      "portrait_url": "https://raw.githubusercontent.com/32r4e2q-hub/desktop-tutorial/arena/ef74e893-desktop-tutorial/production/raincoat2004/cast/C3.jpg",
+      "seed": 20040718
+    }
+  ],
+  "face_shots": [
+    {
+      "shot": "S05",
+      "characters": [
+        "C1"
+      ],
+      "prompt_chars": 989
+    },
+    {
+      "shot": "S06",
+      "characters": [
+        "C2"
+      ],
+      "prompt_chars": 1063
+    },
+    {
+      "shot": "S27",
+      "characters": [
+        "C3"
+      ],
+      "prompt_chars": 953
+    },
+    {
+      "shot": "S32",
+      "characters": [
+        "C1"
+      ],
+      "prompt_chars": 1028
+    },
+    {
+      "shot": "S35",
+      "characters": [
+        "C1"
+      ],
+      "prompt_chars": 1080
+    }
+  ],
+  "mode": "face",
+  "status": "PASS"
+}
