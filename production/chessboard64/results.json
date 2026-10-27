@@ -160,8 +160,7 @@
       "id": "S12"
     },
     "S13": {
-      "id": "S13",
-      "updated_at": "2026-10-27T07:11:33Z"
+      "id": "S13"
     },
     "S14": {
       "id": "S14",
@@ -309,27 +308,7 @@
     },
     "S22": {
       "id": "S22",
-      "updated_at": "2026-10-26T12:06:29Z",
-      "status": "completed",
-      "request_hash": "4379d56aed96ee1ebff2f15f8d4b31bffba6d7376b64580e1842362ce46bf213",
-      "task_id": "202610261024112623eaeced534fba",
-      "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026102515e8126e681b054cdc_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=mOzsSQ1dfPSs7uP6CrML52kuRh0%3D&Expires=1793067918",
-      "sha256": "196c4572cbfea479341e0dae3d687928d8fd8d4bfe74b2b00f12d468bd2a9da1",
-      "bytes": 1298685,
-      "media": {
-        "duration": 5.108108,
-        "bytes": 1298685,
-        "width": 1792,
-        "height": 1024,
-        "fps": 37.0,
-        "video_codec": "h264",
-        "frames": 189,
-        "decoded_ok": true,
-        "contact_sheet": "production/chessboard64/qa/S22.jpg",
-        "contact_sampling_fps": 2,
-        "visual_review": "pending"
-      },
-      "error": null
+      "updated_at": "2026-10-27T07:11:34Z"
     },
     "S23": {
       "id": "S23",
@@ -833,7 +812,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-27T07:11:33Z",
+  "updated_at": "2026-10-27T07:11:34Z",
   "previous_results": {
     "S06": [
       {
@@ -1339,6 +1318,30 @@
           "contact_sampling_fps": 2,
           "visual_review": "pending"
         }
+      },
+      {
+        "id": "S22",
+        "updated_at": "2026-10-26T12:06:29Z",
+        "status": "expired",
+        "request_hash": "4379d56aed96ee1ebff2f15f8d4b31bffba6d7376b64580e1842362ce46bf213",
+        "task_id": "202610261024112623eaeced534fba",
+        "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261026102515e8126e681b054cdc_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=mOzsSQ1dfPSs7uP6CrML52kuRh0%3D&Expires=1793067918",
+        "sha256": "196c4572cbfea479341e0dae3d687928d8fd8d4bfe74b2b00f12d468bd2a9da1",
+        "bytes": 1298685,
+        "media": {
+          "duration": 5.108108,
+          "bytes": 1298685,
+          "width": 1792,
+          "height": 1024,
+          "fps": 37.0,
+          "video_codec": "h264",
+          "frames": 189,
+          "decoded_ok": true,
+          "contact_sheet": "production/chessboard64/qa/S22.jpg",
+          "contact_sampling_fps": 2,
+          "visual_review": "pending"
+        },
+        "error": "Archived before explicit source-URL refresh"
       }
     ],
     "S28": [
@@ -2271,6 +2274,10 @@
           "visual_review": "pending"
         },
         "error": "Archived before explicit source-URL refresh"
+      },
+      {
+        "id": "S13",
+        "updated_at": "2026-10-27T07:11:33Z"
       }
     ],
     "S14": [
