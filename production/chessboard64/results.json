@@ -733,7 +733,10 @@
       "error": null
     },
     "S10": {
-      "id": "S10"
+      "id": "S10",
+      "status": "submitting",
+      "request_hash": "23f0b45390ec535b1aa30802f6702e9a931e81e96f0f2927f14f9ac65ac8c9f4",
+      "updated_at": "2026-10-27T07:11:42Z"
     }
   },
   "workflow_policy": "cogvideox-flash-receipt-v2-refprobe",
@@ -778,7 +781,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-27T07:11:41Z",
+  "updated_at": "2026-10-27T07:11:42Z",
   "previous_results": {
     "S06": [
       {
