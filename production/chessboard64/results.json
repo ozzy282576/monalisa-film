@@ -101,10 +101,27 @@
     },
     "S06": {
       "id": "S06",
-      "status": "queued",
+      "status": "completed",
       "request_hash": "8f6f3d8e1f1a36f3236631eb7ed912d6e76599178c02253962f28de675cd5d6f",
-      "updated_at": "2026-10-27T09:06:33Z",
-      "task_id": "202610271706334c9850dfc0684833"
+      "updated_at": "2026-10-27T09:08:14Z",
+      "task_id": "202610271706334c9850dfc0684833",
+      "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/20261027170800026b38bf01d1487a_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=g2JfkoyB6sHoTgzxP%2BlBW5fH3og%3D&Expires=1793178482",
+      "sha256": "8a49d4e6cd64b0c2f333c2e856258efadba74d6c1223eed3ed2b1ce4ad335eea",
+      "bytes": 1132668,
+      "media": {
+        "duration": 5.108108,
+        "bytes": 1132668,
+        "width": 1792,
+        "height": 1024,
+        "fps": 37.0,
+        "video_codec": "h264",
+        "frames": 189,
+        "decoded_ok": true,
+        "contact_sheet": "production/chessboard64/qa/S06.jpg",
+        "contact_sampling_fps": 2,
+        "visual_review": "pending"
+      },
+      "error": null
     },
     "S07": {
       "id": "S07",
@@ -941,7 +958,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-27T09:06:33Z",
+  "updated_at": "2026-10-27T09:08:14Z",
   "previous_results": {
     "S06": [
       {
