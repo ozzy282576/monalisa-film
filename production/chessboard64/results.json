@@ -77,27 +77,7 @@
     },
     "S05": {
       "id": "S05",
-      "updated_at": "2026-10-26T12:05:30Z",
-      "status": "completed",
-      "request_hash": "fa44c557f1ea952a5a54c422881614e4661180301da2d3a602b9c841689c3bed",
-      "task_id": "2026102609423358da43ced98f462d",
-      "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260944005c44111e042e4441_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=TjtlIHV4r%2FIZmmGu3JDPIWD8ozA%3D&Expires=1793065442",
-      "sha256": "c716e443ac434029a284d084d68914f702a847ca92f6c9620aff588844395182",
-      "bytes": 1658299,
-      "media": {
-        "duration": 5.108108,
-        "bytes": 1658299,
-        "width": 1792,
-        "height": 1024,
-        "fps": 37.0,
-        "video_codec": "h264",
-        "frames": 189,
-        "decoded_ok": true,
-        "contact_sheet": "production/chessboard64/qa/S05.jpg",
-        "contact_sampling_fps": 2,
-        "visual_review": "pending"
-      },
-      "error": null
+      "updated_at": "2026-10-27T07:11:26Z"
     },
     "S06": {
       "id": "S06",
@@ -958,7 +938,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-27T07:11:25Z",
+  "updated_at": "2026-10-27T07:11:26Z",
   "previous_results": {
     "S06": [
       {
@@ -2094,6 +2074,30 @@
           "contact_sampling_fps": 2,
           "visual_review": "pending"
         }
+      },
+      {
+        "id": "S05",
+        "updated_at": "2026-10-26T12:05:30Z",
+        "status": "expired",
+        "request_hash": "fa44c557f1ea952a5a54c422881614e4661180301da2d3a602b9c841689c3bed",
+        "task_id": "2026102609423358da43ced98f462d",
+        "video_url": "https://maas-watermark-prod-new.cn-wlcb.ufileos.com/202610260944005c44111e042e4441_watermark.mp4?UCloudPublicKey=TOKEN_6df395df-5d8c-4f69-90f8-a4fe46088958&Signature=TjtlIHV4r%2FIZmmGu3JDPIWD8ozA%3D&Expires=1793065442",
+        "sha256": "c716e443ac434029a284d084d68914f702a847ca92f6c9620aff588844395182",
+        "bytes": 1658299,
+        "media": {
+          "duration": 5.108108,
+          "bytes": 1658299,
+          "width": 1792,
+          "height": 1024,
+          "fps": 37.0,
+          "video_codec": "h264",
+          "frames": 189,
+          "decoded_ok": true,
+          "contact_sheet": "production/chessboard64/qa/S05.jpg",
+          "contact_sampling_fps": 2,
+          "visual_review": "pending"
+        },
+        "error": "Archived before explicit source-URL refresh"
       }
     ],
     "S07": [
