@@ -154,7 +154,14 @@ jobs:
           git add -f production/chessboard64/delivery/frame-distortion-audit.json \
             production/chessboard64/delivery/visual-qc-summary.json
           git commit -m "chessboard64: publish text-only visual-QC receipts" || true
-          git push origin "HEAD:arena/56672981-monalisa-film"
+          # 视觉QC与逐字听检并发跑，收据推送要能顶住 non-fast-forward。
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:arena/56672981-monalisa-film"; then pushed=1; break; fi
+            git fetch origin arena/56672981-monalisa-film && git rebase FETCH_HEAD || break
+            sleep $(( attempt * 5 ))
+          done
+          [ "$pushed" = "1" ] || { echo "::error::视觉QC收据推不回分支，看本次运行的 artifact"; exit 1; }
 
       - name: Enforce strict all-frame machine QC
         if: always()
