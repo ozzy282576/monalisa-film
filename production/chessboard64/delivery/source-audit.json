@@ -5,13 +5,13 @@
     "blocked": [],
     "min_ttl_hours": 1.5,
     "max_slow_motion_factor": 1.4,
-    "checked_at": "2026-10-26T19:54:38Z"
+    "checked_at": "2026-10-27T09:09:27Z"
   },
   "shots": [
     {
       "id": "S01",
       "status": "completed",
-      "ttl_hours": 16.29,
+      "ttl_hours": 3.04,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -19,7 +19,7 @@
     {
       "id": "S02",
       "status": "completed",
-      "ttl_hours": 16.36,
+      "ttl_hours": 3.12,
       "duration": 5.108,
       "factor": 1.061,
       "note": ""
@@ -27,7 +27,7 @@
     {
       "id": "S04",
       "status": "completed",
-      "ttl_hours": 16.4,
+      "ttl_hours": 3.15,
       "duration": 5.108,
       "factor": 1.118,
       "note": ""
@@ -35,7 +35,7 @@
     {
       "id": "S05",
       "status": "completed",
-      "ttl_hours": 5.82,
+      "ttl_hours": 22.68,
       "duration": 5.108,
       "factor": 1.061,
       "note": ""
@@ -43,7 +43,7 @@
     {
       "id": "S06",
       "status": "completed",
-      "ttl_hours": 5.85,
+      "ttl_hours": 23.98,
       "duration": 5.108,
       "factor": 1.178,
       "note": ""
@@ -51,7 +51,7 @@
     {
       "id": "S07",
       "status": "completed",
-      "ttl_hours": 16.85,
+      "ttl_hours": 3.61,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -59,7 +59,7 @@
     {
       "id": "S08",
       "status": "completed",
-      "ttl_hours": 11.19,
+      "ttl_hours": 22.07,
       "duration": 5.108,
       "factor": 1.191,
       "note": ""
@@ -67,7 +67,7 @@
     {
       "id": "S09",
       "status": "completed",
-      "ttl_hours": 21.73,
+      "ttl_hours": 8.48,
       "duration": 5.108,
       "factor": 1.038,
       "note": ""
@@ -75,7 +75,7 @@
     {
       "id": "S10",
       "status": "completed",
-      "ttl_hours": 6.06,
+      "ttl_hours": 22.18,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -83,7 +83,7 @@
     {
       "id": "S11",
       "status": "completed",
-      "ttl_hours": 17.73,
+      "ttl_hours": 4.48,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -91,7 +91,7 @@
     {
       "id": "S12",
       "status": "completed",
-      "ttl_hours": 6.15,
+      "ttl_hours": 22.36,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -99,7 +99,7 @@
     {
       "id": "S13",
       "status": "completed",
-      "ttl_hours": 7.05,
+      "ttl_hours": 22.13,
       "duration": 5.108,
       "factor": 1.28,
       "note": ""
@@ -107,7 +107,7 @@
     {
       "id": "S14",
       "status": "completed",
-      "ttl_hours": 21.7,
+      "ttl_hours": 8.45,
       "duration": 5.108,
       "factor": 1.05,
       "note": ""
@@ -115,7 +115,7 @@
     {
       "id": "S15",
       "status": "completed",
-      "ttl_hours": 17.0,
+      "ttl_hours": 3.75,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -123,7 +123,7 @@
     {
       "id": "S17",
       "status": "completed",
-      "ttl_hours": 17.75,
+      "ttl_hours": 4.5,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -131,7 +131,7 @@
     {
       "id": "S19",
       "status": "completed",
-      "ttl_hours": 19.23,
+      "ttl_hours": 5.98,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -139,7 +139,7 @@
     {
       "id": "S20",
       "status": "completed",
-      "ttl_hours": 17.85,
+      "ttl_hours": 4.6,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -147,7 +147,7 @@
     {
       "id": "S21",
       "status": "completed",
-      "ttl_hours": 17.78,
+      "ttl_hours": 4.54,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -155,7 +155,7 @@
     {
       "id": "S22",
       "status": "completed",
-      "ttl_hours": 6.51,
+      "ttl_hours": 22.39,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -163,7 +163,7 @@
     {
       "id": "S23",
       "status": "completed",
-      "ttl_hours": 18.88,
+      "ttl_hours": 5.64,
       "duration": 5.108,
       "factor": 1.131,
       "note": ""
@@ -171,7 +171,7 @@
     {
       "id": "S24",
       "status": "completed",
-      "ttl_hours": 6.6,
+      "ttl_hours": 22.15,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -179,7 +179,7 @@
     {
       "id": "S25",
       "status": "completed",
-      "ttl_hours": 19.45,
+      "ttl_hours": 6.2,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -187,7 +187,7 @@
     {
       "id": "S26",
       "status": "completed",
-      "ttl_hours": 18.89,
+      "ttl_hours": 5.64,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -195,7 +195,7 @@
     {
       "id": "S28",
       "status": "completed",
-      "ttl_hours": 19.93,
+      "ttl_hours": 6.69,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -203,7 +203,7 @@
     {
       "id": "S29",
       "status": "completed",
-      "ttl_hours": 21.2,
+      "ttl_hours": 21.99,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -211,7 +211,7 @@
     {
       "id": "S30",
       "status": "completed",
-      "ttl_hours": 17.96,
+      "ttl_hours": 4.72,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -219,7 +219,7 @@
     {
       "id": "S31",
       "status": "completed",
-      "ttl_hours": 20.12,
+      "ttl_hours": 6.88,
       "duration": 5.108,
       "factor": 1.044,
       "note": ""
@@ -227,15 +227,15 @@
     {
       "id": "S32",
       "status": "completed",
-      "ttl_hours": 18.99,
+      "ttl_hours": 5.75,
       "duration": 5.108,
-      "factor": 1.148,
+      "factor": 1.276,
       "note": ""
     },
     {
       "id": "S34",
       "status": "completed",
-      "ttl_hours": 23.16,
+      "ttl_hours": 9.91,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -243,7 +243,7 @@
     {
       "id": "S35",
       "status": "completed",
-      "ttl_hours": 19.81,
+      "ttl_hours": 6.57,
       "duration": 5.108,
       "factor": 1.148,
       "note": ""
@@ -251,7 +251,7 @@
     {
       "id": "S36",
       "status": "completed",
-      "ttl_hours": 18.98,
+      "ttl_hours": 5.73,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -259,7 +259,7 @@
     {
       "id": "S37",
       "status": "completed",
-      "ttl_hours": 6.65,
+      "ttl_hours": 22.09,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -267,7 +267,7 @@
     {
       "id": "S38",
       "status": "completed",
-      "ttl_hours": 19.14,
+      "ttl_hours": 5.89,
       "duration": 5.108,
       "factor": 1.187,
       "note": ""
@@ -275,7 +275,7 @@
     {
       "id": "S40",
       "status": "completed",
-      "ttl_hours": 18.95,
+      "ttl_hours": 5.7,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -283,7 +283,7 @@
     {
       "id": "S41",
       "status": "completed",
-      "ttl_hours": 19.5,
+      "ttl_hours": 6.25,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -291,7 +291,7 @@
     {
       "id": "S42",
       "status": "completed",
-      "ttl_hours": 19.18,
+      "ttl_hours": 5.93,
       "duration": 5.108,
       "factor": 1.129,
       "note": ""
@@ -299,7 +299,7 @@
     {
       "id": "S43",
       "status": "completed",
-      "ttl_hours": 19.19,
+      "ttl_hours": 5.95,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
@@ -307,7 +307,7 @@
     {
       "id": "S44",
       "status": "completed",
-      "ttl_hours": 19.86,
+      "ttl_hours": 6.61,
       "duration": 5.108,
       "factor": 1.0,
       "note": ""
