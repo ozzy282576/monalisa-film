@@ -76,7 +76,10 @@
       }
     },
     "S05": {
-      "id": "S05"
+      "id": "S05",
+      "status": "submitting",
+      "request_hash": "fa44c557f1ea952a5a54c422881614e4661180301da2d3a602b9c841689c3bed",
+      "updated_at": "2026-10-27T07:11:38Z"
     },
     "S06": {
       "id": "S06"
@@ -577,8 +580,7 @@
       "error": null
     },
     "S37": {
-      "id": "S37",
-      "updated_at": "2026-10-27T07:11:37Z"
+      "id": "S37"
     },
     "S38": {
       "id": "S38",
@@ -770,7 +772,7 @@
     "S43",
     "S44"
   ],
-  "updated_at": "2026-10-27T07:11:37Z",
+  "updated_at": "2026-10-27T07:11:38Z",
   "previous_results": {
     "S06": [
       {
@@ -3018,6 +3020,10 @@
           "visual_review": "pending"
         },
         "error": "Archived before explicit source-URL refresh"
+      },
+      {
+        "id": "S37",
+        "updated_at": "2026-10-27T07:11:37Z"
       }
     ],
     "S38": [
